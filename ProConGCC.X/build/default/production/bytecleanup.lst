@@ -1,0 +1,120 @@
+
+
+Microchip MPLAB XC8 Assembler V2.32 build 20210201212658 
+                                                                                                           Tue Jan 11 13:39:51 2022
+
+
+     1                           	processor	18F25K42
+     2                           	pagewidth 132
+     3                           	psect	udata_acs,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+     4                           	psect	udata_bank0,global,class=BANK0,space=1,delta=1,lowdata,noexec
+     5                           	psect	udata_bank1,global,class=BANK1,space=1,delta=1,lowdata,noexec
+     6                           	psect	udata_bank2,global,class=BANK2,space=1,delta=1,lowdata,noexec
+     7                           	psect	udata_bank3,global,class=BANK3,space=1,delta=1,lowdata,noexec
+     8                           	psect	udata_bank4,global,class=BANK4,space=1,delta=1,lowdata,noexec
+     9                           	psect	udata_bank5,global,class=BANK5,space=1,delta=1,lowdata,noexec
+    10                           	psect	udata_bank6,global,class=BANK6,space=1,delta=1,lowdata,noexec
+    11                           	psect	udata_bank7,global,class=BANK7,space=1,delta=1,lowdata,noexec
+    12                           	psect	udata,global,class=RAM,space=1,delta=1,noexec
+    13                           	psect	code,global,reloc=2,class=CODE,delta=1
+    14                           	psect	data,global,reloc=2,class=CONST,delta=1,noexec
+    15                           	psect	edata,global,class=EEDATA,space=3,delta=2,noexec
+    16                           	psect	barfunc,local,reloc=2,class=CODE,delta=1
+    17  0000                     
+    18                           	psect	edata
+    19  0000                     stk_offset	set	0
+    20  0000                     auto_size	set	0
+    21                           
+    22                           ; stack_auto defines a symbol /name/_offset which equates to the
+    23                           ; stack offset of the auto object in question
+    24  000000                     
+    25                           ; stack_param defines a symbol /name/_offset which equates to the
+    26                           ; stack offset of the parameter object in question
+    27  000000                     
+    28                           ; alloc_stack adjusts the SP to allocate space for auto objects
+    29                           ; it also links in to the btemp symbol so that can be used
+    30  000000                     
+    31                           ; restore_stack adjusts the SP to remove all auto and parameter
+    32                           ; objects from the stack prior to returning from a function
+    33  000000                     
+    34                           	psect	barfunc
+    35  000770                     _bytecleanup:
+    36                           	callstack 0
+    37                           
+    38                           ; Check if we are out of sync and need cleanup
+    39  000770  B02B               	btfsc	_gInStatus,0,c	; Byte 0 is desync. Skip if in sync
+    40  000772  EFBD  F003         	goto	MAINCLEANUP	; Perform a cleanup
+    41                           
+    42                           ; Check that we finished a packet and need cleanup
+    43  000776  AA2B               	btfss	_gInStatus,5,c	; Byte 5 response sent flag. Skip if we sent one
+    44  000778  0012               	return		; Return if we have nothing to clean up yet.
+    45  00077A                     MAINCLEANUP:
+    46                           
+    47                           ; We gotta reset some variables for our next command read
+    48  00077A  0EB6               	movlw	_gInPacket	; Reset the byte packet index pointer
+    49  00077C  006F FFA0  F02C    	movff	wreg,_gInPacketIdx
+    50  000782  9E2B               	bcf	_gInStatus,7,c	; Clear the stop bit written flag
+    51  000784  9C2B               	bcf	_gInStatus,6,c	; Clear the command interpreted flag
+    52  000786  9A2B               	bcf	_gInStatus,5,c	; response sent flag
+    53  000788  902B               	bcf	_gInStatus,0,c	; Clear any desync flag
+    54  00078A  6A4C               	clrf	_gInBitCounter,c	; Clear the bit counter
+    55  00078C  864C               	bsf	_gInBitCounter,3,c	; Set the bit counter to 8 (bit 3)
+    56  00078E  6A32               	clrf	_gConOutByte,c	; Clear the outgoing byte container
+    57  000790  6A30               	clrf	_gConOutIdx,c	; Clear the outgoing byte index pointer
+    58  000792  6A31               	clrf	_gConByteCount,c	; Clear the outgoing byte counter
+    59  000794  6A2D               	clrf	_gInCommandByte,c	; Clear the incoming command bit
+    60  000796  6A2E               	clrf	_gInPulseWidth,c	; Clear the pulse width counter
+    61  000798  882B               	bsf	_gInStatus,4,c	; Set the flag that we did cleanup
+    62  00079A  862B               	bsf	_gInStatus,3,c	; Enable stick scan
+    63  00079C  84C3               	bsf	16323,2,c	; Clear the data pin from us driving so we can receive
+    64  00079E  013F               	movlb	63
+    65  0007A0  8FD2               	bsf	210,7,b	; Start global interrupts
+    66  0007A2  8F1F               	bsf	31,7,b	; Start SMT
+    67  0007A4  0012               	return	
+    68                           tosu	equ	0x3FFF
+    69                           tosh	equ	0x3FFE
+    70                           tosl	equ	0x3FFD
+    71                           stkptr	equ	0x3FFC
+    72                           pclatu	equ	0x3FFB
+    73                           pclath	equ	0x3FFA
+    74                           pcl	equ	0x3FF9
+    75                           tblptru	equ	0x3FF8
+    76                           tblptrh	equ	0x3FF7
+    77                           tblptrl	equ	0x3FF6
+    78                           tablat	equ	0x3FF5
+    79                           prodh	equ	0x3FF4
+    80                           prodl	equ	0x3FF3
+    81                           indf0	equ	0x3FEF
+    82                           postinc0	equ	0x3FEE
+    83                           postdec0	equ	0x3FED
+    84                           preinc0	equ	0x3FEC
+    85                           plusw0	equ	0x3FEB
+    86                           fsr0h	equ	0x3FEA
+    87                           fsr0l	equ	0x3FE9
+    88                           wreg	equ	0x3FE8
+    89                           indf1	equ	0x3FE7
+    90                           postinc1	equ	0x3FE6
+    91                           postdec1	equ	0x3FE5
+    92                           preinc1	equ	0x3FE4
+    93                           plusw1	equ	0x3FE3
+    94                           fsr1h	equ	0x3FE2
+    95                           fsr1l	equ	0x3FE1
+    96                           bsr	equ	0x3FE0
+    97                           indf2	equ	0x3FDF
+    98                           postinc2	equ	0x3FDE
+    99                           postdec2	equ	0x3FDD
+   100                           preinc2	equ	0x3FDC
+   101                           plusw2	equ	0x3FDB
+   102                           fsr2h	equ	0x3FDA
+   103                           fsr2l	equ	0x3FD9
+   104                           status	equ	0x3FD8
+
+
+Microchip Technology PIC18 Macro Assembler V2.32 build 20210201212658 
+Symbol Table                                                                                               Tue Jan 11 13:39:51 2022
+
+                          WREG 003FE8                           TRISB 003FC3                     _gConOutIdx 0030  
+                       isa$std 000001                 _gInCommandByte 002D                    _gConOutByte 0032  
+                   MAINCLEANUP 077A                      _gInPacket 00B6                  _gInBitCounter 004C  
+                    _gInStatus 002B                  _gConByteCount 0031                  _gInPulseWidth 002E  
+                  _bytecleanup 0770                   _gInPacketIdx 002C                       isa$xinst 000000  

@@ -1,0 +1,3006 @@
+
+
+Microchip MPLAB XC8 Assembler V2.32 build 20210201212658 
+                                                                                               Tue Jan 11 13:39:54 2022
+
+Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og9 
+     1                           	processor	18F25K42
+     2                           	fnconf	rparam,??,?,0
+     3                           	pagewidth 120
+     4                           	opt	flic
+     5                           	psect	idataCOMRAM,global,class=CODE,delta=1,noexec
+     6                           	psect	idataBANK0,global,class=CODE,delta=1,noexec
+     7                           	psect	nvBANK1,global,class=BANK1,space=1,delta=1,lowdata,noexec
+     8                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     9                           	psect	bssCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+    10                           	psect	dataCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+    11                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1,lowdata,noexec
+    12                           	psect	dataBANK0,global,class=BANK0,space=1,delta=1,lowdata,noexec
+    13                           	psect	bssBANK1,global,class=BANK1,space=1,delta=1,lowdata,noexec
+    14                           	psect	cstackBANK1,global,class=BANK1,space=1,delta=1,lowdata,noexec
+    15                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+    16                           	psect	text0,global,reloc=2,class=CODE,delta=1
+    17                           	psect	text1,global,reloc=2,class=CODE,delta=1
+    18                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    19                           	psect	text3,global,reloc=2,class=CODE,delta=1,group=1
+    20                           	psect	text4,global,reloc=2,class=CODE,delta=1
+    21                           	psect	text5,global,reloc=2,class=CODE,delta=1
+    22                           	psect	text6,global,reloc=2,class=CODE,delta=1
+    23                           	psect	text7,global,reloc=2,class=CODE,delta=1
+    24                           	psect	text8,global,reloc=2,class=CODE,delta=1
+    25                           	psect	text9,global,reloc=2,class=CODE,delta=1
+    26                           	psect	text10,global,reloc=2,class=CODE,delta=1
+    27                           	psect	text11,global,reloc=2,class=CODE,delta=1
+    28                           	psect	text12,global,reloc=2,class=CODE,delta=1
+    29                           	psect	text13,global,reloc=2,class=CODE,delta=1
+    30                           	psect	ivt0x8,global,reloc=2,class=CODE,delta=1,noexec,keep,optim=
+    31                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1,noexec
+    32                           	psect	rparam,global,class=COMRAM,space=1,delta=1,noexec
+    33                           	psect	idloc,global,abs,ovrld,class=IDLOC,space=5,delta=1,noexec
+    34                           	psect	config,global,abs,ovrld,class=CONFIG,space=4,delta=1,noexec
+    35  0000                     
+    36                           ; Version 2.20
+    37                           ; Generated 05/05/2020 GMT
+    38                           ; 
+    39                           ; Copyright © 2020, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    40                           ; All rights reserved.
+    41                           ; 
+    42                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    43                           ; 
+    44                           ; Redistribution and use in source and binary forms, with or without modification, are
+    45                           ; permitted provided that the following conditions are met:
+    46                           ; 
+    47                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    48                           ;        conditions and the following disclaimer.
+    49                           ; 
+    50                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    51                           ;        of conditions and the following disclaimer in the documentation and/or other
+    52                           ;        materials provided with the distribution.
+    53                           ; 
+    54                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    55                           ;        software without specific prior written permission.
+    56                           ; 
+    57                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    58                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    59                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    60                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    61                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    62                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    63                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    64                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    65                           ; 
+    66                           ; 
+    67                           ; Code-generator required, PIC18F25K42 Definitions
+    68                           ; 
+    69                           ; SFR Addresses
+    70  0000                     
+    71 ;; Function _IOCBF2_DefaultInterruptHandler is unused but had its address taken
+    72  0000                     
+    73                           	psect	idataCOMRAM
+    74  000870                     __pidataCOMRAM:
+    75                           	callstack 0
+    76                           
+    77                           ;initializer for _gConPollPacket
+    78  000870  00                 	db	0
+    79  000871  00                 	db	0
+    80  000872  83                 	db	131
+    81  000873  83                 	db	131
+    82  000874  7D                 	db	125
+    83  000875  7D                 	db	125
+    84  000876  00                 	db	0
+    85  000877  00                 	db	0
+    86                           
+    87                           ;initializer for _cx_low
+    88  000878  006C               	dw	108
+    89                           
+    90                           ;initializer for _sy_high
+    91  00087A  018E               	dw	398
+    92                           
+    93                           ;initializer for _sy_center
+    94  00087C  00FC               	dw	252
+    95                           
+    96                           ;initializer for _sy_low
+    97  00087E  008C               	dw	140
+    98                           
+    99                           ;initializer for _sx_high
+   100  000880  0181               	dw	385
+   101                           
+   102                           ;initializer for _sx_center
+   103  000882  00FE               	dw	254
+   104                           
+   105                           ;initializer for _sx_low
+   106  000884  0083               	dw	131
+   107                           
+   108                           ;initializer for _gCommandPollMask
+   109  000886  BF                 	db	191
+   110                           
+   111                           ;initializer for _gCommandOriginMask
+   112  000887  BE                 	db	190
+   113                           
+   114                           ;initializer for _gLowThreshold
+   115  000888  1A                 	db	26
+   116                           
+   117                           ;initializer for _gInBitCounter
+   118  000889  08                 	db	8
+   119                           
+   120                           ;initializer for _gConBitCounter
+   121  00088A  08                 	db	8
+   122                           
+   123                           	psect	idataBANK0
+   124  00068E                     __pidataBANK0:
+   125                           	callstack 0
+   126                           
+   127                           ;initializer for _SettingData
+   128  00068E  0000               	dw	0
+   129  000690  0083               	dw	131
+   130  000692  00FE               	dw	254
+   131  000694  0181               	dw	385
+   132  000696  008C               	dw	140
+   133  000698  00FC               	dw	252
+   134  00069A  018E               	dw	398
+   135  00069C  006C               	dw	108
+   136  00069E  00FC               	dw	252
+   137  0006A0  0163               	dw	355
+   138  0006A2  007F               	dw	127
+   139  0006A4  00FE               	dw	254
+   140  0006A6  0181               	dw	385
+   141  0006A8  00C8               	dw	200
+   142  0006AA  00E8               	dw	232
+   143  0006AC  00AF               	dw	175
+   144  0006AE  00E4               	dw	228
+   145  0006B0  0101               	dw	257
+   146  0006B2  00B1               	dw	177
+   147  0006B4  00C3               	dw	195
+   148  0006B6  00C9               	dw	201
+   149  0006B8  00                 	db	0
+   150                           
+   151                           ;initializer for _gConOriginResponse
+   152  0006B9  00                 	db	0
+   153  0006BA  80                 	db	128
+   154  0006BB  80                 	db	128
+   155  0006BC  80                 	db	128
+   156  0006BD  80                 	db	128
+   157  0006BE  80                 	db	128
+   158  0006BF  00                 	db	0
+   159  0006C0  00                 	db	0
+   160  0006C1  02                 	db	2
+   161  0006C2  02                 	db	2
+   162                           
+   163                           ;initializer for _gConProbeResponse
+   164  0006C3  09                 	db	9
+   165  0006C4  00                 	db	0
+   166  0006C5  03                 	db	3
+   167                           
+   168                           ;initializer for _b_value
+   169  0006C6  0017               	dw	23
+   170                           
+   171                           ;initializer for _a_value
+   172  0006C8  015E               	dw	350
+   173                           
+   174                           ;initializer for _cy_lowMultiplier
+   175  0006CA  00C9               	dw	201
+   176                           
+   177                           ;initializer for _cy_highMultiplier
+   178  0006CC  00C3               	dw	195
+   179                           
+   180                           ;initializer for _cx_lowMultiplier
+   181  0006CE  00B1               	dw	177
+   182                           
+   183                           ;initializer for _cx_highMultiplier
+   184  0006D0  0101               	dw	257
+   185                           
+   186                           ;initializer for _sy_lowMultiplier
+   187  0006D2  00E4               	dw	228
+   188                           
+   189                           ;initializer for _sy_highMultiplier
+   190  0006D4  00AF               	dw	175
+   191                           
+   192                           ;initializer for _sx_lowMultiplier
+   193  0006D6  00E8               	dw	232
+   194                           
+   195                           ;initializer for _sx_highMultiplier
+   196  0006D8  00C8               	dw	200
+   197                           
+   198                           ;initializer for _cy_high
+   199  0006DA  0181               	dw	385
+   200                           
+   201                           ;initializer for _cy_center
+   202  0006DC  00FE               	dw	254
+   203                           
+   204                           ;initializer for _cy_low
+   205  0006DE  007F               	dw	127
+   206                           
+   207                           ;initializer for _cx_high
+   208  0006E0  0163               	dw	355
+   209                           
+   210                           ;initializer for _cx_center
+   211  0006E2  00FC               	dw	252
+   212                           
+   213                           	psect	nvBANK1
+   214  000140                     __pnvBANK1:
+   215                           	callstack 0
+   216  000140                     _IOCBF2_InterruptHandler:
+   217                           	callstack 0
+   218  000140                     	ds	2
+   219  0000                     _IPR1bits	set	14721
+   220  0000                     _PIR1bits	set	14753
+   221  0000                     _PIE1bits	set	14737
+   222  0000                     _PMD7	set	14791
+   223  0000                     _PMD6	set	14790
+   224  0000                     _PMD5	set	14789
+   225  0000                     _PMD4	set	14788
+   226  0000                     _PMD3	set	14787
+   227  0000                     _PMD2	set	14786
+   228  0000                     _PMD1	set	14785
+   229  0000                     _PMD0	set	14784
+   230  0000                     _OSCTUNE	set	14814
+   231  0000                     _OSCFRQ	set	14815
+   232  0000                     _OSCEN	set	14813
+   233  0000                     _OSCCON3	set	14811
+   234  0000                     _OSCCON1	set	14809
+   235  0000                     _SMT1SIGPPS	set	15058
+   236  0000                     _IOCBPbits	set	14933
+   237  0000                     _IOCBNbits	set	14934
+   238  0000                     _IOCBFbits	set	14935
+   239  0000                     _INLVLE	set	14980
+   240  0000                     _INLVLC	set	14948
+   241  0000                     _INLVLB	set	14932
+   242  0000                     _INLVLA	set	14916
+   243  0000                     _SLRCONC	set	14947
+   244  0000                     _SLRCONB	set	14931
+   245  0000                     _SLRCONA	set	14915
+   246  0000                     _ODCONC	set	14946
+   247  0000                     _ODCONB	set	14930
+   248  0000                     _ODCONA	set	14914
+   249  0000                     _RC4I2C	set	14955
+   250  0000                     _RC3I2C	set	14954
+   251  0000                     _RB2I2C	set	14939
+   252  0000                     _RB1I2C	set	14938
+   253  0000                     _WPUC	set	14945
+   254  0000                     _WPUA	set	14913
+   255  0000                     _WPUB	set	14929
+   256  0000                     _WPUE	set	14977
+   257  0000                     _ANSELA	set	14912
+   258  0000                     _ANSELB	set	14928
+   259  0000                     _ANSELC	set	14944
+   260  0000                     _ADRESL	set	16111
+   261  0000                     _ADRESH	set	16112
+   262  0000                     _ADCON0bits	set	16120
+   263  0000                     _ADCON0	set	16120
+   264  0000                     _ADCLK	set	16127
+   265  0000                     _ADACT	set	16126
+   266  0000                     _ADREF	set	16125
+   267  0000                     _ADSTAT	set	16124
+   268  0000                     _ADCON3	set	16123
+   269  0000                     _ADCON2	set	16122
+   270  0000                     _ADCON1	set	16121
+   271  0000                     _ADPREH	set	16119
+   272  0000                     _ADPREL	set	16118
+   273  0000                     _ADCAP	set	16117
+   274  0000                     _ADACQH	set	16116
+   275  0000                     _ADACQL	set	16115
+   276  0000                     _ADPCH	set	16113
+   277  0000                     _ADRPT	set	16108
+   278  0000                     _ADACCU	set	16106
+   279  0000                     _ADSTPTH	set	16101
+   280  0000                     _ADSTPTL	set	16100
+   281  0000                     _ADUTHH	set	16097
+   282  0000                     _ADUTHL	set	16096
+   283  0000                     _ADLTHH	set	16095
+   284  0000                     _ADLTHL	set	16094
+   285  0000                     _SMT1CPWL	set	16152
+   286  0000                     _SMT1CON1bits	set	16159
+   287  0000                     _SMT1PRL	set	16155
+   288  0000                     _SMT1PRH	set	16156
+   289  0000                     _SMT1PRU	set	16157
+   290  0000                     _SMT1SIG	set	16162
+   291  0000                     _SMT1WIN	set	16163
+   292  0000                     _SMT1CLK	set	16161
+   293  0000                     _SMT1STAT	set	16160
+   294  0000                     _SMT1CON1	set	16159
+   295  0000                     _SMT1CON0	set	16158
+   296  0000                     _PORTCbits	set	16332
+   297  0000                     _PORTAbits	set	16330
+   298  0000                     _INTCON0bits	set	16338
+   299  0000                     _TRISC	set	16324
+   300  0000                     _TRISB	set	16323
+   301  0000                     _TRISA	set	16322
+   302  0000                     _LATC	set	16316
+   303  0000                     _LATB	set	16315
+   304  0000                     _LATA	set	16314
+   305                           
+   306                           ; #config settings
+   307                           
+   308                           	psect	cinit
+   309  000482                     __pcinit:
+   310                           	callstack 0
+   311  000482                     start_initialization:
+   312                           	callstack 0
+   313  000482                     __initialization:
+   314                           	callstack 0
+   315                           
+   316                           ; Initialize objects allocated to BANK0 (86 bytes)
+   317                           ; load TBLPTR registers with __pidataBANK0
+   318  000482  0E8E               	movlw	low __pidataBANK0
+   319  000484  6EF6               	movwf	tblptrl,c
+   320  000486  0E06               	movlw	high __pidataBANK0
+   321  000488  6EF7               	movwf	tblptrh,c
+   322  00048A  0E00               	movlw	low (__pidataBANK0 shr (0+16))
+   323  00048C  6EF8               	movwf	tblptru,c
+   324  00048E  EE00  F060         	lfsr	0,__pdataBANK0
+   325  000492  EE10 F056          	lfsr	1,86
+   326  000496                     copy_data0:
+   327  000496  0009               	tblrd		*+
+   328  000498  006F FFD7 FFEE     	movff	tablat,postinc0
+   329  00049E  50E5               	movf	postdec1,w,c
+   330  0004A0  50E1               	movf	fsr1l,w,c
+   331  0004A2  E1F9               	bnz	copy_data0
+   332                           
+   333                           ; Initialize objects allocated to COMRAM (27 bytes)
+   334                           ; load TBLPTR registers with __pidataCOMRAM
+   335  0004A4  0E70               	movlw	low __pidataCOMRAM
+   336  0004A6  6EF6               	movwf	tblptrl,c
+   337  0004A8  0E08               	movlw	high __pidataCOMRAM
+   338  0004AA  6EF7               	movwf	tblptrh,c
+   339  0004AC  0E00               	movlw	low (__pidataCOMRAM shr (0+16))
+   340  0004AE  6EF8               	movwf	tblptru,c
+   341  0004B0  EE00  F033         	lfsr	0,__pdataCOMRAM
+   342  0004B4  EE10 F01B          	lfsr	1,27
+   343  0004B8                     copy_data1:
+   344  0004B8  0009               	tblrd		*+
+   345  0004BA  006F FFD7 FFEE     	movff	tablat,postinc0
+   346  0004C0  50E5               	movf	postdec1,w,c
+   347  0004C2  50E1               	movf	fsr1l,w,c
+   348  0004C4  E1F9               	bnz	copy_data1
+   349                           
+   350                           ; Clear objects allocated to BANK1 (60 bytes)
+   351  0004C6  EE00  F100         	lfsr	0,__pbssBANK1
+   352  0004CA  0E3C               	movlw	60
+   353  0004CC                     clear_0:
+   354  0004CC  6AEE               	clrf	postinc0,c
+   355  0004CE  06E8               	decf	wreg,f,c
+   356  0004D0  E1FD               	bnz	clear_0
+   357                           
+   358                           ; Clear objects allocated to BANK0 (74 bytes)
+   359  0004D2  EE00  F0B6         	lfsr	0,__pbssBANK0
+   360  0004D6  0E4A               	movlw	74
+   361  0004D8                     clear_1:
+   362  0004D8  6AEE               	clrf	postinc0,c
+   363  0004DA  06E8               	decf	wreg,f,c
+   364  0004DC  E1FD               	bnz	clear_1
+   365                           
+   366                           ; Clear objects allocated to COMRAM (50 bytes)
+   367  0004DE  EE00  F001         	lfsr	0,__pbssCOMRAM
+   368  0004E2  0E32               	movlw	50
+   369  0004E4                     clear_2:
+   370  0004E4  6AEE               	clrf	postinc0,c
+   371  0004E6  06E8               	decf	wreg,f,c
+   372  0004E8  E1FD               	bnz	clear_2
+   373                           
+   374                           ;
+   375                           ; Setup IVTBASE
+   376                           ;
+   377  0004EA  0E08               	movlw	(ivt0x8_base shr 0)& (0+255)
+   378  0004EC  6ED5               	movwf	213,c
+   379  0004EE  0E00               	movlw	(ivt0x8_base shr (0+8))& (0+255)
+   380  0004F0  6ED6               	movwf	214,c
+   381  0004F2  0E00               	movlw	(ivt0x8_base shr (0+16))& (0+255)
+   382  0004F4  6ED7               	movwf	215,c
+   383  0004F6                     end_of_initialization:
+   384                           	callstack 0
+   385  0004F6                     __end_of__initialization:
+   386                           	callstack 0
+   387  0004F6  0E00               	movlw	low (__Lmediumconst shr (0+16))
+   388  0004F8  6EF8               	movwf	tblptru,c
+   389  0004FA  0100               	movlb	0
+   390  0004FC  EFD3  F003         	goto	_main	;jump to C main() function
+   391                           
+   392                           	psect	bssCOMRAM
+   393  000001                     __pbssCOMRAM:
+   394                           	callstack 0
+   395  000001                     _tmplowm@joysticks$F1635:
+   396                           	callstack 0
+   397  000001                     	ds	2
+   398  000003                     _tmphighm@joysticks$F1634:
+   399                           	callstack 0
+   400  000003                     	ds	2
+   401  000005                     _tmpcenter@joysticks$F1633:
+   402                           	callstack 0
+   403  000005                     	ds	2
+   404  000007                     _tmplow@joysticks$F1632:
+   405                           	callstack 0
+   406  000007                     	ds	2
+   407  000009                     _tmphigh@joysticks$F1631:
+   408                           	callstack 0
+   409  000009                     	ds	2
+   410  00000B                     _adc_read:
+   411                           	callstack 0
+   412  00000B                     	ds	2
+   413  00000D                     	ds	1
+   414  00000E                     	ds	1
+   415  00000F                     	ds	1
+   416  000010                     	ds	1
+   417  000011                     	ds	1
+   418  000012                     	ds	1
+   419  000013                     _clearRead@joysticks$F1638:
+   420                           	callstack 0
+   421  000013                     	ds	1
+   422  000014                     _initiatedRead@joysticks$F1637:
+   423                           	callstack 0
+   424  000014                     	ds	1
+   425  000015                     _stickIdx@joysticks$F1636:
+   426                           	callstack 0
+   427  000015                     	ds	1
+   428  000016                     	ds	1
+   429  000017                     	ds	1
+   430  000018                     	ds	1
+   431  000019                     _testLow:
+   432                           	callstack 0
+   433  000019                     	ds	1
+   434  00001A                     _testHigh:
+   435                           	callstack 0
+   436  00001A                     	ds	1
+   437  00001B                     	ds	1
+   438  00001C                     	ds	1
+   439  00001D                     	ds	1
+   440  00001E                     _testpulse:
+   441                           	callstack 0
+   442  00001E                     	ds	1
+   443  00001F                     	ds	1
+   444  000020                     	ds	1
+   445  000021                     	ds	1
+   446  000022                     _testcount:
+   447                           	callstack 0
+   448  000022                     	ds	1
+   449  000023                     	ds	1
+   450  000024                     	ds	1
+   451  000025                     	ds	1
+   452  000026                     _bit_counter:
+   453                           	callstack 0
+   454  000026                     	ds	1
+   455  000027                     _controller_phase:
+   456                           	callstack 0
+   457  000027                     	ds	1
+   458  000028                     	ds	1
+   459  000029                     	ds	1
+   460  00002A                     	ds	1
+   461  00002B                     _gInStatus:
+   462                           	callstack 0
+   463  00002B                     	ds	1
+   464  00002C                     _gInPacketIdx:
+   465                           	callstack 0
+   466  00002C                     	ds	1
+   467  00002D                     _gInCommandByte:
+   468                           	callstack 0
+   469  00002D                     	ds	1
+   470  00002E                     _gInPulseWidth:
+   471                           	callstack 0
+   472  00002E                     	ds	1
+   473  00002F                     _gInBitBufferIdx:
+   474                           	callstack 0
+   475  00002F                     	ds	1
+   476  000030                     _gConOutIdx:
+   477                           	callstack 0
+   478  000030                     	ds	1
+   479  000031                     _gConByteCount:
+   480                           	callstack 0
+   481  000031                     	ds	1
+   482  000032                     _gConOutByte:
+   483                           	callstack 0
+   484  000032                     	ds	1
+   485                           
+   486                           	psect	dataCOMRAM
+   487  000033                     __pdataCOMRAM:
+   488                           	callstack 0
+   489  000033                     _gConPollPacket:
+   490                           	callstack 0
+   491  000033                     	ds	8
+   492  00003B                     _cx_low:
+   493                           	callstack 0
+   494  00003B                     	ds	2
+   495  00003D                     _sy_high:
+   496                           	callstack 0
+   497  00003D                     	ds	2
+   498  00003F                     _sy_center:
+   499                           	callstack 0
+   500  00003F                     	ds	2
+   501  000041                     _sy_low:
+   502                           	callstack 0
+   503  000041                     	ds	2
+   504  000043                     _sx_high:
+   505                           	callstack 0
+   506  000043                     	ds	2
+   507  000045                     _sx_center:
+   508                           	callstack 0
+   509  000045                     	ds	2
+   510  000047                     _sx_low:
+   511                           	callstack 0
+   512  000047                     	ds	2
+   513  000049                     _gCommandPollMask:
+   514                           	callstack 0
+   515  000049                     	ds	1
+   516  00004A                     _gCommandOriginMask:
+   517                           	callstack 0
+   518  00004A                     	ds	1
+   519  00004B                     _gLowThreshold:
+   520                           	callstack 0
+   521  00004B                     	ds	1
+   522  00004C                     _gInBitCounter:
+   523                           	callstack 0
+   524  00004C                     	ds	1
+   525  00004D                     _gConBitCounter:
+   526                           	callstack 0
+   527  00004D                     	ds	1
+   528                           
+   529                           	psect	bssBANK0
+   530  0000B6                     __pbssBANK0:
+   531                           	callstack 0
+   532  0000B6                     _gInPacket:
+   533                           	callstack 0
+   534  0000B6                     	ds	4
+   535  0000BA                     	ds	2
+   536  0000BC                     	ds	2
+   537  0000BE                     	ds	2
+   538  0000C0                     	ds	2
+   539  0000C2                     	ds	2
+   540  0000C4                     	ds	2
+   541  0000C6                     	ds	2
+   542  0000C8                     	ds	2
+   543  0000CA                     	ds	2
+   544  0000CC                     	ds	2
+   545  0000CE                     	ds	2
+   546  0000D0                     	ds	2
+   547  0000D2                     	ds	2
+   548  0000D4                     	ds	2
+   549  0000D6                     	ds	2
+   550  0000D8                     	ds	2
+   551  0000DA                     	ds	2
+   552  0000DC                     	ds	2
+   553  0000DE                     	ds	2
+   554  0000E0                     	ds	2
+   555  0000E2                     	ds	2
+   556  0000E4                     	ds	2
+   557  0000E6                     	ds	2
+   558  0000E8                     	ds	2
+   559  0000EA                     	ds	2
+   560  0000EC                     	ds	2
+   561  0000EE                     	ds	2
+   562  0000F0                     	ds	2
+   563  0000F2                     	ds	2
+   564  0000F4                     	ds	2
+   565  0000F6                     	ds	2
+   566  0000F8                     	ds	2
+   567  0000FA                     	ds	2
+   568  0000FC                     	ds	2
+   569  0000FE                     	ds	2
+   570                           
+   571                           	psect	dataBANK0
+   572  000060                     __pdataBANK0:
+   573                           	callstack 0
+   574  000060                     _SettingData:
+   575                           	callstack 0
+   576  000060                     	ds	43
+   577  00008B                     _gConOriginResponse:
+   578                           	callstack 0
+   579  00008B                     	ds	10
+   580  000095                     _gConProbeResponse:
+   581                           	callstack 0
+   582  000095                     	ds	3
+   583  000098                     _b_value:
+   584                           	callstack 0
+   585  000098                     	ds	2
+   586  00009A                     _a_value:
+   587                           	callstack 0
+   588  00009A                     	ds	2
+   589  00009C                     _cy_lowMultiplier:
+   590                           	callstack 0
+   591  00009C                     	ds	2
+   592  00009E                     _cy_highMultiplier:
+   593                           	callstack 0
+   594  00009E                     	ds	2
+   595  0000A0                     _cx_lowMultiplier:
+   596                           	callstack 0
+   597  0000A0                     	ds	2
+   598  0000A2                     _cx_highMultiplier:
+   599                           	callstack 0
+   600  0000A2                     	ds	2
+   601  0000A4                     _sy_lowMultiplier:
+   602                           	callstack 0
+   603  0000A4                     	ds	2
+   604  0000A6                     _sy_highMultiplier:
+   605                           	callstack 0
+   606  0000A6                     	ds	2
+   607  0000A8                     _sx_lowMultiplier:
+   608                           	callstack 0
+   609  0000A8                     	ds	2
+   610  0000AA                     _sx_highMultiplier:
+   611                           	callstack 0
+   612  0000AA                     	ds	2
+   613  0000AC                     _cy_high:
+   614                           	callstack 0
+   615  0000AC                     	ds	2
+   616  0000AE                     _cy_center:
+   617                           	callstack 0
+   618  0000AE                     	ds	2
+   619  0000B0                     _cy_low:
+   620                           	callstack 0
+   621  0000B0                     	ds	2
+   622  0000B2                     _cx_high:
+   623                           	callstack 0
+   624  0000B2                     	ds	2
+   625  0000B4                     _cx_center:
+   626                           	callstack 0
+   627  0000B4                     	ds	2
+   628                           
+   629                           	psect	bssBANK1
+   630  000100                     __pbssBANK1:
+   631                           	callstack 0
+   632  000100                     _gInBitBuffer:
+   633                           	callstack 0
+   634  000100                     	ds	60
+   635                           
+   636                           	psect	cstackBANK1
+   637  00013C                     __pcstackBANK1:
+   638                           	callstack 0
+   639  00013C                     slinjim@conversion:
+   640                           	callstack 0
+   641                           
+   642                           ; 2 bytes @ 0x0
+   643  00013C                     	ds	2
+   644  00013E                     ??_scansticks:
+   645                           
+   646                           ; 1 bytes @ 0x2
+   647  00013E                     	ds	2
+   648                           
+   649                           	psect	cstackCOMRAM
+   650  00004E                     __pcstackCOMRAM:
+   651                           	callstack 0
+   652  00004E                     ??_INTERRUPT_InterruptManagerHigh:
+   653  00004E                     
+   654                           ; 1 bytes @ 0x0
+   655  00004E                     	ds	4
+   656  000052                     ??_checkbuttons:
+   657  000052                     ?___wmul:
+   658                           	callstack 0
+   659  000052                     IOCBF2_SetInterruptHandler@InterruptHandler:
+   660                           	callstack 0
+   661  000052                     ___wmul@multiplier:
+   662                           	callstack 0
+   663                           
+   664                           ; 2 bytes @ 0x4
+   665  000052                     	ds	2
+   666  000054                     ___wmul@multiplicand:
+   667                           	callstack 0
+   668                           
+   669                           ; 2 bytes @ 0x6
+   670  000054                     	ds	2
+   671  000056                     ___wmul@product:
+   672                           	callstack 0
+   673                           
+   674                           ; 2 bytes @ 0x8
+   675  000056                     	ds	2
+   676  000058                     slinjim@dividend:
+   677                           	callstack 0
+   678                           
+   679                           ; 2 bytes @ 0xA
+   680  000058                     	ds	2
+   681  00005A                     slinjim@multiplier:
+   682                           	callstack 0
+   683                           
+   684                           ; 2 bytes @ 0xC
+   685  00005A                     	ds	2
+   686  00005C                     
+   687                           ; 1 bytes @ 0xE
+   688 ;;
+   689 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   690 ;;
+   691 ;; *************** function _main *****************
+   692 ;; Defined at:
+   693 ;;		line 71 in file "main.c"
+   694 ;; Parameters:    Size  Location     Type
+   695 ;;		None
+   696 ;; Auto vars:     Size  Location     Type
+   697 ;;		None
+   698 ;; Return value:  Size  Location     Type
+   699 ;;                  1    wreg      void 
+   700 ;; Registers used:
+   701 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, pclath, btemp, btemp+1, btemp+2, b
+      +temp+3, btemp+4, btemp+5, btemp+6, btemp+7, btemp+8, btemp+9, btemp+10, btemp+11, btemp+12, btemp+13, btemp+14, btemp+15
+      +, btemp+16, btemp+17, btemp+18, btemp+19, btemp+20, btemp+21, btemp+22, btemp+23, btemp+24, btemp+25, btemp+26, btemp+27
+      +, btemp+28, btemp+29, btemp+30, btemp+31, tosl, structret, tblptrl, tblptrh, tblptru, prodl, prodh, bsr, cstack
+   702 ;; Tracked objects:
+   703 ;;		On entry : 0/0
+   704 ;;		On exit  : 0/0
+   705 ;;		Unchanged: 0/0
+   706 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   707 ;;      Params:         0       0       0       0       0       0       0       0       0
+   708 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   709 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   710 ;;      Totals:         0       0       0       0       0       0       0       0       0
+   711 ;;Total ram usage:        0 bytes
+   712 ;; Hardware stack levels required when called: 5
+   713 ;; This function calls:
+   714 ;;		_SYSTEM_Initialize
+   715 ;;		_bytecleanup
+   716 ;;		_bytepush
+   717 ;;		_checkbuttons
+   718 ;;		_commandreader
+   719 ;;		_scansticks
+   720 ;; This function is called by:
+   721 ;;		Startup code after reset
+   722 ;; This function uses a non-reentrant model
+   723 ;;
+   724                           
+   725                           	psect	text0
+   726  0007A6                     __ptext0:
+   727                           	callstack 0
+   728  0007A6                     _main:
+   729                           	callstack 26
+   730                           
+   731                           ;incstack = 0
+   732  0007A6  0EB6               	movlw	_gInPacket	;# 
+   733  0007A8  006F FFA0  F02C    	movff	wreg,_gInPacketIdx	;# 
+   734                           
+   735                           ;main.c: 78:     SYSTEM_Initialize();
+   736  0007AE  EC46  F004         	call	_SYSTEM_Initialize	;wreg free
+   737                           
+   738                           ; BSR set to: 63
+   739                           ;main.c: 80:     INTCON0bits.GIEH = 1;
+   740  0007B2  8ED2               	bsf	210,7,c	;volatile
+   741                           
+   742                           ; BSR set to: 63
+   743                           ;main.c: 82:     ADPCH = 0x00;
+   744  0007B4  0E00               	movlw	0
+   745  0007B6  013E               	movlb	62	; () banked
+   746  0007B8  6FF1               	movwf	241,b	;volatile
+   747                           
+   748                           ; BSR set to: 62
+   749                           ;main.c: 85:     ADCON0bits.ADON = 1;
+   750  0007BA  8FF8               	bsf	248,7,b	;volatile
+   751  0007BC                     l2667:
+   752                           
+   753                           ;main.c: 90:     {;main.c: 92:         commandreader();
+   754  0007BC  EC1C  F003         	call	_commandreader	;wreg free
+   755                           
+   756                           ;main.c: 93:         bytepush();
+   757  0007C0  EC0F  F000         	call	_bytepush	;wreg free
+   758                           
+   759                           ;main.c: 94:         bytecleanup();
+   760  0007C4  ECB8  F003         	call	_bytecleanup	;wreg free
+   761                           
+   762                           ;main.c: 95:         if (gInStatus & (1 << 3))
+   763  0007C8  B62B               	btfsc	_gInStatus^0,3,c	;volatile
+   764                           
+   765                           ;main.c: 96:         {;main.c: 97:             scansticks();
+   766  0007CA  EC29  F001         	call	_scansticks	;wreg free
+   767                           
+   768                           ;main.c: 99:         if (gInStatus & (1 << 2))
+   769  0007CE  A42B               	btfss	_gInStatus^0,2,c	;volatile
+   770  0007D0  D7F5               	goto	l2667
+   771                           
+   772                           ;main.c: 100:         {;main.c: 101:             checkbuttons();
+   773  0007D2  ECB8  F002         	call	_checkbuttons	;wreg free
+   774  0007D6  D7F2               	goto	l2667
+   775  0007D8                     __end_of_main:
+   776                           	callstack 0
+   777                           
+   778 ;; *************** function _scansticks *****************
+   779 ;; Defined at:
+   780 ;;		line 73 in file "joysticks.c"
+   781 ;; Parameters:    Size  Location     Type
+   782 ;;		None
+   783 ;; Auto vars:     Size  Location     Type
+   784 ;;		None
+   785 ;; Return value:  Size  Location     Type
+   786 ;;                  1    wreg      void 
+   787 ;; Registers used:
+   788 ;;		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+   789 ;; Tracked objects:
+   790 ;;		On entry : 0/3E
+   791 ;;		On exit  : 0/0
+   792 ;;		Unchanged: 0/0
+   793 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   794 ;;      Params:         0       0       0       0       0       0       0       0       0
+   795 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   796 ;;      Temps:          0       0       2       0       0       0       0       0       0
+   797 ;;      Totals:         0       0       2       0       0       0       0       0       0
+   798 ;;Total ram usage:        2 bytes
+   799 ;; Hardware stack levels used: 1
+   800 ;; Hardware stack levels required when called: 4
+   801 ;; This function calls:
+   802 ;;		_slinjim
+   803 ;; This function is called by:
+   804 ;;		_main
+   805 ;; This function uses a non-reentrant model
+   806 ;;
+   807                           
+   808                           	psect	text1
+   809  000252                     __ptext1:
+   810                           	callstack 0
+   811  000252                     _scansticks:
+   812                           	callstack 26
+   813                           
+   814                           ;joysticks.c: 77:     if (!initiatedRead)
+   815                           
+   816                           ;incstack = 0
+   817  000252  5014               	movf	_initiatedRead@joysticks$F1637^0,w,c
+   818  000254  A4D8               	btfss	status,2,c
+   819  000256  D00B               	goto	l1160
+   820                           
+   821                           ;joysticks.c: 78:     {;joysticks.c: 79:         ADPCH = SX_A;
+   822  000258  0E02               	movlw	2
+   823  00025A  013E               	movlb	62	; () banked
+   824  00025C  6FF1               	movwf	241,b	;volatile
+   825                           
+   826                           ; BSR set to: 62
+   827                           ;joysticks.c: 80:         ADCON0bits.ADGO = 1;
+   828  00025E  81F8               	bsf	248,0,b	;volatile
+   829                           
+   830                           ;joysticks.c: 81:         stickIdx = 0;
+   831  000260  0E00               	movlw	0
+   832  000262  6E15               	movwf	_stickIdx@joysticks$F1636^0,c
+   833                           
+   834                           ;joysticks.c: 82:         clearRead = 0;
+   835  000264  0E00               	movlw	0
+   836  000266  6E13               	movwf	_clearRead@joysticks$F1638^0,c
+   837                           
+   838                           ;joysticks.c: 83:         initiatedRead = 1;
+   839  000268  0E01               	movlw	1
+   840  00026A  6E14               	movwf	_initiatedRead@joysticks$F1637^0,c
+   841                           
+   842                           ;joysticks.c: 84:     }
+   843  00026C  0012               	return	
+   844  00026E                     l1160:
+   845                           
+   846                           ;joysticks.c: 86:     {;joysticks.c: 89:         if (!ADCON0bits.ADGO)
+   847  00026E  013E               	movlb	62	; () banked
+   848  000270  B1F8               	btfsc	248,0,b	;volatile
+   849  000272  0012               	return	
+   850                           
+   851                           ; BSR set to: 62
+   852                           ;joysticks.c: 90:         {;joysticks.c: 91:             if (clearRead)
+   853  000274  5013               	movf	_clearRead@joysticks$F1638^0,w,c
+   854  000276  A4D8               	btfss	status,2,c
+   855  000278  D010               	goto	l2599
+   856  00027A  D02A               	goto	l2607
+   857  00027C                     l2587:
+   858                           
+   859                           ; BSR set to: 1
+   860                           ;joysticks.c: 96:                         ADPCH = SY_A;
+   861  00027C  0E03               	movlw	3
+   862  00027E  D003               	goto	L2
+   863  000280                     l2589:
+   864                           
+   865                           ; BSR set to: 1
+   866                           ;joysticks.c: 99:                         ADPCH = CX_A;
+   867  000280  0E00               	movlw	0
+   868  000282  D001               	goto	L2
+   869  000284                     l2591:
+   870                           
+   871                           ; BSR set to: 1
+   872                           ;joysticks.c: 102:                         ADPCH = CY_A;
+   873  000284  0E01               	movlw	1
+   874  000286                     L2:
+   875  000286  013E               	movlb	62	; () banked
+   876  000288  6FF1               	movwf	241,b	;volatile
+   877                           
+   878                           ;joysticks.c: 103:                         break;
+   879  00028A  D01C               	goto	l2601
+   880  00028C                     l1169:
+   881                           
+   882                           ; BSR set to: 1
+   883  00028C  962B               	bcf	_gInStatus,3,c	;# 
+   884  00028E  842B               	bsf	_gInStatus,2,c	;# 
+   885                           
+   886                           ;joysticks.c: 107:                         initiatedRead = 0;
+   887  000290  0E00               	movlw	0
+   888  000292  6E14               	movwf	_initiatedRead@joysticks$F1637^0,c
+   889                           
+   890                           ;joysticks.c: 108:                         clearRead = 0;
+   891  000294  0E00               	movlw	0
+   892  000296  6E13               	movwf	_clearRead@joysticks$F1638^0,c
+   893  000298  0012               	return	
+   894  00029A                     l2599:
+   895                           
+   896                           ; BSR set to: 62
+   897  00029A  5015               	movf	_stickIdx@joysticks$F1636^0,w,c
+   898  00029C  0101               	movlb	1	; () banked
+   899  00029E  6F3E               	movwf	??_scansticks& (0+255),b
+   900  0002A0  6B3F               	clrf	(??_scansticks+1)& (0+255),b
+   901                           
+   902                           ; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-sw
+      +                          itches
+   903                           ; Switch size 1, requested type "simple"
+   904                           ; Number of cases is 1, Range of values is 0 to 0
+   905                           ; switch strategies available:
+   906                           ; Name         Instructions Cycles
+   907                           ; simple_byte            4     3 (average)
+   908                           ;	Chosen strategy is simple_byte
+   909  0002A2  513F               	movf	(??_scansticks+1)& (0+255),w,b
+   910  0002A4  0A00               	xorlw	0	; case 0
+   911  0002A6  A4D8               	btfss	status,2,c
+   912  0002A8  D00D               	goto	l2601
+   913                           
+   914                           ; BSR set to: 1
+   915                           ; Switch size 1, requested type "simple"
+   916                           ; Number of cases is 4, Range of values is 0 to 3
+   917                           ; switch strategies available:
+   918                           ; Name         Instructions Cycles
+   919                           ; simple_byte           13     7 (average)
+   920                           ;	Chosen strategy is simple_byte
+   921  0002AA  513E               	movf	??_scansticks& (0+255),w,b
+   922  0002AC  0A00               	xorlw	0	; case 0
+   923  0002AE  B4D8               	btfsc	status,2,c
+   924  0002B0  D7E5               	goto	l2587
+   925  0002B2  0A01               	xorlw	1	; case 1
+   926  0002B4  B4D8               	btfsc	status,2,c
+   927  0002B6  D7E4               	goto	l2589
+   928  0002B8  0A03               	xorlw	3	; case 2
+   929  0002BA  B4D8               	btfsc	status,2,c
+   930  0002BC  D7E3               	goto	l2591
+   931  0002BE  0A01               	xorlw	1	; case 3
+   932  0002C0  B4D8               	btfsc	status,2,c
+   933  0002C2  D7E4               	goto	l1169
+   934  0002C4                     l2601:
+   935                           
+   936                           ;joysticks.c: 120:                 stickIdx++;
+   937  0002C4  2A15               	incf	_stickIdx@joysticks$F1636^0,f,c
+   938                           
+   939                           ;joysticks.c: 121:                 clearRead = 0;
+   940  0002C6  0E00               	movlw	0
+   941  0002C8  6E13               	movwf	_clearRead@joysticks$F1638^0,c
+   942                           
+   943                           ;joysticks.c: 122:                 ADCON0bits.ADGO = 1;
+   944  0002CA  013E               	movlb	62	; () banked
+   945  0002CC  81F8               	bsf	248,0,b	;volatile
+   946                           
+   947                           ;joysticks.c: 123:             }
+   948  0002CE  0012               	return	
+   949  0002D0                     l2607:
+   950                           
+   951                           ; BSR set to: 62
+   952                           ;joysticks.c: 125:             {;joysticks.c: 126:                 clearRead = 1;
+   953  0002D0  0E01               	movlw	1
+   954  0002D2  6E13               	movwf	_clearRead@joysticks$F1638^0,c
+   955                           
+   956                           ;joysticks.c: 127:                 ADPCH = channel_VSS;
+   957  0002D4  0E3B               	movlw	59
+   958  0002D6  6FF1               	movwf	241,b	;volatile
+   959                           
+   960                           ; BSR set to: 62
+   961                           ;joysticks.c: 128:                 ADCON0bits.ADGO = 1;
+   962  0002D8  81F8               	bsf	248,0,b	;volatile
+   963                           
+   964                           ; BSR set to: 62
+   965                           ;joysticks.c: 132:                 adc_read = ((adc_result_t)((ADRESH << 8) + ADRESL)) >
+      +                          > 3;
+   966  0002DA  51EF               	movf	239,w,b	;volatile
+   967  0002DC  006F FBC0  F13E    	movff	16112,??_scansticks	;volatile
+   968  0002E2  0101               	movlb	1	; () banked
+   969  0002E4  6B3F               	clrf	(??_scansticks+1)& (0+255),b
+   970  0002E6  C13E  F13F         	movff	??_scansticks,??_scansticks+1
+   971  0002EA  6B3E               	clrf	??_scansticks& (0+255),b
+   972  0002EC  273E               	addwf	??_scansticks& (0+255),f,b
+   973  0002EE  0E00               	movlw	0
+   974  0002F0  233F               	addwfc	(??_scansticks+1)& (0+255),f,b
+   975  0002F2  90D8               	bcf	status,0,c
+   976  0002F4  333F               	rrcf	(??_scansticks+1)& (0+255),f,b
+   977  0002F6  333E               	rrcf	??_scansticks& (0+255),f,b
+   978  0002F8  90D8               	bcf	status,0,c
+   979  0002FA  333F               	rrcf	(??_scansticks+1)& (0+255),f,b
+   980  0002FC  333E               	rrcf	??_scansticks& (0+255),f,b
+   981  0002FE  90D8               	bcf	status,0,c
+   982  000300  333F               	rrcf	(??_scansticks+1)& (0+255),f,b
+   983  000302  333E               	rrcf	??_scansticks& (0+255),f,b
+   984  000304  C13E  F00B         	movff	??_scansticks,_adc_read
+   985  000308  C13F  F00C         	movff	??_scansticks+1,_adc_read+1
+   986                           
+   987                           ;joysticks.c: 136:                 switch (stickIdx)
+   988  00030C  D051               	goto	l2623
+   989  00030E                     l2613:
+   990                           
+   991                           ; BSR set to: 1
+   992                           ;joysticks.c: 140:                         tmphigh = sx_high;
+   993  00030E  0E01               	movlw	1
+   994  000310  6E0A               	movwf	(_tmphigh@joysticks$F1631+1)^0,c
+   995  000312  0E81               	movlw	129
+   996  000314  6E09               	movwf	_tmphigh@joysticks$F1631^0,c
+   997                           
+   998                           ;joysticks.c: 141:                         tmplow = sx_low;
+   999  000316  0E00               	movlw	0
+  1000  000318  6E08               	movwf	(_tmplow@joysticks$F1632+1)^0,c
+  1001  00031A  0E83               	movlw	131
+  1002  00031C  6E07               	movwf	_tmplow@joysticks$F1632^0,c
+  1003                           
+  1004                           ;joysticks.c: 142:                         tmpcenter = sx_center;
+  1005  00031E  0E00               	movlw	0
+  1006  000320  6E06               	movwf	(_tmpcenter@joysticks$F1633+1)^0,c
+  1007  000322  0EFE               	movlw	254
+  1008  000324  6E05               	movwf	_tmpcenter@joysticks$F1633^0,c
+  1009                           
+  1010                           ;joysticks.c: 143:                         tmphighm = sx_highMultiplier;
+  1011  000326  0E00               	movlw	0
+  1012  000328  6E04               	movwf	(_tmphighm@joysticks$F1634+1)^0,c
+  1013  00032A  0EC8               	movlw	200
+  1014  00032C  6E03               	movwf	_tmphighm@joysticks$F1634^0,c
+  1015                           
+  1016                           ;joysticks.c: 144:                         tmplowm = sx_lowMultiplier;
+  1017  00032E  0E00               	movlw	0
+  1018  000330  6E02               	movwf	(_tmplowm@joysticks$F1635+1)^0,c
+  1019  000332  0EE8               	movlw	232
+  1020  000334  D03B               	goto	L5
+  1021  000336                     l2615:
+  1022                           
+  1023                           ; BSR set to: 1
+  1024                           ;joysticks.c: 150:                         tmphigh = sy_high;
+  1025  000336  0E01               	movlw	1
+  1026  000338  6E0A               	movwf	(_tmphigh@joysticks$F1631+1)^0,c
+  1027  00033A  0E8E               	movlw	142
+  1028  00033C  6E09               	movwf	_tmphigh@joysticks$F1631^0,c
+  1029                           
+  1030                           ;joysticks.c: 151:                         tmplow = sy_low;
+  1031  00033E  0E00               	movlw	0
+  1032  000340  6E08               	movwf	(_tmplow@joysticks$F1632+1)^0,c
+  1033  000342  0E8C               	movlw	140
+  1034  000344  6E07               	movwf	_tmplow@joysticks$F1632^0,c
+  1035                           
+  1036                           ;joysticks.c: 152:                         tmpcenter = sy_center;
+  1037  000346  0E00               	movlw	0
+  1038  000348  6E06               	movwf	(_tmpcenter@joysticks$F1633+1)^0,c
+  1039  00034A  0EFC               	movlw	252
+  1040  00034C  6E05               	movwf	_tmpcenter@joysticks$F1633^0,c
+  1041                           
+  1042                           ;joysticks.c: 153:                         tmphighm = sy_highMultiplier;
+  1043  00034E  0E00               	movlw	0
+  1044  000350  6E04               	movwf	(_tmphighm@joysticks$F1634+1)^0,c
+  1045  000352  0EAF               	movlw	175
+  1046  000354  6E03               	movwf	_tmphighm@joysticks$F1634^0,c
+  1047                           
+  1048                           ;joysticks.c: 154:                         tmplowm = sy_lowMultiplier;
+  1049  000356  0E00               	movlw	0
+  1050  000358  6E02               	movwf	(_tmplowm@joysticks$F1635+1)^0,c
+  1051  00035A  0EE4               	movlw	228
+  1052  00035C  D027               	goto	L5
+  1053  00035E                     l2617:
+  1054                           
+  1055                           ; BSR set to: 1
+  1056                           ;joysticks.c: 160:                         tmphigh = cx_high;
+  1057  00035E  0E01               	movlw	1
+  1058  000360  6E0A               	movwf	(_tmphigh@joysticks$F1631+1)^0,c
+  1059  000362  0E63               	movlw	99
+  1060  000364  6E09               	movwf	_tmphigh@joysticks$F1631^0,c
+  1061                           
+  1062                           ;joysticks.c: 161:                         tmplow = cx_low;
+  1063  000366  0E00               	movlw	0
+  1064  000368  6E08               	movwf	(_tmplow@joysticks$F1632+1)^0,c
+  1065  00036A  0E6C               	movlw	108
+  1066  00036C  6E07               	movwf	_tmplow@joysticks$F1632^0,c
+  1067                           
+  1068                           ;joysticks.c: 162:                         tmpcenter = cx_center;
+  1069  00036E  0E00               	movlw	0
+  1070  000370  6E06               	movwf	(_tmpcenter@joysticks$F1633+1)^0,c
+  1071  000372  0EFC               	movlw	252
+  1072  000374  6E05               	movwf	_tmpcenter@joysticks$F1633^0,c
+  1073                           
+  1074                           ;joysticks.c: 163:                         tmphighm = cx_highMultiplier;
+  1075  000376  0E01               	movlw	1
+  1076  000378  6E04               	movwf	(_tmphighm@joysticks$F1634+1)^0,c
+  1077  00037A  0E01               	movlw	1
+  1078  00037C  6E03               	movwf	_tmphighm@joysticks$F1634^0,c
+  1079                           
+  1080                           ;joysticks.c: 164:                         tmplowm = cx_lowMultiplier;
+  1081  00037E  0E00               	movlw	0
+  1082  000380  6E02               	movwf	(_tmplowm@joysticks$F1635+1)^0,c
+  1083  000382  0EB1               	movlw	177
+  1084  000384  D013               	goto	L5
+  1085  000386                     l2619:
+  1086                           
+  1087                           ; BSR set to: 1
+  1088                           ;joysticks.c: 170:                         tmphigh = cy_high;
+  1089  000386  0E01               	movlw	1
+  1090  000388  6E0A               	movwf	(_tmphigh@joysticks$F1631+1)^0,c
+  1091  00038A  0E81               	movlw	129
+  1092  00038C  6E09               	movwf	_tmphigh@joysticks$F1631^0,c
+  1093                           
+  1094                           ;joysticks.c: 171:                         tmplow = cy_low;
+  1095  00038E  0E00               	movlw	0
+  1096  000390  6E08               	movwf	(_tmplow@joysticks$F1632+1)^0,c
+  1097  000392  0E7F               	movlw	127
+  1098  000394  6E07               	movwf	_tmplow@joysticks$F1632^0,c
+  1099                           
+  1100                           ;joysticks.c: 172:                         tmpcenter = cy_center;
+  1101  000396  0E00               	movlw	0
+  1102  000398  6E06               	movwf	(_tmpcenter@joysticks$F1633+1)^0,c
+  1103  00039A  0EFE               	movlw	254
+  1104  00039C  6E05               	movwf	_tmpcenter@joysticks$F1633^0,c
+  1105                           
+  1106                           ;joysticks.c: 173:                         tmphighm = cy_highMultiplier;
+  1107  00039E  0E00               	movlw	0
+  1108  0003A0  6E04               	movwf	(_tmphighm@joysticks$F1634+1)^0,c
+  1109  0003A2  0EC3               	movlw	195
+  1110  0003A4  6E03               	movwf	_tmphighm@joysticks$F1634^0,c
+  1111                           
+  1112                           ;joysticks.c: 174:                         tmplowm = cy_lowMultiplier;
+  1113  0003A6  0E00               	movlw	0
+  1114  0003A8  6E02               	movwf	(_tmplowm@joysticks$F1635+1)^0,c
+  1115  0003AA  0EC9               	movlw	201
+  1116  0003AC                     L5:
+  1117  0003AC  6E01               	movwf	_tmplowm@joysticks$F1635^0,c
+  1118                           
+  1119                           ;joysticks.c: 176:                         break;
+  1120  0003AE  D014               	goto	l2625
+  1121  0003B0                     l2623:
+  1122                           
+  1123                           ; BSR set to: 1
+  1124  0003B0  5015               	movf	_stickIdx@joysticks$F1636^0,w,c
+  1125  0003B2  6F3E               	movwf	??_scansticks& (0+255),b
+  1126  0003B4  6B3F               	clrf	(??_scansticks+1)& (0+255),b
+  1127                           
+  1128                           ; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-sw
+      +                          itches
+  1129                           ; Switch size 1, requested type "simple"
+  1130                           ; Number of cases is 1, Range of values is 0 to 0
+  1131                           ; switch strategies available:
+  1132                           ; Name         Instructions Cycles
+  1133                           ; simple_byte            4     3 (average)
+  1134                           ;	Chosen strategy is simple_byte
+  1135  0003B6  513F               	movf	(??_scansticks+1)& (0+255),w,b
+  1136  0003B8  0A00               	xorlw	0	; case 0
+  1137  0003BA  A4D8               	btfss	status,2,c
+  1138  0003BC  D00D               	goto	l2625
+  1139                           
+  1140                           ; BSR set to: 1
+  1141                           ; Switch size 1, requested type "simple"
+  1142                           ; Number of cases is 4, Range of values is 0 to 3
+  1143                           ; switch strategies available:
+  1144                           ; Name         Instructions Cycles
+  1145                           ; simple_byte           13     7 (average)
+  1146                           ;	Chosen strategy is simple_byte
+  1147  0003BE  513E               	movf	??_scansticks& (0+255),w,b
+  1148  0003C0  0A00               	xorlw	0	; case 0
+  1149  0003C2  B4D8               	btfsc	status,2,c
+  1150  0003C4  D7A4               	goto	l2613
+  1151  0003C6  0A01               	xorlw	1	; case 1
+  1152  0003C8  B4D8               	btfsc	status,2,c
+  1153  0003CA  D7B5               	goto	l2615
+  1154  0003CC  0A03               	xorlw	3	; case 2
+  1155  0003CE  B4D8               	btfsc	status,2,c
+  1156  0003D0  D7C6               	goto	l2617
+  1157  0003D2  0A01               	xorlw	1	; case 3
+  1158  0003D4  B4D8               	btfsc	status,2,c
+  1159  0003D6  D7D7               	goto	l2619
+  1160  0003D8                     l2625:
+  1161                           
+  1162                           ; BSR set to: 1
+  1163                           ;joysticks.c: 184:                 if (adc_read > tmpcenter)
+  1164  0003D8  500B               	movf	_adc_read^0,w,c
+  1165  0003DA  5C05               	subwf	_tmpcenter@joysticks$F1633^0,w,c
+  1166  0003DC  500C               	movf	(_adc_read+1)^0,w,c
+  1167  0003DE  5806               	subwfb	(_tmpcenter@joysticks$F1633+1)^0,w,c
+  1168  0003E0  B0D8               	btfsc	status,0,c
+  1169  0003E2  D020               	goto	l2633
+  1170                           
+  1171                           ; BSR set to: 1
+  1172                           ;joysticks.c: 185:                 {;joysticks.c: 186:                     if (adc_read 
+      +                          >= tmphigh)
+  1173  0003E4  5009               	movf	_tmphigh@joysticks$F1631^0,w,c
+  1174  0003E6  5C0B               	subwf	_adc_read^0,w,c
+  1175  0003E8  500A               	movf	(_tmphigh@joysticks$F1631+1)^0,w,c
+  1176  0003EA  580C               	subwfb	(_adc_read+1)^0,w,c
+  1177  0003EC  A0D8               	btfss	status,0,c
+  1178  0003EE  D007               	goto	l2631
+  1179                           
+  1180                           ; BSR set to: 1
+  1181                           ;joysticks.c: 187:                     {;joysticks.c: 188:                         gConP
+      +                          ollPacket[stickIdx+2] = (unsigned char) 228;
+  1182  0003F0  5015               	movf	_stickIdx@joysticks$F1636^0,w,c
+  1183  0003F2  0F35               	addlw	low (_gConPollPacket+2)
+  1184  0003F4  6ED9               	movwf	fsr2l,c
+  1185  0003F6  6ADA               	clrf	fsr2h,c
+  1186  0003F8  0EE4               	movlw	228
+  1187  0003FA  6EDF               	movwf	indf2,c
+  1188                           
+  1189                           ;joysticks.c: 189:                     }
+  1190  0003FC  0012               	return	
+  1191  0003FE                     l2631:
+  1192                           
+  1193                           ; BSR set to: 1
+  1194                           ;joysticks.c: 191:                     {;joysticks.c: 192:                         gConP
+      +                          ollPacket[stickIdx+2] = (unsigned char) 128 + slinjim(adc_read - tmpcenter, tmphighm);
+  1195  0003FE  5015               	movf	_stickIdx@joysticks$F1636^0,w,c
+  1196  000400  0F35               	addlw	low (_gConPollPacket+2)
+  1197  000402  6ED9               	movwf	fsr2l,c
+  1198  000404  6ADA               	clrf	fsr2h,c
+  1199  000406  5005               	movf	_tmpcenter@joysticks$F1633^0,w,c
+  1200  000408  5C0B               	subwf	_adc_read^0,w,c
+  1201  00040A  6E58               	movwf	slinjim@dividend^0,c
+  1202  00040C  5006               	movf	(_tmpcenter@joysticks$F1633+1)^0,w,c
+  1203  00040E  580C               	subwfb	(_adc_read+1)^0,w,c
+  1204  000410  6E59               	movwf	(slinjim@dividend+1)^0,c
+  1205  000412  C003  F05A         	movff	_tmphighm@joysticks$F1634,slinjim@multiplier
+  1206  000416  C004  F05B         	movff	_tmphighm@joysticks$F1634+1,slinjim@multiplier+1
+  1207  00041A  EC28  F004         	call	_slinjim	;wreg free
+  1208  00041E  0F80               	addlw	128
+  1209  000420  6EDF               	movwf	indf2,c
+  1210  000422  0012               	return	
+  1211  000424                     l2633:
+  1212                           
+  1213                           ; BSR set to: 1
+  1214  000424  5005               	movf	_tmpcenter@joysticks$F1633^0,w,c
+  1215  000426  5C0B               	subwf	_adc_read^0,w,c
+  1216  000428  5006               	movf	(_tmpcenter@joysticks$F1633+1)^0,w,c
+  1217  00042A  580C               	subwfb	(_adc_read+1)^0,w,c
+  1218  00042C  B0D8               	btfsc	status,0,c
+  1219  00042E  D022               	goto	l2641
+  1220                           
+  1221                           ; BSR set to: 1
+  1222                           ;joysticks.c: 196:                 {;joysticks.c: 197:                     if (adc_read 
+      +                          <= tmplow)
+  1223  000430  500B               	movf	_adc_read^0,w,c
+  1224  000432  5C07               	subwf	_tmplow@joysticks$F1632^0,w,c
+  1225  000434  500C               	movf	(_adc_read+1)^0,w,c
+  1226  000436  5808               	subwfb	(_tmplow@joysticks$F1632+1)^0,w,c
+  1227  000438  A0D8               	btfss	status,0,c
+  1228  00043A  D007               	goto	l2639
+  1229                           
+  1230                           ; BSR set to: 1
+  1231                           ;joysticks.c: 198:                     {;joysticks.c: 199:                         gConP
+      +                          ollPacket[stickIdx+2] = (unsigned char) 27;
+  1232  00043C  5015               	movf	_stickIdx@joysticks$F1636^0,w,c
+  1233  00043E  0F35               	addlw	low (_gConPollPacket+2)
+  1234  000440  6ED9               	movwf	fsr2l,c
+  1235  000442  6ADA               	clrf	fsr2h,c
+  1236  000444  0E1B               	movlw	27
+  1237  000446  6EDF               	movwf	indf2,c
+  1238                           
+  1239                           ;joysticks.c: 200:                     }
+  1240  000448  0012               	return	
+  1241  00044A                     l2639:
+  1242                           
+  1243                           ; BSR set to: 1
+  1244                           ;joysticks.c: 202:                     {;joysticks.c: 203:                         gConP
+      +                          ollPacket[stickIdx+2] = (unsigned char) 128 - slinjim(tmpcenter - adc_read, tmplowm);
+  1245  00044A  5015               	movf	_stickIdx@joysticks$F1636^0,w,c
+  1246  00044C  0F35               	addlw	low (_gConPollPacket+2)
+  1247  00044E  6ED9               	movwf	fsr2l,c
+  1248  000450  6ADA               	clrf	fsr2h,c
+  1249  000452  500B               	movf	_adc_read^0,w,c
+  1250  000454  5C05               	subwf	_tmpcenter@joysticks$F1633^0,w,c
+  1251  000456  6E58               	movwf	slinjim@dividend^0,c
+  1252  000458  500C               	movf	(_adc_read+1)^0,w,c
+  1253  00045A  5806               	subwfb	(_tmpcenter@joysticks$F1633+1)^0,w,c
+  1254  00045C  6E59               	movwf	(slinjim@dividend+1)^0,c
+  1255  00045E  C001  F05A         	movff	_tmplowm@joysticks$F1635,slinjim@multiplier
+  1256  000462  C002  F05B         	movff	_tmplowm@joysticks$F1635+1,slinjim@multiplier+1
+  1257  000466  EC28  F004         	call	_slinjim	;wreg free
+  1258  00046A  6F3E               	movwf	??_scansticks& (0+255),b
+  1259  00046C  513E               	movf	??_scansticks& (0+255),w,b
+  1260  00046E  0880               	sublw	128
+  1261  000470  6EDF               	movwf	indf2,c
+  1262  000472  0012               	return	
+  1263  000474                     l2641:
+  1264                           
+  1265                           ; BSR set to: 1
+  1266                           ;joysticks.c: 207:                 {;joysticks.c: 208:                     gConPollPacke
+      +                          t[stickIdx+2] = (unsigned char) 128;
+  1267  000474  5015               	movf	_stickIdx@joysticks$F1636^0,w,c
+  1268  000476  0F35               	addlw	low (_gConPollPacket+2)
+  1269  000478  6ED9               	movwf	fsr2l,c
+  1270  00047A  6ADA               	clrf	fsr2h,c
+  1271  00047C  0E80               	movlw	128
+  1272  00047E  6EDF               	movwf	indf2,c
+  1273  000480  0012               	return		;funcret
+  1274  000482                     __end_of_scansticks:
+  1275                           	callstack 0
+  1276                           
+  1277 ;; *************** function _slinjim *****************
+  1278 ;; Defined at:
+  1279 ;;		line 54 in file "joysticks.c"
+  1280 ;; Parameters:    Size  Location     Type
+  1281 ;;  dividend        2   10[COMRAM] unsigned short 
+  1282 ;;  multiplier      2   12[COMRAM] unsigned short 
+  1283 ;; Auto vars:     Size  Location     Type
+  1284 ;;  conversion      2    0[BANK1 ] unsigned short 
+  1285 ;; Return value:  Size  Location     Type
+  1286 ;;                  1    wreg      unsigned char 
+  1287 ;; Registers used:
+  1288 ;;		wreg, status,2, status,0, prodl, prodh, cstack
+  1289 ;; Tracked objects:
+  1290 ;;		On entry : 0/1
+  1291 ;;		On exit  : 3F/1
+  1292 ;;		Unchanged: 0/0
+  1293 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1294 ;;      Params:         4       0       0       0       0       0       0       0       0
+  1295 ;;      Locals:         0       0       2       0       0       0       0       0       0
+  1296 ;;      Temps:          0       0       0       0       0       0       0       0       0
+  1297 ;;      Totals:         4       0       2       0       0       0       0       0       0
+  1298 ;;Total ram usage:        6 bytes
+  1299 ;; Hardware stack levels used: 1
+  1300 ;; Hardware stack levels required when called: 3
+  1301 ;; This function calls:
+  1302 ;;		___wmul
+  1303 ;; This function is called by:
+  1304 ;;		_scansticks
+  1305 ;; This function uses a non-reentrant model
+  1306 ;;
+  1307                           
+  1308                           	psect	text2
+  1309  000850                     __ptext2:
+  1310                           	callstack 0
+  1311  000850                     _slinjim:
+  1312                           	callstack 26
+  1313                           
+  1314                           ;joysticks.c: 54: unsigned char slinjim(uint16_t dividend, uint16_t multiplier);joystick
+      +                          s.c: 55: {;joysticks.c: 56:     uint16_t conversion = (dividend * multiplier) >> 8;
+  1315                           
+  1316                           ;incstack = 0
+  1317  000850  C058  F052         	movff	slinjim@dividend,___wmul@multiplier
+  1318  000854  C059  F053         	movff	slinjim@dividend+1,___wmul@multiplier+1
+  1319  000858  C05A  F054         	movff	slinjim@multiplier,___wmul@multiplicand
+  1320  00085C  C05B  F055         	movff	slinjim@multiplier+1,___wmul@multiplicand+1
+  1321  000860  EC02  F004         	call	___wmul	;wreg free
+  1322  000864  5053               	movf	(?___wmul+1)^0,w,c
+  1323  000866  0101               	movlb	1	; () banked
+  1324  000868  6F3C               	movwf	slinjim@conversion& (0+255),b
+  1325  00086A  6B3D               	clrf	(slinjim@conversion+1)& (0+255),b
+  1326                           
+  1327                           ; BSR set to: 1
+  1328                           ;joysticks.c: 57:     return (unsigned char) conversion;
+  1329  00086C  513C               	movf	slinjim@conversion& (0+255),w,b
+  1330                           
+  1331                           ; BSR set to: 1
+  1332  00086E  0012               	return		;funcret
+  1333  000870                     __end_of_slinjim:
+  1334                           	callstack 0
+  1335                           
+  1336 ;; *************** function ___wmul *****************
+  1337 ;; Defined at:
+  1338 ;;		line 15 in file "C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\Umul16.c"
+  1339 ;; Parameters:    Size  Location     Type
+  1340 ;;  multiplier      2    4[COMRAM] unsigned int 
+  1341 ;;  multiplicand    2    6[COMRAM] unsigned int 
+  1342 ;; Auto vars:     Size  Location     Type
+  1343 ;;  product         2    8[COMRAM] unsigned int 
+  1344 ;; Return value:  Size  Location     Type
+  1345 ;;                  2    4[COMRAM] unsigned int 
+  1346 ;; Registers used:
+  1347 ;;		wreg, status,2, status,0, prodl, prodh
+  1348 ;; Tracked objects:
+  1349 ;;		On entry : 0/1
+  1350 ;;		On exit  : 0/0
+  1351 ;;		Unchanged: 0/0
+  1352 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1353 ;;      Params:         4       0       0       0       0       0       0       0       0
+  1354 ;;      Locals:         2       0       0       0       0       0       0       0       0
+  1355 ;;      Temps:          0       0       0       0       0       0       0       0       0
+  1356 ;;      Totals:         6       0       0       0       0       0       0       0       0
+  1357 ;;Total ram usage:        6 bytes
+  1358 ;; Hardware stack levels used: 1
+  1359 ;; Hardware stack levels required when called: 2
+  1360 ;; This function calls:
+  1361 ;;		Nothing
+  1362 ;; This function is called by:
+  1363 ;;		_slinjim
+  1364 ;; This function uses a non-reentrant model
+  1365 ;;
+  1366                           
+  1367                           	psect	text3
+  1368  000804                     __ptext3:
+  1369                           	callstack 0
+  1370  000804                     ___wmul:
+  1371                           	callstack 26
+  1372                           
+  1373                           ; BSR set to: 1
+  1374                           ;incstack = 0
+  1375  000804  5052               	movf	___wmul@multiplier^0,w,c
+  1376  000806  0254               	mulwf	___wmul@multiplicand^0,c
+  1377  000808  006F FFCC  F056    	movff	prodl,___wmul@product
+  1378  00080E  006F FFD0  F057    	movff	prodh,___wmul@product+1
+  1379  000814  5052               	movf	___wmul@multiplier^0,w,c
+  1380  000816  0255               	mulwf	(___wmul@multiplicand+1)^0,c
+  1381  000818  50F3               	movf	243,w,c
+  1382  00081A  2657               	addwf	(___wmul@product+1)^0,f,c
+  1383  00081C  5053               	movf	(___wmul@multiplier+1)^0,w,c
+  1384  00081E  0254               	mulwf	___wmul@multiplicand^0,c
+  1385  000820  50F3               	movf	243,w,c
+  1386  000822  2657               	addwf	(___wmul@product+1)^0,f,c
+  1387  000824  C056  F052         	movff	___wmul@product,?___wmul
+  1388  000828  C057  F053         	movff	___wmul@product+1,?___wmul+1
+  1389  00082C  0012               	return		;funcret
+  1390  00082E                     __end_of___wmul:
+  1391                           	callstack 0
+  1392                           
+  1393 ;; *************** function _checkbuttons *****************
+  1394 ;; Defined at:
+  1395 ;;		line 12 in file "button.c"
+  1396 ;; Parameters:    Size  Location     Type
+  1397 ;;		None
+  1398 ;; Auto vars:     Size  Location     Type
+  1399 ;;		None
+  1400 ;; Return value:  Size  Location     Type
+  1401 ;;                  1    wreg      void 
+  1402 ;; Registers used:
+  1403 ;;		wreg, status,2, status,0
+  1404 ;; Tracked objects:
+  1405 ;;		On entry : 0/3E
+  1406 ;;		On exit  : 0/0
+  1407 ;;		Unchanged: 0/0
+  1408 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1409 ;;      Params:         0       0       0       0       0       0       0       0       0
+  1410 ;;      Locals:         0       0       0       0       0       0       0       0       0
+  1411 ;;      Temps:          1       0       0       0       0       0       0       0       0
+  1412 ;;      Totals:         1       0       0       0       0       0       0       0       0
+  1413 ;;Total ram usage:        1 bytes
+  1414 ;; Hardware stack levels used: 1
+  1415 ;; Hardware stack levels required when called: 2
+  1416 ;; This function calls:
+  1417 ;;		Nothing
+  1418 ;; This function is called by:
+  1419 ;;		_main
+  1420 ;; This function uses a non-reentrant model
+  1421 ;;
+  1422                           
+  1423                           	psect	text4
+  1424  000570                     __ptext4:
+  1425                           	callstack 0
+  1426  000570                     _checkbuttons:
+  1427                           	callstack 28
+  1428                           
+  1429                           ;button.c: 18:     if (!(gInStatus & (1 << 1)))
+  1430                           
+  1431                           ;incstack = 0
+  1432  000570  B22B               	btfsc	_gInStatus^0,1,c	;volatile
+  1433  000572  D009               	goto	l2237
+  1434                           
+  1435                           ;button.c: 19:     {;button.c: 20:         gConPollPacket[0] = 0x0;
+  1436  000574  0E00               	movlw	0
+  1437  000576  6E33               	movwf	_gConPollPacket^0,c	;volatile
+  1438                           
+  1439                           ;button.c: 21:         gConPollPacket[1] = 0x0;
+  1440  000578  0E00               	movlw	0
+  1441  00057A  6E34               	movwf	(_gConPollPacket+1)^0,c	;volatile
+  1442                           
+  1443                           ;button.c: 22:         gConPollPacket[6] = 0x0;
+  1444  00057C  0E00               	movlw	0
+  1445  00057E  6E39               	movwf	(_gConPollPacket+6)^0,c	;volatile
+  1446                           
+  1447                           ;button.c: 23:         gConPollPacket[7] = 0x0;
+  1448  000580  0E00               	movlw	0
+  1449  000582  6E3A               	movwf	(_gConPollPacket+7)^0,c	;volatile
+  1450  000584  822B               	bsf	_gInStatus,1,c	;# 
+  1451  000586                     l2237:
+  1452                           
+  1453                           ;button.c: 27:     gConPollPacket[0] ^= PORTAbits.RA4 << 1;
+  1454  000586  A8CA               	btfss	202,4,c	;volatile
+  1455  000588  D003               	goto	u90
+  1456  00058A  6A52               	clrf	??_checkbuttons^0,c
+  1457  00058C  2A52               	incf	??_checkbuttons^0,f,c
+  1458  00058E  D001               	goto	u98
+  1459  000590                     u90:
+  1460  000590  6A52               	clrf	??_checkbuttons^0,c
+  1461  000592                     u98:
+  1462  000592  90D8               	bcf	status,0,c
+  1463  000594  3452               	rlcf	??_checkbuttons^0,w,c
+  1464  000596  1A33               	xorwf	_gConPollPacket^0,f,c	;volatile
+  1465                           
+  1466                           ;button.c: 28:     gConPollPacket[0] ^= PORTAbits.RA5 << 1;
+  1467  000598  AACA               	btfss	202,5,c	;volatile
+  1468  00059A  D003               	goto	u100
+  1469  00059C  6A52               	clrf	??_checkbuttons^0,c
+  1470  00059E  2A52               	incf	??_checkbuttons^0,f,c
+  1471  0005A0  D001               	goto	u108
+  1472  0005A2                     u100:
+  1473  0005A2  6A52               	clrf	??_checkbuttons^0,c
+  1474  0005A4                     u108:
+  1475  0005A4  90D8               	bcf	status,0,c
+  1476  0005A6  3452               	rlcf	??_checkbuttons^0,w,c
+  1477  0005A8  1A33               	xorwf	_gConPollPacket^0,f,c	;volatile
+  1478                           
+  1479                           ;button.c: 29:     gConPollPacket[0] ^= PORTAbits.RA7 << 1;
+  1480  0005AA  AECA               	btfss	202,7,c	;volatile
+  1481  0005AC  D003               	goto	u110
+  1482  0005AE  6A52               	clrf	??_checkbuttons^0,c
+  1483  0005B0  2A52               	incf	??_checkbuttons^0,f,c
+  1484  0005B2  D001               	goto	u118
+  1485  0005B4                     u110:
+  1486  0005B4  6A52               	clrf	??_checkbuttons^0,c
+  1487  0005B6                     u118:
+  1488  0005B6  90D8               	bcf	status,0,c
+  1489  0005B8  3452               	rlcf	??_checkbuttons^0,w,c
+  1490  0005BA  1A33               	xorwf	_gConPollPacket^0,f,c	;volatile
+  1491                           
+  1492                           ;button.c: 30:     gConPollPacket[0] ^= PORTAbits.RA6 << 1;
+  1493  0005BC  ACCA               	btfss	202,6,c	;volatile
+  1494  0005BE  D003               	goto	u120
+  1495  0005C0  6A52               	clrf	??_checkbuttons^0,c
+  1496  0005C2  2A52               	incf	??_checkbuttons^0,f,c
+  1497  0005C4  D001               	goto	u128
+  1498  0005C6                     u120:
+  1499  0005C6  6A52               	clrf	??_checkbuttons^0,c
+  1500  0005C8                     u128:
+  1501  0005C8  90D8               	bcf	status,0,c
+  1502  0005CA  3452               	rlcf	??_checkbuttons^0,w,c
+  1503  0005CC  1A33               	xorwf	_gConPollPacket^0,f,c	;volatile
+  1504                           
+  1505                           ;button.c: 31:     gConPollPacket[0] ^= PORTCbits.RC1;
+  1506  0005CE  A2CC               	btfss	204,1,c	;volatile
+  1507  0005D0  D002               	goto	u130
+  1508  0005D2  0E01               	movlw	1
+  1509  0005D4  D001               	goto	u136
+  1510  0005D6                     u130:
+  1511  0005D6  0E00               	movlw	0
+  1512  0005D8                     u136:
+  1513  0005D8  1A33               	xorwf	_gConPollPacket^0,f,c	;volatile
+  1514  0005DA  0012               	return		;funcret
+  1515  0005DC                     __end_of_checkbuttons:
+  1516                           	callstack 0
+  1517                           
+  1518 ;; *************** function _SYSTEM_Initialize *****************
+  1519 ;; Defined at:
+  1520 ;;		line 50 in file "mcc_generated_files/mcc.c"
+  1521 ;; Parameters:    Size  Location     Type
+  1522 ;;		None
+  1523 ;; Auto vars:     Size  Location     Type
+  1524 ;;		None
+  1525 ;; Return value:  Size  Location     Type
+  1526 ;;                  1    wreg      void 
+  1527 ;; Registers used:
+  1528 ;;		wreg, status,2, status,0, cstack
+  1529 ;; Tracked objects:
+  1530 ;;		On entry : 0/0
+  1531 ;;		On exit  : 3F/3F
+  1532 ;;		Unchanged: 0/0
+  1533 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1534 ;;      Params:         0       0       0       0       0       0       0       0       0
+  1535 ;;      Locals:         0       0       0       0       0       0       0       0       0
+  1536 ;;      Temps:          0       0       0       0       0       0       0       0       0
+  1537 ;;      Totals:         0       0       0       0       0       0       0       0       0
+  1538 ;;Total ram usage:        0 bytes
+  1539 ;; Hardware stack levels used: 1
+  1540 ;; Hardware stack levels required when called: 4
+  1541 ;; This function calls:
+  1542 ;;		_ADCC_Initialize
+  1543 ;;		_INTERRUPT_Initialize
+  1544 ;;		_OSCILLATOR_Initialize
+  1545 ;;		_PIN_MANAGER_Initialize
+  1546 ;;		_PMD_Initialize
+  1547 ;;		_SMT1_Initialize
+  1548 ;; This function is called by:
+  1549 ;;		_main
+  1550 ;; This function uses a non-reentrant model
+  1551 ;;
+  1552                           
+  1553                           	psect	text5
+  1554  00088C                     __ptext5:
+  1555                           	callstack 0
+  1556  00088C                     _SYSTEM_Initialize:
+  1557                           	callstack 26
+  1558                           
+  1559                           ;mcc_generated_files/mcc.c: 52:     INTERRUPT_Initialize();
+  1560                           
+  1561                           ;incstack = 0
+  1562  00088C  EC6C  F004         	call	_INTERRUPT_Initialize	;wreg free
+  1563                           
+  1564                           ; BSR set to: 57
+  1565                           ;mcc_generated_files/mcc.c: 53:     PMD_Initialize();
+  1566  000890  EC17  F004         	call	_PMD_Initialize	;wreg free
+  1567                           
+  1568                           ; BSR set to: 57
+  1569                           ;mcc_generated_files/mcc.c: 54:     PIN_MANAGER_Initialize();
+  1570  000894  EC80  F002         	call	_PIN_MANAGER_Initialize	;wreg free
+  1571                           
+  1572                           ; BSR set to: 58
+  1573                           ;mcc_generated_files/mcc.c: 55:     OSCILLATOR_Initialize();
+  1574  000898  EC53  F004         	call	_OSCILLATOR_Initialize	;wreg free
+  1575                           
+  1576                           ; BSR set to: 57
+  1577                           ;mcc_generated_files/mcc.c: 56:     ADCC_Initialize();
+  1578  00089C  ECEE  F002         	call	_ADCC_Initialize	;wreg free
+  1579                           
+  1580                           ; BSR set to: 62
+  1581                           ;mcc_generated_files/mcc.c: 57:     SMT1_Initialize();
+  1582  0008A0  ECEC  F003         	call	_SMT1_Initialize	;wreg free
+  1583                           
+  1584                           ; BSR set to: 63
+  1585  0008A4  0012               	return		;funcret
+  1586  0008A6                     __end_of_SYSTEM_Initialize:
+  1587                           	callstack 0
+  1588                           
+  1589 ;; *************** function _SMT1_Initialize *****************
+  1590 ;; Defined at:
+  1591 ;;		line 60 in file "mcc_generated_files/smt1.c"
+  1592 ;; Parameters:    Size  Location     Type
+  1593 ;;		None
+  1594 ;; Auto vars:     Size  Location     Type
+  1595 ;;		None
+  1596 ;; Return value:  Size  Location     Type
+  1597 ;;                  1    wreg      void 
+  1598 ;; Registers used:
+  1599 ;;		wreg, status,2
+  1600 ;; Tracked objects:
+  1601 ;;		On entry : 3F/3E
+  1602 ;;		On exit  : 3F/3F
+  1603 ;;		Unchanged: 0/0
+  1604 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1605 ;;      Params:         0       0       0       0       0       0       0       0       0
+  1606 ;;      Locals:         0       0       0       0       0       0       0       0       0
+  1607 ;;      Temps:          0       0       0       0       0       0       0       0       0
+  1608 ;;      Totals:         0       0       0       0       0       0       0       0       0
+  1609 ;;Total ram usage:        0 bytes
+  1610 ;; Hardware stack levels used: 1
+  1611 ;; Hardware stack levels required when called: 2
+  1612 ;; This function calls:
+  1613 ;;		Nothing
+  1614 ;; This function is called by:
+  1615 ;;		_SYSTEM_Initialize
+  1616 ;; This function uses a non-reentrant model
+  1617 ;;
+  1618                           
+  1619                           	psect	text6
+  1620  0007D8                     __ptext6:
+  1621                           	callstack 0
+  1622  0007D8                     _SMT1_Initialize:
+  1623                           	callstack 27
+  1624                           
+  1625                           ; BSR set to: 62
+  1626                           ;mcc_generated_files/smt1.c: 63:     SMT1CON0 = 0x9C;
+  1627                           
+  1628                           ; BSR set to: 63
+  1629                           ;incstack = 0
+  1630  0007D8  0E9C               	movlw	156
+  1631  0007DA  013F               	movlb	63	; () banked
+  1632  0007DC  6F1E               	movwf	30,b	;volatile
+  1633                           
+  1634                           ;mcc_generated_files/smt1.c: 66:     SMT1CON1 = 0xC3;
+  1635  0007DE  0EC3               	movlw	195
+  1636  0007E0  6F1F               	movwf	31,b	;volatile
+  1637                           
+  1638                           ;mcc_generated_files/smt1.c: 69:     SMT1STAT = 0x00;
+  1639  0007E2  0E00               	movlw	0
+  1640  0007E4  6F20               	movwf	32,b	;volatile
+  1641                           
+  1642                           ;mcc_generated_files/smt1.c: 72:     SMT1CLK = 0x00;
+  1643  0007E6  0E00               	movlw	0
+  1644  0007E8  6F21               	movwf	33,b	;volatile
+  1645                           
+  1646                           ;mcc_generated_files/smt1.c: 75:     SMT1WIN = 0x0;
+  1647  0007EA  0E00               	movlw	0
+  1648  0007EC  6F23               	movwf	35,b	;volatile
+  1649                           
+  1650                           ;mcc_generated_files/smt1.c: 78:     SMT1SIG = 0x00;
+  1651  0007EE  0E00               	movlw	0
+  1652  0007F0  6F22               	movwf	34,b	;volatile
+  1653                           
+  1654                           ; BSR set to: 63
+  1655                           ;mcc_generated_files/smt1.c: 81:     SMT1PRU = 0xFF;
+  1656  0007F2  691D               	setf	29,b	;volatile
+  1657                           
+  1658                           ; BSR set to: 63
+  1659                           ;mcc_generated_files/smt1.c: 84:     SMT1PRH = 0xFF;
+  1660  0007F4  691C               	setf	28,b	;volatile
+  1661                           
+  1662                           ; BSR set to: 63
+  1663                           ;mcc_generated_files/smt1.c: 87:     SMT1PRL = 0xFF;
+  1664  0007F6  691B               	setf	27,b	;volatile
+  1665                           
+  1666                           ; BSR set to: 63
+  1667                           ;mcc_generated_files/smt1.c: 90:     PIE1bits.SMT1PWAIE = 1;
+  1668  0007F8  0139               	movlb	57	; () banked
+  1669  0007FA  8F91               	bsf	145,7,b	;volatile
+  1670                           
+  1671                           ; BSR set to: 57
+  1672                           ;mcc_generated_files/smt1.c: 93:     PIE1bits.SMT1PRAIE = 0;
+  1673  0007FC  9D91               	bcf	145,6,b	;volatile
+  1674                           
+  1675                           ; BSR set to: 57
+  1676                           ;mcc_generated_files/smt1.c: 96:     SMT1CON1bits.SMT1GO = 1;
+  1677  0007FE  013F               	movlb	63	; () banked
+  1678  000800  8F1F               	bsf	31,7,b	;volatile
+  1679                           
+  1680                           ; BSR set to: 63
+  1681  000802  0012               	return		;funcret
+  1682  000804                     __end_of_SMT1_Initialize:
+  1683                           	callstack 0
+  1684                           
+  1685 ;; *************** function _PMD_Initialize *****************
+  1686 ;; Defined at:
+  1687 ;;		line 74 in file "mcc_generated_files/mcc.c"
+  1688 ;; Parameters:    Size  Location     Type
+  1689 ;;		None
+  1690 ;; Auto vars:     Size  Location     Type
+  1691 ;;		None
+  1692 ;; Return value:  Size  Location     Type
+  1693 ;;                  1    wreg      void 
+  1694 ;; Registers used:
+  1695 ;;		wreg, status,2
+  1696 ;; Tracked objects:
+  1697 ;;		On entry : 3F/39
+  1698 ;;		On exit  : 3F/39
+  1699 ;;		Unchanged: 0/0
+  1700 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1701 ;;      Params:         0       0       0       0       0       0       0       0       0
+  1702 ;;      Locals:         0       0       0       0       0       0       0       0       0
+  1703 ;;      Temps:          0       0       0       0       0       0       0       0       0
+  1704 ;;      Totals:         0       0       0       0       0       0       0       0       0
+  1705 ;;Total ram usage:        0 bytes
+  1706 ;; Hardware stack levels used: 1
+  1707 ;; Hardware stack levels required when called: 2
+  1708 ;; This function calls:
+  1709 ;;		Nothing
+  1710 ;; This function is called by:
+  1711 ;;		_SYSTEM_Initialize
+  1712 ;; This function uses a non-reentrant model
+  1713 ;;
+  1714                           
+  1715                           	psect	text7
+  1716  00082E                     __ptext7:
+  1717                           	callstack 0
+  1718  00082E                     _PMD_Initialize:
+  1719                           	callstack 27
+  1720                           
+  1721                           ; BSR set to: 57
+  1722                           ;mcc_generated_files/mcc.c: 77:     PMD0 = 0x00;
+  1723                           
+  1724                           ; BSR set to: 63
+  1725                           ;incstack = 0
+  1726  00082E  0E00               	movlw	0
+  1727  000830  6FC0               	movwf	192,b	;volatile
+  1728                           
+  1729                           ;mcc_generated_files/mcc.c: 79:     PMD1 = 0x00;
+  1730  000832  0E00               	movlw	0
+  1731  000834  6FC1               	movwf	193,b	;volatile
+  1732                           
+  1733                           ;mcc_generated_files/mcc.c: 81:     PMD2 = 0x00;
+  1734  000836  0E00               	movlw	0
+  1735  000838  6FC2               	movwf	194,b	;volatile
+  1736                           
+  1737                           ;mcc_generated_files/mcc.c: 83:     PMD3 = 0x00;
+  1738  00083A  0E00               	movlw	0
+  1739  00083C  6FC3               	movwf	195,b	;volatile
+  1740                           
+  1741                           ;mcc_generated_files/mcc.c: 85:     PMD4 = 0x00;
+  1742  00083E  0E00               	movlw	0
+  1743  000840  6FC4               	movwf	196,b	;volatile
+  1744                           
+  1745                           ;mcc_generated_files/mcc.c: 87:     PMD5 = 0x00;
+  1746  000842  0E00               	movlw	0
+  1747  000844  6FC5               	movwf	197,b	;volatile
+  1748                           
+  1749                           ;mcc_generated_files/mcc.c: 89:     PMD6 = 0x00;
+  1750  000846  0E00               	movlw	0
+  1751  000848  6FC6               	movwf	198,b	;volatile
+  1752                           
+  1753                           ;mcc_generated_files/mcc.c: 91:     PMD7 = 0x00;
+  1754  00084A  0E00               	movlw	0
+  1755  00084C  6FC7               	movwf	199,b	;volatile
+  1756                           
+  1757                           ; BSR set to: 57
+  1758  00084E  0012               	return		;funcret
+  1759  000850                     __end_of_PMD_Initialize:
+  1760                           	callstack 0
+  1761                           
+  1762 ;; *************** function _PIN_MANAGER_Initialize *****************
+  1763 ;; Defined at:
+  1764 ;;		line 57 in file "mcc_generated_files/pin_manager.c"
+  1765 ;; Parameters:    Size  Location     Type
+  1766 ;;		None
+  1767 ;; Auto vars:     Size  Location     Type
+  1768 ;;		None
+  1769 ;; Return value:  Size  Location     Type
+  1770 ;;                  1    wreg      void 
+  1771 ;; Registers used:
+  1772 ;;		wreg, status,2, status,0, cstack
+  1773 ;; Tracked objects:
+  1774 ;;		On entry : 3F/39
+  1775 ;;		On exit  : 3F/3A
+  1776 ;;		Unchanged: 0/0
+  1777 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1778 ;;      Params:         0       0       0       0       0       0       0       0       0
+  1779 ;;      Locals:         0       0       0       0       0       0       0       0       0
+  1780 ;;      Temps:          0       0       0       0       0       0       0       0       0
+  1781 ;;      Totals:         0       0       0       0       0       0       0       0       0
+  1782 ;;Total ram usage:        0 bytes
+  1783 ;; Hardware stack levels used: 1
+  1784 ;; Hardware stack levels required when called: 3
+  1785 ;; This function calls:
+  1786 ;;		_IOCBF2_SetInterruptHandler
+  1787 ;; This function is called by:
+  1788 ;;		_SYSTEM_Initialize
+  1789 ;; This function uses a non-reentrant model
+  1790 ;;
+  1791                           
+  1792                           	psect	text8
+  1793  000500                     __ptext8:
+  1794                           	callstack 0
+  1795  000500                     _PIN_MANAGER_Initialize:
+  1796                           	callstack 26
+  1797                           
+  1798                           ; BSR set to: 57
+  1799                           ;mcc_generated_files/pin_manager.c: 62:     LATA = 0xF0;
+  1800                           
+  1801                           ; BSR set to: 57
+  1802                           ;incstack = 0
+  1803  000500  0EF0               	movlw	240
+  1804  000502  6EBA               	movwf	186,c	;volatile
+  1805                           
+  1806                           ;mcc_generated_files/pin_manager.c: 63:     LATB = 0x27;
+  1807  000504  0E27               	movlw	39
+  1808  000506  6EBB               	movwf	187,c	;volatile
+  1809                           
+  1810                           ; BSR set to: 57
+  1811                           ;mcc_generated_files/pin_manager.c: 64:     LATC = 0xFF;
+  1812  000508  68BC               	setf	188,c	;volatile
+  1813                           
+  1814                           ; BSR set to: 57
+  1815                           ;mcc_generated_files/pin_manager.c: 69:     TRISA = 0xFF;
+  1816  00050A  68C2               	setf	194,c	;volatile
+  1817                           
+  1818                           ; BSR set to: 57
+  1819                           ;mcc_generated_files/pin_manager.c: 70:     TRISB = 0xFF;
+  1820  00050C  68C3               	setf	195,c	;volatile
+  1821                           
+  1822                           ; BSR set to: 57
+  1823                           ;mcc_generated_files/pin_manager.c: 71:     TRISC = 0xFF;
+  1824  00050E  68C4               	setf	196,c	;volatile
+  1825                           
+  1826                           ;mcc_generated_files/pin_manager.c: 76:     ANSELC = 0x00;
+  1827  000510  0E00               	movlw	0
+  1828  000512  013A               	movlb	58	; () banked
+  1829  000514  6F60               	movwf	96,b	;volatile
+  1830                           
+  1831                           ;mcc_generated_files/pin_manager.c: 77:     ANSELB = 0x00;
+  1832  000516  0E00               	movlw	0
+  1833  000518  6F50               	movwf	80,b	;volatile
+  1834                           
+  1835                           ;mcc_generated_files/pin_manager.c: 78:     ANSELA = 0x07;
+  1836  00051A  0E07               	movlw	7
+  1837  00051C  6F40               	movwf	64,b	;volatile
+  1838                           
+  1839                           ;mcc_generated_files/pin_manager.c: 83:     WPUE = 0x00;
+  1840  00051E  0E00               	movlw	0
+  1841  000520  6F81               	movwf	129,b	;volatile
+  1842                           
+  1843                           ;mcc_generated_files/pin_manager.c: 84:     WPUB = 0x27;
+  1844  000522  0E27               	movlw	39
+  1845  000524  6F51               	movwf	81,b	;volatile
+  1846                           
+  1847                           ;mcc_generated_files/pin_manager.c: 85:     WPUA = 0xF0;
+  1848  000526  0EF0               	movlw	240
+  1849  000528  6F41               	movwf	65,b	;volatile
+  1850                           
+  1851                           ; BSR set to: 58
+  1852                           ;mcc_generated_files/pin_manager.c: 86:     WPUC = 0xFF;
+  1853  00052A  6961               	setf	97,b	;volatile
+  1854                           
+  1855                           ;mcc_generated_files/pin_manager.c: 91:     RB1I2C = 0x00;
+  1856  00052C  0E00               	movlw	0
+  1857  00052E  6F5A               	movwf	90,b	;volatile
+  1858                           
+  1859                           ;mcc_generated_files/pin_manager.c: 92:     RB2I2C = 0x00;
+  1860  000530  0E00               	movlw	0
+  1861  000532  6F5B               	movwf	91,b	;volatile
+  1862                           
+  1863                           ;mcc_generated_files/pin_manager.c: 93:     RC3I2C = 0x00;
+  1864  000534  0E00               	movlw	0
+  1865  000536  6F6A               	movwf	106,b	;volatile
+  1866                           
+  1867                           ;mcc_generated_files/pin_manager.c: 94:     RC4I2C = 0x00;
+  1868  000538  0E00               	movlw	0
+  1869  00053A  6F6B               	movwf	107,b	;volatile
+  1870                           
+  1871                           ;mcc_generated_files/pin_manager.c: 99:     ODCONA = 0x00;
+  1872  00053C  0E00               	movlw	0
+  1873  00053E  6F42               	movwf	66,b	;volatile
+  1874                           
+  1875                           ;mcc_generated_files/pin_manager.c: 100:     ODCONB = 0x00;
+  1876  000540  0E00               	movlw	0
+  1877  000542  6F52               	movwf	82,b	;volatile
+  1878                           
+  1879                           ;mcc_generated_files/pin_manager.c: 101:     ODCONC = 0x18;
+  1880  000544  0E18               	movlw	24
+  1881  000546  6F62               	movwf	98,b	;volatile
+  1882                           
+  1883                           ; BSR set to: 58
+  1884                           ;mcc_generated_files/pin_manager.c: 106:     SLRCONA = 0xFF;
+  1885  000548  6943               	setf	67,b	;volatile
+  1886                           
+  1887                           ; BSR set to: 58
+  1888                           ;mcc_generated_files/pin_manager.c: 107:     SLRCONB = 0xFF;
+  1889  00054A  6953               	setf	83,b	;volatile
+  1890                           
+  1891                           ; BSR set to: 58
+  1892                           ;mcc_generated_files/pin_manager.c: 108:     SLRCONC = 0xFF;
+  1893  00054C  6963               	setf	99,b	;volatile
+  1894                           
+  1895                           ; BSR set to: 58
+  1896                           ;mcc_generated_files/pin_manager.c: 113:     INLVLA = 0xFF;
+  1897  00054E  6944               	setf	68,b	;volatile
+  1898                           
+  1899                           ; BSR set to: 58
+  1900                           ;mcc_generated_files/pin_manager.c: 114:     INLVLB = 0xFF;
+  1901  000550  6954               	setf	84,b	;volatile
+  1902                           
+  1903                           ; BSR set to: 58
+  1904                           ;mcc_generated_files/pin_manager.c: 115:     INLVLC = 0xFF;
+  1905  000552  6964               	setf	100,b	;volatile
+  1906                           
+  1907                           ;mcc_generated_files/pin_manager.c: 116:     INLVLE = 0x08;
+  1908  000554  0E08               	movlw	8
+  1909  000556  6F84               	movwf	132,b	;volatile
+  1910                           
+  1911                           ; BSR set to: 58
+  1912                           ;mcc_generated_files/pin_manager.c: 123:     IOCBFbits.IOCBF2 = 0;
+  1913  000558  9557               	bcf	87,2,b	;volatile
+  1914                           
+  1915                           ; BSR set to: 58
+  1916                           ;mcc_generated_files/pin_manager.c: 125:     IOCBNbits.IOCBN2 = 1;
+  1917  00055A  8556               	bsf	86,2,b	;volatile
+  1918                           
+  1919                           ; BSR set to: 58
+  1920                           ;mcc_generated_files/pin_manager.c: 127:     IOCBPbits.IOCBP2 = 0;
+  1921  00055C  9555               	bcf	85,2,b	;volatile
+  1922                           
+  1923                           ; BSR set to: 58
+  1924                           ;mcc_generated_files/pin_manager.c: 132:     IOCBF2_SetInterruptHandler(IOCBF2_DefaultIn
+      +                          terruptHandler);
+  1925  00055E  0E00               	movlw	0
+  1926  000560  6E52               	movwf	IOCBF2_SetInterruptHandler@InterruptHandler^0,c
+  1927  000562  0E00               	movlw	0
+  1928  000564  6E53               	movwf	(IOCBF2_SetInterruptHandler@InterruptHandler+1)^0,c
+  1929  000566  EC67  F004         	call	_IOCBF2_SetInterruptHandler	;wreg free
+  1930                           
+  1931                           ; BSR set to: 58
+  1932                           ;mcc_generated_files/pin_manager.c: 134:     SMT1SIGPPS = 0x0A;
+  1933  00056A  0E0A               	movlw	10
+  1934  00056C  6FD2               	movwf	210,b	;volatile
+  1935                           
+  1936                           ; BSR set to: 58
+  1937  00056E  0012               	return		;funcret
+  1938  000570                     __end_of_PIN_MANAGER_Initialize:
+  1939                           	callstack 0
+  1940                           
+  1941 ;; *************** function _IOCBF2_SetInterruptHandler *****************
+  1942 ;; Defined at:
+  1943 ;;		line 164 in file "mcc_generated_files/pin_manager.c"
+  1944 ;; Parameters:    Size  Location     Type
+  1945 ;;  InterruptHan    2    4[COMRAM] PTR FTN()void 
+  1946 ;;		 -> IOCBF2_DefaultInterruptHandler(1), 
+  1947 ;; Auto vars:     Size  Location     Type
+  1948 ;;		None
+  1949 ;; Return value:  Size  Location     Type
+  1950 ;;                  1    wreg      void 
+  1951 ;; Registers used:
+  1952 ;;		wreg, status,2, status,0
+  1953 ;; Tracked objects:
+  1954 ;;		On entry : 3F/3A
+  1955 ;;		On exit  : 3F/3A
+  1956 ;;		Unchanged: 3F/0
+  1957 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1958 ;;      Params:         2       0       0       0       0       0       0       0       0
+  1959 ;;      Locals:         0       0       0       0       0       0       0       0       0
+  1960 ;;      Temps:          0       0       0       0       0       0       0       0       0
+  1961 ;;      Totals:         2       0       0       0       0       0       0       0       0
+  1962 ;;Total ram usage:        2 bytes
+  1963 ;; Hardware stack levels used: 1
+  1964 ;; Hardware stack levels required when called: 2
+  1965 ;; This function calls:
+  1966 ;;		Nothing
+  1967 ;; This function is called by:
+  1968 ;;		_PIN_MANAGER_Initialize
+  1969 ;; This function uses a non-reentrant model
+  1970 ;;
+  1971                           
+  1972                           	psect	text9
+  1973  0008CE                     __ptext9:
+  1974                           	callstack 0
+  1975  0008CE                     _IOCBF2_SetInterruptHandler:
+  1976                           	callstack 26
+  1977                           
+  1978                           ; BSR set to: 58
+  1979                           ;mcc_generated_files/pin_manager.c: 165:     IOCBF2_InterruptHandler = InterruptHandler;
+  1980                           
+  1981                           ; BSR set to: 58
+  1982                           ;incstack = 0
+  1983  0008CE  C052  F140         	movff	IOCBF2_SetInterruptHandler@InterruptHandler,_IOCBF2_InterruptHandler
+  1984  0008D2  C053  F141         	movff	IOCBF2_SetInterruptHandler@InterruptHandler+1,_IOCBF2_InterruptHandler+1
+  1985                           
+  1986                           ; BSR set to: 58
+  1987  0008D6  0012               	return		;funcret
+  1988  0008D8                     __end_of_IOCBF2_SetInterruptHandler:
+  1989                           	callstack 0
+  1990                           
+  1991 ;; *************** function _OSCILLATOR_Initialize *****************
+  1992 ;; Defined at:
+  1993 ;;		line 60 in file "mcc_generated_files/mcc.c"
+  1994 ;; Parameters:    Size  Location     Type
+  1995 ;;		None
+  1996 ;; Auto vars:     Size  Location     Type
+  1997 ;;		None
+  1998 ;; Return value:  Size  Location     Type
+  1999 ;;                  1    wreg      void 
+  2000 ;; Registers used:
+  2001 ;;		wreg, status,2
+  2002 ;; Tracked objects:
+  2003 ;;		On entry : 3F/3A
+  2004 ;;		On exit  : 3F/39
+  2005 ;;		Unchanged: 0/0
+  2006 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  2007 ;;      Params:         0       0       0       0       0       0       0       0       0
+  2008 ;;      Locals:         0       0       0       0       0       0       0       0       0
+  2009 ;;      Temps:          0       0       0       0       0       0       0       0       0
+  2010 ;;      Totals:         0       0       0       0       0       0       0       0       0
+  2011 ;;Total ram usage:        0 bytes
+  2012 ;; Hardware stack levels used: 1
+  2013 ;; Hardware stack levels required when called: 2
+  2014 ;; This function calls:
+  2015 ;;		Nothing
+  2016 ;; This function is called by:
+  2017 ;;		_SYSTEM_Initialize
+  2018 ;; This function uses a non-reentrant model
+  2019 ;;
+  2020                           
+  2021                           	psect	text10
+  2022  0008A6                     __ptext10:
+  2023                           	callstack 0
+  2024  0008A6                     _OSCILLATOR_Initialize:
+  2025                           	callstack 27
+  2026                           
+  2027                           ; BSR set to: 58
+  2028                           ;mcc_generated_files/mcc.c: 63:     OSCCON1 = 0x60;
+  2029                           
+  2030                           ; BSR set to: 58
+  2031                           ;incstack = 0
+  2032  0008A6  0E60               	movlw	96
+  2033  0008A8  0139               	movlb	57	; () banked
+  2034  0008AA  6FD9               	movwf	217,b	;volatile
+  2035                           
+  2036                           ;mcc_generated_files/mcc.c: 65:     OSCCON3 = 0x00;
+  2037  0008AC  0E00               	movlw	0
+  2038  0008AE  6FDB               	movwf	219,b	;volatile
+  2039                           
+  2040                           ;mcc_generated_files/mcc.c: 67:     OSCEN = 0x00;
+  2041  0008B0  0E00               	movlw	0
+  2042  0008B2  6FDD               	movwf	221,b	;volatile
+  2043                           
+  2044                           ;mcc_generated_files/mcc.c: 69:     OSCFRQ = 0x08;
+  2045  0008B4  0E08               	movlw	8
+  2046  0008B6  6FDF               	movwf	223,b	;volatile
+  2047                           
+  2048                           ;mcc_generated_files/mcc.c: 71:     OSCTUNE = 0x00;
+  2049  0008B8  0E00               	movlw	0
+  2050  0008BA  6FDE               	movwf	222,b	;volatile
+  2051                           
+  2052                           ; BSR set to: 57
+  2053  0008BC  0012               	return		;funcret
+  2054  0008BE                     __end_of_OSCILLATOR_Initialize:
+  2055                           	callstack 0
+  2056                           
+  2057 ;; *************** function _INTERRUPT_Initialize *****************
+  2058 ;; Defined at:
+  2059 ;;		line 52 in file "mcc_generated_files/interrupt_manager.c"
+  2060 ;; Parameters:    Size  Location     Type
+  2061 ;;		None
+  2062 ;; Auto vars:     Size  Location     Type
+  2063 ;;		None
+  2064 ;; Return value:  Size  Location     Type
+  2065 ;;                  1    wreg      void 
+  2066 ;; Registers used:
+  2067 ;;		None
+  2068 ;; Tracked objects:
+  2069 ;;		On entry : 0/0
+  2070 ;;		On exit  : 3F/39
+  2071 ;;		Unchanged: 0/0
+  2072 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  2073 ;;      Params:         0       0       0       0       0       0       0       0       0
+  2074 ;;      Locals:         0       0       0       0       0       0       0       0       0
+  2075 ;;      Temps:          0       0       0       0       0       0       0       0       0
+  2076 ;;      Totals:         0       0       0       0       0       0       0       0       0
+  2077 ;;Total ram usage:        0 bytes
+  2078 ;; Hardware stack levels used: 1
+  2079 ;; Hardware stack levels required when called: 2
+  2080 ;; This function calls:
+  2081 ;;		Nothing
+  2082 ;; This function is called by:
+  2083 ;;		_SYSTEM_Initialize
+  2084 ;; This function uses a non-reentrant model
+  2085 ;;
+  2086                           
+  2087                           	psect	text11
+  2088  0008D8                     __ptext11:
+  2089                           	callstack 0
+  2090  0008D8                     _INTERRUPT_Initialize:
+  2091                           	callstack 27
+  2092                           
+  2093                           ;mcc_generated_files/interrupt_manager.c: 55:     INTCON0bits.IPEN = 1;
+  2094                           
+  2095                           ; BSR set to: 57
+  2096                           ;incstack = 0
+  2097  0008D8  8AD2               	bsf	210,5,c	;volatile
+  2098                           
+  2099                           ;mcc_generated_files/interrupt_manager.c: 60:     IPR1bits.SMT1PWAIP = 1;
+  2100  0008DA  0139               	movlb	57	; () banked
+  2101  0008DC  8F81               	bsf	129,7,b	;volatile
+  2102                           
+  2103                           ;mcc_generated_files/interrupt_manager.c: 63:     IPR1bits.SMT1PRAIP = 0;
+  2104  0008DE  9D81               	bcf	129,6,b	;volatile
+  2105                           
+  2106                           ; BSR set to: 57
+  2107  0008E0  0012               	return		;funcret
+  2108  0008E2                     __end_of_INTERRUPT_Initialize:
+  2109                           	callstack 0
+  2110                           
+  2111 ;; *************** function _ADCC_Initialize *****************
+  2112 ;; Defined at:
+  2113 ;;		line 62 in file "mcc_generated_files/adcc.c"
+  2114 ;; Parameters:    Size  Location     Type
+  2115 ;;		None
+  2116 ;; Auto vars:     Size  Location     Type
+  2117 ;;		None
+  2118 ;; Return value:  Size  Location     Type
+  2119 ;;                  1    wreg      void 
+  2120 ;; Registers used:
+  2121 ;;		wreg, status,2
+  2122 ;; Tracked objects:
+  2123 ;;		On entry : 3F/39
+  2124 ;;		On exit  : 3F/3E
+  2125 ;;		Unchanged: 0/0
+  2126 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  2127 ;;      Params:         0       0       0       0       0       0       0       0       0
+  2128 ;;      Locals:         0       0       0       0       0       0       0       0       0
+  2129 ;;      Temps:          0       0       0       0       0       0       0       0       0
+  2130 ;;      Totals:         0       0       0       0       0       0       0       0       0
+  2131 ;;Total ram usage:        0 bytes
+  2132 ;; Hardware stack levels used: 1
+  2133 ;; Hardware stack levels required when called: 2
+  2134 ;; This function calls:
+  2135 ;;		Nothing
+  2136 ;; This function is called by:
+  2137 ;;		_SYSTEM_Initialize
+  2138 ;; This function uses a non-reentrant model
+  2139 ;;
+  2140                           
+  2141                           	psect	text12
+  2142  0005DC                     __ptext12:
+  2143                           	callstack 0
+  2144  0005DC                     _ADCC_Initialize:
+  2145                           	callstack 27
+  2146                           
+  2147                           ; BSR set to: 57
+  2148                           ;mcc_generated_files/adcc.c: 66:     ADLTHL = 0x00;
+  2149                           
+  2150                           ; BSR set to: 57
+  2151                           ;incstack = 0
+  2152  0005DC  0E00               	movlw	0
+  2153  0005DE  013E               	movlb	62	; () banked
+  2154  0005E0  6FDE               	movwf	222,b	;volatile
+  2155                           
+  2156                           ;mcc_generated_files/adcc.c: 68:     ADLTHH = 0x00;
+  2157  0005E2  0E00               	movlw	0
+  2158  0005E4  6FDF               	movwf	223,b	;volatile
+  2159                           
+  2160                           ;mcc_generated_files/adcc.c: 70:     ADUTHL = 0x00;
+  2161  0005E6  0E00               	movlw	0
+  2162  0005E8  6FE0               	movwf	224,b	;volatile
+  2163                           
+  2164                           ;mcc_generated_files/adcc.c: 72:     ADUTHH = 0x00;
+  2165  0005EA  0E00               	movlw	0
+  2166  0005EC  6FE1               	movwf	225,b	;volatile
+  2167                           
+  2168                           ;mcc_generated_files/adcc.c: 74:     ADSTPTL = 0x00;
+  2169  0005EE  0E00               	movlw	0
+  2170  0005F0  6FE4               	movwf	228,b	;volatile
+  2171                           
+  2172                           ;mcc_generated_files/adcc.c: 76:     ADSTPTH = 0x00;
+  2173  0005F2  0E00               	movlw	0
+  2174  0005F4  6FE5               	movwf	229,b	;volatile
+  2175                           
+  2176                           ;mcc_generated_files/adcc.c: 78:     ADACCU = 0x00;
+  2177  0005F6  0E00               	movlw	0
+  2178  0005F8  6FEA               	movwf	234,b	;volatile
+  2179                           
+  2180                           ;mcc_generated_files/adcc.c: 80:     ADRPT = 0x00;
+  2181  0005FA  0E00               	movlw	0
+  2182  0005FC  6FEC               	movwf	236,b	;volatile
+  2183                           
+  2184                           ;mcc_generated_files/adcc.c: 82:     ADPCH = 0x00;
+  2185  0005FE  0E00               	movlw	0
+  2186  000600  6FF1               	movwf	241,b	;volatile
+  2187                           
+  2188                           ;mcc_generated_files/adcc.c: 84:     ADACQL = 0x10;
+  2189  000602  0E10               	movlw	16
+  2190  000604  6FF3               	movwf	243,b	;volatile
+  2191                           
+  2192                           ;mcc_generated_files/adcc.c: 86:     ADACQH = 0x00;
+  2193  000606  0E00               	movlw	0
+  2194  000608  6FF4               	movwf	244,b	;volatile
+  2195                           
+  2196                           ;mcc_generated_files/adcc.c: 88:     ADCAP = 0x00;
+  2197  00060A  0E00               	movlw	0
+  2198  00060C  6FF5               	movwf	245,b	;volatile
+  2199                           
+  2200                           ;mcc_generated_files/adcc.c: 90:     ADPREL = 0x00;
+  2201  00060E  0E00               	movlw	0
+  2202  000610  6FF6               	movwf	246,b	;volatile
+  2203                           
+  2204                           ;mcc_generated_files/adcc.c: 92:     ADPREH = 0x00;
+  2205  000612  0E00               	movlw	0
+  2206  000614  6FF7               	movwf	247,b	;volatile
+  2207                           
+  2208                           ;mcc_generated_files/adcc.c: 94:     ADCON1 = 0x00;
+  2209  000616  0E00               	movlw	0
+  2210  000618  6FF9               	movwf	249,b	;volatile
+  2211                           
+  2212                           ;mcc_generated_files/adcc.c: 96:     ADCON2 = 0x00;
+  2213  00061A  0E00               	movlw	0
+  2214  00061C  6FFA               	movwf	250,b	;volatile
+  2215                           
+  2216                           ;mcc_generated_files/adcc.c: 98:     ADCON3 = 0x00;
+  2217  00061E  0E00               	movlw	0
+  2218  000620  6FFB               	movwf	251,b	;volatile
+  2219                           
+  2220                           ;mcc_generated_files/adcc.c: 100:     ADSTAT = 0x00;
+  2221  000622  0E00               	movlw	0
+  2222  000624  6FFC               	movwf	252,b	;volatile
+  2223                           
+  2224                           ;mcc_generated_files/adcc.c: 102:     ADREF = 0x00;
+  2225  000626  0E00               	movlw	0
+  2226  000628  6FFD               	movwf	253,b	;volatile
+  2227                           
+  2228                           ;mcc_generated_files/adcc.c: 104:     ADACT = 0x00;
+  2229  00062A  0E00               	movlw	0
+  2230  00062C  6FFE               	movwf	254,b	;volatile
+  2231                           
+  2232                           ;mcc_generated_files/adcc.c: 106:     ADCLK = 0x01;
+  2233  00062E  0E01               	movlw	1
+  2234  000630  6FFF               	movwf	255,b	;volatile
+  2235                           
+  2236                           ;mcc_generated_files/adcc.c: 108:     ADCON0 = 0x84;
+  2237  000632  0E84               	movlw	132
+  2238  000634  6FF8               	movwf	248,b	;volatile
+  2239                           
+  2240                           ; BSR set to: 62
+  2241  000636  0012               	return		;funcret
+  2242  000638                     __end_of_ADCC_Initialize:
+  2243                           	callstack 0
+  2244                           
+  2245 ;; *************** function _INTERRUPT_InterruptManagerHigh *****************
+  2246 ;; Defined at:
+  2247 ;;		line 70 in file "mcc_generated_files/interrupt_manager.c"
+  2248 ;; Parameters:    Size  Location     Type
+  2249 ;;		None
+  2250 ;; Auto vars:     Size  Location     Type
+  2251 ;;		None
+  2252 ;; Return value:  Size  Location     Type
+  2253 ;;                  1    wreg      void 
+  2254 ;; Registers used:
+  2255 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, pclath, btemp, btemp+1, btemp+2, b
+      +temp+3, btemp+4, btemp+5, btemp+6, btemp+7, btemp+8, btemp+9, btemp+10, btemp+11, btemp+12, btemp+13, btemp+14, btemp+15
+      +, btemp+16, btemp+17, btemp+18, btemp+19, btemp+20, btemp+21, btemp+22, btemp+23, btemp+24, btemp+25, btemp+26, btemp+27
+      +, btemp+28, btemp+29, btemp+30, btemp+31, tosl, structret, tblptrl, tblptrh, tblptru, prodl, prodh, bsr, cstack
+  2256 ;; Tracked objects:
+  2257 ;;		On entry : 0/0
+  2258 ;;		On exit  : 0/0
+  2259 ;;		Unchanged: 0/0
+  2260 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  2261 ;;      Params:         0       0       0       0       0       0       0       0       0
+  2262 ;;      Locals:         0       0       0       0       0       0       0       0       0
+  2263 ;;      Temps:          4       0       0       0       0       0       0       0       0
+  2264 ;;      Totals:         4       0       0       0       0       0       0       0       0
+  2265 ;;Total ram usage:        4 bytes
+  2266 ;; Hardware stack levels used: 1
+  2267 ;; Hardware stack levels required when called: 1
+  2268 ;; This function calls:
+  2269 ;;		_bitgrabber
+  2270 ;; This function is called by:
+  2271 ;;		Interrupt level 2
+  2272 ;; This function uses a non-reentrant model
+  2273 ;;
+  2274                           
+  2275                           	psect	text13
+  2276  0006E4                     __ptext13:
+  2277                           	callstack 0
+  2278  0006E4                     _INTERRUPT_InterruptManagerHigh:
+  2279                           	callstack 26
+  2280                           
+  2281                           ; BSR set to: 62
+  2282                           ;incstack = 0
+  2283  0006E4  006F FFD8  F04E    	movff	tblptrl,??_INTERRUPT_InterruptManagerHigh
+  2284  0006EA  006F FFDC  F04F    	movff	tblptrh,??_INTERRUPT_InterruptManagerHigh+1
+  2285  0006F0  006F FFE0  F050    	movff	tblptru,??_INTERRUPT_InterruptManagerHigh+2
+  2286  0006F6  006F FFD4  F051    	movff	tablat,??_INTERRUPT_InterruptManagerHigh+3
+  2287                           
+  2288                           ;mcc_generated_files/interrupt_manager.c: 73:     if(PIE1bits.SMT1PWAIE == 1 && PIR1bits
+      +                          .SMT1PWAIF == 1)
+  2289  0006FC  0139               	movlb	57	; () banked
+  2290  0006FE  BF91               	btfsc	145,7,b	;volatile
+  2291                           
+  2292                           ; BSR set to: 57
+  2293  000700  AFA1               	btfss	161,7,b	;volatile
+  2294  000702  D00A               	goto	i2l553
+  2295                           
+  2296                           ; BSR set to: 57
+  2297                           ;mcc_generated_files/interrupt_manager.c: 74:     {;mcc_generated_files/interrupt_manage
+      +                          r.c: 75:         PIR1bits.SMT1PWAIF = 0;
+  2298  000704  9FA1               	bcf	161,7,b	;volatile
+  2299                           
+  2300                           ;mcc_generated_files/interrupt_manager.c: 76:         gInPulseWidth = SMT1CPWL;
+  2301  000706  006F FC60  F02E    	movff	16152,_gInPulseWidth	;volatile
+  2302                           
+  2303                           ;mcc_generated_files/interrupt_manager.c: 77:         if (gInStatus & (1 << 2))
+  2304  00070C  A42B               	btfss	_gInStatus^0,2,c	;volatile
+  2305  00070E  D002               	goto	i2l2255
+  2306                           
+  2307                           ; BSR set to: 57
+  2308  000710  942B               	bcf	_gInStatus,2,c	;# 
+  2309  000712  922B               	bcf	_gInStatus,1,c	;# 
+  2310  000714                     i2l2255:
+  2311                           
+  2312                           ;mcc_generated_files/interrupt_manager.c: 83:         bitgrabber();
+  2313  000714  EC99  F003         	call	_bitgrabber	;wreg free
+  2314  000718                     i2l553:
+  2315  000718  0060  F147  FFF5   	movff	??_INTERRUPT_InterruptManagerHigh+3,tablat
+  2316  00071E  0060  F143  FFF8   	movff	??_INTERRUPT_InterruptManagerHigh+2,tblptru
+  2317  000724  0060  F13F  FFF7   	movff	??_INTERRUPT_InterruptManagerHigh+1,tblptrh
+  2318  00072A  0060  F13B  FFF6   	movff	??_INTERRUPT_InterruptManagerHigh,tblptrl
+  2319  000730  0011               	retfie		f
+  2320  000732                     __end_of_INTERRUPT_InterruptManagerHigh:
+  2321                           	callstack 0
+  2322                           
+  2323                           ;
+  2324                           ; Interrupt Vector Table @ 0x8
+  2325                           ;
+  2326                           
+  2327                           	psect	ivt0x8
+  2328  000008                     __pivt0x8:
+  2329                           	callstack 0
+  2330  000008                     ivt0x8_base:
+  2331                           	callstack 0
+  2332                           
+  2333                           ; high-priority vector
+  2334  000008  EF72  F003         	goto	_INTERRUPT_InterruptManagerHigh
+  2335  000018                     	org	16
+  2336                           
+  2337                           ; low-priority vector
+  2338  000018  00FF               	reset	
+  2339  0000                     
+  2340                           	psect	rparam
+  2341  0000                     
+  2342                           	psect	idloc
+  2343                           
+  2344                           ;Config register IDLOC0 @ 0x200000
+  2345                           ;	unspecified, using default values
+  2346  200000                     	org	2097152
+  2347  200000  0FFF               	dw	4095
+  2348                           
+  2349                           ;Config register IDLOC1 @ 0x200002
+  2350                           ;	unspecified, using default values
+  2351  200002                     	org	2097154
+  2352  200002  0FFF               	dw	4095
+  2353                           
+  2354                           ;Config register IDLOC2 @ 0x200004
+  2355                           ;	unspecified, using default values
+  2356  200004                     	org	2097156
+  2357  200004  0FFF               	dw	4095
+  2358                           
+  2359                           ;Config register IDLOC3 @ 0x200006
+  2360                           ;	unspecified, using default values
+  2361  200006                     	org	2097158
+  2362  200006  0FFF               	dw	4095
+  2363                           
+  2364                           ;Config register IDLOC4 @ 0x200008
+  2365                           ;	unspecified, using default values
+  2366  200008                     	org	2097160
+  2367  200008  0FFF               	dw	4095
+  2368                           
+  2369                           ;Config register IDLOC5 @ 0x20000A
+  2370                           ;	unspecified, using default values
+  2371  20000A                     	org	2097162
+  2372  20000A  0FFF               	dw	4095
+  2373                           
+  2374                           ;Config register IDLOC6 @ 0x20000C
+  2375                           ;	unspecified, using default values
+  2376  20000C                     	org	2097164
+  2377  20000C  0FFF               	dw	4095
+  2378                           
+  2379                           ;Config register IDLOC7 @ 0x20000E
+  2380                           ;	unspecified, using default values
+  2381  20000E                     	org	2097166
+  2382  20000E  0FFF               	dw	4095
+  2383                           
+  2384                           	psect	config
+  2385                           
+  2386                           ;Config register CONFIG1L @ 0x300000
+  2387                           ;	External Oscillator Selection
+  2388                           ;	FEXTOSC = OFF, Oscillator not enabled
+  2389                           ;	Reset Oscillator Selection
+  2390                           ;	RSTOSC = HFINTOSC_64MHZ, HFINTOSC with HFFRQ = 64 MHz and CDIV = 1:1
+  2391  300000                     	org	3145728
+  2392  300000  8C                 	db	140
+  2393                           
+  2394                           ;Config register CONFIG1H @ 0x300001
+  2395                           ;	Clock out Enable bit
+  2396                           ;	CLKOUTEN = OFF, CLKOUT function is disabled
+  2397                           ;	PRLOCKED One-Way Set Enable bit
+  2398                           ;	PR1WAY = ON, PRLOCK bit can be cleared and set only once
+  2399                           ;	Clock Switch Enable bit
+  2400                           ;	CSWEN = ON, Writing to NOSC and NDIV is allowed
+  2401                           ;	Fail-Safe Clock Monitor Enable bit
+  2402                           ;	FCMEN = ON, Fail-Safe Clock Monitor enabled
+  2403  300001                     	org	3145729
+  2404  300001  FF                 	db	255
+  2405                           
+  2406                           ;Config register CONFIG2L @ 0x300002
+  2407                           ;	MCLR Enable bit
+  2408                           ;	MCLRE = EXTMCLR, If LVP = 0, MCLR pin is MCLR; If LVP = 1, RE3 pin function is MCLR
+  2409                           ;	Power-up timer selection bits
+  2410                           ;	PWRTS = PWRT_OFF, PWRT is disabled
+  2411                           ;	Multi-vector enable bit
+  2412                           ;	MVECEN = OFF, Interrupt contoller does not use vector table to prioritze interrupts
+  2413                           ;	IVTLOCK bit One-way set enable bit
+  2414                           ;	IVT1WAY = ON, IVTLOCK bit can be cleared and set only once
+  2415                           ;	Low Power BOR Enable bit
+  2416                           ;	LPBOREN = OFF, ULPBOR disabled
+  2417                           ;	Brown-out Reset Enable bits
+  2418                           ;	BOREN = SBORDIS, Brown-out Reset enabled , SBOREN bit is ignored
+  2419  300002                     	org	3145730
+  2420  300002  F7                 	db	247
+  2421                           
+  2422                           ;Config register CONFIG2H @ 0x300003
+  2423                           ;	Brown-out Reset Voltage Selection bits
+  2424                           ;	BORV = VBOR_2P45, Brown-out Reset Voltage (VBOR) set to 2.45V
+  2425                           ;	ZCD Disable bit
+  2426                           ;	ZCD = OFF, ZCD disabled. ZCD can be enabled by setting the ZCDSEN bit of ZCDCON
+  2427                           ;	PPSLOCK bit One-Way Set Enable bit
+  2428                           ;	PPS1WAY = ON, PPSLOCK bit can be cleared and set only once; PPS registers remain locke
+      +                          d after one clear/set cycle
+  2429                           ;	Stack Full/Underflow Reset Enable bit
+  2430                           ;	STVREN = ON, Stack full/underflow will cause Reset
+  2431                           ;	Debugger Enable bit
+  2432                           ;	DEBUG = ON, Background debugger enabled
+  2433                           ;	Extended Instruction Set Enable bit
+  2434                           ;	XINST = OFF, Extended Instruction Set and Indexed Addressing Mode disabled
+  2435  300003                     	org	3145731
+  2436  300003  DF                 	db	223
+  2437                           
+  2438                           ;Config register CONFIG3L @ 0x300004
+  2439                           ;	WDT Period selection bits
+  2440                           ;	WDTCPS = WDTCPS_31, Divider ratio 1:65536; software control of WDTPS
+  2441                           ;	WDT operating mode
+  2442                           ;	WDTE = OFF, WDT Disabled; SWDTEN is ignored
+  2443  300004                     	org	3145732
+  2444  300004  9F                 	db	159
+  2445                           
+  2446                           ;Config register CONFIG3H @ 0x300005
+  2447                           ;	WDT Window Select bits
+  2448                           ;	WDTCWS = WDTCWS_7, window always open (100%); software control; keyed access not requi
+      +                          red
+  2449                           ;	WDT input clock selector
+  2450                           ;	WDTCCS = SC, Software Control
+  2451  300005                     	org	3145733
+  2452  300005  FF                 	db	255
+  2453                           
+  2454                           ;Config register CONFIG4L @ 0x300006
+  2455                           ;	Boot Block Size selection bits
+  2456                           ;	BBSIZE = BBSIZE_512, Boot Block size is 512 words
+  2457                           ;	Boot Block enable bit
+  2458                           ;	BBEN = OFF, Boot block disabled
+  2459                           ;	Storage Area Flash enable bit
+  2460                           ;	SAFEN = OFF, SAF disabled
+  2461                           ;	Application Block write protection bit
+  2462                           ;	WRTAPP = OFF, Application Block not write protected
+  2463  300006                     	org	3145734
+  2464  300006  FF                 	db	255
+  2465                           
+  2466                           ;Config register CONFIG4H @ 0x300007
+  2467                           ;	Configuration Register Write Protection bit
+  2468                           ;	WRTB = OFF, Configuration registers (300000-30000Bh) not write-protected
+  2469                           ;	Boot Block Write Protection bit
+  2470                           ;	WRTC = OFF, Boot Block (000000-0007FFh) not write-protected
+  2471                           ;	Data EEPROM Write Protection bit
+  2472                           ;	WRTD = OFF, Data EEPROM not write-protected
+  2473                           ;	SAF Write protection bit
+  2474                           ;	WRTSAF = OFF, SAF not Write Protected
+  2475                           ;	Low Voltage Programming Enable bit
+  2476                           ;	LVP = ON, Low voltage programming enabled. MCLR/VPP pin function is MCLR. MCLRE config
+      +                          uration bit is ignored
+  2477  300007                     	org	3145735
+  2478  300007  FF                 	db	255
+  2479                           
+  2480                           ;Config register CONFIG5L @ 0x300008
+  2481                           ;	PFM and Data EEPROM Code Protection bit
+  2482                           ;	CP = OFF, PFM and Data EEPROM code protection disabled
+  2483  300008                     	org	3145736
+  2484  300008  FF                 	db	255
+  2485                           
+  2486                           ;Config register CONFIG5H @ 0x300009
+  2487                           ;	unspecified, using default values
+  2488  300009                     	org	3145737
+  2489  300009  FF                 	db	255
+  2490                           tosu	equ	0x3FFF
+  2491                           tosh	equ	0x3FFE
+  2492                           tosl	equ	0x3FFD
+  2493                           stkptr	equ	0x3FFC
+  2494                           pclatu	equ	0x3FFB
+  2495                           pclath	equ	0x3FFA
+  2496                           pcl	equ	0x3FF9
+  2497                           tblptru	equ	0x3FF8
+  2498                           tblptrh	equ	0x3FF7
+  2499                           tblptrl	equ	0x3FF6
+  2500                           tablat	equ	0x3FF5
+  2501                           prodh	equ	0x3FF4
+  2502                           prodl	equ	0x3FF3
+  2503                           indf0	equ	0x3FEF
+  2504                           postinc0	equ	0x3FEE
+  2505                           postdec0	equ	0x3FED
+  2506                           preinc0	equ	0x3FEC
+  2507                           plusw0	equ	0x3FEB
+  2508                           fsr0h	equ	0x3FEA
+  2509                           fsr0l	equ	0x3FE9
+  2510                           wreg	equ	0x3FE8
+  2511                           indf1	equ	0x3FE7
+  2512                           postinc1	equ	0x3FE6
+  2513                           postdec1	equ	0x3FE5
+  2514                           preinc1	equ	0x3FE4
+  2515                           plusw1	equ	0x3FE3
+  2516                           fsr1h	equ	0x3FE2
+  2517                           fsr1l	equ	0x3FE1
+  2518                           bsr	equ	0x3FE0
+  2519                           indf2	equ	0x3FDF
+  2520                           postinc2	equ	0x3FDE
+  2521                           postdec2	equ	0x3FDD
+  2522                           preinc2	equ	0x3FDC
+  2523                           plusw2	equ	0x3FDB
+  2524                           fsr2h	equ	0x3FDA
+  2525                           fsr2l	equ	0x3FD9
+  2526                           status	equ	0x3FD8
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        113
+    BSS         184
+    Persistent  2
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM           95     14      91
+    BANK0           160      0     160
+    BANK1           256      4      66
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+    BANK6           256      0       0
+    BANK7           256      0       0
+
+Pointer List with Targets:
+
+    IOCBF2_SetInterruptHandler@InterruptHandler	PTR FTN()void  size(2) Largest target is 1
+		 -> IOCBF2_DefaultInterruptHandler(), 
+
+    IOCBF2_InterruptHandler	PTR FTN()void  size(2) Largest target is 1
+		 -> Absolute function(), IOCBF2_DefaultInterruptHandler(), 
+
+
+Critical Paths under _main in COMRAM
+
+    _scansticks->_slinjim
+    _slinjim->___wmul
+    _PIN_MANAGER_Initialize->_IOCBF2_SetInterruptHandler
+
+Critical Paths under _INTERRUPT_InterruptManagerHigh in COMRAM
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManagerHigh in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    _main->_scansticks
+    _scansticks->_slinjim
+
+Critical Paths under _INTERRUPT_InterruptManagerHigh in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManagerHigh in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManagerHigh in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManagerHigh in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManagerHigh in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManagerHigh in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManagerHigh in BANK7
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0     966
+                  _SYSTEM_Initialize
+                        _bytecleanup
+                           _bytepush
+                       _checkbuttons
+                      _commandreader
+                         _scansticks
+ ---------------------------------------------------------------------------------
+ (1) _scansticks                                           2     2      0     868
+                                              2 BANK1      2     2      0
+                            _slinjim
+ ---------------------------------------------------------------------------------
+ (2) _slinjim                                              6     2      4     868
+                                             10 COMRAM     4     0      4
+                                              0 BANK1      2     2      0
+                             ___wmul
+ ---------------------------------------------------------------------------------
+ (3) ___wmul                                               6     2      4     412
+                                              4 COMRAM     6     2      4
+ ---------------------------------------------------------------------------------
+ (1) _commandreader                                        0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _checkbuttons                                         1     1      0       0
+                                              4 COMRAM     1     1      0
+ ---------------------------------------------------------------------------------
+ (1) _bytepush                                             0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _bytecleanup                                          0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _SYSTEM_Initialize                                    0     0      0      98
+                    _ADCC_Initialize
+               _INTERRUPT_Initialize
+              _OSCILLATOR_Initialize
+             _PIN_MANAGER_Initialize
+                     _PMD_Initialize
+                    _SMT1_Initialize
+ ---------------------------------------------------------------------------------
+ (2) _SMT1_Initialize                                      0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _PMD_Initialize                                       0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _PIN_MANAGER_Initialize                               0     0      0      98
+         _IOCBF2_SetInterruptHandler
+ ---------------------------------------------------------------------------------
+ (3) _IOCBF2_SetInterruptHandler                           2     0      2      98
+                                              4 COMRAM     2     0      2
+ ---------------------------------------------------------------------------------
+ (2) _OSCILLATOR_Initialize                                0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _INTERRUPT_Initialize                                 0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _ADCC_Initialize                                      0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (4) _INTERRUPT_InterruptManagerHigh                       4     4      0       0
+                                              0 COMRAM     4     4      0
+                         _bitgrabber
+ ---------------------------------------------------------------------------------
+ (5) _bitgrabber                                           0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 5
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _SYSTEM_Initialize
+     _ADCC_Initialize
+     _INTERRUPT_Initialize
+     _OSCILLATOR_Initialize
+     _PIN_MANAGER_Initialize
+       _IOCBF2_SetInterruptHandler
+     _PMD_Initialize
+     _SMT1_Initialize
+   _bytecleanup
+   _bytepush
+   _checkbuttons
+   _commandreader
+   _scansticks
+     _slinjim
+       ___wmul
+
+ _INTERRUPT_InterruptManagerHigh (ROOT)
+   _bitgrabber
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             7FF      0       0      20        0.0%
+EEDATA             100      0       0       0        0.0%
+BITBANK7           100      0       0      17        0.0%
+BANK7              100      0       0      18        0.0%
+BITBANK6           100      0       0      15        0.0%
+BANK6              100      0       0      16        0.0%
+BITBANK5           100      0       0      13        0.0%
+BANK5              100      0       0      14        0.0%
+BITBANK4           100      0       0      11        0.0%
+BANK4              100      0       0      12        0.0%
+BITBANK3           100      0       0       9        0.0%
+BANK3              100      0       0      10        0.0%
+BITBANK2           100      0       0       7        0.0%
+BANK2              100      0       0       8        0.0%
+BITBANK1           100      0       0       5        0.0%
+BANK1              100      4      42       6       25.8%
+BITBANK0            A0      0       0       3        0.0%
+BANK0               A0      0      A0       4      100.0%
+BITCOMRAM           5F      0       0       0        0.0%
+COMRAM              5F      E      5B       1       95.8%
+BITSFR_8             0      0       0     200        0.0%
+SFR_8                0      0       0     200        0.0%
+BITSFR_7             0      0       0     200        0.0%
+SFR_7                0      0       0     200        0.0%
+BITSFR_6             0      0       0     200        0.0%
+SFR_6                0      0       0     200        0.0%
+BITSFR_5             0      0       0     200        0.0%
+SFR_5                0      0       0     200        0.0%
+BITSFR_4             0      0       0     200        0.0%
+SFR_4                0      0       0     200        0.0%
+BITSFR_3             0      0       0     200        0.0%
+SFR_3                0      0       0     200        0.0%
+BITSFR_2             0      0       0     200        0.0%
+SFR_2                0      0       0     200        0.0%
+BITSFR_1             0      0       0     200        0.0%
+SFR_1                0      0       0     200        0.0%
+BITSFR               0      0       0     200        0.0%
+SFR                  0      0       0     200        0.0%
+STACK                0      0       0       2        0.0%
+NULL                 0      0       0       0        0.0%
+ABS                  0      0     13D      19        0.0%
+DATA                 0      0     13D      21        0.0%
+CODE                 0      0       0       0        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V2.32 build 20210201212658 
+Symbol Table                                                                                   Tue Jan 11 13:39:54 2022
+
+                                        u90 0590                                          u98 0592  
+                       ___wmul@multiplicand 0054                              ?_commandreader 004E  
+                                       WREG 003FE8                                         u100 05A2  
+                                       u110 05B4                                         u120 05C6  
+                                       u130 05D6                                         u108 05A4  
+                                       u118 05B6                                         u136 05D8  
+                                       u128 05C8                     __size_of_PMD_Initialize 0022  
+                                       wreg 003FE8                        __end_of_checkbuttons 05DC  
+                                      l1160 026E                                        l1169 028C  
+                                      l2237 0586                                        l2601 02C4  
+                                      l2613 030E                                        l2631 03FE  
+                                      l2615 0336                                        l2623 03B0  
+                                      l2607 02D0                                        l2641 0474  
+                                      l2633 0424                                        l2617 035E  
+                                      l2625 03D8                                        l2619 0386  
+                                      l2639 044A                                        l2591 0284  
+                                      l2587 027C                                        l2667 07BC  
+                                      l2589 0280                                        l2599 029A  
+                                      _LATA 003FBA                                        _LATB 003FBB  
+                                      _LATC 003FBC                                        _PMD0 0039C0  
+                                      _PMD1 0039C1                                        _PMD2 0039C2  
+                                      _PMD3 0039C3                                        _PMD4 0039C4  
+                                      _PMD5 0039C5                                        _PMD6 0039C6  
+                                      _PMD7 0039C7                                        _WPUA 003A41  
+                                      _WPUB 003A51                                        _WPUC 003A61  
+                                      _WPUE 003A81                                        _main 07A6  
+                                      fsr2h 003FDA                                        indf2 003FDF  
+                                      fsr1l 003FE1                                        fsr2l 003FD9  
+                                      prodh 003FF4                                        prodl 003FF3  
+                                      start 001A                                ___param_bank 000000  
+            __size_of_OSCILLATOR_Initialize 0018               __end_of_OSCILLATOR_Initialize 08BE  
+                              ?_bytecleanup 004E                                       _ADCAP 003EF5  
+                                     _ADACT 003EFE                                       ?_main 004E  
+                                     _ADCLK 003EFF                                       _ADPCH 003EF1  
+                                     _ADREF 003EFD                                       _ADRPT 003EEC  
+                   _stickIdx@joysticks$F595 0025                     _stickIdx@joysticks$F839 0021  
+                                     i2l553 0718                                       _OSCEN 0039DD  
+                                     _TRISA 003FC2                                       _TRISB 003FC3  
+                                     _TRISC 003FC4                               _gLowThreshold 004B  
+                 _tmpcenter@joysticks$F1407 00DC                   _tmpcenter@joysticks$F1633 0005  
+                 _tmpcenter@joysticks$F1474 00D2                   _tmpcenter@joysticks$F1817 00C8  
+                 _tmpcenter@joysticks$F1907 00BE                            ?_SMT1_Initialize 004E  
+                                     tablat 003FF5                             __end_of_slinjim 0870  
+                                     status 003FD8                     _tmphighm@joysticks$F593 00EE  
+                   _tmphighm@joysticks$F837 00E4                             __initialization 0482  
+                              __end_of_main 07D8               _initiatedRead@joysticks$F1411 001C  
+             _initiatedRead@joysticks$F1821 0011               _initiatedRead@joysticks$F1637 0014  
+             _initiatedRead@joysticks$F1478 0017               _initiatedRead@joysticks$F1911 000E  
+                           ??_commandreader 004E                                      ??_main 005C  
+                             __activetblptr 000002                     _tmphigh@joysticks$F1405 00E0  
+                   _tmphigh@joysticks$F1631 0009                     _tmphigh@joysticks$F1472 00D6  
+                   _tmphigh@joysticks$F1815 00CC                     _tmphigh@joysticks$F1905 00C2  
+                                    _ADACCU 003EEA                                      _ADACQH 003EF4  
+                                    _ADACQL 003EF3                ??_IOCBF2_SetInterruptHandler 0054  
+                                    _ADCON0 003EF8                                      _ADCON1 003EF9  
+                                    _ADCON2 003EFA                                      _ADCON3 003EFB  
+                                    _ADLTHH 003EDF                                      _ADLTHL 003EDE  
+                                    _ADRESH 003EF0                                      _ADRESL 003EEF  
+                                    _ADPREH 003EF7                                      _ADPREL 003EF6  
+                  _stickIdx@joysticks$F1410 001D                                      _ADSTAT 003EFC  
+                  _stickIdx@joysticks$F1820 0012                    _stickIdx@joysticks$F1636 0015  
+                  _stickIdx@joysticks$F1477 0018                    _stickIdx@joysticks$F1910 000F  
+                                    _ADUTHH 003EE1                                      _ADUTHL 003EE0  
+                                    _ANSELA 003A40                                      _ANSELB 003A50  
+                                    _ANSELC 003A60                                      _RB1I2C 003A5A  
+                                    _RB2I2C 003A5B                                      _RC3I2C 003A6A  
+                                    _RC4I2C 003A6B                                      _ODCONA 003A42  
+                                    _ODCONB 003A52                                      _ODCONC 003A62  
+                                    i2l2255 0714                                      _INLVLA 003A44  
+                                    _INLVLB 003A54                                      _INLVLC 003A64  
+                                    _INLVLE 003A84                                      _OSCFRQ 0039DF  
+                                    ___wmul 0804                           _sx_highMultiplier 00AA  
+                           slinjim@dividend 0058                                      _cx_low 003B  
+                                    _cy_low 00B0                                  _gConOutIdx 0030  
+                                    clear_0 04CC                                      clear_1 04D8  
+                                    clear_2 04E4                                      isa$std 000001  
+       __size_of_IOCBF2_SetInterruptHandler 000A                                      _tmplow 00FC  
+                                    _sx_low 0047                                      _sy_low 0041  
+                     __size_of_checkbuttons 006C                             _ADCC_Initialize 05DC  
+                            _PMD_Initialize 082E                                __pdataCOMRAM 0033  
+                                    tblptrh 003FF7                                      tblptrl 003FF6  
+                                    tblptru 003FF8                                   ??_slinjim 005C  
+IOCBF2_SetInterruptHandler@InterruptHandler 0052               __size_of_INTERRUPT_Initialize 000A  
+          ??_INTERRUPT_InterruptManagerHigh 004E             ?_INTERRUPT_InterruptManagerHigh 004E  
+                         _SYSTEM_Initialize 088C                                  __accesstop 0060  
+                   __end_of__initialization 04F6                          ?_SYSTEM_Initialize 004E  
+                             ___rparam_used 000001                    _tmphighm@joysticks$F1408 00DA  
+                  _tmphighm@joysticks$F1634 0003                    _tmphighm@joysticks$F1475 00D0  
+                  _tmphighm@joysticks$F1818 00C6                    _tmphighm@joysticks$F1908 00BC  
+                  _tmpcenter@joysticks$F592 00F0                    _tmpcenter@joysticks$F836 00E6  
+                            __pcstackCOMRAM 004E                                _checkbuttons 0570  
+                              __pidataBANK0 068E                         ??_SYSTEM_Initialize 0054  
+                            _gConBitCounter 004D                            _sx_lowMultiplier 00A8  
+                    __end_of_PMD_Initialize 0850                   __end_of_SYSTEM_Initialize 08A6  
+                                __pbssBANK0 00B6                                  __pbssBANK1 0100  
+                            _gInCommandByte 002D                                     IVTBASEH 003FD6  
+                                   IVTBASEL 003FD5                                     IVTBASEU 003FD7  
+                             _initiatedRead 0029                                     ?___wmul 0052  
+                   __end_of_ADCC_Initialize 0638                                  _bitgrabber 0732  
+                                   _ADSTPTH 003EE5                                     _ADSTPTL 003EE4  
+                           ?_PMD_Initialize 004E                            _gCommandPollMask 0049  
+                                   _OSCCON1 0039D9                                     _OSCCON3 0039DB  
+        __end_of_IOCBF2_SetInterruptHandler 08D8                  _IOCBF2_SetInterruptHandler 08CE  
+                                   _SMT1CLK 003F21                                     _OSCTUNE 0039DE  
+                                   _SMT1SIG 003F22                                     _SMT1PRH 003F1C  
+                                   _SMT1PRL 003F1B                                     _SMT1PRU 003F1D  
+                                   _SMT1WIN 003F23                                     _SLRCONA 003A43  
+                                   _SLRCONB 003A53                                     _SLRCONC 003A63  
+                                 ?_bytepush 004E                                     __Hparam 0000  
+                                   __Lparam 0000                             __size_of___wmul 002A  
+                                   _a_value 009A                                     _b_value 0098  
+                                   __pcinit 0482                                     __ramtop 0800  
+                         _cy_highMultiplier 009E                                     __ptext0 07A6  
+                                   __ptext1 0252                                     __ptext2 0850  
+                                   __ptext3 0804                                     __ptext4 0570  
+                                   __ptext5 088C                                     __ptext6 07D8  
+                                   __ptext7 082E                                     __ptext8 0500  
+                                   __ptext9 08CE                              _gConPollPacket 0033  
+                                   _cx_high 00B2                          _gCommandOriginMask 004A  
+                                   _cy_high 00AC                       _OSCILLATOR_Initialize 08A6  
+                           _gInBitBufferIdx 002F                    _clearRead@joysticks$F841 001F  
+                  _clearRead@joysticks$F597 0023                                 _gConOutByte 0032  
+                  ??_PIN_MANAGER_Initialize 0054                                 _SettingData 0060  
+                                 _IOCBFbits 003A57                                   _IOCBNbits 003A56  
+                                 _IOCBPbits 003A55                                     _testLow 0019  
+                                   _slinjim 0850                                     _tmphigh 00FE  
+                                   _sx_high 0043                                     _sy_high 003D  
+                                   _tmplowm 00F6                  __size_of_SYSTEM_Initialize 001A  
+                                _scansticks 0252                   _clearRead@joysticks$F1412 001B  
+                 _clearRead@joysticks$F1822 0010                   _clearRead@joysticks$F1638 0013  
+                 _clearRead@joysticks$F1479 0016                   _clearRead@joysticks$F1912 000D  
+                      end_of_initialization 04F6                               __Lmediumconst 0000  
+                                ??_bytepush 004E                    __size_of_SMT1_Initialize 002C  
+                                   postdec1 003FE5                                     postinc0 003FEE  
+                          ?_ADCC_Initialize 004E                                 ?_bitgrabber 004E  
+                                 _PORTAbits 003FCA                                   _PORTCbits 003FCC  
+                         _gConProbeResponse 0095                     _IOCBF2_InterruptHandler 0140  
+              __end_of_INTERRUPT_Initialize 08E2                              __end_of___wmul 082E  
+                          _sy_lowMultiplier 00A4                               __pidataCOMRAM 0870  
+                    ?_OSCILLATOR_Initialize 004E                         start_initialization 0482  
+           __size_of_PIN_MANAGER_Initialize 0070                                 ?_scansticks 004E  
+                                ivt0x8_base 0008                      _tmphigh@joysticks$F590 00F4  
+                    _tmphigh@joysticks$F834 00EA                            ??_PMD_Initialize 0052  
+                                 _gInPacket 00B6                                    ??___wmul 0056  
+                          _cx_lowMultiplier 00A0                               _gInBitCounter 004C  
+                               __pdataBANK0 0060                                   _gInStatus 002B  
+                         ??_SMT1_Initialize 0052                               ??_bytecleanup 004E  
+                               __pbssCOMRAM 0001                               __pcstackBANK1 013C  
+               ?_IOCBF2_SetInterruptHandler 0052                                   __pnvBANK1 0140  
+                                 _clearRead 0028                      _PIN_MANAGER_Initialize 0500  
+                             _gConByteCount 0031                         __size_of_scansticks 0230  
+                               _bit_counter 0026                                   _cx_center 00B4  
+                                 _cy_center 00AE                                    ?_slinjim 0058  
+                      _INTERRUPT_Initialize 08D8                              ___wmul@product 0056  
+                                  _IPR1bits 003981                                    _PIE1bits 003991  
+                                  _PIR1bits 0039A1                                    _SMT1CON0 003F1E  
+                                  _SMT1CON1 003F1F                                    _SMT1CPWL 003F18  
+                                  _SMT1STAT 003F20                                ??_bitgrabber 004E  
+                                 _testcount 0022                                   _testpulse 001E  
+                         _sy_highMultiplier 00A6                                   _tmpcenter 00FA  
+                                _ADCON0bits 003EF8                                   _sx_center 0045  
+                         ___wmul@multiplier 0052                                   _sy_center 003F  
+                              _SMT1CON1bits 003F1F                                 _INTCON0bits 003FD2  
+                                 copy_data0 0496                                   copy_data1 04B8  
+                     ?_INTERRUPT_Initialize 004E                _initiatedRead@joysticks$F840 0020  
+              _initiatedRead@joysticks$F596 0024                                    __Hrparam 0000  
+                             _gInPulseWidth 002E                                    __Lrparam 0000  
+                             ?_checkbuttons 004E                                _gInBitBuffer 0100  
+                   ??_OSCILLATOR_Initialize 0052                                    _adc_read 000B  
+                               _bytecleanup 0770                          _gConOriginResponse 008B  
+                  __size_of_ADCC_Initialize 005C                                    __pivt0x8 0008  
+                                  __ptext10 08A6                                    __ptext11 08D8  
+                                  __ptext12 05DC                                    __ptext13 06E4  
+                              ??_scansticks 013E                            __size_of_slinjim 0020  
+                              _gInPacketIdx 002C                               __size_of_main 0032  
+                                  _bytepush 001E                             _SMT1_Initialize 07D8  
+                         slinjim@conversion 013C                              ??_checkbuttons 0052  
+                                  _testHigh 001A                                    isa$xinst 000000  
+                                  _stickIdx 002A                           _cx_highMultiplier 00A2  
+                                  _tmphighm 00F8                            _cy_lowMultiplier 009C  
+                        __end_of_scansticks 0482                      ??_INTERRUPT_Initialize 0052  
+                          _controller_phase 0027                                    intlevel2 0000  
+                   ?_PIN_MANAGER_Initialize 004E                     _tmplowm@joysticks$F1409 00D8  
+                   _tmplowm@joysticks$F1635 0001                     _tmplowm@joysticks$F1476 00CE  
+                   _tmplowm@joysticks$F1819 00C4                     _tmplowm@joysticks$F1909 00BA  
+                                _SMT1SIGPPS 003AD2      __end_of_INTERRUPT_InterruptManagerHigh 0732  
+   __size_of_INTERRUPT_InterruptManagerHigh 004E              _INTERRUPT_InterruptManagerHigh 06E4  
+                             _commandreader 0638              _IOCBF2_DefaultInterruptHandler 000000  
+                    _tmplowm@joysticks$F594 00EC                      _tmplowm@joysticks$F838 00E2  
+                         slinjim@multiplier 005A                     __end_of_SMT1_Initialize 0804  
+            __end_of_PIN_MANAGER_Initialize 0570                           ??_ADCC_Initialize 0052  
+                    _tmplow@joysticks$F1406 00DE                      _tmplow@joysticks$F1632 0007  
+                    _tmplow@joysticks$F1473 00D4                      _tmplow@joysticks$F1816 00CA  
+                    _tmplow@joysticks$F1906 00C0                       _tmplow@joysticks$F591 00F2  
+                     _tmplow@joysticks$F835 00E8  
