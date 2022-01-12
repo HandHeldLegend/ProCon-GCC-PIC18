@@ -1,7 +1,7 @@
 
 
-Microchip MPLAB XC8 Assembler V2.32 build 20210201212658 
-                                                                                                           Tue Jan 11 13:39:52 2022
+Microchip MPLAB XC8 Assembler V2.35 build 20211206165544 
+                                                                                                           Tue Jan 11 16:02:29 2022
 
 
      1                           	processor	18F25K42
@@ -61,15 +61,15 @@ Microchip MPLAB XC8 Assembler V2.32 build 20210201212658
     55  000024                     newByte:
     56  000024  0060  F0C3  FFE9   	movff	_gConOutIdx,fsr0l	; Get the address for our first byte, place into FSR0
     57  00002A  006F FFBC  F032    	movff	indf0,_gConOutByte	; Set the outgoing byte with the first byte.
-    58  000030  6A4D               	clrf	_gConBitCounter,c	; Set bit counter to 0 (clear)
-    59  000032  864D               	bsf	_gConBitCounter,3,c	; Set bit counter to 8.
+    58  000030  6A4B               	clrf	_gConBitCounter,c	; Set bit counter to 0 (clear)
+    59  000032  864B               	bsf	_gConBitCounter,3,c	; Set bit counter to 8.
     60  000034                     writeBit:
     61  000034  94CB               	bcf	16331,2,c	; Set port to LOW
     62  000036  AE32               	btfss	_gConOutByte,7,c	; Check the leftmost bit, skip if one.
     63  000038  EF59  F000         	goto	lowBitWrite	; Bit is 0, write a low bit out.
     64  00003C                     
     65                           ;
-    66  00003C  4E4D               	dcfsnz	_gConBitCounter,f,c	; Decrement the BIT counter. Skip next when NOT 0 to go to next bit
+    66  00003C  4E4B               	dcfsnz	_gConBitCounter,f,c	; Decrement the BIT counter. Skip next when NOT 0 to go to next bit
     67  00003E  EFCA  F000         	goto	endHighWrite
     68  000042  0000               	nop	
     69  000044  0000               	nop	
@@ -127,7 +127,7 @@ Microchip MPLAB XC8 Assembler V2.32 build 20210201212658
    121  0000AC  0000               	nop	
    122  0000AE  EF94  F000         	goto	getNextBit
    123  0000B2                     lowBitWrite:
-   124  0000B2  4E4D               	dcfsnz	_gConBitCounter,f,c	; Decrement the BIT counter. Skip next when NOT 0 to go to next bit
+   124  0000B2  4E4B               	dcfsnz	_gConBitCounter,f,c	; Decrement the BIT counter. Skip next when NOT 0 to go to next bit
    125  0000B4  EFF8  F000         	goto	endLowWrite
    126  0000B8  0000               	nop	
    127  0000BA  0000               	nop	
@@ -376,14 +376,14 @@ Microchip MPLAB XC8 Assembler V2.32 build 20210201212658
    369                           status	equ	0x3FD8
 
 
-Microchip Technology PIC18 Macro Assembler V2.32 build 20210201212658 
-Symbol Table                                                                                               Tue Jan 11 13:39:52 2022
+Microchip Technology PIC18 Macro Assembler V2.35 build 20211206165544 
+Symbol Table                                                                                               Tue Jan 11 16:02:29 2022
 
                           FSR0 003FE9                           INDF0 003FEF                           PORTB 003FCB  
                          TRISB 003FC3                     _gConOutIdx 0030                         isa$std 000001  
-                       newByte 0024                 _gConBitCounter 004D                    _gConOutByte 0032  
+                       newByte 0024                 _gConBitCounter 004B                    _gConOutByte 0032  
                    endLowWrite 01F0                     getNextByte 012E                        writeBit 0034  
                     _gInStatus 002B                    stopBitWrite 0136                     lowBitWrite 00B2  
-                _gConByteCount 0031                      getNextBit 0128                    _bytecleanup 0770  
+                _gConByteCount 0031                      getNextBit 0128                    _bytecleanup 0754  
                      _bytepush 001E                       isa$xinst 000000                    endHighWrite 0194  
                   highBitWrite 003C  

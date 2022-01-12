@@ -3,8 +3,8 @@
 [d edition pro ]
 [d chip 18F25K42 ]
 [d frameptr 16353 ]
-"113 C:\Users\Mitch\MPLABXProjects\ProConGCC.X\mcc_generated_files/adcc.c
-[e E15396 . `uc
+"113 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\mcc_generated_files/adcc.c
+[e E15221 . `uc
 CX_A 0
 CY_A 1
 SX_A 2
@@ -15,8 +15,8 @@ channel_DAC1 61
 channel_FVR_Buffer1 62
 channel_FVR_Buffer2 63
 ]
-"79 C:\Users\Mitch\MPLABXProjects\ProConGCC.X\joysticks.c
-[e E16200 . `uc
+"79 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\joysticks.c
+[e E16012 . `uc
 CX_A 0
 CY_A 1
 SX_A 2
@@ -27,57 +27,57 @@ channel_DAC1 61
 channel_FVR_Buffer1 62
 channel_FVR_Buffer2 63
 ]
-"12 C:\Users\Mitch\MPLABXProjects\ProConGCC.X\button.c
+"12 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\button.c
 [v _checkbuttons checkbuttons `(v  1 e 1 0 ]
-"4 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\fleq.c
+"4 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\fleq.c
 [v ___fleq __fleq `(b  1 e 0 0 ]
-"62 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\float.c
+"62 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\float.c
 [v ___ftpack __ftpack `(f  1 e 4 0 ]
-"43 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\fltol.c
+"43 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\fltol.c
 [v ___fltol __fltol `(l  1 e 4 0 ]
-"86 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\ftadd.c
+"86 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\ftadd.c
 [v ___ftadd __ftadd `(f  1 e 4 0 ]
-"54 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\ftdiv.c
+"54 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\ftdiv.c
 [v ___ftdiv __ftdiv `(f  1 e 4 0 ]
-"62 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\ftmul.c
+"62 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\ftmul.c
 [v ___ftmul __ftmul `(f  1 e 4 0 ]
-"19 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\ftsub.c
+"19 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\ftsub.c
 [v ___ftsub __ftsub `(f  1 e 4 0 ]
-"10 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\sprcadd.c
+"10 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
 "245
 [v ___flsub __flsub `(d  1 e 4 0 ]
-"11 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\sprcdiv.c
+"11 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\sprcdiv.c
 [v ___fldiv __fldiv `(d  1 e 4 0 ]
-"8 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\sprcmul.c
+"8 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
-"15 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\Umul16.c
+"15 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
-"15 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\Umul32.c
+"15 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
-"91 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\Umul64.c
+"91 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\Umul64.c
 [v ___omul __omul `(uo  1 e 8 0 ]
-"10 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\xxtofl.c
+"10 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\xxtofl.c
 [v ___xxtofl __xxtofl `(d  1 e 4 0 ]
-"54 C:\Users\Mitch\MPLABXProjects\ProConGCC.X\joysticks.c
+"54 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\joysticks.c
 [v _slinjim slinjim `(uc  1 e 1 0 ]
 "73
 [v _scansticks scansticks `(v  1 e 1 0 ]
-"71 C:\Users\Mitch\MPLABXProjects\ProConGCC.X\main.c
+"71 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\main.c
 [v _main main `(v  1 e 1 0 ]
-"62 C:\Users\Mitch\MPLABXProjects\ProConGCC.X\mcc_generated_files/adcc.c
+"62 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\mcc_generated_files/adcc.c
 [v _ADCC_Initialize ADCC_Initialize `(v  1 e 1 0 ]
-"52 C:\Users\Mitch\MPLABXProjects\ProConGCC.X\mcc_generated_files/interrupt_manager.c
+"52 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_Initialize INTERRUPT_Initialize `(v  1 e 1 0 ]
 "70
 [v _INTERRUPT_InterruptManagerHigh INTERRUPT_InterruptManagerHigh `IIH(v  1 e 1 0 ]
-"50 C:\Users\Mitch\MPLABXProjects\ProConGCC.X\mcc_generated_files/mcc.c
+"50 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
 "60
 [v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
 "74
 [v _PMD_Initialize PMD_Initialize `(v  1 e 1 0 ]
-"57 C:\Users\Mitch\MPLABXProjects\ProConGCC.X\mcc_generated_files/pin_manager.c
+"57 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
 "149
 [v _IOCBF2_ISR IOCBF2_ISR `(v  1 e 1 0 ]
@@ -85,9 +85,9 @@ channel_FVR_Buffer2 63
 [v _IOCBF2_SetInterruptHandler IOCBF2_SetInterruptHandler `(v  1 e 1 0 ]
 "171
 [v _IOCBF2_DefaultInterruptHandler IOCBF2_DefaultInterruptHandler `(v  1 e 1 0 ]
-"60 C:\Users\Mitch\MPLABXProjects\ProConGCC.X\mcc_generated_files/smt1.c
+"60 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\mcc_generated_files/smt1.c
 [v _SMT1_Initialize SMT1_Initialize `(v  1 e 1 0 ]
-"42 C:\Users\Mitch\MPLABXProjects\ProConGCC.X/gcdata.h
+"42 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X/gcdata.h
 [v _gConPollPacket gConPollPacket `VE[8]uc  1 e 8 0 ]
 "45
 [v _gConProbeResponse gConProbeResponse `VE[3]uc  1 e 3 0 ]
@@ -123,9 +123,9 @@ channel_FVR_Buffer2 63
 [v _gCommandOriginMask gCommandOriginMask `VEuc  1 e 1 0 ]
 "104
 [v _gCommandPollMask gCommandPollMask `VEuc  1 e 1 0 ]
-"36 C:\Users\Mitch\MPLABXProjects\ProConGCC.X/joysticks.h
+"36 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X/joysticks.h
 [v _adc_read adc_read `us  1 e 2 0 ]
-[s S709 . 1 `uc 1 INT0IP 1 0 :1:0 
+[s S669 . 1 `uc 1 INT0IP 1 0 :1:0 
 `uc 1 ZCDIP 1 0 :1:1 
 `uc 1 ADIP 1 0 :1:2 
 `uc 1 ADTIP 1 0 :1:3 
@@ -134,15 +134,9 @@ channel_FVR_Buffer2 63
 `uc 1 SMT1PRAIP 1 0 :1:6 
 `uc 1 SMT1PWAIP 1 0 :1:7 
 ]
-"2851 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h
-[s S718 . 1 `uc 1 . 1 0 :4:0 
-`uc 1 TX1IP 1 0 :1:4 
-`uc 1 RC1IP 1 0 :1:5 
-`uc 1 . 1 0 :1:6 
-`uc 1 PSPIP 1 0 :1:7 
-]
-[u S724 . 1 `S709 1 . 1 0 `S718 1 . 1 0 ]
-[v _IPR1bits IPR1bits `VES724  1 e 1 @14721 ]
+"2845 C:\Program Files\Microchip\xc8\v2.35\pic\include\proc\pic18f25k42.h
+[u S678 . 1 `S669 1 . 1 0 ]
+[v _IPR1bits IPR1bits `VES678  1 e 1 @14721 ]
 [s S336 . 1 `uc 1 INT0IE 1 0 :1:0 
 `uc 1 ZCDIE 1 0 :1:1 
 `uc 1 ADIE 1 0 :1:2 
@@ -152,19 +146,10 @@ channel_FVR_Buffer2 63
 `uc 1 SMT1PRAIE 1 0 :1:6 
 `uc 1 SMT1PWAIE 1 0 :1:7 
 ]
-"3502
-[s S345 . 1 `uc 1 . 1 0 :4:0 
-`uc 1 TX1IE 1 0 :1:4 
-`uc 1 RC1IE 1 0 :1:5 
-`uc 1 . 1 0 :1:6 
-`uc 1 PSPIE 1 0 :1:7 
-]
-[s S351 . 1 `uc 1 . 1 0 :4:0 
-`uc 1 TXIE 1 0 :1:4 
-]
-[u S354 . 1 `S336 1 . 1 0 `S345 1 . 1 0 `S351 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES354  1 e 1 @14737 ]
-[s S509 . 1 `uc 1 INT0IF 1 0 :1:0 
+"3410
+[u S345 . 1 `S336 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES345  1 e 1 @14737 ]
+[s S489 . 1 `uc 1 INT0IF 1 0 :1:0 
 `uc 1 ZCDIF 1 0 :1:1 
 `uc 1 ADIF 1 0 :1:2 
 `uc 1 ADTIF 1 0 :1:3 
@@ -173,63 +158,54 @@ channel_FVR_Buffer2 63
 `uc 1 SMT1PRAIF 1 0 :1:6 
 `uc 1 SMT1PWAIF 1 0 :1:7 
 ]
-"4155
-[s S518 . 1 `uc 1 . 1 0 :4:0 
-`uc 1 TX1IF 1 0 :1:4 
-`uc 1 RC1IF 1 0 :1:5 
-`uc 1 . 1 0 :1:6 
-`uc 1 PSPIF 1 0 :1:7 
-]
-[s S524 . 1 `uc 1 . 1 0 :4:0 
-`uc 1 TXIF 1 0 :1:4 
-]
-[u S527 . 1 `S509 1 . 1 0 `S518 1 . 1 0 `S524 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES527  1 e 1 @14753 ]
-"4686
+"3975
+[u S498 . 1 `S489 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES498  1 e 1 @14753 ]
+"4461
 [v _PMD0 PMD0 `VEuc  1 e 1 @14784 ]
-"4763
+"4523
 [v _PMD1 PMD1 `VEuc  1 e 1 @14785 ]
-"4833
+"4585
 [v _PMD2 PMD2 `VEuc  1 e 1 @14786 ]
-"4878
+"4630
 [v _PMD3 PMD3 `VEuc  1 e 1 @14787 ]
-"4940
+"4692
 [v _PMD4 PMD4 `VEuc  1 e 1 @14788 ]
-"4973
+"4725
 [v _PMD5 PMD5 `VEuc  1 e 1 @14789 ]
-"5018
+"4770
 [v _PMD6 PMD6 `VEuc  1 e 1 @14790 ]
-"5068
+"4820
 [v _PMD7 PMD7 `VEuc  1 e 1 @14791 ]
-"5207
+"4959
 [v _OSCCON1 OSCCON1 `VEuc  1 e 1 @14809 ]
-"5347
+"5099
 [v _OSCCON3 OSCCON3 `VEuc  1 e 1 @14811 ]
-"5499
+"5251
 [v _OSCEN OSCEN `VEuc  1 e 1 @14813 ]
-"5550
+"5302
 [v _OSCTUNE OSCTUNE `VEuc  1 e 1 @14814 ]
-"5654
+"5406
 [v _OSCFRQ OSCFRQ `VEuc  1 e 1 @14815 ]
-"7660
+"7412
 [v _ANSELA ANSELA `VEuc  1 e 1 @14912 ]
-"7722
+"7474
 [v _WPUA WPUA `VEuc  1 e 1 @14913 ]
-"7784
+"7536
 [v _ODCONA ODCONA `VEuc  1 e 1 @14914 ]
-"7846
+"7598
 [v _SLRCONA SLRCONA `VEuc  1 e 1 @14915 ]
-"7908
+"7660
 [v _INLVLA INLVLA `VEuc  1 e 1 @14916 ]
-"8280
+"8032
 [v _ANSELB ANSELB `VEuc  1 e 1 @14928 ]
-"8342
+"8094
 [v _WPUB WPUB `VEuc  1 e 1 @14929 ]
-"8404
+"8156
 [v _ODCONB ODCONB `VEuc  1 e 1 @14930 ]
-"8466
+"8218
 [v _SLRCONB SLRCONB `VEuc  1 e 1 @14931 ]
-"8528
+"8280
 [v _INLVLB INLVLB `VEuc  1 e 1 @14932 ]
 [s S229 . 1 `uc 1 IOCBP0 1 0 :1:0 
 `uc 1 IOCBP1 1 0 :1:1 
@@ -240,7 +216,7 @@ channel_FVR_Buffer2 63
 `uc 1 IOCBP6 1 0 :1:6 
 `uc 1 IOCBP7 1 0 :1:7 
 ]
-"8607
+"8359
 [u S238 . 1 `S229 1 . 1 0 ]
 [v _IOCBPbits IOCBPbits `VES238  1 e 1 @14933 ]
 [s S208 . 1 `uc 1 IOCBN0 1 0 :1:0 
@@ -252,7 +228,7 @@ channel_FVR_Buffer2 63
 `uc 1 IOCBN6 1 0 :1:6 
 `uc 1 IOCBN7 1 0 :1:7 
 ]
-"8669
+"8421
 [u S217 . 1 `S208 1 . 1 0 ]
 [v _IOCBNbits IOCBNbits `VES217  1 e 1 @14934 ]
 [s S187 . 1 `uc 1 IOCBF0 1 0 :1:0 
@@ -264,68 +240,86 @@ channel_FVR_Buffer2 63
 `uc 1 IOCBF6 1 0 :1:6 
 `uc 1 IOCBF7 1 0 :1:7 
 ]
-"8731
+"8483
 [u S196 . 1 `S187 1 . 1 0 ]
 [v _IOCBFbits IOCBFbits `VES196  1 e 1 @14935 ]
-"8900
+"8652
 [v _RB1I2C RB1I2C `VEuc  1 e 1 @14938 ]
-"9008
+"8760
 [v _RB2I2C RB2I2C `VEuc  1 e 1 @14939 ]
-"9116
+"8868
 [v _ANSELC ANSELC `VEuc  1 e 1 @14944 ]
-"9178
+"8930
 [v _WPUC WPUC `VEuc  1 e 1 @14945 ]
-"9240
+"8992
 [v _ODCONC ODCONC `VEuc  1 e 1 @14946 ]
-"9302
+"9054
 [v _SLRCONC SLRCONC `VEuc  1 e 1 @14947 ]
-"9364
+"9116
 [v _INLVLC INLVLC `VEuc  1 e 1 @14948 ]
-"9736
+"9488
 [v _RC3I2C RC3I2C `VEuc  1 e 1 @14954 ]
-"9844
+"9596
 [v _RC4I2C RC4I2C `VEuc  1 e 1 @14955 ]
-"9952
+"9704
 [v _WPUE WPUE `VEuc  1 e 1 @14977 ]
-"9973
+"9725
 [v _INLVLE INLVLE `VEuc  1 e 1 @14980 ]
-"10493
+"10245
 [v _SMT1SIGPPS SMT1SIGPPS `VEuc  1 e 1 @15058 ]
-"27406
+"27170
 [v _ADLTHL ADLTHL `VEuc  1 e 1 @16094 ]
-"27534
+"27298
 [v _ADLTHH ADLTHH `VEuc  1 e 1 @16095 ]
-"27669
+"27433
 [v _ADUTHL ADUTHL `VEuc  1 e 1 @16096 ]
-"27797
+"27561
 [v _ADUTHH ADUTHH `VEuc  1 e 1 @16097 ]
-"28195
+"27696
+[v _ADERRL ADERRL `VEuc  1 e 1 @16098 ]
+"27824
+[v _ADERRH ADERRH `VEuc  1 e 1 @16099 ]
+"27959
 [v _ADSTPTL ADSTPTL `VEuc  1 e 1 @16100 ]
-"28323
+"28087
 [v _ADSTPTH ADSTPTH `VEuc  1 e 1 @16101 ]
-"28979
+"28222
+[v _ADFLTRL ADFLTRL `VEuc  1 e 1 @16102 ]
+"28350
+[v _ADFLTRH ADFLTRH `VEuc  1 e 1 @16103 ]
+"28487
+[v _ADACCL ADACCL `VEuc  1 e 1 @16104 ]
+"28615
+[v _ADACCH ADACCH `VEuc  1 e 1 @16105 ]
+"28743
 [v _ADACCU ADACCU `VEuc  1 e 1 @16106 ]
-"29235
+"28871
+[v _ADCNT ADCNT `VEuc  1 e 1 @16107 ]
+"28999
 [v _ADRPT ADRPT `VEuc  1 e 1 @16108 ]
-"29633
+"29134
+[v _ADPREVL ADPREVL `VEuc  1 e 1 @16109 ]
+"29262
+[v _ADPREVH ADPREVH `VEuc  1 e 1 @16110 ]
+"29397
 [v _ADRESL ADRESL `VEuc  1 e 1 @16111 ]
-"29761
+"29525
 [v _ADRESH ADRESH `VEuc  1 e 1 @16112 ]
-"29881
+"29645
 [v _ADPCH ADPCH `VEuc  1 e 1 @16113 ]
-"29992
+"29756
 [v _ADACQL ADACQL `VEuc  1 e 1 @16115 ]
-"30120
+"29884
 [v _ADACQH ADACQH `VEuc  1 e 1 @16116 ]
-"30212
+"29976
 [v _ADCAP ADCAP `VEuc  1 e 1 @16117 ]
-"30311
+"30075
 [v _ADPREL ADPREL `VEuc  1 e 1 @16118 ]
-"30439
+"30203
 [v _ADPREH ADPREH `VEuc  1 e 1 @16119 ]
-"30531
+"30295
 [v _ADCON0 ADCON0 `VEuc  1 e 1 @16120 ]
-[s S898 . 1 `uc 1 GO 1 0 :1:0 
+[s S823 . 1 `uc 1 GO 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 FM 1 0 :2:2 
 `uc 1 CS 1 0 :1:4 
@@ -333,8 +327,8 @@ channel_FVR_Buffer2 63
 `uc 1 CONT 1 0 :1:6 
 `uc 1 ON 1 0 :1:7 
 ]
-"30573
-[s S906 . 1 `uc 1 ADGO 1 0 :1:0 
+"30333
+[s S831 . 1 `uc 1 ADGO 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 ADFM 1 0 :2:2 
 `uc 1 ADCS 1 0 :1:4 
@@ -342,54 +336,57 @@ channel_FVR_Buffer2 63
 `uc 1 ADCONT 1 0 :1:6 
 `uc 1 ADON 1 0 :1:7 
 ]
-[s S914 . 1 `uc 1 DONE 1 0 :1:0 
+[s S839 . 1 `uc 1 DONE 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 FM0 1 0 :1:2 
 ]
-[s S918 . 1 `uc 1 GO_NOT_DONE 1 0 :1:0 
+[s S843 . 1 `uc 1 GO_NOT_DONE 1 0 :1:0 
 ]
-[s S920 . 1 `uc 1 GO_nDONE 1 0 :1:0 
+[s S845 . 1 `uc 1 GO_nDONE 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 ADFM0 1 0 :1:2 
 ]
-[s S924 . 1 `uc 1 . 1 0 :7:0 
-`uc 1 ADCAL 1 0 :1:7 
-]
-[u S927 . 1 `S898 1 . 1 0 `S906 1 . 1 0 `S914 1 . 1 0 `S918 1 . 1 0 `S920 1 . 1 0 `S924 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES927  1 e 1 @16120 ]
-"30658
+[u S849 . 1 `S823 1 . 1 0 `S831 1 . 1 0 `S839 1 . 1 0 `S843 1 . 1 0 `S845 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES849  1 e 1 @16120 ]
+"30413
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @16121 ]
-"30733
+"30479
 [v _ADCON2 ADCON2 `VEuc  1 e 1 @16122 ]
-"30911
+"30657
 [v _ADCON3 ADCON3 `VEuc  1 e 1 @16123 ]
-"31041
+"30787
 [v _ADSTAT ADSTAT `VEuc  1 e 1 @16124 ]
-"31166
+"30912
 [v _ADREF ADREF `VEuc  1 e 1 @16125 ]
-"31248
+"30994
 [v _ADACT ADACT `VEuc  1 e 1 @16126 ]
-"31340
+"31086
 [v _ADCLK ADCLK `VEuc  1 e 1 @16127 ]
-"32239
+"31191
+[v _SMT1TMR SMT1TMR `VEum  1 e 3 @16146 ]
+"31584
+[v _SMT1CPR SMT1CPR `VEum  1 e 3 @16149 ]
+"31977
+[v _SMT1CPW SMT1CPW `VEum  1 e 3 @16152 ]
+"31985
 [v _SMT1CPWL SMT1CPWL `VEuc  1 e 1 @16152 ]
-"32632
+"32378
 [v _SMT1PRL SMT1PRL `VEuc  1 e 1 @16155 ]
-"32760
+"32506
 [v _SMT1PRH SMT1PRH `VEuc  1 e 1 @16156 ]
-"32888
+"32634
 [v _SMT1PRU SMT1PRU `VEuc  1 e 1 @16157 ]
-"33016
+"32762
 [v _SMT1CON0 SMT1CON0 `VEuc  1 e 1 @16158 ]
-"33134
+"32880
 [v _SMT1CON1 SMT1CON1 `VEuc  1 e 1 @16159 ]
-[s S377 . 1 `uc 1 MODE 1 0 :4:0 
+[s S357 . 1 `uc 1 MODE 1 0 :4:0 
 `uc 1 . 1 0 :2:4 
 `uc 1 REPEAT 1 0 :1:6 
 `uc 1 GO 1 0 :1:7 
 ]
-"33159
-[s S382 . 1 `uc 1 MODE0 1 0 :1:0 
+"32905
+[s S362 . 1 `uc 1 MODE0 1 0 :1:0 
 `uc 1 MODE1 1 0 :1:1 
 `uc 1 MODE2 1 0 :1:2 
 `uc 1 MODE3 1 0 :1:3 
@@ -397,35 +394,35 @@ channel_FVR_Buffer2 63
 `uc 1 SMT1REPEAT 1 0 :1:6 
 `uc 1 SMT1GO 1 0 :1:7 
 ]
-"33159
-[s S390 . 1 `uc 1 SMT1MODE 1 0 :4:0 
+"32905
+[s S370 . 1 `uc 1 SMT1MODE 1 0 :4:0 
 ]
-"33159
-[u S392 . 1 `S377 1 . 1 0 `S382 1 . 1 0 `S390 1 . 1 0 ]
-"33159
-"33159
-[v _SMT1CON1bits SMT1CON1bits `VES392  1 e 1 @16159 ]
-"33214
+"32905
+[u S372 . 1 `S357 1 . 1 0 `S362 1 . 1 0 `S370 1 . 1 0 ]
+"32905
+"32905
+[v _SMT1CON1bits SMT1CON1bits `VES372  1 e 1 @16159 ]
+"32960
 [v _SMT1STAT SMT1STAT `VEuc  1 e 1 @16160 ]
-"33313
+"33059
 [v _SMT1CLK SMT1CLK `VEuc  1 e 1 @16161 ]
-"33381
+"33127
 [v _SMT1SIG SMT1SIG `VEuc  1 e 1 @16162 ]
-"33473
+"33219
 [v _SMT1WIN SMT1WIN `VEuc  1 e 1 @16163 ]
-"44276
+"43986
 [v _LATA LATA `VEuc  1 e 1 @16314 ]
-"44388
+"44098
 [v _LATB LATB `VEuc  1 e 1 @16315 ]
-"44500
+"44210
 [v _LATC LATC `VEuc  1 e 1 @16316 ]
-"44612
+"44322
 [v _TRISA TRISA `VEuc  1 e 1 @16322 ]
-"44674
+"44384
 [v _TRISB TRISB `VEuc  1 e 1 @16323 ]
-"44736
+"44446
 [v _TRISC TRISC `VEuc  1 e 1 @16324 ]
-[s S1704 . 1 `uc 1 RA0 1 0 :1:0 
+[s S1607 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
@@ -434,19 +431,12 @@ channel_FVR_Buffer2 63
 `uc 1 RA6 1 0 :1:6 
 `uc 1 RA7 1 0 :1:7 
 ]
-"44822
-[s S1713 . 1 `uc 1 ULPWUIN 1 0 :1:0 
-`uc 1 . 1 0 :4:1 
-`uc 1 LVDIN 1 0 :1:5 
-`uc 1 . 1 0 :1:6 
-`uc 1 RJPU 1 0 :1:7 
-]
-"44822
-[u S1719 . 1 `S1704 1 . 1 0 `S1713 1 . 1 0 ]
-"44822
-"44822
-[v _PORTAbits PORTAbits `VES1719  1 e 1 @16330 ]
-[s S1738 . 1 `uc 1 RC0 1 0 :1:0 
+"44525
+[u S1616 . 1 `S1607 1 . 1 0 ]
+"44525
+"44525
+[v _PORTAbits PORTAbits `VES1616  1 e 1 @16330 ]
+[s S1628 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -455,21 +445,12 @@ channel_FVR_Buffer2 63
 `uc 1 RC6 1 0 :1:6 
 `uc 1 RC7 1 0 :1:7 
 ]
-"44979
-[s S1747 . 1 `uc 1 . 1 0 :1:0 
-`uc 1 CCP2 1 0 :1:1 
-`uc 1 PA1 1 0 :1:2 
-]
-"44979
-[s S1751 . 1 `uc 1 . 1 0 :1:0 
-`uc 1 PA2 1 0 :1:1 
-]
-"44979
-[u S1754 . 1 `S1738 1 . 1 0 `S1747 1 . 1 0 `S1751 1 . 1 0 ]
-"44979
-"44979
-[v _PORTCbits PORTCbits `VES1754  1 e 1 @16332 ]
-[s S683 . 1 `uc 1 INT0EDG 1 0 :1:0 
+"44649
+[u S1637 . 1 `S1628 1 . 1 0 ]
+"44649
+"44649
+[v _PORTCbits PORTCbits `VES1637  1 e 1 @16332 ]
+[s S643 . 1 `uc 1 INT0EDG 1 0 :1:0 
 `uc 1 INT1EDG 1 0 :1:1 
 `uc 1 INT2EDG 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
@@ -477,45 +458,45 @@ channel_FVR_Buffer2 63
 `uc 1 GIEL 1 0 :1:6 
 `uc 1 GIE 1 0 :1:7 
 ]
-"45098
-[s S691 . 1 `uc 1 . 1 0 :7:0 
+"44735
+[s S651 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 GIEH 1 0 :1:7 
 ]
-"45098
-[u S694 . 1 `S683 1 . 1 0 `S691 1 . 1 0 ]
-"45098
-"45098
-[v _INTCON0bits INTCON0bits `VES694  1 e 1 @16338 ]
-"41 C:\Users\Mitch\MPLABXProjects\ProConGCC.X\joysticks.c
-[v _tmphigh@joysticks$F1631 tmphigh `us  1 s 2 tmphigh ]
+"44735
+[u S654 . 1 `S643 1 . 1 0 `S651 1 . 1 0 ]
+"44735
+"44735
+[v _INTCON0bits INTCON0bits `VES654  1 e 1 @16338 ]
+"41 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\joysticks.c
+[v _tmphigh@joysticks$F1534 tmphigh `us  1 s 2 tmphigh ]
 "42
-[v _tmplow@joysticks$F1632 tmplow `us  1 s 2 tmplow ]
+[v _tmplow@joysticks$F1535 tmplow `us  1 s 2 tmplow ]
 "43
-[v _tmpcenter@joysticks$F1633 tmpcenter `us  1 s 2 tmpcenter ]
+[v _tmpcenter@joysticks$F1536 tmpcenter `us  1 s 2 tmpcenter ]
 "44
-[v _tmphighm@joysticks$F1634 tmphighm `us  1 s 2 tmphighm ]
+[v _tmphighm@joysticks$F1537 tmphighm `us  1 s 2 tmphighm ]
 "45
-[v _tmplowm@joysticks$F1635 tmplowm `us  1 s 2 tmplowm ]
+[v _tmplowm@joysticks$F1538 tmplowm `us  1 s 2 tmplowm ]
 "46
-[v _stickIdx@joysticks$F1636 stickIdx `uc  1 s 1 stickIdx ]
+[v _stickIdx@joysticks$F1539 stickIdx `uc  1 s 1 stickIdx ]
 "47
-[v _initiatedRead@joysticks$F1637 initiatedRead `a  1 s 1 initiatedRead ]
+[v _initiatedRead@joysticks$F1540 initiatedRead `a  1 s 1 initiatedRead ]
 "48
-[v _clearRead@joysticks$F1638 clearRead `a  1 s 1 clearRead ]
-"67 C:\Users\Mitch\MPLABXProjects\ProConGCC.X\main.c
+[v _clearRead@joysticks$F1541 clearRead `a  1 s 1 clearRead ]
+"67 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\main.c
 [v _a_value a_value `VEus  1 e 2 0 ]
 "68
 [v _b_value b_value `VEus  1 e 2 0 ]
-"54 C:\Users\Mitch\MPLABXProjects\ProConGCC.X\mcc_generated_files/pin_manager.c
+"54 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\mcc_generated_files/pin_manager.c
 [v _IOCBF2_InterruptHandler IOCBF2_InterruptHandler `*.37(v  1 e 2 0 ]
-"192 C:\Users\Mitch\MPLABXProjects\ProConGCC.X\mcc_generated_files/smt1.c
+"192 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\mcc_generated_files/smt1.c
 [v _testcount testcount `VEuc  1 e 1 0 ]
-"71 C:\Users\Mitch\MPLABXProjects\ProConGCC.X\main.c
+"71 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
 "104
 } 0
-"73 C:\Users\Mitch\MPLABXProjects\ProConGCC.X\joysticks.c
+"73 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\joysticks.c
 [v _scansticks scansticks `(v  1 e 1 0 ]
 {
 "217
@@ -524,43 +505,43 @@ channel_FVR_Buffer2 63
 [v _slinjim slinjim `(uc  1 e 1 0 ]
 {
 "56
-[v slinjim@conversion conversion `us  1 a 2 0 ]
+[v slinjim@conversion conversion `us  1 a 2 12 ]
 "54
-[v slinjim@dividend dividend `us  1 p 2 10 ]
-[v slinjim@multiplier multiplier `us  1 p 2 12 ]
+[v slinjim@dividend dividend `us  1 p 2 0 ]
+[v slinjim@multiplier multiplier `us  1 p 2 2 ]
 "58
 } 0
-"15 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\Umul16.c
+"15 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
 {
 "17
-[v ___wmul@product product `ui  1 a 2 8 ]
+[v ___wmul@product product `ui  1 a 2 10 ]
 "15
-[v ___wmul@multiplier multiplier `ui  1 p 2 4 ]
-[v ___wmul@multiplicand multiplicand `ui  1 p 2 6 ]
+[v ___wmul@multiplier multiplier `ui  1 p 2 6 ]
+[v ___wmul@multiplicand multiplicand `ui  1 p 2 8 ]
 "53
 } 0
-"12 C:\Users\Mitch\MPLABXProjects\ProConGCC.X\button.c
+"12 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\button.c
 [v _checkbuttons checkbuttons `(v  1 e 1 0 ]
 {
 "33
 } 0
-"50 C:\Users\Mitch\MPLABXProjects\ProConGCC.X\mcc_generated_files/mcc.c
+"50 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
 {
 "58
 } 0
-"60 C:\Users\Mitch\MPLABXProjects\ProConGCC.X\mcc_generated_files/smt1.c
+"60 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\mcc_generated_files/smt1.c
 [v _SMT1_Initialize SMT1_Initialize `(v  1 e 1 0 ]
 {
 "98
 } 0
-"74 C:\Users\Mitch\MPLABXProjects\ProConGCC.X\mcc_generated_files/mcc.c
+"74 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\mcc_generated_files/mcc.c
 [v _PMD_Initialize PMD_Initialize `(v  1 e 1 0 ]
 {
 "92
 } 0
-"57 C:\Users\Mitch\MPLABXProjects\ProConGCC.X\mcc_generated_files/pin_manager.c
+"57 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
 {
 "135
@@ -568,25 +549,25 @@ channel_FVR_Buffer2 63
 "164
 [v _IOCBF2_SetInterruptHandler IOCBF2_SetInterruptHandler `(v  1 e 1 0 ]
 {
-[v IOCBF2_SetInterruptHandler@InterruptHandler InterruptHandler `*.37(v  1 p 2 4 ]
+[v IOCBF2_SetInterruptHandler@InterruptHandler InterruptHandler `*.37(v  1 p 2 6 ]
 "166
 } 0
-"60 C:\Users\Mitch\MPLABXProjects\ProConGCC.X\mcc_generated_files/mcc.c
+"60 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\mcc_generated_files/mcc.c
 [v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
 {
 "72
 } 0
-"52 C:\Users\Mitch\MPLABXProjects\ProConGCC.X\mcc_generated_files/interrupt_manager.c
+"52 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_Initialize INTERRUPT_Initialize `(v  1 e 1 0 ]
 {
 "66
 } 0
-"62 C:\Users\Mitch\MPLABXProjects\ProConGCC.X\mcc_generated_files/adcc.c
+"62 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\mcc_generated_files/adcc.c
 [v _ADCC_Initialize ADCC_Initialize `(v  1 e 1 0 ]
 {
 "111
 } 0
-"70 C:\Users\Mitch\MPLABXProjects\ProConGCC.X\mcc_generated_files/interrupt_manager.c
+"70 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManagerHigh INTERRUPT_InterruptManagerHigh `IIH(v  1 e 1 0 ]
 {
 "85
