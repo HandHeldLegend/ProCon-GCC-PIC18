@@ -1,4 +1,3 @@
-
 // PIC18F25K42 Configuration Bit Settings
 
 // 'C' source line config statements
@@ -70,9 +69,6 @@ volatile uint16_t b_value = 23;
 
 void main(void)
 {
-
-    // Testing git pushes :) 1/11/2022
-
     asm("MOVLW _gInPacket");
     asm("MOVFF WREG, _gInPacketIdx");
     // Initialize the device
@@ -89,14 +85,19 @@ void main(void)
     
     while (1)
     {
-        //synccheck();
+        // check for incoming command
         commandreader();
+        // check if we need to send a response
         bytepush();
+        // check if we need to do a cleanup
         bytecleanup();
+        
+        // if the check stick bit is set, scan the sticks
         if (gInStatus & (1 << 3))
         {
             scansticks();
         }
+        // if the button check bit is set, scan the buttons
         if (gInStatus & (1 << 2))
         {
             checkbuttons();

@@ -10,7 +10,10 @@
 #include "main.h"
 
 struct Settings SettingData = {
+  // Set to a magic number to indicate that
+  // data is saved.
   .configKey = 0x0,
+  
   .sx_low = 131,
   .sx_center = 254,
   .sx_high = 385,

@@ -93,6 +93,7 @@ void scansticks(void) {
                 switch(stickIdx)
                 {
                     case 0:
+                        // Set the ADC Read Channel bit
                         ADPCH = SY_A;
                         break;
                     case 1:
@@ -124,6 +125,8 @@ void scansticks(void) {
             else    // We are reading a non-blank answer
             {
                 clearRead = true;
+                // Set ADC read channel to ground read to clear the
+                // charge capacitor for the next read.
                 ADPCH = channel_VSS;
                 ADCON0bits.ADGO = 1;
             
@@ -137,41 +140,41 @@ void scansticks(void) {
                 {
                     case 0: // Stick X
 
-                        tmphigh = sx_high;
-                        tmplow = sx_low;
-                        tmpcenter = sx_center;
-                        tmphighm = sx_highMultiplier;
-                        tmplowm = sx_lowMultiplier;
+                        tmphigh     = SettingData.sx_high;
+                        tmplow      = SettingData.sx_low;
+                        tmpcenter   = SettingData.sx_center;
+                        tmphighm    = SettingData.sx_highMultiplier;
+                        tmplowm     = SettingData.sx_lowMultiplier;
 
                         break;
 
                     case 1: // Stick Y
 
-                        tmphigh = sy_high;
-                        tmplow = sy_low;
-                        tmpcenter = sy_center;
-                        tmphighm = sy_highMultiplier;
-                        tmplowm = sy_lowMultiplier;
+                        tmphigh     = SettingData.sy_high;
+                        tmplow      = SettingData.sy_low;
+                        tmpcenter   = SettingData.sy_center;
+                        tmphighm    = SettingData.sy_highMultiplier;
+                        tmplowm     = SettingData.sy_lowMultiplier;
 
                         break;
 
                     case 2: // C-Stick X
 
-                        tmphigh = cx_high;
-                        tmplow = cx_low;
-                        tmpcenter = cx_center;
-                        tmphighm = cx_highMultiplier;
-                        tmplowm = cx_lowMultiplier;
+                        tmphigh     = SettingData.cx_high;
+                        tmplow      = SettingData.cx_low;
+                        tmpcenter   = SettingData.cx_center;
+                        tmphighm    = SettingData.cx_highMultiplier;
+                        tmplowm     = SettingData.cx_lowMultiplier;
 
                         break;
 
                     case 3: // C-Stick Y
 
-                        tmphigh = cy_high;
-                        tmplow = cy_low;
-                        tmpcenter = cy_center;
-                        tmphighm = cy_highMultiplier;
-                        tmplowm = cy_lowMultiplier;
+                        tmphigh     = SettingData.cy_high;
+                        tmplow      = SettingData.cy_low;
+                        tmpcenter   = SettingData.cy_center;
+                        tmphighm    = SettingData.cy_highMultiplier;
+                        tmplowm     = SettingData.cy_lowMultiplier;
 
                         break;
 
