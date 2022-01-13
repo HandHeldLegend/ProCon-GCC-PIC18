@@ -54,7 +54,7 @@ static bool clearRead = false;
 // 
 unsigned char slinjim(uint16_t dividend, uint16_t multiplier)
 {
-    uint16_t conversion = (dividend * multiplier) >> 8;
+    uint16_t conversion = (dividend * multiplier+1) >> 8;
     return (unsigned char) conversion;
 }
 
@@ -63,14 +63,11 @@ unsigned char slinjim(uint16_t dividend, uint16_t multiplier)
 // the numerator over a denominator of value 256.
 uint16_t getmultiplier(uint16_t high, uint16_t low)
 {
-    static float fdistance = (float) high - (float) low;
-    // float tmpmultiplier = (100/fdistance) * 256;
     
-    static uint16_t distance = high-low;
-    static uint8_t udistance = (uint8_t) distance;
+    uint16_t distance = high-low;
+    uint16_t ratio = ((10000U / distance) * 256U)/100U;
     
-    
-    return distance;
+    return ratio;
 }
 
 
@@ -189,31 +186,31 @@ void scansticks(void) {
                 // then we perform our stick value conversion and store
                 // the value in our outgoing byte.
 
-                if (adc_read > tmpcenter)
+                if (adc_read > tmpcenter+4)
                 {
                     if (adc_read >= tmphigh)
                     {
-                        gConPollPacket[stickIdx+2] = (unsigned char) 228;
+                        gConPollPacket[stickIdx+2] = 228U;
                     }
                     else
                     {
-                        gConPollPacket[stickIdx+2] = (unsigned char) 128 + slinjim(adc_read - tmpcenter, tmphighm);
+                        gConPollPacket[stickIdx+2] = 128U + slinjim(adc_read - tmpcenter, tmphighm);
                     }
                 }
-                else if (adc_read < tmpcenter)
+                else if (adc_read < tmpcenter-4)
                 {
                     if (adc_read <= tmplow)
                     {
-                        gConPollPacket[stickIdx+2] = (unsigned char) 27;
+                        gConPollPacket[stickIdx+2] = 28U;
                     }
                     else
                     {
-                        gConPollPacket[stickIdx+2] = (unsigned char) 128 - slinjim(tmpcenter - adc_read, tmplowm);
+                        gConPollPacket[stickIdx+2] = 127U - slinjim(tmpcenter - adc_read, tmplowm);
                     }
                 }
                 else
                 {
-                    gConPollPacket[stickIdx+2] = (unsigned char) 128;
+                    gConPollPacket[stickIdx+2] = 128U;
                 }
 
             }

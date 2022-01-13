@@ -26108,6 +26108,7 @@ extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
 # 39 "./main.h" 2
 
+
 # 1 "./gcdata.h" 1
 # 35 "./gcdata.h"
 # 1 "./main.h" 1
@@ -26175,7 +26176,7 @@ volatile unsigned char gLowThreshold;
 
 volatile unsigned char gCommandOriginMask;
 volatile unsigned char gCommandPollMask;
-# 40 "./main.h" 2
+# 41 "./main.h" 2
 
 # 1 "./mcc_generated_files/mcc.h" 1
 # 50 "./mcc_generated_files/mcc.h"
@@ -26367,7 +26368,7 @@ void SYSTEM_Initialize(void);
 void OSCILLATOR_Initialize(void);
 # 99 "./mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
-# 41 "./mcc_generated_files/../main.h" 2
+# 42 "./mcc_generated_files/../main.h" 2
 
 # 1 "./settings.h" 1
 
@@ -26426,7 +26427,7 @@ void loadsettings(void);
 void savesettings(void);
 
 extern Settings SettingData;
-# 42 "./mcc_generated_files/../main.h" 2
+# 43 "./mcc_generated_files/../main.h" 2
 
 # 1 "./joysticks.h" 1
 
@@ -26482,12 +26483,12 @@ void calibratesticks(void);
 unsigned char slinjim(uint16_t dividend, uint16_t multiplier);
 
 uint16_t getmultiplier(uint16_t high, uint16_t low);
-# 43 "./mcc_generated_files/../main.h" 2
+# 44 "./mcc_generated_files/../main.h" 2
 
 # 1 "./button.h" 1
 # 23 "./button.h"
 void checkbuttons(void);
-# 44 "./mcc_generated_files/../main.h" 2
+# 45 "./mcc_generated_files/../main.h" 2
 
 
 extern unsigned char bytepush(void);
@@ -26555,7 +26556,7 @@ void zerosticks(void)
 void setstickmultipliers(void)
 {
     SettingData.sx_highMultiplier = getmultiplier(SettingData.sx_high, SettingData.sx_center);
-    SettingData.sx_lowMultiplier = getmultiplier(SettingData.sx_high, SettingData.sx_center);
+    SettingData.sx_lowMultiplier = getmultiplier(SettingData.sx_center, SettingData.sx_low);
 
     SettingData.cx_highMultiplier = getmultiplier(SettingData.cx_high, SettingData.cx_center);
     SettingData.cx_lowMultiplier = getmultiplier(SettingData.cx_center, SettingData.cx_low);

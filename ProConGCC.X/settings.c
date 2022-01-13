@@ -66,7 +66,7 @@ void zerosticks(void)
 void setstickmultipliers(void)
 {
     SettingData.sx_highMultiplier = getmultiplier(SettingData.sx_high, SettingData.sx_center);
-    SettingData.sx_lowMultiplier = getmultiplier(SettingData.sx_high, SettingData.sx_center);
+    SettingData.sx_lowMultiplier = getmultiplier(SettingData.sx_center, SettingData.sx_low);
     
     SettingData.cx_highMultiplier = getmultiplier(SettingData.cx_high, SettingData.cx_center);
     SettingData.cx_lowMultiplier = getmultiplier(SettingData.cx_center, SettingData.cx_low);

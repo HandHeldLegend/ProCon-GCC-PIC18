@@ -2433,8 +2433,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;settings.c: 68:     SettingData.sx_highMultiplier = getmultiplier(SettingData.sx_high, SettingData.sx_center);
 [e = . _SettingData 14 ( _getmultiplier (2 , . _SettingData 4 . _SettingData 3 ]
 "69
-[; ;settings.c: 69:     SettingData.sx_lowMultiplier = getmultiplier(SettingData.sx_high, SettingData.sx_center);
-[e = . _SettingData 15 ( _getmultiplier (2 , . _SettingData 4 . _SettingData 3 ]
+[; ;settings.c: 69:     SettingData.sx_lowMultiplier = getmultiplier(SettingData.sx_center, SettingData.sx_low);
+[e = . _SettingData 15 ( _getmultiplier (2 , . _SettingData 3 . _SettingData 2 ]
 "71
 [; ;settings.c: 71:     SettingData.cx_highMultiplier = getmultiplier(SettingData.cx_high, SettingData.cx_center);
 [e = . _SettingData 18 ( _getmultiplier (2 , . _SettingData 10 . _SettingData 9 ]

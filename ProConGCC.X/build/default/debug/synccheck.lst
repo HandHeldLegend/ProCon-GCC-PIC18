@@ -1,0 +1,106 @@
+
+
+Microchip MPLAB XC8 Assembler V2.32 build 20210201212658 
+                                                                                                           Thu Jan 13 14:17:21 2022
+
+
+     1                           	processor	18F25K42
+     2                           	pagewidth 132
+     3                           	psect	udata_acs,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+     4                           	psect	udata_bank0,global,class=BANK0,space=1,delta=1,lowdata,noexec
+     5                           	psect	udata_bank1,global,class=BANK1,space=1,delta=1,lowdata,noexec
+     6                           	psect	udata_bank2,global,class=BANK2,space=1,delta=1,lowdata,noexec
+     7                           	psect	udata_bank3,global,class=BANK3,space=1,delta=1,lowdata,noexec
+     8                           	psect	udata_bank4,global,class=BANK4,space=1,delta=1,lowdata,noexec
+     9                           	psect	udata_bank5,global,class=BANK5,space=1,delta=1,lowdata,noexec
+    10                           	psect	udata_bank6,global,class=BANK6,space=1,delta=1,lowdata,noexec
+    11                           	psect	udata_bank7,global,class=BANK7,space=1,delta=1,lowdata,noexec
+    12                           	psect	udata,global,class=RAM,space=1,delta=1,noexec
+    13                           	psect	code,global,reloc=2,class=CODE,delta=1
+    14                           	psect	data,global,reloc=2,class=CONST,delta=1,noexec
+    15                           	psect	edata,global,class=EEDATA,space=3,delta=2,noexec
+    16                           	psect	barfunc,local,reloc=2,class=CODE,delta=1
+    17  0000                     
+    18                           	psect	edata
+    19  0000                     stk_offset	set	0
+    20  0000                     auto_size	set	0
+    21                           
+    22                           ; stack_auto defines a symbol /name/_offset which equates to the
+    23                           ; stack offset of the auto object in question
+    24  000000                     
+    25                           ; stack_param defines a symbol /name/_offset which equates to the
+    26                           ; stack offset of the parameter object in question
+    27  000000                     
+    28                           ; alloc_stack adjusts the SP to allocate space for auto objects
+    29                           ; it also links in to the btemp symbol so that can be used
+    30  000000                     
+    31                           ; restore_stack adjusts the SP to remove all auto and parameter
+    32                           ; objects from the stack prior to returning from a function
+    33  000000                     
+    34                           ; We should perform checks to ensure we are in sync.
+    35                           ; If we read a '1' bit when we are not at an in bit count of 8 (beginning of a new packet)
+    36                           ; then we are out of sync. We should perform a cleanup so we can re-sync.
+    37                           
+    38                           	psect	barfunc
+    39  0011A6                     _synccheck:
+    40                           	callstack 0
+    41                           
+    42                           ; Check that we are NOT on bit 8.
+    43  0011A6  B649               	btfsc	_gInBitCounter,3,c	; Bit 3 will be 1 if we are at 8.
+    44  0011A8  0012               	return		; Return if bit IS 8.
+    45  0011AA  B228               	btfsc	_gInStatus,1,c	; Bit 1, skip if we are not marked as synced yet
+    46  0011AC  0012               	return	
+    47                           
+    48                           ; If we got here, we are not yet in sync and
+    49                           ; we should verify that we are not getting any '1' bits.
+    50  0011AE  A02A               	btfss	_gInCommandByte,0,c	; Check the rightmost bit for the most recent bit
+    51  0011B0  0012               	return		; If we see a 1 or HIGH bit, skip this return
+    52                           
+    53                           ; If we got here, we should reset the device synced flag
+    54  0011B2  9028               	bcf	_gInStatus,0,c	; bit 0 for the desync
+    55  0011B4  0012               	return	
+    56                           tosu	equ	0x3FFF
+    57                           tosh	equ	0x3FFE
+    58                           tosl	equ	0x3FFD
+    59                           stkptr	equ	0x3FFC
+    60                           pclatu	equ	0x3FFB
+    61                           pclath	equ	0x3FFA
+    62                           pcl	equ	0x3FF9
+    63                           tblptru	equ	0x3FF8
+    64                           tblptrh	equ	0x3FF7
+    65                           tblptrl	equ	0x3FF6
+    66                           tablat	equ	0x3FF5
+    67                           prodh	equ	0x3FF4
+    68                           prodl	equ	0x3FF3
+    69                           indf0	equ	0x3FEF
+    70                           postinc0	equ	0x3FEE
+    71                           postdec0	equ	0x3FED
+    72                           preinc0	equ	0x3FEC
+    73                           plusw0	equ	0x3FEB
+    74                           fsr0h	equ	0x3FEA
+    75                           fsr0l	equ	0x3FE9
+    76                           wreg	equ	0x3FE8
+    77                           indf1	equ	0x3FE7
+    78                           postinc1	equ	0x3FE6
+    79                           postdec1	equ	0x3FE5
+    80                           preinc1	equ	0x3FE4
+    81                           plusw1	equ	0x3FE3
+    82                           fsr1h	equ	0x3FE2
+    83                           fsr1l	equ	0x3FE1
+    84                           bsr	equ	0x3FE0
+    85                           indf2	equ	0x3FDF
+    86                           postinc2	equ	0x3FDE
+    87                           postdec2	equ	0x3FDD
+    88                           preinc2	equ	0x3FDC
+    89                           plusw2	equ	0x3FDB
+    90                           fsr2h	equ	0x3FDA
+    91                           fsr2l	equ	0x3FD9
+    92                           status	equ	0x3FD8
+
+
+Microchip Technology PIC18 Macro Assembler V2.32 build 20210201212658 
+Symbol Table                                                                                               Thu Jan 13 14:17:21 2022
+
+                       isa$std 000001                 _gInCommandByte 002A                  _gInBitCounter 0049  
+                    _gInStatus 0028                      _synccheck 11A6                    _bytecleanup 100A  
+                     isa$xinst 000000  

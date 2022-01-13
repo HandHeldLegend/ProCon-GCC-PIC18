@@ -1,0 +1,389 @@
+
+
+Microchip MPLAB XC8 Assembler V2.32 build 20210201212658 
+                                                                                                           Thu Jan 13 14:17:21 2022
+
+
+     1                           	processor	18F25K42
+     2                           	pagewidth 132
+     3                           	psect	udata_acs,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+     4                           	psect	udata_bank0,global,class=BANK0,space=1,delta=1,lowdata,noexec
+     5                           	psect	udata_bank1,global,class=BANK1,space=1,delta=1,lowdata,noexec
+     6                           	psect	udata_bank2,global,class=BANK2,space=1,delta=1,lowdata,noexec
+     7                           	psect	udata_bank3,global,class=BANK3,space=1,delta=1,lowdata,noexec
+     8                           	psect	udata_bank4,global,class=BANK4,space=1,delta=1,lowdata,noexec
+     9                           	psect	udata_bank5,global,class=BANK5,space=1,delta=1,lowdata,noexec
+    10                           	psect	udata_bank6,global,class=BANK6,space=1,delta=1,lowdata,noexec
+    11                           	psect	udata_bank7,global,class=BANK7,space=1,delta=1,lowdata,noexec
+    12                           	psect	udata,global,class=RAM,space=1,delta=1,noexec
+    13                           	psect	code,global,reloc=2,class=CODE,delta=1
+    14                           	psect	data,global,reloc=2,class=CONST,delta=1,noexec
+    15                           	psect	edata,global,class=EEDATA,space=3,delta=2,noexec
+    16                           	psect	barfunc,local,reloc=2,class=CODE,delta=1
+    17  0000                     
+    18                           	psect	edata
+    19  0000                     stk_offset	set	0
+    20  0000                     auto_size	set	0
+    21                           
+    22                           ; stack_auto defines a symbol /name/_offset which equates to the
+    23                           ; stack offset of the auto object in question
+    24  000000                     
+    25                           ; stack_param defines a symbol /name/_offset which equates to the
+    26                           ; stack offset of the parameter object in question
+    27  000000                     
+    28                           ; alloc_stack adjusts the SP to allocate space for auto objects
+    29                           ; it also links in to the btemp symbol so that can be used
+    30  000000                     
+    31                           ; restore_stack adjusts the SP to remove all auto and parameter
+    32                           ; objects from the stack prior to returning from a function
+    33  000000                     
+    34                           ; When assembly code is placed in a psect, it can be manipulated as a
+    35                           ; whole by the linker and placed in memory.
+    36                           ;
+    37                           ; In this example, barfunc is the program section (psect) name, 'local' means
+    38                           ; that the section will not be combined with other sections even if they have
+    39                           ; the same name. class=CODE means the barfunc must go in the CODE container.
+    40                           ; PIC18's should have a delta (addressible unit size) of 1 (default) since they
+    41                           ; are byte addressible. PIC10/12/16's have a delta of 2 since they are word
+    42                           ; addressible. PIC18's should have a reloc (alignment) flag of 2 for any
+    43                           ; psect which contains executable code. PIC10/12/16's can use the default
+    44                           ; reloc value of 1. Use one of the psects below for the device you use:
+    45                           ; psect barfunc,local,class=CODE,delta=2 ; PIC10/12/16
+    46                           
+    47                           	psect	barfunc
+    48  00057C                     _bytepush:
+    49                           	callstack 0
+    50                           
+    51                           ; Check if we have a command to push out
+    52  00057C  AC28               	btfss	_gInStatus,6,c	; Byte 6 tells us if a command has been interpreted
+    53  00057E  0012               	return		; Return if there's no command to push out
+    54  000580  94C3               	bcf	16323,2,c	; Turn the data pin around so we can drive
+    55  000582                     newByte:
+    56  000582  0060  F0B7  FFE9   	movff	_gConOutIdx,fsr0l	; Get the address for our first byte, place into FSR0
+    57  000588  006F FFBC  F02F    	movff	indf0,_gConOutByte	; Set the outgoing byte with the first byte.
+    58  00058E  6A4A               	clrf	_gConBitCounter,c	; Set bit counter to 0 (clear)
+    59  000590  864A               	bsf	_gConBitCounter,3,c	; Set bit counter to 8.
+    60  000592                     writeBit:
+    61  000592  94CB               	bcf	16331,2,c	; Set port to LOW
+    62  000594  AE2F               	btfss	_gConOutByte,7,c	; Check the leftmost bit, skip if one.
+    63  000596  EF08  F003         	goto	lowBitWrite	; Bit is 0, write a low bit out.
+    64  00059A                     
+    65                           ;
+    66  00059A  4E4A               	dcfsnz	_gConBitCounter,f,c	; Decrement the BIT counter. Skip next when NOT 0 to go to next bit
+    67  00059C  EF79  F003         	goto	endHighWrite
+    68  0005A0  0000               	nop	
+    69  0005A2  0000               	nop	
+    70  0005A4  0000               	nop	
+    71  0005A6  0000               	nop	
+    72  0005A8  0000               	nop	
+    73  0005AA  0000               	nop	
+    74  0005AC  0000               	nop	
+    75  0005AE  0000               	nop	
+    76  0005B0  0000               	nop	
+    77  0005B2  0000               	nop	
+    78  0005B4  0000               	nop	
+    79  0005B6  0000               	nop	
+    80  0005B8  0000               	nop	
+    81  0005BA  0000               	nop	
+    82  0005BC  84CB               	bsf	16331,2,c	; Set port to HIGH
+    83  0005BE  0000               	nop	
+    84  0005C0  0000               	nop	
+    85  0005C2  0000               	nop	
+    86  0005C4  0000               	nop	
+    87  0005C6  0000               	nop	
+    88  0005C8  0000               	nop	
+    89  0005CA  0000               	nop	
+    90  0005CC  0000               	nop	
+    91  0005CE  0000               	nop	
+    92  0005D0  0000               	nop	
+    93  0005D2  0000               	nop	
+    94  0005D4  0000               	nop	
+    95  0005D6  0000               	nop	
+    96  0005D8  0000               	nop	
+    97  0005DA  0000               	nop	
+    98  0005DC  0000               	nop	
+    99  0005DE  0000               	nop	
+   100  0005E0  0000               	nop	
+   101  0005E2  0000               	nop	
+   102  0005E4  0000               	nop	
+   103  0005E6  0000               	nop	
+   104  0005E8  0000               	nop	
+   105  0005EA  0000               	nop	
+   106  0005EC  0000               	nop	
+   107  0005EE  0000               	nop	
+   108  0005F0  0000               	nop	
+   109  0005F2  0000               	nop	
+   110  0005F4  0000               	nop	
+   111  0005F6  0000               	nop	
+   112  0005F8  0000               	nop	
+   113  0005FA  0000               	nop	
+   114  0005FC  0000               	nop	
+   115  0005FE  0000               	nop	
+   116  000600  0000               	nop	
+   117  000602  0000               	nop	
+   118  000604  0000               	nop	
+   119  000606  0000               	nop	
+   120  000608  0000               	nop	
+   121  00060A  0000               	nop	
+   122  00060C  EF43  F003         	goto	getNextBit
+   123  000610                     lowBitWrite:
+   124  000610  4E4A               	dcfsnz	_gConBitCounter,f,c	; Decrement the BIT counter. Skip next when NOT 0 to go to next bit
+   125  000612  EFA7  F003         	goto	endLowWrite
+   126  000616  0000               	nop	
+   127  000618  0000               	nop	
+   128  00061A  0000               	nop	
+   129  00061C  0000               	nop	
+   130  00061E  0000               	nop	
+   131  000620  0000               	nop	
+   132  000622  0000               	nop	
+   133  000624  0000               	nop	
+   134  000626  0000               	nop	
+   135  000628  0000               	nop	
+   136  00062A  0000               	nop	
+   137  00062C  0000               	nop	
+   138  00062E  0000               	nop	
+   139  000630  0000               	nop	
+   140  000632  0000               	nop	
+   141  000634  0000               	nop	
+   142  000636  0000               	nop	
+   143  000638  0000               	nop	
+   144  00063A  0000               	nop	
+   145  00063C  0000               	nop	
+   146  00063E  0000               	nop	
+   147  000640  0000               	nop	
+   148  000642  0000               	nop	
+   149  000644  0000               	nop	
+   150  000646  0000               	nop	
+   151  000648  0000               	nop	
+   152  00064A  0000               	nop	
+   153  00064C  0000               	nop	
+   154  00064E  0000               	nop	
+   155  000650  0000               	nop	
+   156  000652  0000               	nop	
+   157  000654  0000               	nop	
+   158  000656  0000               	nop	
+   159  000658  0000               	nop	
+   160  00065A  0000               	nop	
+   161  00065C  0000               	nop	
+   162  00065E  0000               	nop	
+   163  000660  0000               	nop	
+   164  000662  0000               	nop	
+   165  000664  0000               	nop	
+   166  000666  0000               	nop	
+   167  000668  0000               	nop	
+   168  00066A  0000               	nop	
+   169  00066C  0000               	nop	
+   170  00066E  0000               	nop	
+   171  000670  84CB               	bsf	16331,2,c	; Set port to HIGH
+   172  000672  0000               	nop	
+   173  000674  0000               	nop	
+   174  000676  0000               	nop	
+   175  000678  0000               	nop	
+   176  00067A  0000               	nop	
+   177  00067C  0000               	nop	
+   178  00067E  0000               	nop	
+   179  000680  0000               	nop	
+   180  000682  0000               	nop	
+   181  000684  0000               	nop	
+   182  000686                     getNextBit:
+   183  000686  362F               	rlcf	_gConOutByte,f,c	; Rotate the byte left so we can read the next bit
+   184  000688  EFC9  F002         	goto	writeBit	; We still have bits left, so go back up to writeBit.
+   185  00068C                     getNextByte:
+   186  00068C  2A2D               	incf	_gConOutIdx,f,c	; Increment our pointer value
+   187  00068E  2E2E               	decfsz	_gConByteCount,f,c	; Decrement our Byte counter, skip when no bytes left to write our stop b
+      +                          it.
+   188  000690  EFC1  F002         	goto	newByte
+   189  000694  0000               	nop	
+   190  000696  0000               	nop	
+   191  000698  0000               	nop	
+   192  00069A  0000               	nop	
+   193  00069C  0000               	nop	
+   194  00069E  0000               	nop	
+   195  0006A0  0000               	nop	
+   196  0006A2  0000               	nop	
+   197  0006A4  0000               	nop	
+   198  0006A6  0000               	nop	
+   199  0006A8  94CB               	bcf	16331,2,c	; Set port to LOW
+   200  0006AA  0000               	nop	
+   201  0006AC  0000               	nop	
+   202  0006AE  0000               	nop	
+   203  0006B0  0000               	nop	
+   204  0006B2  0000               	nop	
+   205  0006B4  0000               	nop	
+   206  0006B6  0000               	nop	
+   207  0006B8  0000               	nop	
+   208  0006BA  0000               	nop	
+   209  0006BC  0000               	nop	
+   210  0006BE  0000               	nop	
+   211  0006C0  0000               	nop	
+   212  0006C2  0000               	nop	
+   213  0006C4  0000               	nop	
+   214  0006C6  0000               	nop	
+   215  0006C8  0000               	nop	
+   216  0006CA  0000               	nop	
+   217  0006CC  0000               	nop	
+   218  0006CE  0000               	nop	
+   219  0006D0  0000               	nop	
+   220  0006D2  0000               	nop	
+   221  0006D4  0000               	nop	
+   222  0006D6  0000               	nop	
+   223  0006D8  0000               	nop	
+   224  0006DA  0000               	nop	
+   225  0006DC  0000               	nop	
+   226  0006DE  0000               	nop	
+   227  0006E0  0000               	nop	
+   228  0006E2  0000               	nop	
+   229  0006E4  0000               	nop	
+   230  0006E6  0000               	nop	
+   231  0006E8  0000               	nop	
+   232  0006EA  0000               	nop	
+   233  0006EC  84CB               	bsf	16331,2,c	; Set port to HIGH
+   234  0006EE  8A28               	bsf	_gInStatus,5,c	; Set byte 5 of our status flag
+   235                           
+   236                           ; Bit 5 says that we have sent out our response
+   237  0006F0  0012               	return	
+   238  0006F2                     endHighWrite:
+   239  0006F2  0000               	nop	
+   240  0006F4  0000               	nop	
+   241  0006F6  0000               	nop	
+   242  0006F8  0000               	nop	
+   243  0006FA  0000               	nop	
+   244  0006FC  0000               	nop	
+   245  0006FE  0000               	nop	
+   246  000700  0000               	nop	
+   247  000702  0000               	nop	
+   248  000704  0000               	nop	
+   249  000706  0000               	nop	
+   250  000708  0000               	nop	
+   251  00070A  0000               	nop	
+   252  00070C  84CB               	bsf	16331,2,c	; Set port to HIGH
+   253  00070E  0000               	nop	
+   254  000710  0000               	nop	
+   255  000712  0000               	nop	
+   256  000714  0000               	nop	
+   257  000716  0000               	nop	
+   258  000718  0000               	nop	
+   259  00071A  0000               	nop	
+   260  00071C  0000               	nop	
+   261  00071E  0000               	nop	
+   262  000720  0000               	nop	
+   263  000722  0000               	nop	
+   264  000724  0000               	nop	
+   265  000726  0000               	nop	
+   266  000728  0000               	nop	
+   267  00072A  0000               	nop	
+   268  00072C  0000               	nop	
+   269  00072E  0000               	nop	
+   270  000730  0000               	nop	
+   271  000732  0000               	nop	
+   272  000734  0000               	nop	
+   273  000736  0000               	nop	
+   274  000738  0000               	nop	
+   275  00073A  0000               	nop	
+   276  00073C  0000               	nop	
+   277  00073E  0000               	nop	
+   278  000740  0000               	nop	
+   279  000742  0000               	nop	
+   280  000744  0000               	nop	
+   281  000746  0000               	nop	
+   282  000748  0000               	nop	
+   283  00074A  EF46  F003         	goto	getNextByte
+   284  00074E                     endLowWrite:
+   285  00074E  0000               	nop	
+   286  000750  0000               	nop	
+   287  000752  0000               	nop	
+   288  000754  0000               	nop	
+   289  000756  0000               	nop	
+   290  000758  0000               	nop	
+   291  00075A  0000               	nop	
+   292  00075C  0000               	nop	
+   293  00075E  0000               	nop	
+   294  000760  0000               	nop	
+   295  000762  0000               	nop	
+   296  000764  0000               	nop	
+   297  000766  0000               	nop	
+   298  000768  0000               	nop	
+   299  00076A  0000               	nop	
+   300  00076C  0000               	nop	
+   301  00076E  0000               	nop	
+   302  000770  0000               	nop	
+   303  000772  0000               	nop	
+   304  000774  0000               	nop	
+   305  000776  0000               	nop	
+   306  000778  0000               	nop	
+   307  00077A  0000               	nop	
+   308  00077C  0000               	nop	
+   309  00077E  0000               	nop	
+   310  000780  0000               	nop	
+   311  000782  0000               	nop	
+   312  000784  0000               	nop	
+   313  000786  0000               	nop	
+   314  000788  0000               	nop	
+   315  00078A  0000               	nop	
+   316  00078C  0000               	nop	
+   317  00078E  0000               	nop	
+   318  000790  0000               	nop	
+   319  000792  0000               	nop	
+   320  000794  0000               	nop	
+   321  000796  0000               	nop	
+   322  000798  0000               	nop	
+   323  00079A  0000               	nop	
+   324  00079C  0000               	nop	
+   325  00079E  0000               	nop	
+   326  0007A0  0000               	nop	
+   327  0007A2  0000               	nop	
+   328  0007A4  0000               	nop	
+   329  0007A6  0000               	nop	
+   330  0007A8  0000               	nop	
+   331  0007AA  84CB               	bsf	16331,2,c	; Set port to HIGH
+   332  0007AC  EF46  F003         	goto	getNextByte
+   333                           tosu	equ	0x3FFF
+   334                           tosh	equ	0x3FFE
+   335                           tosl	equ	0x3FFD
+   336                           stkptr	equ	0x3FFC
+   337                           pclatu	equ	0x3FFB
+   338                           pclath	equ	0x3FFA
+   339                           pcl	equ	0x3FF9
+   340                           tblptru	equ	0x3FF8
+   341                           tblptrh	equ	0x3FF7
+   342                           tblptrl	equ	0x3FF6
+   343                           tablat	equ	0x3FF5
+   344                           prodh	equ	0x3FF4
+   345                           prodl	equ	0x3FF3
+   346                           indf0	equ	0x3FEF
+   347                           postinc0	equ	0x3FEE
+   348                           postdec0	equ	0x3FED
+   349                           preinc0	equ	0x3FEC
+   350                           plusw0	equ	0x3FEB
+   351                           fsr0h	equ	0x3FEA
+   352                           fsr0l	equ	0x3FE9
+   353                           wreg	equ	0x3FE8
+   354                           indf1	equ	0x3FE7
+   355                           postinc1	equ	0x3FE6
+   356                           postdec1	equ	0x3FE5
+   357                           preinc1	equ	0x3FE4
+   358                           plusw1	equ	0x3FE3
+   359                           fsr1h	equ	0x3FE2
+   360                           fsr1l	equ	0x3FE1
+   361                           bsr	equ	0x3FE0
+   362                           indf2	equ	0x3FDF
+   363                           postinc2	equ	0x3FDE
+   364                           postdec2	equ	0x3FDD
+   365                           preinc2	equ	0x3FDC
+   366                           plusw2	equ	0x3FDB
+   367                           fsr2h	equ	0x3FDA
+   368                           fsr2l	equ	0x3FD9
+   369                           status	equ	0x3FD8
+
+
+Microchip Technology PIC18 Macro Assembler V2.32 build 20210201212658 
+Symbol Table                                                                                               Thu Jan 13 14:17:21 2022
+
+                          FSR0 003FE9                           INDF0 003FEF                           PORTB 003FCB  
+                         TRISB 003FC3                     _gConOutIdx 002D                         isa$std 000001  
+                       newByte 0582                 _gConBitCounter 004A                    _gConOutByte 002F  
+                   endLowWrite 074E                     getNextByte 068C                        writeBit 0592  
+                    _gInStatus 0028                    stopBitWrite 0694                     lowBitWrite 0610  
+                _gConByteCount 002E                      getNextBit 0686                    _bytecleanup 100A  
+                     _bytepush 057C                       isa$xinst 000000                    endHighWrite 06F2  
+                  highBitWrite 059A  
