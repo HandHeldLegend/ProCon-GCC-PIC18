@@ -58,14 +58,10 @@
 // Use project enums instead of #define for ON and OFF.
 
 #include <xc.h>
-#include "mcc_generated_files/mcc.h"
+#include "main.h"
 
-unsigned char testHigh;
-unsigned char testLow;
-
-volatile uint16_t a_value = 350;
-volatile uint16_t b_value = 23;
-
+// Bool to tell if we are calibrating the sticks
+bool stickcalibration = false;
 
 void main(void)
 {
@@ -73,15 +69,39 @@ void main(void)
     asm("MOVFF WREG, _gInPacketIdx");
     // Initialize the device
     SYSTEM_Initialize();
-    // Enable interrupts
-    INTCON0bits.GIEH = 1;
     
-    ADPCH = 0x00; //RA0 is Analog channel
+    // Load default config
+    loadsettings();
     
+    // Set ADC Read channel to RA0
+    ADPCH = 0x00;
     // Turn on the ADC module
     ADCON0bits.ADON = 1;
     
+    // Do stick calibration if Y/X/A are all held on boot.
+    if (!Y_IN_PORT && !X_IN_PORT && !A_IN_PORT)
+    {
+        stickcalibration = true;
+        // Zero out our config options to the default center values
+        zerosticks();
+    }
     
+    while (stickcalibration)
+    {
+        calibratesticks();
+        
+        // Pressing start saves settings
+        if (!START_IN_PORT)
+        {
+            setstickmultipliers();
+            savesettings();
+            stickcalibration = false;
+            break;
+        }
+    }
+    
+    // Enable interrupts
+    INTCON0bits.GIEH = 1;
     
     while (1)
     {

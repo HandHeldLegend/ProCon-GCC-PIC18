@@ -7,8 +7,9 @@
 #include <xc.h> // include processor files - each processor file is guarded.
 #include "main.h"
 
-struct Settings{
+typedef struct {
     
+    uint16_t buffer;
     uint16_t configKey;
     
     uint16_t sx_low;
@@ -41,9 +42,16 @@ struct Settings{
     
     uint8_t trigger_mode;
     
-};
+} Settings;
 
-struct Settings SettingData;
+void setdefaultsettings(void);
+void zerosticks(void);
+void setstickmultipliers(void);
+
+void loadsettings(void);
+void savesettings(void);
+
+extern Settings SettingData;
 
 #endif	/* SETTINGS_H */
 

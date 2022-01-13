@@ -3,7 +3,7 @@
 #ifndef JOYSTICKS_H
 #define	JOYSTICKS_H
 
-#include <xc.h> // include processor files - each processor file is guarded.  
+#include <xc.h> // include processor files - each processor file is guarded. 
 
 uint16_t sx_low;
 uint16_t sx_center;
@@ -45,6 +45,8 @@ static bool initiatedRead;
 static bool clearRead;
 
 void scansticks(void);
+
+void calibratesticks(void);
 
 unsigned char slinjim(uint16_t dividend, uint16_t multiplier);
 

@@ -1,7 +1,7 @@
 
 
-Microchip MPLAB XC8 Assembler V2.35 build 20211206165544 
-                                                                                                           Wed Jan 12 14:48:32 2022
+Microchip MPLAB XC8 Assembler V2.32 build 20210201212658 
+                                                                                                           Thu Jan 13 11:56:48 2022
 
 
      1                           	processor	18F25K42
@@ -27,38 +27,38 @@ Microchip MPLAB XC8 Assembler V2.35 build 20211206165544
     21                           
     22                           ; stack_auto defines a symbol /name/_offset which equates to the
     23                           ; stack offset of the auto object in question
-    24  000000                     
+    24  0000'                    
     25                           ; stack_param defines a symbol /name/_offset which equates to the
     26                           ; stack offset of the parameter object in question
-    27  000000                     
+    27  0000'                    
     28                           ; alloc_stack adjusts the SP to allocate space for auto objects
     29                           ; it also links in to the btemp symbol so that can be used
-    30  000000                     
+    30  0000'                    
     31                           ; restore_stack adjusts the SP to remove all auto and parameter
     32                           ; objects from the stack prior to returning from a function
-    33  000000                     
+    33  0000'                    
     34                           ; We should perform checks to ensure we are in sync.
     35                           ; If we read a '1' bit when we are not at an in bit count of 8 (beginning of a new packet)
     36                           ; then we are out of sync. We should perform a cleanup so we can re-sync.
     37                           
     38                           	psect	barfunc
-    39  000980                     _synccheck:
+    39  0000'                    _synccheck:
     40                           	callstack 0
     41                           
     42                           ; Check that we are NOT on bit 8.
-    43  000980  B64A               	btfsc	_gInBitCounter,3,c	; Bit 3 will be 1 if we are at 8.
-    44  000982  0012               	return		; Return if bit IS 8.
-    45  000984  B22B               	btfsc	_gInStatus,1,c	; Bit 1, skip if we are not marked as synced yet
-    46  000986  0012               	return	
+    43  0000' B600'              	btfsc	_gInBitCounter,3,c	; Bit 3 will be 1 if we are at 8.
+    44  0002' 0012               	return		; Return if bit IS 8.
+    45  0004' B200'              	btfsc	_gInStatus,1,c	; Bit 1, skip if we are not marked as synced yet
+    46  0006' 0012               	return	
     47                           
     48                           ; If we got here, we are not yet in sync and
     49                           ; we should verify that we are not getting any '1' bits.
-    50  000988  A02D               	btfss	_gInCommandByte,0,c	; Check the rightmost bit for the most recent bit
-    51  00098A  0012               	return		; If we see a 1 or HIGH bit, skip this return
+    50  0008' A000'              	btfss	_gInCommandByte,0,c	; Check the rightmost bit for the most recent bit
+    51  000A' 0012               	return		; If we see a 1 or HIGH bit, skip this return
     52                           
     53                           ; If we got here, we should reset the device synced flag
-    54  00098C  902B               	bcf	_gInStatus,0,c	; bit 0 for the desync
-    55  00098E  0012               	return	
+    54  000C' 9000'              	bcf	_gInStatus,0,c	; bit 0 for the desync
+    55  000E' 0012               	return	
     56                           tosu	equ	0x3FFF
     57                           tosh	equ	0x3FFE
     58                           tosl	equ	0x3FFD
@@ -98,9 +98,9 @@ Microchip MPLAB XC8 Assembler V2.35 build 20211206165544
     92                           status	equ	0x3FD8
 
 
-Microchip Technology PIC18 Macro Assembler V2.35 build 20211206165544 
-Symbol Table                                                                                               Wed Jan 12 14:48:32 2022
+Microchip Technology PIC18 Macro Assembler V2.32 build 20210201212658 
+Symbol Table                                                                                               Thu Jan 13 11:56:48 2022
 
-                       isa$std 000001                 _gInCommandByte 002D                  _gInBitCounter 004A  
-                    _gInStatus 002B                      _synccheck 0980                    _bytecleanup 07DC  
+                       isa$std 000001                 _gInCommandByte 000000*                 _gInBitCounter 000000* 
+                    _gInStatus 000000*                     _synccheck 000000                    _bytecleanup 000000* 
                      isa$xinst 000000  

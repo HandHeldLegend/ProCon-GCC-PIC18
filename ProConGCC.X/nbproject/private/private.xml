@@ -3,10 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Mitch/GitRepos/ProCon-GCC/ProConGCC.X/mcc_generated_files/pin_manager.h</file>
+            <file>file:/C:/Users/Mitch/GitRepos/ProCon-GCC/ProConGCC.X/joysticks.c</file>
             <file>file:/C:/Users/Mitch/GitRepos/ProCon-GCC/ProConGCC.X/settings.c</file>
+            <file>file:/C:/Users/Mitch/GitRepos/ProCon-GCC/ProConGCC.X/gcdata.h</file>
+            <file>file:/C:/Users/Mitch/GitRepos/ProCon-GCC/ProConGCC.X/joysticks.h</file>
+            <file>file:/C:/Users/Mitch/GitRepos/ProCon-GCC/ProConGCC.X/button.h</file>
             <file>file:/C:/Users/Mitch/GitRepos/ProCon-GCC/ProConGCC.X/main.c</file>
+            <file>file:/C:/Users/Mitch/GitRepos/ProCon-GCC/ProConGCC.X/gcdata.c</file>
             <file>file:/C:/Users/Mitch/GitRepos/ProCon-GCC/ProConGCC.X/button.c</file>
+            <file>file:/C:/Users/Mitch/GitRepos/ProCon-GCC/ProConGCC.X/main.h</file>
+            <file>file:/C:/Users/Mitch/GitRepos/ProCon-GCC/ProConGCC.X/settings.h</file>
         </group>
     </open-files>
 </project-private>

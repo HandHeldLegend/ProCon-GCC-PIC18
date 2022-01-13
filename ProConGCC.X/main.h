@@ -36,14 +36,12 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <math.h>
+#include <string.h>
 #include "gcdata.h"
 #include "mcc_generated_files/mcc.h"
 #include "settings.h"
 #include "joysticks.h"
 #include "button.h"
-
-uint8_t controller_phase;
-uint8_t bit_counter;
 
 extern unsigned char bytepush(void);
 extern unsigned char bitgrabber(void);
@@ -51,8 +49,6 @@ extern unsigned char bytecleanup(void);
 extern unsigned char commandreader(void);
 extern unsigned char synccheck(void);
 
-
-void analogTest(void);
 
 #endif	/* MAIN_H */
 

@@ -1,21 +1,21 @@
 # 1 "synccheck.s"
 # 1 "<built-in>" 1
 # 1 "synccheck.s" 2
-# 1 "C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.inc" 1 3
+# 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.inc" 1 3
 
 
 
 
-# 1 "C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\pic18.inc" 1 3
+# 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\pic18.inc" 1 3
 
 
 
 
 
-# 1 "C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\pic18_chip_select.inc" 1 3
-# 114 "C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\pic18_chip_select.inc" 3
-# 1 "C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\proc\\pic18f25k42.inc" 1 3
-# 47 "C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\proc\\pic18f25k42.inc" 3
+# 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\pic18_chip_select.inc" 1 3
+# 114 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\pic18_chip_select.inc" 3
+# 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\proc\\pic18f25k42.inc" 1 3
+# 47 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\proc\\pic18f25k42.inc" 3
 STATUS_CSHAD equ 03880h
 
 STATUS_CSHAD_NOT_PD_POSN equ 0005h
@@ -31153,7 +31153,7 @@ TOSH_TOSH_MASK equ 00FFh
 
 
 TOSU equ 03FFFh
-# 34579 "C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\proc\\pic18f25k42.inc" 3
+# 34579 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\proc\\pic18f25k42.inc" 3
 psect udata_acs,class=COMRAM,space=1,noexec,lowdata
 
 psect udata_bank0,class=BANK0,space=1,noexec,lowdata
@@ -31168,8 +31168,8 @@ psect udata,class=RAM,space=1,noexec
 psect code,class=CODE,space=0,reloc=2
 psect data,class=CONST,space=0,reloc=2,noexec
 psect edata,class=EEDATA,space=3,delta=2,noexec
-# 115 "C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\pic18_chip_select.inc" 2 3
-# 7 "C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\pic18.inc" 2 3
+# 115 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\pic18_chip_select.inc" 2 3
+# 7 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\pic18.inc" 2 3
 
 
 
@@ -31233,7 +31233,7 @@ addwfc FSR1H,c
 stk_offset SET 0
 auto_size SET 0
 ENDM
-# 6 "C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.inc" 2 3
+# 6 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.inc" 2 3
 # 1 "synccheck.s" 2
 
 
