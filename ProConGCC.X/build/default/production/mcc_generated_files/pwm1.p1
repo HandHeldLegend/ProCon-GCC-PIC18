@@ -1,185 +1,55 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[p mainexit ]
-"73 ./mcc_generated_files/mcc.h
-[; ;./mcc_generated_files/mcc.h: 73: void SYSTEM_Initialize(void);
-[v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
-"51 ./settings.h
-[; ;./settings.h: 51: void loadsettings(void);
-[v _loadsettings `(v ~T0 @X0 0 ef ]
-"29881 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 29881: extern volatile unsigned char ADPCH __attribute__((address(0x3EF1)));
-[v _ADPCH `Vuc ~T0 @X0 0 e@16113 ]
-"30537
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 30537:     struct {
-[s S1358 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1358 . GO . FM CS . CONT ON ]
-"30546
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 30546:     struct {
-[s S1359 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1359 . ADGO . ADFM ADCS . ADCONT ADON ]
-"30555
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 30555:     struct {
-[s S1360 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1360 . DONE . FM0 ]
-"30560
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 30560:     struct {
-[s S1361 :1 `uc 1 ]
-[n S1361 . GO_NOT_DONE ]
-"30563
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 30563:     struct {
-[s S1362 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1362 . GO_nDONE . ADFM0 ]
-"30568
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 30568:     struct {
-[s S1363 :7 `uc 1 :1 `uc 1 ]
-[n S1363 . . ADCAL ]
-"30536
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 30536: typedef union {
-[u S1357 `S1358 1 `S1359 1 `S1360 1 `S1361 1 `S1362 1 `S1363 1 ]
-[n S1357 . . . . . . . ]
-"30573
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 30573: extern volatile ADCON0bits_t ADCON0bits __attribute__((address(0x3EF8)));
-[v _ADCON0bits `VS1357 ~T0 @X0 0 e@16120 ]
-"44804
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 44804:     struct {
-[s S2022 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2022 . RA0 RA1 RA2 RA3 RA4 RA5 RA6 RA7 ]
-"44814
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 44814:     struct {
-[s S2023 :1 `uc 1 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2023 . ULPWUIN . LVDIN . RJPU ]
-"44803
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 44803: typedef union {
-[u S2021 `S2022 1 `S2023 1 ]
-[n S2021 . . . ]
-"44822
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 44822: extern volatile PORTAbits_t PORTAbits __attribute__((address(0x3FCA)));
-[v _PORTAbits `VS2021 ~T0 @X0 0 e@16330 ]
-"48 ./settings.h
-[; ;./settings.h: 48: void zerosticks(void);
-[v _zerosticks `(v ~T0 @X0 0 ef ]
-"49 ./joysticks.h
-[; ;./joysticks.h: 49: void calibratesticks(void);
-[v _calibratesticks `(v ~T0 @X0 0 ef ]
-"44959 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 44959:     struct {
-[s S2028 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2028 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
-"44969
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 44969:     struct {
-[s S2029 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2029 . . CCP2 PA1 ]
-"44974
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 44974:     struct {
-[s S2030 :1 `uc 1 :1 `uc 1 ]
-[n S2030 . . PA2 ]
-"44958
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 44958: typedef union {
-[u S2027 `S2028 1 `S2029 1 `S2030 1 ]
-[n S2027 . . . . ]
-"44979
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 44979: extern volatile PORTCbits_t PORTCbits __attribute__((address(0x3FCC)));
-[v _PORTCbits `VS2027 ~T0 @X0 0 e@16332 ]
-"49 ./settings.h
-[; ;./settings.h: 49: void setstickmultipliers(void);
-[v _setstickmultipliers `(v ~T0 @X0 0 ef ]
-"52
-[; ;./settings.h: 52: void savesettings(void);
-[v _savesettings `(v ~T0 @X0 0 ef ]
-"45084 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 45084:     struct {
-[s S2036 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2036 . INT0EDG INT1EDG INT2EDG . IPEN GIEL GIE ]
-"45093
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 45093:     struct {
-[s S2037 :7 `uc 1 :1 `uc 1 ]
-[n S2037 . . GIEH ]
-"45083
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 45083: typedef union {
-[u S2035 `S2036 1 `S2037 1 ]
-[n S2035 . . . ]
-"45098
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 45098: extern volatile INTCON0bits_t INTCON0bits __attribute__((address(0x3FD2)));
-[v _INTCON0bits `VS2035 ~T0 @X0 0 e@16338 ]
-"50 ./mcc_generated_files/../main.h
-[; ;./mcc_generated_files/../main.h: 50: extern unsigned char commandreader(void);
-[v _commandreader `(uc ~T0 @X0 0 ef ]
-"47
-[; ;./mcc_generated_files/../main.h: 47: extern unsigned char bytepush(void);
-[v _bytepush `(uc ~T0 @X0 0 ef ]
-"49
-[; ;./mcc_generated_files/../main.h: 49: extern unsigned char bytecleanup(void);
-[v _bytecleanup `(uc ~T0 @X0 0 ef ]
-"47 ./joysticks.h
-[; ;./joysticks.h: 47: void scansticks(void);
-[v _scansticks `(v ~T0 @X0 0 ef ]
-"23 ./button.h
-[; ;./button.h: 23: void checkbuttons(void);
-[v _checkbuttons `(v ~T0 @X0 0 ef ]
-"6 main.c
-[p x FEXTOSC  =  OFF     ]
-"7
-[p x RSTOSC  =  HFINTOSC_64MHZ ]
-"10
-[p x CLKOUTEN  =  OFF    ]
-"11
-[p x PR1WAY  =  ON       ]
-"12
-[p x CSWEN  =  ON        ]
-"13
-[p x FCMEN  =  ON        ]
-"16
-[p x MCLRE  =  EXTMCLR   ]
-"17
-[p x PWRTS  =  PWRT_OFF  ]
-"18
-[p x MVECEN  =  OFF      ]
-"19
-[p x IVT1WAY  =  ON      ]
-"20
-[p x LPBOREN  =  OFF     ]
-"21
-[p x BOREN  =  SBORDIS   ]
-"24
-[p x BORV  =  VBOR_2P45  ]
-"25
-[p x ZCD  =  OFF         ]
-"26
-[p x PPS1WAY  =  ON      ]
-"27
-[p x STVREN  =  ON       ]
-"28
-[p x DEBUG  =  ON        ]
-"29
-[p x XINST  =  OFF       ]
-"32
-[p x WDTCPS  =  WDTCPS_31 ]
-"33
-[p x WDTE  =  OFF        ]
-"36
-[p x WDTCWS  =  WDTCWS_7 ]
-"37
-[p x WDTCCS  =  SC       ]
-"40
-[p x BBSIZE  =  BBSIZE_512 ]
-"41
-[p x BBEN  =  OFF        ]
-"42
-[p x SAFEN  =  OFF       ]
-"43
-[p x WRTAPP  =  OFF      ]
-"46
-[p x WRTB  =  OFF        ]
-"47
-[p x WRTC  =  OFF        ]
-"48
-[p x WRTD  =  OFF        ]
-"49
-[p x WRTSAF  =  OFF      ]
-"50
-[p x LVP  =  ON          ]
-"53
-[p x CP  =  OFF          ]
+"39021 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 39021: extern volatile unsigned char CCP1CON __attribute__((address(0x3F7E)));
+[v _CCP1CON `Vuc ~T0 @X0 0 e@16254 ]
+"39001
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 39001: extern volatile unsigned char CCPR1H __attribute__((address(0x3F7D)));
+[v _CCPR1H `Vuc ~T0 @X0 0 e@16253 ]
+"38981
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 38981: extern volatile unsigned char CCPR1L __attribute__((address(0x3F7C)));
+[v _CCPR1L `Vuc ~T0 @X0 0 e@16252 ]
+"36882
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 36882:     struct {
+[s S1639 :2 `uc 1 :2 `uc 1 :2 `uc 1 :2 `uc 1 ]
+[n S1639 . C1TSEL C2TSEL C3TSEL C4TSEL ]
+"36888
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 36888:     struct {
+[s S1640 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1640 . C1TSEL0 C1TSEL1 C2TSEL0 C2TSEL1 C3TSEL0 C3TSEL1 C4TSEL0 C4TSEL1 ]
+"36881
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 36881: typedef union {
+[u S1638 `S1639 1 `S1640 1 ]
+[n S1638 . . . ]
+"36899
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 36899: extern volatile CCPTMRS0bits_t CCPTMRS0bits __attribute__((address(0x3F5E)));
+[v _CCPTMRS0bits `VS1638 ~T0 @X0 0 e@16222 ]
+"39027
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 39027:     struct {
+[s S1746 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1746 . MODE FMT OUT . EN ]
+"39034
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 39034:     struct {
+[s S1747 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1747 . MODE0 MODE1 MODE2 MODE3 ]
+"39040
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 39040:     struct {
+[s S1748 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1748 . CCP1MODE CCP1FMT CCP1OUT . CCP1EN ]
+"39047
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 39047:     struct {
+[s S1749 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1749 . CCP1MODE0 CCP1MODE1 CCP1MODE2 CCP1MODE3 ]
+"39053
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 39053:     struct {
+[s S1750 :7 `uc 1 :1 `uc 1 ]
+[n S1750 . . P1M1 ]
+"39026
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 39026: typedef union {
+[u S1745 `S1746 1 `S1747 1 `S1748 1 `S1749 1 `S1750 1 ]
+[n S1745 . . . . . . ]
+"39058
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 39058: extern volatile CCP1CONbits_t CCP1CONbits __attribute__((address(0x3F7E)));
+[v _CCP1CONbits `VS1745 ~T0 @X0 0 e@16254 ]
 "250 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 250: __asm("STATUS_CSHAD equ 03880h");
 [; <" STATUS_CSHAD equ 03880h ;# ">
@@ -2319,290 +2189,98 @@ Version 4.0 HI-TECH Software Intermediate Code
 "46527
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 46527: __asm("TOSU equ 03FFFh");
 [; <" TOSU equ 03FFFh ;# ">
-"42 ./gcdata.h
-[; ;./gcdata.h: 42: volatile unsigned char gConPollPacket[8];
-[v _gConPollPacket `Vuc ~T0 @X0 -> 8 `i e ]
-"45
-[; ;./gcdata.h: 45: volatile unsigned char gConProbeResponse[3];
-[v _gConProbeResponse `Vuc ~T0 @X0 -> 3 `i e ]
-"47
-[; ;./gcdata.h: 47: volatile unsigned char gConOriginResponse[10];
-[v _gConOriginResponse `Vuc ~T0 @X0 -> 10 `i e ]
-"49
-[; ;./gcdata.h: 49: volatile unsigned char gConOutByte;
-[v _gConOutByte `Vuc ~T0 @X0 1 e ]
-"52
-[; ;./gcdata.h: 52: volatile unsigned char gConBitCounter;
-[v _gConBitCounter `Vuc ~T0 @X0 1 e ]
-"54
-[; ;./gcdata.h: 54: volatile unsigned char gConByteCount;
-[v _gConByteCount `Vuc ~T0 @X0 1 e ]
-"55
-[; ;./gcdata.h: 55: volatile unsigned char gConOutIdx;
-[v _gConOutIdx `Vuc ~T0 @X0 1 e ]
-"61
-[; ;./gcdata.h: 61: volatile unsigned char gInBitBuffer[60];
-[v _gInBitBuffer `Vuc ~T0 @X0 -> 60 `i e ]
-"62
-[; ;./gcdata.h: 62: volatile unsigned char gInBitBufferIdx = 0x0;
-[v _gInBitBufferIdx `Vuc ~T0 @X0 1 e ]
-[i _gInBitBufferIdx
--> -> 0 `i `uc
-]
-"66
-[; ;./gcdata.h: 66: volatile unsigned char gInBitCounter;
-[v _gInBitCounter `Vuc ~T0 @X0 1 e ]
-"70
-[; ;./gcdata.h: 70: volatile unsigned char gInPulseWidth;
-[v _gInPulseWidth `Vuc ~T0 @X0 1 e ]
-"73
-[; ;./gcdata.h: 73: volatile unsigned char gInPacket[4];
-[v _gInPacket `Vuc ~T0 @X0 -> 4 `i e ]
-"77
-[; ;./gcdata.h: 77: volatile unsigned char gInCommandByte;
-[v _gInCommandByte `Vuc ~T0 @X0 1 e ]
-"82
-[; ;./gcdata.h: 82: volatile unsigned char gInPacketIdx;
-[v _gInPacketIdx `Vuc ~T0 @X0 1 e ]
-"88
-[; ;./gcdata.h: 88: volatile unsigned char gInStatus;
-[v _gInStatus `Vuc ~T0 @X0 1 e ]
-"97
-[; ;./gcdata.h: 97: volatile unsigned char gLowThreshold;
-[v _gLowThreshold `Vuc ~T0 @X0 1 e ]
-"103
-[; ;./gcdata.h: 103: volatile unsigned char gCommandOriginMask;
-[v _gCommandOriginMask `Vuc ~T0 @X0 1 e ]
-"104
-[; ;./gcdata.h: 104: volatile unsigned char gCommandPollMask;
-[v _gCommandPollMask `Vuc ~T0 @X0 1 e ]
-"8 ./joysticks.h
-[; ;./joysticks.h: 8: uint16_t sx_low;
-[v _sx_low `ui ~T0 @X0 1 e ]
-"9
-[; ;./joysticks.h: 9: uint16_t sx_center;
-[v _sx_center `ui ~T0 @X0 1 e ]
-"10
-[; ;./joysticks.h: 10: uint16_t sx_high;
-[v _sx_high `ui ~T0 @X0 1 e ]
-"12
-[; ;./joysticks.h: 12: uint16_t sy_low;
-[v _sy_low `ui ~T0 @X0 1 e ]
-"13
-[; ;./joysticks.h: 13: uint16_t sy_center;
-[v _sy_center `ui ~T0 @X0 1 e ]
-"14
-[; ;./joysticks.h: 14: uint16_t sy_high;
-[v _sy_high `ui ~T0 @X0 1 e ]
-"16
-[; ;./joysticks.h: 16: uint16_t cx_low;
-[v _cx_low `ui ~T0 @X0 1 e ]
-"17
-[; ;./joysticks.h: 17: uint16_t cx_center;
-[v _cx_center `ui ~T0 @X0 1 e ]
-"18
-[; ;./joysticks.h: 18: uint16_t cx_high;
-[v _cx_high `ui ~T0 @X0 1 e ]
-"20
-[; ;./joysticks.h: 20: uint16_t cy_low;
-[v _cy_low `ui ~T0 @X0 1 e ]
-"21
-[; ;./joysticks.h: 21: uint16_t cy_center;
-[v _cy_center `ui ~T0 @X0 1 e ]
-"22
-[; ;./joysticks.h: 22: uint16_t cy_high;
-[v _cy_high `ui ~T0 @X0 1 e ]
-"24
-[; ;./joysticks.h: 24: uint16_t sx_highMultiplier;
-[v _sx_highMultiplier `ui ~T0 @X0 1 e ]
-"25
-[; ;./joysticks.h: 25: uint16_t sx_lowMultiplier;
-[v _sx_lowMultiplier `ui ~T0 @X0 1 e ]
-"27
-[; ;./joysticks.h: 27: uint16_t sy_highMultiplier;
-[v _sy_highMultiplier `ui ~T0 @X0 1 e ]
-"28
-[; ;./joysticks.h: 28: uint16_t sy_lowMultiplier;
-[v _sy_lowMultiplier `ui ~T0 @X0 1 e ]
-"30
-[; ;./joysticks.h: 30: uint16_t cx_highMultiplier;
-[v _cx_highMultiplier `ui ~T0 @X0 1 e ]
-"31
-[; ;./joysticks.h: 31: uint16_t cx_lowMultiplier;
-[v _cx_lowMultiplier `ui ~T0 @X0 1 e ]
-"33
-[; ;./joysticks.h: 33: uint16_t cy_highMultiplier;
-[v _cy_highMultiplier `ui ~T0 @X0 1 e ]
-"34
-[; ;./joysticks.h: 34: uint16_t cy_lowMultiplier;
-[v _cy_lowMultiplier `ui ~T0 @X0 1 e ]
-"36
-[; ;./joysticks.h: 36: uint16_t adc_read;
-[v _adc_read `ui ~T0 @X0 1 e ]
-"38
-[; ;./joysticks.h: 38: static uint16_t tmphigh;
-[v _tmphigh `ui ~T0 @X0 1 s ]
-"39
-[; ;./joysticks.h: 39: static uint16_t tmplow;
-[v _tmplow `ui ~T0 @X0 1 s ]
-"40
-[; ;./joysticks.h: 40: static uint16_t tmpcenter;
-[v _tmpcenter `ui ~T0 @X0 1 s ]
-"41
-[; ;./joysticks.h: 41: static uint16_t tmphighm;
-[v _tmphighm `ui ~T0 @X0 1 s ]
-"42
-[; ;./joysticks.h: 42: static uint16_t tmplowm;
-[v _tmplowm `ui ~T0 @X0 1 s ]
-"43
-[; ;./joysticks.h: 43: static uint8_t stickIdx;
-[v _stickIdx `uc ~T0 @X0 1 s ]
-"44
-[; ;./joysticks.h: 44: static _Bool initiatedRead;
-[v _initiatedRead `a ~T0 @X0 1 s ]
-"45
-[; ;./joysticks.h: 45: static _Bool clearRead;
-[v _clearRead `a ~T0 @X0 1 s ]
-"64 main.c
-[; ;main.c: 64: _Bool stickcalibration = 0;
-[v _stickcalibration `a ~T0 @X0 1 e ]
-[i _stickcalibration
--> -> 0 `i `a
-]
-[v $root$_main `(v ~T0 @X0 0 e ]
-"66
-[; ;main.c: 66: void main(void)
-[v _main `(v ~T0 @X0 1 ef ]
-"67
-[; ;main.c: 67: {
+"64 mcc_generated_files/pwm1.c
+[; ;mcc_generated_files/pwm1.c: 64: void PWM1_Initialize(void)
+[v _PWM1_Initialize `(v ~T0 @X0 1 ef ]
+"65
+[; ;mcc_generated_files/pwm1.c: 65: {
 {
-[e :U _main ]
+[e :U _PWM1_Initialize ]
 [f ]
-"68
-[; ;main.c: 68:     __asm("MOVLW _gInPacket");
-[; <" MOVLW _gInPacket ;# ">
 "69
-[; ;main.c: 69:     __asm("MOVFF WREG, _gInPacketIdx");
-[; <" MOVFF WREG, _gInPacketIdx ;# ">
-"71
-[; ;main.c: 71:     SYSTEM_Initialize();
-[e ( _SYSTEM_Initialize ..  ]
-"74
-[; ;main.c: 74:     loadsettings();
-[e ( _loadsettings ..  ]
-"77
-[; ;main.c: 77:     ADPCH = 0x00;
-[e = _ADPCH -> -> 0 `i `uc ]
-"79
-[; ;main.c: 79:     ADCON0bits.ADON = 1;
-[e = . . _ADCON0bits 1 6 -> -> 1 `i `uc ]
+[; ;mcc_generated_files/pwm1.c: 69:  CCP1CON = 0x9C;
+[e = _CCP1CON -> -> 156 `i `uc ]
+"72
+[; ;mcc_generated_files/pwm1.c: 72:  CCPR1H = 0xF9;
+[e = _CCPR1H -> -> 249 `i `uc ]
+"75
+[; ;mcc_generated_files/pwm1.c: 75:  CCPR1L = 0xC0;
+[e = _CCPR1L -> -> 192 `i `uc ]
+"78
+[; ;mcc_generated_files/pwm1.c: 78:  CCPTMRS0bits.C1TSEL = 0x1;
+[e = . . _CCPTMRS0bits 0 0 -> -> 1 `i `uc ]
+"80
+[; ;mcc_generated_files/pwm1.c: 80: }
+[e :UE 2143 ]
+}
 "82
-[; ;main.c: 82:     if (!PORTAbits.RA6 && !PORTAbits.RA7 && !PORTAbits.RA4)
-[e $ ! && && ! != -> . . _PORTAbits 0 6 `i -> 0 `i ! != -> . . _PORTAbits 0 7 `i -> 0 `i ! != -> . . _PORTAbits 0 4 `i -> 0 `i 2146  ]
+[; ;mcc_generated_files/pwm1.c: 82: void PWM1_LoadDutyValue(uint16_t dutyValue)
+[v _PWM1_LoadDutyValue `(v ~T0 @X0 1 ef1`ui ]
 "83
-[; ;main.c: 83:     {
+[; ;mcc_generated_files/pwm1.c: 83: {
 {
+[e :U _PWM1_LoadDutyValue ]
+"82
+[; ;mcc_generated_files/pwm1.c: 82: void PWM1_LoadDutyValue(uint16_t dutyValue)
+[v _dutyValue `ui ~T0 @X0 1 r1 ]
+"83
+[; ;mcc_generated_files/pwm1.c: 83: {
+[f ]
 "84
-[; ;main.c: 84:         stickcalibration = 1;
-[e = _stickcalibration -> -> 1 `i `a ]
-"86
-[; ;main.c: 86:         zerosticks();
-[e ( _zerosticks ..  ]
+[; ;mcc_generated_files/pwm1.c: 84:     dutyValue &= 0x03FF;
+[e =& _dutyValue -> -> 1023 `i `ui ]
 "87
-[; ;main.c: 87:     }
+[; ;mcc_generated_files/pwm1.c: 87:     if(CCP1CONbits.FMT)
+[e $ ! != -> . . _CCP1CONbits 0 1 `i -> 0 `i 2145  ]
+"88
+[; ;mcc_generated_files/pwm1.c: 88:     {
+{
+"89
+[; ;mcc_generated_files/pwm1.c: 89:         dutyValue <<= 6;
+[e =<< _dutyValue -> -> 6 `i `ui ]
+"90
+[; ;mcc_generated_files/pwm1.c: 90:         CCPR1H = dutyValue >> 8;
+[e = _CCPR1H -> >> _dutyValue -> 8 `i `uc ]
+"91
+[; ;mcc_generated_files/pwm1.c: 91:         CCPR1L = dutyValue;
+[e = _CCPR1L -> _dutyValue `uc ]
+"92
+[; ;mcc_generated_files/pwm1.c: 92:     }
+}
+[e $U 2146  ]
+"93
+[; ;mcc_generated_files/pwm1.c: 93:     else
+[e :U 2145 ]
+"94
+[; ;mcc_generated_files/pwm1.c: 94:     {
+{
+"95
+[; ;mcc_generated_files/pwm1.c: 95:         CCPR1H = dutyValue >> 8;
+[e = _CCPR1H -> >> _dutyValue -> 8 `i `uc ]
+"96
+[; ;mcc_generated_files/pwm1.c: 96:         CCPR1L = dutyValue;
+[e = _CCPR1L -> _dutyValue `uc ]
+"97
+[; ;mcc_generated_files/pwm1.c: 97:     }
 }
 [e :U 2146 ]
-"89
-[; ;main.c: 89:     while (stickcalibration)
-[e $U 2147  ]
-[e :U 2148 ]
-"90
-[; ;main.c: 90:     {
-{
-"91
-[; ;main.c: 91:         calibratesticks();
-[e ( _calibratesticks ..  ]
-"94
-[; ;main.c: 94:         if (!PORTCbits.RC1)
-[e $ ! ! != -> . . _PORTCbits 0 1 `i -> 0 `i 2150  ]
-"95
-[; ;main.c: 95:         {
-{
-"96
-[; ;main.c: 96:             setstickmultipliers();
-[e ( _setstickmultipliers ..  ]
-"97
-[; ;main.c: 97:             savesettings();
-[e ( _savesettings ..  ]
 "98
-[; ;main.c: 98:             stickcalibration = 0;
-[e = _stickcalibration -> -> 0 `i `a ]
-"99
-[; ;main.c: 99:             break;
-[e $U 2149  ]
+[; ;mcc_generated_files/pwm1.c: 98: }
+[e :UE 2144 ]
+}
 "100
-[; ;main.c: 100:         }
-}
-[e :U 2150 ]
+[; ;mcc_generated_files/pwm1.c: 100: _Bool PWM1_OutputStatusGet(void)
+[v _PWM1_OutputStatusGet `(a ~T0 @X0 1 ef ]
 "101
-[; ;main.c: 101:     }
-}
-[e :U 2147 ]
-"89
-[; ;main.c: 89:     while (stickcalibration)
-[e $ != -> _stickcalibration `i -> 0 `i 2148  ]
-[e :U 2149 ]
+[; ;mcc_generated_files/pwm1.c: 101: {
+{
+[e :U _PWM1_OutputStatusGet ]
+[f ]
+"103
+[; ;mcc_generated_files/pwm1.c: 103:     return(CCP1CONbits.OUT);
+[e ) -> . . _CCP1CONbits 0 2 `a ]
+[e $UE 2147  ]
 "104
-[; ;main.c: 104:     INTCON0bits.GIEH = 1;
-[e = . . _INTCON0bits 1 1 -> -> 1 `i `uc ]
-"106
-[; ;main.c: 106:     while (1)
-[e :U 2152 ]
-"107
-[; ;main.c: 107:     {
-{
-"109
-[; ;main.c: 109:         commandreader();
-[e ( _commandreader ..  ]
-"111
-[; ;main.c: 111:         bytepush();
-[e ( _bytepush ..  ]
-"113
-[; ;main.c: 113:         bytecleanup();
-[e ( _bytecleanup ..  ]
-"116
-[; ;main.c: 116:         if (gInStatus & (1 << 3))
-[e $ ! != & -> _gInStatus `i << -> 1 `i -> 3 `i -> 0 `i 2154  ]
-"117
-[; ;main.c: 117:         {
-{
-"118
-[; ;main.c: 118:             scansticks();
-[e ( _scansticks ..  ]
-"119
-[; ;main.c: 119:         }
-}
-[e :U 2154 ]
-"121
-[; ;main.c: 121:         if (gInStatus & (1 << 2))
-[e $ ! != & -> _gInStatus `i << -> 1 `i -> 2 `i -> 0 `i 2155  ]
-"122
-[; ;main.c: 122:         {
-{
-"123
-[; ;main.c: 123:             checkbuttons();
-[e ( _checkbuttons ..  ]
-"124
-[; ;main.c: 124:         }
-}
-[e :U 2155 ]
-"125
-[; ;main.c: 125:     }
-}
-[e :U 2151 ]
-[e $U 2152  ]
-[e :U 2153 ]
-"126
-[; ;main.c: 126: }
-[e :UE 2145 ]
+[; ;mcc_generated_files/pwm1.c: 104: }
+[e :UE 2147 ]
 }

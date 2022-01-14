@@ -2319,8 +2319,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;settings.c: 18:     SettingData.configKey = 0x4EF4;
 [e = . _SettingData 1 -> -> 20212 `i `ui ]
 "20
-[; ;settings.c: 20:     SettingData.sx_low = 0x0008;
-[e = . _SettingData 2 -> -> 8 `i `ui ]
+[; ;settings.c: 20:     SettingData.sx_low = 140U;
+[e = . _SettingData 2 -> 140 `ui ]
 "21
 [; ;settings.c: 21:     SettingData.sx_center = 254U;
 [e = . _SettingData 3 -> 254 `ui ]

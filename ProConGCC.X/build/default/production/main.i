@@ -11,62 +11,6 @@
 
 
 
-
-#pragma config FEXTOSC = OFF
-#pragma config RSTOSC = HFINTOSC_64MHZ
-
-
-#pragma config CLKOUTEN = OFF
-#pragma config PR1WAY = ON
-#pragma config CSWEN = ON
-#pragma config FCMEN = ON
-
-
-#pragma config MCLRE = EXTMCLR
-#pragma config PWRTS = PWRT_OFF
-#pragma config MVECEN = OFF
-#pragma config IVT1WAY = ON
-#pragma config LPBOREN = OFF
-#pragma config BOREN = SBORDIS
-
-
-#pragma config BORV = VBOR_2P45
-#pragma config ZCD = OFF
-#pragma config PPS1WAY = ON
-#pragma config STVREN = ON
-#pragma config DEBUG = ON
-#pragma config XINST = OFF
-
-
-#pragma config WDTCPS = WDTCPS_31
-#pragma config WDTE = OFF
-
-
-#pragma config WDTCWS = WDTCWS_7
-#pragma config WDTCCS = SC
-
-
-#pragma config BBSIZE = BBSIZE_512
-#pragma config BBEN = OFF
-#pragma config SAFEN = OFF
-#pragma config WRTAPP = OFF
-
-
-#pragma config WRTB = OFF
-#pragma config WRTC = OFF
-#pragma config WRTD = OFF
-#pragma config WRTSAF = OFF
-#pragma config LVP = ON
-
-
-#pragma config CP = OFF
-
-
-
-
-
-
-
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -25804,7 +25748,7 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 2 3
-# 60 "main.c" 2
+# 5 "main.c" 2
 
 # 1 "./main.h" 1
 # 35 "./main.h"
@@ -26232,35 +26176,38 @@ volatile unsigned char gCommandPollMask;
 
 # 1 "./mcc_generated_files/mcc.h" 1
 # 50 "./mcc_generated_files/mcc.h"
-# 1 "./mcc_generated_files/../main.h" 1
+# 1 "./mcc_generated_files/..\\main.h" 1
 # 50 "./mcc_generated_files/mcc.h" 2
 
-# 1 "./mcc_generated_files/pin_manager.h" 1
-# 478 "./mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_Initialize (void);
-# 490 "./mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_IOC(void);
-# 503 "./mcc_generated_files/pin_manager.h"
-void IOCBF2_ISR(void);
-# 526 "./mcc_generated_files/pin_manager.h"
-void IOCBF2_SetInterruptHandler(void (* InterruptHandler)(void));
-# 550 "./mcc_generated_files/pin_manager.h"
-extern void (*IOCBF2_InterruptHandler)(void);
-# 574 "./mcc_generated_files/pin_manager.h"
-void IOCBF2_DefaultInterruptHandler(void);
+# 1 "./mcc_generated_files/device_config.h" 1
 # 51 "./mcc_generated_files/mcc.h" 2
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdint.h" 1 3
+# 1 "./mcc_generated_files/pin_manager.h" 1
+# 510 "./mcc_generated_files/pin_manager.h"
+void PIN_MANAGER_Initialize (void);
+# 522 "./mcc_generated_files/pin_manager.h"
+void PIN_MANAGER_IOC(void);
+# 535 "./mcc_generated_files/pin_manager.h"
+void IOCBF2_ISR(void);
+# 558 "./mcc_generated_files/pin_manager.h"
+void IOCBF2_SetInterruptHandler(void (* InterruptHandler)(void));
+# 582 "./mcc_generated_files/pin_manager.h"
+extern void (*IOCBF2_InterruptHandler)(void);
+# 606 "./mcc_generated_files/pin_manager.h"
+void IOCBF2_DefaultInterruptHandler(void);
 # 52 "./mcc_generated_files/mcc.h" 2
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdbool.h" 1 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdint.h" 1 3
 # 53 "./mcc_generated_files/mcc.h" 2
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdbool.h" 1 3
+# 54 "./mcc_generated_files/mcc.h" 2
 
 
 # 1 "./mcc_generated_files/interrupt_manager.h" 1
 # 109 "./mcc_generated_files/interrupt_manager.h"
 void INTERRUPT_Initialize (void);
-# 55 "./mcc_generated_files/mcc.h" 2
+# 56 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/adcc.h" 1
 # 55 "./mcc_generated_files/adcc.h"
@@ -26338,32 +26285,22 @@ _Bool ADCC_HasErrorCrossedUpperThreshold(void);
 _Bool ADCC_HasErrorCrossedLowerThreshold(void);
 # 831 "./mcc_generated_files/adcc.h"
 uint8_t ADCC_GetConversionStageStatus(void);
-# 56 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/memory.h" 1
-# 54 "./mcc_generated_files/memory.h"
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdbool.h" 1 3
-# 54 "./mcc_generated_files/memory.h" 2
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdint.h" 1 3
-# 55 "./mcc_generated_files/memory.h" 2
-# 99 "./mcc_generated_files/memory.h"
-uint8_t FLASH_ReadByte(uint32_t flashAddr);
-# 125 "./mcc_generated_files/memory.h"
-uint16_t FLASH_ReadWord(uint32_t flashAddr);
-# 157 "./mcc_generated_files/memory.h"
-void FLASH_WriteByte(uint32_t flashAddr, uint8_t *flashRdBufPtr, uint8_t byte);
-# 193 "./mcc_generated_files/memory.h"
-int8_t FLASH_WriteBlock(uint32_t writeAddr, uint8_t *flashWrBufPtr);
-# 218 "./mcc_generated_files/memory.h"
-void FLASH_EraseBlock(uint32_t baseAddr);
-# 249 "./mcc_generated_files/memory.h"
-void DATAEE_WriteByte(uint8_t bAdd, uint8_t bData);
-# 275 "./mcc_generated_files/memory.h"
-uint8_t DATAEE_ReadByte(uint8_t bAdd);
-
-void MEMORY_Tasks(void);
 # 57 "./mcc_generated_files/mcc.h" 2
+
+# 1 "./mcc_generated_files/pwm1.h" 1
+# 55 "./mcc_generated_files/pwm1.h"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdint.h" 1 3
+# 55 "./mcc_generated_files/pwm1.h" 2
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdbool.h" 1 3
+# 56 "./mcc_generated_files/pwm1.h" 2
+# 97 "./mcc_generated_files/pwm1.h"
+void PWM1_Initialize(void);
+# 124 "./mcc_generated_files/pwm1.h"
+void PWM1_LoadDutyValue(uint16_t dutyValue);
+# 156 "./mcc_generated_files/pwm1.h"
+_Bool PWM1_OutputStatusGet(void);
+# 58 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/smt1.h" 1
 # 54 "./mcc_generated_files/smt1.h"
@@ -26413,14 +26350,286 @@ uint32_t SMT1_GetTimerValue(void);
 void SMT1_PR_ACQ_ISR(void);
 # 574 "./mcc_generated_files/smt1.h"
 void SMT1_PW_ACQ_ISR(void);
-# 58 "./mcc_generated_files/mcc.h" 2
-# 73 "./mcc_generated_files/mcc.h"
+# 59 "./mcc_generated_files/mcc.h" 2
+
+# 1 "./mcc_generated_files/memory.h" 1
+# 54 "./mcc_generated_files/memory.h"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdbool.h" 1 3
+# 54 "./mcc_generated_files/memory.h" 2
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdint.h" 1 3
+# 55 "./mcc_generated_files/memory.h" 2
+# 99 "./mcc_generated_files/memory.h"
+uint8_t FLASH_ReadByte(uint32_t flashAddr);
+# 125 "./mcc_generated_files/memory.h"
+uint16_t FLASH_ReadWord(uint32_t flashAddr);
+# 157 "./mcc_generated_files/memory.h"
+void FLASH_WriteByte(uint32_t flashAddr, uint8_t *flashRdBufPtr, uint8_t byte);
+# 193 "./mcc_generated_files/memory.h"
+int8_t FLASH_WriteBlock(uint32_t writeAddr, uint8_t *flashWrBufPtr);
+# 218 "./mcc_generated_files/memory.h"
+void FLASH_EraseBlock(uint32_t baseAddr);
+# 249 "./mcc_generated_files/memory.h"
+void DATAEE_WriteByte(uint8_t bAdd, uint8_t bData);
+# 275 "./mcc_generated_files/memory.h"
+uint8_t DATAEE_ReadByte(uint8_t bAdd);
+
+void MEMORY_Tasks(void);
+# 60 "./mcc_generated_files/mcc.h" 2
+
+# 1 "./mcc_generated_files/tmr2.h" 1
+# 54 "./mcc_generated_files/tmr2.h"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdint.h" 1 3
+# 54 "./mcc_generated_files/tmr2.h" 2
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdbool.h" 1 3
+# 55 "./mcc_generated_files/tmr2.h" 2
+# 79 "./mcc_generated_files/tmr2.h"
+typedef enum
+{
+# 89 "./mcc_generated_files/tmr2.h"
+   TMR2_ROP_STARTS_TMRON,
+
+
+
+
+   TMR2_ROP_STARTS_TMRON_ERSHIGH,
+
+
+
+
+   TMR2_ROP_STARTS_TMRON_ERSLOW,
+
+
+
+
+   TMR2_ROP_RESETS_ERSBOTHEDGE,
+
+
+
+
+   TMR2_ROP_RESETS_ERSRISINGEDGE,
+
+
+
+
+   TMR2_ROP_RESETS_ERSFALLINGEDGE,
+
+
+
+
+   TMR2_ROP_RESETS_ERSLOW,
+
+
+
+
+   TMR2_ROP_RESETS_ERSHIGH,
+# 135 "./mcc_generated_files/tmr2.h"
+   TMR2_OS_STARTS_TMRON,
+
+
+
+
+   TMR2_OS_STARTS_ERSRISINGEDGE ,
+
+
+
+
+   TMR2_OS_STARTS_ERSFALLINGEDGE ,
+
+
+
+
+   TMR2_OS_STARTS_ERSBOTHEDGE,
+
+
+
+
+
+   TMR2_OS_STARTS_ERSFIRSTRISINGEDGE,
+
+
+
+
+
+   TMR2_OS_STARTS_ERSFIRSTFALLINGEDGE,
+
+
+
+
+
+   TMR2_OS_STARTS_ERSRISINGEDGEDETECT,
+
+
+
+
+   TMR2_OS_STARTS_ERSFALLINGEDGEDETECT,
+
+
+
+
+   TMR2_OS_STARTS_TMRON_ERSHIGH = 0x16,
+
+
+
+
+   TMR2_OS_STARTS_TMRON_ERSLOW = 0x17,
+# 192 "./mcc_generated_files/tmr2.h"
+   TMR2_MS_STARTS_TMRON_ERSRISINGEDGEDETECT = 0x11,
+
+
+
+
+   TMR2_MS_STARTS_TMRON_ERSFALLINGEDGEDETECT = 0x12,
+
+
+
+
+
+   TMR2_MS_STARTS_TMRON_ERSBOTHEDGE = 0x13
+
+} TMR2_HLT_MODE;
+# 220 "./mcc_generated_files/tmr2.h"
+typedef enum
+{
+
+
+    TMR2_T2INPPS,
+
+
+
+    TMR2_RESERVED,
+
+
+
+    TMR2_T4POSTSCALED,
+
+
+
+    TMR2_T6POSTSCALED,
+
+
+
+    TMR2_CCP1_OUT,
+
+
+
+    TMR2_CCP2_OUT,
+
+
+
+    TMR2_CCP3_OUT,
+
+
+
+    TMR2_CCP4_OUT,
+
+
+
+    TMR2_PWM5_OUT,
+
+
+
+    TMR2_PWM6_OUT,
+
+
+
+    TMR2_PWM7_OUT,
+
+
+
+    TMR2_PWM8_OUT,
+
+
+
+    TMR2_RESERVED_2,
+
+
+
+    TMR2_RESERVED_3,
+
+
+
+    TMR2_C1_OUT_SYNC,
+
+
+
+    TMR2_C2_OUT_SYNC,
+
+
+
+    TMR2_ZCD_OUTPUT,
+
+
+
+    TMR2_CLC1_OUT,
+
+
+
+    TMR2_CLC2_OUT,
+
+
+
+    TMR2_CLC3_OUT,
+
+
+
+    TMR2_CLC4_OUT,
+
+
+
+    TMR2_UART1_RX_EDGE,
+
+
+
+    TMR2_UART1_TX_EDGE,
+
+
+
+    TMR2_UART2_RX_EDGE,
+
+
+
+    TMR2_UART2_TX_EDGE
+
+
+} TMR2_HLT_EXT_RESET_SOURCE;
+# 365 "./mcc_generated_files/tmr2.h"
+void TMR2_Initialize(void);
+# 401 "./mcc_generated_files/tmr2.h"
+void TMR2_ModeSet(TMR2_HLT_MODE mode);
+# 436 "./mcc_generated_files/tmr2.h"
+void TMR2_ExtResetSourceSet(TMR2_HLT_EXT_RESET_SOURCE reset);
+# 465 "./mcc_generated_files/tmr2.h"
+void TMR2_Start(void);
+# 494 "./mcc_generated_files/tmr2.h"
+void TMR2_StartTimer(void);
+# 526 "./mcc_generated_files/tmr2.h"
+void TMR2_Stop(void);
+# 558 "./mcc_generated_files/tmr2.h"
+void TMR2_StopTimer(void);
+# 593 "./mcc_generated_files/tmr2.h"
+uint8_t TMR2_Counter8BitGet(void);
+# 628 "./mcc_generated_files/tmr2.h"
+uint8_t TMR2_ReadTimer(void);
+# 667 "./mcc_generated_files/tmr2.h"
+void TMR2_Counter8BitSet(uint8_t timerVal);
+# 706 "./mcc_generated_files/tmr2.h"
+void TMR2_WriteTimer(uint8_t timerVal);
+# 758 "./mcc_generated_files/tmr2.h"
+void TMR2_Period8BitSet(uint8_t periodVal);
+# 810 "./mcc_generated_files/tmr2.h"
+void TMR2_LoadPeriodRegister(uint8_t periodVal);
+# 848 "./mcc_generated_files/tmr2.h"
+_Bool TMR2_HasOverflowOccured(void);
+# 61 "./mcc_generated_files/mcc.h" 2
+# 76 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
-# 86 "./mcc_generated_files/mcc.h"
+# 89 "./mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
-# 99 "./mcc_generated_files/mcc.h"
+# 102 "./mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
-# 42 "./mcc_generated_files/../main.h" 2
+# 42 "./mcc_generated_files/..\\main.h" 2
 
 # 1 "./settings.h" 1
 
@@ -26430,7 +26639,7 @@ void PMD_Initialize(void);
 
 
 
-# 1 "./mcc_generated_files/../main.h" 1
+# 1 "./mcc_generated_files/..\\main.h" 1
 # 8 "./settings.h" 2
 
 
@@ -26479,7 +26688,7 @@ void loadsettings(void);
 void savesettings(void);
 
 extern Settings SettingData;
-# 43 "./mcc_generated_files/../main.h" 2
+# 43 "./mcc_generated_files/..\\main.h" 2
 
 # 1 "./joysticks.h" 1
 
@@ -26535,12 +26744,12 @@ void calibratesticks(void);
 unsigned char slinjim(uint16_t dividend, uint16_t multiplier);
 
 uint16_t getmultiplier(uint16_t high, uint16_t low);
-# 44 "./mcc_generated_files/../main.h" 2
+# 44 "./mcc_generated_files/..\\main.h" 2
 
 # 1 "./button.h" 1
 # 23 "./button.h"
 void checkbuttons(void);
-# 45 "./mcc_generated_files/../main.h" 2
+# 45 "./mcc_generated_files/..\\main.h" 2
 
 
 extern unsigned char bytepush(void);
@@ -26548,7 +26757,7 @@ extern unsigned char bitgrabber(void);
 extern unsigned char bytecleanup(void);
 extern unsigned char commandreader(void);
 extern unsigned char synccheck(void);
-# 61 "main.c" 2
+# 6 "main.c" 2
 
 
 

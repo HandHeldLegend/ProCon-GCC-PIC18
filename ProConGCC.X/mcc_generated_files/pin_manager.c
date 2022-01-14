@@ -67,7 +67,7 @@ void PIN_MANAGER_Initialize(void)
     TRISx registers
     */
     TRISA = 0xFF;
-    TRISB = 0xFF;
+    TRISB = 0xE7;
     TRISC = 0xFF;
 
     /**
@@ -130,7 +130,8 @@ void PIN_MANAGER_Initialize(void)
 
     // register default IOC callback functions at runtime; use these methods to register a custom function
     IOCBF2_SetInterruptHandler(IOCBF2_DefaultInterruptHandler);
-     
+    
+    RB3PPS = 0x09;   //RB3->CCP1:CCP1;    
     SMT1SIGPPS = 0x0A;   //RB2->SMT1:SMT1SIG;    
 }
   

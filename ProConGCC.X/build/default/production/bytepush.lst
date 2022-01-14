@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.32 build 20210201212658 
-                                                                                                           Thu Jan 13 14:00:09 2022
+                                                                                                           Thu Jan 13 17:35:17 2022
 
 
      1                           	processor	18F25K42
@@ -377,13 +377,13 @@ Microchip MPLAB XC8 Assembler V2.32 build 20210201212658
 
 
 Microchip Technology PIC18 Macro Assembler V2.32 build 20210201212658 
-Symbol Table                                                                                               Thu Jan 13 14:00:09 2022
+Symbol Table                                                                                               Thu Jan 13 17:35:17 2022
 
                           FSR0 003FE9                           INDF0 003FEF                           PORTB 003FCB  
                          TRISB 003FC3                     _gConOutIdx 002D                         isa$std 000001  
                        newByte 0582                 _gConBitCounter 004A                    _gConOutByte 002F  
                    endLowWrite 074E                     getNextByte 068C                        writeBit 0592  
                     _gInStatus 0028                    stopBitWrite 0694                     lowBitWrite 0610  
-                _gConByteCount 002E                      getNextBit 0686                    _bytecleanup 100A  
+                _gConByteCount 002E                      getNextBit 0686                    _bytecleanup 1010  
                      _bytepush 057C                       isa$xinst 000000                    endHighWrite 06F2  
                   highBitWrite 059A  

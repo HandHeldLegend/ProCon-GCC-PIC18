@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.32 build 20210201212658 
-                                                                                                           Thu Jan 13 14:00:10 2022
+                                                                                                           Thu Jan 13 17:35:17 2022
 
 
      1                           	processor	18F25K42
@@ -44,7 +44,7 @@ Microchip MPLAB XC8 Assembler V2.32 build 20210201212658
     38                           ; External function
     39                           
     40                           	psect	barfunc
-    41  000E58                     _commandreader:
+    41  000E5E                     _commandreader:
     42                           	callstack 0
     43                           
     44                           ; This function should run in the main loop.
@@ -52,8 +52,8 @@ Microchip MPLAB XC8 Assembler V2.32 build 20210201212658
     46                           ; we can take action to quickly interpret the message
     47                           ; and send out the corresponding packet.
     48                           ; First let's check if the stop bit write flag is set
-    49  000E58  AE28               	btfss	_gInStatus,7,c	; Byte 7 in the status is the stop bit flag
-    50  000E5A  0012               	return		; Return if there's no command to read
+    49  000E5E  AE28               	btfss	_gInStatus,7,c	; Byte 7 in the status is the stop bit flag
+    50  000E60  0012               	return		; Return if there's no command to read
     51                           
     52                           ; WE WILL CLEAN UP LATER, JUST GET ON TO SENDING OUT THE RIGHT PACKS ASAP
     53                           ; Since the most high priority (performance-wise) command will be polling
@@ -61,65 +61,65 @@ Microchip MPLAB XC8 Assembler V2.32 build 20210201212658
     55                           ; first and foremost. We want as little delay as possible in polling as we have about
     56                           ; 600 MICROSECONDS to grab our button and stick updates before the next poll.
     57                           ; Less delay between poll command and our response means... more time for button updates =)
-    58  000E5C  013F               	movlb	63	; Switch to bank 0x3F
-    59  000E5E  9FD2               	bcf	210,7,b	; Stop global interrupts
-    60  000E60  9F1F               	bcf	31,7,b	; Stop SMT
+    58  000E62  013F               	movlb	63	; Switch to bank 0x3F
+    59  000E64  9FD2               	bcf	210,7,b	; Stop global interrupts
+    60  000E66  9F1F               	bcf	31,7,b	; Stop SMT
     61                           
     62                           ; Check to see if we have a poll command coming in
-    63  000E62  0E60               	movlw	_gInPacket	; Get the address for our in packet
-    64  000E64  006F FFA3 FFE9     	movff	wreg,fsr0l	; Copy our new pointer into FSR0. Access with INDF0
-    65  000E6A  50EF               	movf	indf0,w,c
-    66  000E6C  1846               	xorwf	_gCommandPollMask,w,c	; Perform exclusive OR on the command byte against our mask
+    63  000E68  0E60               	movlw	_gInPacket	; Get the address for our in packet
+    64  000E6A  006F FFA3 FFE9     	movff	wreg,fsr0l	; Copy our new pointer into FSR0. Access with INDF0
+    65  000E70  50EF               	movf	indf0,w,c
+    66  000E72  1846               	xorwf	_gCommandPollMask,w,c	; Perform exclusive OR on the command byte against our mask
     67                           
     68                           ; If the mask is a match, the result will be 1111 1111. Incrementing this will produce 0.
     69                           ; Anything that ISN'T a match will fail the check zero/skip command.
-    70  000E6E  3CE8               	incfsz	wreg,w,c	; Increment and skip if it's zero.
-    71  000E70  EF3F  F007         	goto	ORIGINPARSE	; We did not match, so now we check if it's an origin command.
+    70  000E74  3CE8               	incfsz	wreg,w,c	; Increment and skip if it's zero.
+    71  000E76  EF42  F007         	goto	ORIGINPARSE	; We did not match, so now we check if it's an origin command.
     72                           
     73                           ; If we made it to here, we are working with a poll command.
     74                           ; Lets set up the outgoing byte as a pointer for the bytepush command.
-    75  000E74  0E30               	movlw	_gConPollPacket	; Get the pointer for the poll packet
-    76  000E76  6E2D               	movwf	_gConOutIdx,c	; Move the pointer into the outgoing index.
-    77  000E78  862E               	bsf	_gConByteCount,3,c	; Set our outgoing Byte count to 8 (bit set 3) 0000 1000
-    78  000E7A  8C28               	bsf	_gInStatus,6,c	; Mark that we have a command interpreted
-    79  000E7C  0012               	return	
-    80  000E7E                     ORIGINPARSE:
-    81  000E7E  50EF               	movf	indf0,w,c	; Copy our command byte data into WREG.
-    82  000E80  1847               	xorwf	_gCommandOriginMask,w,c	; Perform exclusive OR on the command byte against our mask
+    75  000E7A  0E30               	movlw	_gConPollPacket	; Get the pointer for the poll packet
+    76  000E7C  6E2D               	movwf	_gConOutIdx,c	; Move the pointer into the outgoing index.
+    77  000E7E  862E               	bsf	_gConByteCount,3,c	; Set our outgoing Byte count to 8 (bit set 3) 0000 1000
+    78  000E80  8C28               	bsf	_gInStatus,6,c	; Mark that we have a command interpreted
+    79  000E82  0012               	return	
+    80  000E84                     ORIGINPARSE:
+    81  000E84  50EF               	movf	indf0,w,c	; Copy our command byte data into WREG.
+    82  000E86  1847               	xorwf	_gCommandOriginMask,w,c	; Perform exclusive OR on the command byte against our mask
     83                           
     84                           ; If the mask is a match, the result will be 1111 1111. Incrementing this will produce 0.
     85                           ; Anything that ISN'T a match will fail the check zero/skip command.
-    86  000E82  3CE8               	incfsz	wreg,w,c	; Increment and skip if it's zero.
-    87  000E84  EF4A  F007         	goto	PROBEPARSE	; We did not match, so now we check if it's a probe command.
+    86  000E88  3CE8               	incfsz	wreg,w,c	; Increment and skip if it's zero.
+    87  000E8A  EF4D  F007         	goto	PROBEPARSE	; We did not match, so now we check if it's a probe command.
     88                           
     89                           ; If we made it to here, we are working with a origin command.
     90                           ; Lets set up the outgoing byte as a pointer for the bytepush command.
-    91  000E88  0ED7               	movlw	_gConOriginResponse	; Get the pointer for the poll packet
-    92  000E8A  6E2D               	movwf	_gConOutIdx,c	; Move the pointer into the outgoing index.
-    93  000E8C  862E               	bsf	_gConByteCount,3,c	; Set our outgoing Byte count to 8 (bit set 3) 0000 1000
-    94  000E8E  822E               	bsf	_gConByteCount,1,c	; Set the bit 1 so we have 10 (8+2) 0000 1010
-    95  000E90  8C28               	bsf	_gInStatus,6,c	; Mark that we have a command interpreted
-    96  000E92  0012               	return	
-    97  000E94                     PROBEPARSE:
+    91  000E8E  0ED7               	movlw	_gConOriginResponse	; Get the pointer for the poll packet
+    92  000E90  6E2D               	movwf	_gConOutIdx,c	; Move the pointer into the outgoing index.
+    93  000E92  862E               	bsf	_gConByteCount,3,c	; Set our outgoing Byte count to 8 (bit set 3) 0000 1000
+    94  000E94  822E               	bsf	_gConByteCount,1,c	; Set the bit 1 so we have 10 (8+2) 0000 1010
+    95  000E96  8C28               	bsf	_gInStatus,6,c	; Mark that we have a command interpreted
+    96  000E98  0012               	return	
+    97  000E9A                     PROBEPARSE:
     98                           
     99                           ; First we can check if the command is 0x0 (0000 0000) meaning it's being probed.
-   100  000E94  50EF               	movf	indf0,w,c
-   101  000E96  66E8               	tstfsz	wreg,c	; If it's zero, skip checking any further
-   102  000E98  EF55  F007         	goto	NOCOMMAND	; No command match
+   100  000E9A  50EF               	movf	indf0,w,c
+   101  000E9C  66E8               	tstfsz	wreg,c	; If it's zero, skip checking any further
+   102  000E9E  EF58  F007         	goto	NOCOMMAND	; No command match
    103                           
    104                           ; We need to make sure our byte counter for outgoing is set
-   105  000E9C  802E               	bsf	_gConByteCount,0,c	; Set our outgoing Byte count to 1 (bit set 0) 0000 0001
-   106  000E9E  822E               	bsf	_gConByteCount,1,c	; Set the bit 1 so we have 3 (1+2) 0000 0011
-   107  000EA0  0EE1               	movlw	_gConProbeResponse	; Place the address for our first byte into WREG
-   108  000EA2  6E2D               	movwf	_gConOutIdx,c	;
+   105  000EA2  802E               	bsf	_gConByteCount,0,c	; Set our outgoing Byte count to 1 (bit set 0) 0000 0001
+   106  000EA4  822E               	bsf	_gConByteCount,1,c	; Set the bit 1 so we have 3 (1+2) 0000 0011
+   107  000EA6  0EE1               	movlw	_gConProbeResponse	; Place the address for our first byte into WREG
+   108  000EA8  6E2D               	movwf	_gConOutIdx,c	;
    109                           
    110                           ; Mark our status bit that we are synced
-   111  000EA4  8228               	bsf	_gInStatus,1,c	; Bit 1 is sync bit
-   112  000EA6  8C28               	bsf	_gInStatus,6,c	; Mark that we have a command interpreted
-   113  000EA8  0012               	return	
-   114  000EAA                     NOCOMMAND:
-   115  000EAA  8A28               	bsf	_gInStatus,5,c	; Set byte 5 of our status flag meaning we need cleanup
-   116  000EAC  0012               	return	
+   111  000EAA  8228               	bsf	_gInStatus,1,c	; Bit 1 is sync bit
+   112  000EAC  8C28               	bsf	_gInStatus,6,c	; Mark that we have a command interpreted
+   113  000EAE  0012               	return	
+   114  000EB0                     NOCOMMAND:
+   115  000EB0  8A28               	bsf	_gInStatus,5,c	; Set byte 5 of our status flag meaning we need cleanup
+   116  000EB2  0012               	return	
    117                           tosu	equ	0x3FFF
    118                           tosh	equ	0x3FFE
    119                           tosl	equ	0x3FFD
@@ -160,13 +160,13 @@ Microchip MPLAB XC8 Assembler V2.32 build 20210201212658
 
 
 Microchip Technology PIC18 Macro Assembler V2.32 build 20210201212658 
-Symbol Table                                                                                               Thu Jan 13 14:00:10 2022
+Symbol Table                                                                                               Thu Jan 13 17:35:17 2022
 
                           FSR0 003FE9                            WREG 003FE8                           INDF0 003FEF  
                          _main 0A2E                     _gConOutIdx 002D                         isa$std 000001  
-                    PROBEPARSE 0E94               _gCommandPollMask 0046                 _gConPollPacket 0030  
+                    PROBEPARSE 0E9A               _gCommandPollMask 0046                 _gConPollPacket 0030  
            _gCommandOriginMask 0047                _gInBitBufferIdx 002C              _gConProbeResponse 00E1  
-                    _gInPacket 0060                      _gInStatus 0028                     ORIGINPARSE 0E7E  
-                     NOCOMMAND 0EAA                  _gConByteCount 002E                   _gInBitBuffer 0100  
-                  _bytecleanup 100A             _gConOriginResponse 00D7                   _gInPacketIdx 0029  
-                     _bytepush 057C                       isa$xinst 000000                  _commandreader 0E58  
+                    _gInPacket 0060                      _gInStatus 0028                     ORIGINPARSE 0E84  
+                     NOCOMMAND 0EB0                  _gConByteCount 002E                   _gInBitBuffer 0100  
+                  _bytecleanup 1010             _gConOriginResponse 00D7                   _gInPacketIdx 0029  
+                     _bytepush 057C                       isa$xinst 000000                  _commandreader 0E5E  

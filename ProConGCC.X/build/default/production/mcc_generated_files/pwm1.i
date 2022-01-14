@@ -1,4 +1,4 @@
-# 1 "mcc_generated_files/mcc.c"
+# 1 "mcc_generated_files/pwm1.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,10 +6,8 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "mcc_generated_files/mcc.c" 2
-# 47 "mcc_generated_files/mcc.c"
-# 1 "mcc_generated_files/mcc.h" 1
-# 49 "mcc_generated_files/mcc.h"
+# 1 "mcc_generated_files/pwm1.c" 2
+# 51 "mcc_generated_files/pwm1.c"
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -25747,10 +25745,10 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 2 3
-# 49 "mcc_generated_files/mcc.h" 2
+# 51 "mcc_generated_files/pwm1.c" 2
 
-# 1 "mcc_generated_files/../main.h" 1
-# 35 "mcc_generated_files/../main.h"
+# 1 "mcc_generated_files/pwm1.h" 1
+# 55 "mcc_generated_files/pwm1.h"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdint.h" 3
 typedef signed char int8_t;
@@ -25931,608 +25929,56 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 35 "mcc_generated_files/../main.h" 2
+# 55 "mcc_generated_files/pwm1.h" 2
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdio.h" 1 3
-
-
-
-# 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\__size_t.h" 1 3
-
-
-
-typedef unsigned size_t;
-# 4 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdio.h" 2 3
-
-# 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\__null.h" 1 3
-# 5 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdio.h" 2 3
-
-
-
-
-
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdarg.h" 1 3
-
-
-
-
-
-
-typedef void * va_list[1];
-
-#pragma intrinsic(__va_start)
-extern void * __va_start(void);
-
-#pragma intrinsic(__va_arg)
-extern void * __va_arg(void *, ...);
-# 11 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdio.h" 2 3
-# 43 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdio.h" 3
-struct __prbuf
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdbool.h" 1 3
+# 56 "mcc_generated_files/pwm1.h" 2
+# 97 "mcc_generated_files/pwm1.h"
+void PWM1_Initialize(void);
+# 124 "mcc_generated_files/pwm1.h"
+void PWM1_LoadDutyValue(uint16_t dutyValue);
+# 156 "mcc_generated_files/pwm1.h"
+_Bool PWM1_OutputStatusGet(void);
+# 52 "mcc_generated_files/pwm1.c" 2
+# 64 "mcc_generated_files/pwm1.c"
+void PWM1_Initialize(void)
 {
- char * ptr;
- void (* func)(char);
-};
-# 85 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdio.h" 3
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\conio.h" 1 3
 
 
 
+ CCP1CON = 0x9C;
 
 
+ CCPR1H = 0xF9;
 
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\errno.h" 1 3
-# 29 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\errno.h" 3
-extern int errno;
-# 8 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\conio.h" 2 3
+ CCPR1L = 0xC0;
 
 
+ CCPTMRS0bits.C1TSEL = 0x1;
 
-
-extern void init_uart(void);
-
-extern char getch(void);
-extern char getche(void);
-extern void putch(char);
-extern void ungetch(char);
-
-extern __bit kbhit(void);
-
-
-
-extern char * cgets(char *);
-extern void cputs(const char *);
-# 85 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdio.h" 2 3
-
-
-
-extern int cprintf(char *, ...);
-#pragma printf_check(cprintf)
-
-
-
-extern int _doprnt(struct __prbuf *, const register char *, register va_list);
-# 180 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdio.h" 3
-#pragma printf_check(vprintf) const
-#pragma printf_check(vsprintf) const
-
-extern char * gets(char *);
-extern int puts(const char *);
-extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
-extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
-extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
-extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
-extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
-extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
-
-#pragma printf_check(printf) const
-#pragma printf_check(sprintf) const
-extern int sprintf(char *, const char *, ...);
-extern int printf(const char *, ...);
-# 36 "mcc_generated_files/../main.h" 2
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdbool.h" 1 3
-# 37 "mcc_generated_files/../main.h" 2
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\math.h" 1 3
-
-
-
-# 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\__unsupported.h" 1 3
-# 4 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\math.h" 2 3
-# 30 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\math.h" 3
-extern double fabs(double);
-extern double floor(double);
-extern double ceil(double);
-extern double modf(double, double *);
-extern double sqrt(double);
-extern double atof(const char *);
-extern double sin(double) ;
-extern double cos(double) ;
-extern double tan(double) ;
-extern double asin(double) ;
-extern double acos(double) ;
-extern double atan(double);
-extern double atan2(double, double) ;
-extern double log(double);
-extern double log10(double);
-extern double pow(double, double) ;
-extern double exp(double) ;
-extern double sinh(double) ;
-extern double cosh(double) ;
-extern double tanh(double);
-extern double eval_poly(double, const double *, int);
-extern double frexp(double, int *);
-extern double ldexp(double, int);
-extern double fmod(double, double);
-extern double trunc(double);
-extern double round(double);
-# 38 "mcc_generated_files/../main.h" 2
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\string.h" 1 3
-# 14 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\string.h" 3
-extern void * memcpy(void *, const void *, size_t);
-extern void * memmove(void *, const void *, size_t);
-extern void * memset(void *, int, size_t);
-# 36 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\string.h" 3
-extern char * strcat(char *, const char *);
-extern char * strcpy(char *, const char *);
-extern char * strncat(char *, const char *, size_t);
-extern char * strncpy(char *, const char *, size_t);
-extern char * strdup(const char *);
-extern char * strtok(char *, const char *);
-
-
-extern int memcmp(const void *, const void *, size_t);
-extern int strcmp(const char *, const char *);
-extern int stricmp(const char *, const char *);
-extern int strncmp(const char *, const char *, size_t);
-extern int strnicmp(const char *, const char *, size_t);
-extern void * memchr(const void *, int, size_t);
-extern size_t strcspn(const char *, const char *);
-extern char * strpbrk(const char *, const char *);
-extern size_t strspn(const char *, const char *);
-extern char * strstr(const char *, const char *);
-extern char * stristr(const char *, const char *);
-extern char * strerror(int);
-extern size_t strlen(const char *);
-extern char * strchr(const char *, int);
-extern char * strichr(const char *, int);
-extern char * strrchr(const char *, int);
-extern char * strrichr(const char *, int);
-# 39 "mcc_generated_files/../main.h" 2
-
-
-# 1 "./gcdata.h" 1
-# 35 "./gcdata.h"
-# 1 "./main.h" 1
-# 35 "./gcdata.h" 2
-
-
-
-
-
-
-
-volatile unsigned char gConPollPacket[8];
-
-
-volatile unsigned char gConProbeResponse[3];
-
-volatile unsigned char gConOriginResponse[10];
-
-volatile unsigned char gConOutByte;
-
-
-volatile unsigned char gConBitCounter;
-
-volatile unsigned char gConByteCount;
-volatile unsigned char gConOutIdx;
-
-
-
-
-
-volatile unsigned char gInBitBuffer[60];
-volatile unsigned char gInBitBufferIdx = 0x0;
-
-
-
-volatile unsigned char gInBitCounter;
-
-
-
-volatile unsigned char gInPulseWidth;
-
-
-volatile unsigned char gInPacket[4];
-
-
-
-volatile unsigned char gInCommandByte;
-
-
-
-
-volatile unsigned char gInPacketIdx;
-
-
-
-
-
-volatile unsigned char gInStatus;
-# 97 "./gcdata.h"
-volatile unsigned char gLowThreshold;
-
-
-
-
-
-volatile unsigned char gCommandOriginMask;
-volatile unsigned char gCommandPollMask;
-# 41 "./main.h" 2
-
-# 1 "./mcc_generated_files/mcc.h" 1
-# 42 "./main.h" 2
-
-# 1 "./settings.h" 1
-
-
-
-
-
-
-
-# 1 "./main.h" 1
-# 8 "./settings.h" 2
-
-
-typedef struct {
-
-    uint16_t buffer;
-    uint16_t configKey;
-
-    uint16_t sx_low;
-    uint16_t sx_center;
-    uint16_t sx_high;
-
-    uint16_t sy_low;
-    uint16_t sy_center;
-    uint16_t sy_high;
-
-    uint16_t cx_low;
-    uint16_t cx_center;
-    uint16_t cx_high;
-
-    uint16_t cy_low;
-    uint16_t cy_center;
-    uint16_t cy_high;
-
-    uint16_t sx_highMultiplier;
-    uint16_t sx_lowMultiplier;
-
-    uint16_t sy_highMultiplier;
-    uint16_t sy_lowMultiplier;
-
-    uint16_t cx_highMultiplier;
-    uint16_t cx_lowMultiplier;
-
-    uint16_t cy_highMultiplier;
-    uint16_t cy_lowMultiplier;
-
-    uint8_t trigger_mode;
-
-} Settings;
-
-void setdefaultsettings(void);
-void zerosticks(void);
-void setstickmultipliers(void);
-
-void loadsettings(void);
-void savesettings(void);
-
-extern Settings SettingData;
-# 43 "./main.h" 2
-
-# 1 "./joysticks.h" 1
-
-
-
-
-
-
-
-uint16_t sx_low;
-uint16_t sx_center;
-uint16_t sx_high;
-
-uint16_t sy_low;
-uint16_t sy_center;
-uint16_t sy_high;
-
-uint16_t cx_low;
-uint16_t cx_center;
-uint16_t cx_high;
-
-uint16_t cy_low;
-uint16_t cy_center;
-uint16_t cy_high;
-
-uint16_t sx_highMultiplier;
-uint16_t sx_lowMultiplier;
-
-uint16_t sy_highMultiplier;
-uint16_t sy_lowMultiplier;
-
-uint16_t cx_highMultiplier;
-uint16_t cx_lowMultiplier;
-
-uint16_t cy_highMultiplier;
-uint16_t cy_lowMultiplier;
-
-uint16_t adc_read;
-
-static uint16_t tmphigh;
-static uint16_t tmplow;
-static uint16_t tmpcenter;
-static uint16_t tmphighm;
-static uint16_t tmplowm;
-static uint8_t stickIdx;
-static _Bool initiatedRead;
-static _Bool clearRead;
-
-void scansticks(void);
-
-void calibratesticks(void);
-
-unsigned char slinjim(uint16_t dividend, uint16_t multiplier);
-
-uint16_t getmultiplier(uint16_t high, uint16_t low);
-# 44 "./main.h" 2
-
-# 1 "./button.h" 1
-# 23 "./button.h"
-void checkbuttons(void);
-# 45 "./main.h" 2
-
-
-extern unsigned char bytepush(void);
-extern unsigned char bitgrabber(void);
-extern unsigned char bytecleanup(void);
-extern unsigned char commandreader(void);
-extern unsigned char synccheck(void);
-# 50 "./mcc_generated_files/mcc.h" 2
-
-# 1 "mcc_generated_files/pin_manager.h" 1
-# 478 "mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_Initialize (void);
-# 490 "mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_IOC(void);
-# 503 "mcc_generated_files/pin_manager.h"
-void IOCBF2_ISR(void);
-# 526 "mcc_generated_files/pin_manager.h"
-void IOCBF2_SetInterruptHandler(void (* InterruptHandler)(void));
-# 550 "mcc_generated_files/pin_manager.h"
-extern void (*IOCBF2_InterruptHandler)(void);
-# 574 "mcc_generated_files/pin_manager.h"
-void IOCBF2_DefaultInterruptHandler(void);
-# 51 "./mcc_generated_files/mcc.h" 2
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdint.h" 1 3
-# 52 "./mcc_generated_files/mcc.h" 2
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdbool.h" 1 3
-# 53 "./mcc_generated_files/mcc.h" 2
-
-
-# 1 "mcc_generated_files/interrupt_manager.h" 1
-# 109 "mcc_generated_files/interrupt_manager.h"
-void INTERRUPT_Initialize (void);
-# 55 "./mcc_generated_files/mcc.h" 2
-
-# 1 "mcc_generated_files/adcc.h" 1
-# 55 "mcc_generated_files/adcc.h"
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdint.h" 1 3
-# 55 "mcc_generated_files/adcc.h" 2
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdbool.h" 1 3
-# 56 "mcc_generated_files/adcc.h" 2
-# 72 "mcc_generated_files/adcc.h"
-typedef uint16_t adc_result_t;
-# 89 "mcc_generated_files/adcc.h"
-typedef enum
-{
-    CX_A = 0x0,
-    CY_A = 0x1,
-    SX_A = 0x2,
-    SY_A = 0x3,
-    channel_VSS = 0x3B,
-    channel_Temp = 0x3C,
-    channel_DAC1 = 0x3D,
-    channel_FVR_Buffer1 = 0x3E,
-    channel_FVR_Buffer2 = 0x3F
-} adcc_channel_t;
-# 134 "mcc_generated_files/adcc.h"
-void ADCC_Initialize(void);
-# 163 "mcc_generated_files/adcc.h"
-void ADCC_StartConversion(adcc_channel_t channel);
-# 193 "mcc_generated_files/adcc.h"
-_Bool ADCC_IsConversionDone(void);
-# 225 "mcc_generated_files/adcc.h"
-adc_result_t ADCC_GetConversionResult(void);
-# 256 "mcc_generated_files/adcc.h"
-adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel);
-# 281 "mcc_generated_files/adcc.h"
-void ADCC_StopConversion(void);
-# 308 "mcc_generated_files/adcc.h"
-void ADCC_SetStopOnInterrupt(void);
-# 333 "mcc_generated_files/adcc.h"
-void ADCC_DischargeSampleCapacitor(void);
-# 359 "mcc_generated_files/adcc.h"
-void ADCC_LoadAcquisitionRegister(uint16_t);
-# 385 "mcc_generated_files/adcc.h"
-void ADCC_SetPrechargeTime(uint16_t);
-# 410 "mcc_generated_files/adcc.h"
-void ADCC_SetRepeatCount(uint8_t);
-# 438 "mcc_generated_files/adcc.h"
-uint8_t ADCC_GetCurrentCountofConversions(void);
-# 462 "mcc_generated_files/adcc.h"
-void ADCC_ClearAccumulator(void);
-# 487 "mcc_generated_files/adcc.h"
-uint24_t ADCC_GetAccumulatorValue(void);
-# 515 "mcc_generated_files/adcc.h"
-_Bool ADCC_HasAccumulatorOverflowed(void);
-# 540 "mcc_generated_files/adcc.h"
-uint16_t ADCC_GetFilterValue(void);
-# 568 "mcc_generated_files/adcc.h"
-uint16_t ADCC_GetPreviousResult(void);
-# 594 "mcc_generated_files/adcc.h"
-void ADCC_DefineSetPoint(uint16_t);
-# 620 "mcc_generated_files/adcc.h"
-void ADCC_SetUpperThreshold(uint16_t);
-# 646 "mcc_generated_files/adcc.h"
-void ADCC_SetLowerThreshold(uint16_t);
-# 673 "mcc_generated_files/adcc.h"
-uint16_t ADCC_GetErrorCalculation(void);
-# 700 "mcc_generated_files/adcc.h"
-void ADCC_EnableDoubleSampling(void);
-# 724 "mcc_generated_files/adcc.h"
-void ADCC_EnableContinuousConversion(void);
-# 748 "mcc_generated_files/adcc.h"
-void ADCC_DisableContinuousConversion(void);
-# 776 "mcc_generated_files/adcc.h"
-_Bool ADCC_HasErrorCrossedUpperThreshold(void);
-# 804 "mcc_generated_files/adcc.h"
-_Bool ADCC_HasErrorCrossedLowerThreshold(void);
-# 831 "mcc_generated_files/adcc.h"
-uint8_t ADCC_GetConversionStageStatus(void);
-# 56 "./mcc_generated_files/mcc.h" 2
-
-# 1 "mcc_generated_files/memory.h" 1
-# 54 "mcc_generated_files/memory.h"
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdbool.h" 1 3
-# 54 "mcc_generated_files/memory.h" 2
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdint.h" 1 3
-# 55 "mcc_generated_files/memory.h" 2
-# 99 "mcc_generated_files/memory.h"
-uint8_t FLASH_ReadByte(uint32_t flashAddr);
-# 125 "mcc_generated_files/memory.h"
-uint16_t FLASH_ReadWord(uint32_t flashAddr);
-# 157 "mcc_generated_files/memory.h"
-void FLASH_WriteByte(uint32_t flashAddr, uint8_t *flashRdBufPtr, uint8_t byte);
-# 193 "mcc_generated_files/memory.h"
-int8_t FLASH_WriteBlock(uint32_t writeAddr, uint8_t *flashWrBufPtr);
-# 218 "mcc_generated_files/memory.h"
-void FLASH_EraseBlock(uint32_t baseAddr);
-# 249 "mcc_generated_files/memory.h"
-void DATAEE_WriteByte(uint8_t bAdd, uint8_t bData);
-# 275 "mcc_generated_files/memory.h"
-uint8_t DATAEE_ReadByte(uint8_t bAdd);
-
-void MEMORY_Tasks(void);
-# 57 "./mcc_generated_files/mcc.h" 2
-
-# 1 "mcc_generated_files/smt1.h" 1
-# 54 "mcc_generated_files/smt1.h"
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdbool.h" 1 3
-# 54 "mcc_generated_files/smt1.h" 2
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c90\\stdint.h" 1 3
-# 55 "mcc_generated_files/smt1.h" 2
-
-# 1 "./mcc_generated_files/mcc.h" 1
-# 56 "mcc_generated_files/smt1.h" 2
-# 93 "mcc_generated_files/smt1.h"
-void SMT1_Initialize(void);
-# 117 "mcc_generated_files/smt1.h"
-void SMT1_DataAcquisitionEnable(void);
-# 146 "mcc_generated_files/smt1.h"
-void SMT1_DataAcquisitionDisable(void);
-# 177 "mcc_generated_files/smt1.h"
-void SMT1_HaltCounter(void);
-# 201 "mcc_generated_files/smt1.h"
-void SMT1_SetPeriod(uint32_t periodVal);
-# 226 "mcc_generated_files/smt1.h"
-uint32_t SMT1_GetPeriod(void);
-# 255 "mcc_generated_files/smt1.h"
-void SMT1_SingleDataAcquisition(void);
-# 284 "mcc_generated_files/smt1.h"
-void SMT1_RepeatDataAcquisition(void);
-# 313 "mcc_generated_files/smt1.h"
-void SMT1_ManualPeriodBufferUpdate(void);
-# 342 "mcc_generated_files/smt1.h"
-void SMT1_ManualPulseWidthBufferUpdate(void);
-# 371 "mcc_generated_files/smt1.h"
-void SMT1_ManualTimerReset(void);
-# 406 "mcc_generated_files/smt1.h"
-_Bool SMT1_IsWindowOpen(void);
-# 437 "mcc_generated_files/smt1.h"
-_Bool SMT1_IsSignalAcquisitionInProgress(void);
-# 467 "mcc_generated_files/smt1.h"
-_Bool SMT1_IsTimerIncrementing(void);
-# 492 "mcc_generated_files/smt1.h"
-uint32_t SMT1_GetCapturedPulseWidth(void);
-# 517 "mcc_generated_files/smt1.h"
-uint32_t SMT1_GetCapturedPeriod(void);
-# 542 "mcc_generated_files/smt1.h"
-uint32_t SMT1_GetTimerValue(void);
-# 558 "mcc_generated_files/smt1.h"
-void SMT1_PR_ACQ_ISR(void);
-# 574 "mcc_generated_files/smt1.h"
-void SMT1_PW_ACQ_ISR(void);
-# 58 "./mcc_generated_files/mcc.h" 2
-# 73 "./mcc_generated_files/mcc.h"
-void SYSTEM_Initialize(void);
-# 86 "./mcc_generated_files/mcc.h"
-void OSCILLATOR_Initialize(void);
-# 99 "./mcc_generated_files/mcc.h"
-void PMD_Initialize(void);
-# 47 "mcc_generated_files/mcc.c" 2
-
-
-
-void SYSTEM_Initialize(void)
-{
-    INTERRUPT_Initialize();
-    PMD_Initialize();
-    PIN_MANAGER_Initialize();
-    OSCILLATOR_Initialize();
-    ADCC_Initialize();
-    SMT1_Initialize();
 }
 
-void OSCILLATOR_Initialize(void)
+void PWM1_LoadDutyValue(uint16_t dutyValue)
 {
+    dutyValue &= 0x03FF;
 
-    OSCCON1 = 0x60;
 
-    OSCCON3 = 0x00;
-
-    OSCEN = 0x00;
-
-    OSCFRQ = 0x08;
-
-    OSCTUNE = 0x00;
+    if(CCP1CONbits.FMT)
+    {
+        dutyValue <<= 6;
+        CCPR1H = dutyValue >> 8;
+        CCPR1L = dutyValue;
+    }
+    else
+    {
+        CCPR1H = dutyValue >> 8;
+        CCPR1L = dutyValue;
+    }
 }
 
-void PMD_Initialize(void)
+_Bool PWM1_OutputStatusGet(void)
 {
 
-    PMD0 = 0x00;
-
-    PMD1 = 0x00;
-
-    PMD2 = 0x00;
-
-    PMD3 = 0x00;
-
-    PMD4 = 0x00;
-
-    PMD5 = 0x00;
-
-    PMD6 = 0x00;
-
-    PMD7 = 0x00;
+    return(CCP1CONbits.OUT);
 }

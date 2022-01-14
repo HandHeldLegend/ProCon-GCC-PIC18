@@ -44,6 +44,8 @@
     SOFTWARE.
 */
 
+#include "device_config.h"
+
 // Configuration bits: selected in the GUI
 
 // CONFIG1L

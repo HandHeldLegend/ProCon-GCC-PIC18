@@ -17,7 +17,7 @@ void setdefaultsettings(void)
     SettingData.buffer = 0x0000;
     SettingData.configKey = 0x4EF4;
   
-    SettingData.sx_low = 0x0008;
+    SettingData.sx_low = 140U;
     SettingData.sx_center = 254U;
     SettingData.sx_high = 385U;
 

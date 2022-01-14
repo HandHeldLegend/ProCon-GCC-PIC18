@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.32 build 20210201212658 
-                                                                                                           Thu Jan 13 14:00:10 2022
+                                                                                                           Thu Jan 13 17:35:17 2022
 
 
      1                           	processor	18F25K42
@@ -42,23 +42,23 @@ Microchip MPLAB XC8 Assembler V2.32 build 20210201212658
     36                           ; then we are out of sync. We should perform a cleanup so we can re-sync.
     37                           
     38                           	psect	barfunc
-    39  0011A6                     _synccheck:
+    39  0011E8                     _synccheck:
     40                           	callstack 0
     41                           
     42                           ; Check that we are NOT on bit 8.
-    43  0011A6  B649               	btfsc	_gInBitCounter,3,c	; Bit 3 will be 1 if we are at 8.
-    44  0011A8  0012               	return		; Return if bit IS 8.
-    45  0011AA  B228               	btfsc	_gInStatus,1,c	; Bit 1, skip if we are not marked as synced yet
-    46  0011AC  0012               	return	
+    43  0011E8  B649               	btfsc	_gInBitCounter,3,c	; Bit 3 will be 1 if we are at 8.
+    44  0011EA  0012               	return		; Return if bit IS 8.
+    45  0011EC  B228               	btfsc	_gInStatus,1,c	; Bit 1, skip if we are not marked as synced yet
+    46  0011EE  0012               	return	
     47                           
     48                           ; If we got here, we are not yet in sync and
     49                           ; we should verify that we are not getting any '1' bits.
-    50  0011AE  A02A               	btfss	_gInCommandByte,0,c	; Check the rightmost bit for the most recent bit
-    51  0011B0  0012               	return		; If we see a 1 or HIGH bit, skip this return
+    50  0011F0  A02A               	btfss	_gInCommandByte,0,c	; Check the rightmost bit for the most recent bit
+    51  0011F2  0012               	return		; If we see a 1 or HIGH bit, skip this return
     52                           
     53                           ; If we got here, we should reset the device synced flag
-    54  0011B2  9028               	bcf	_gInStatus,0,c	; bit 0 for the desync
-    55  0011B4  0012               	return	
+    54  0011F4  9028               	bcf	_gInStatus,0,c	; bit 0 for the desync
+    55  0011F6  0012               	return	
     56                           tosu	equ	0x3FFF
     57                           tosh	equ	0x3FFE
     58                           tosl	equ	0x3FFD
@@ -99,8 +99,8 @@ Microchip MPLAB XC8 Assembler V2.32 build 20210201212658
 
 
 Microchip Technology PIC18 Macro Assembler V2.32 build 20210201212658 
-Symbol Table                                                                                               Thu Jan 13 14:00:10 2022
+Symbol Table                                                                                               Thu Jan 13 17:35:17 2022
 
                        isa$std 000001                 _gInCommandByte 002A                  _gInBitCounter 0049  
-                    _gInStatus 0028                      _synccheck 11A6                    _bytecleanup 100A  
+                    _gInStatus 0028                      _synccheck 11E8                    _bytecleanup 1010  
                      isa$xinst 000000  

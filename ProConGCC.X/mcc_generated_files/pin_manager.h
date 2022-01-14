@@ -285,6 +285,38 @@
 #define GC_DATA_SetAnalogMode()      do { ANSELBbits.ANSELB2 = 1; } while(0)
 #define GC_DATA_SetDigitalMode()     do { ANSELBbits.ANSELB2 = 0; } while(0)
 
+// get/set RB3 procedures
+#define RB3_SetHigh()            do { LATBbits.LATB3 = 1; } while(0)
+#define RB3_SetLow()             do { LATBbits.LATB3 = 0; } while(0)
+#define RB3_Toggle()             do { LATBbits.LATB3 = ~LATBbits.LATB3; } while(0)
+#define RB3_GetValue()              PORTBbits.RB3
+#define RB3_SetDigitalInput()    do { TRISBbits.TRISB3 = 1; } while(0)
+#define RB3_SetDigitalOutput()   do { TRISBbits.TRISB3 = 0; } while(0)
+#define RB3_SetPullup()             do { WPUBbits.WPUB3 = 1; } while(0)
+#define RB3_ResetPullup()           do { WPUBbits.WPUB3 = 0; } while(0)
+#define RB3_SetAnalogMode()         do { ANSELBbits.ANSELB3 = 1; } while(0)
+#define RB3_SetDigitalMode()        do { ANSELBbits.ANSELB3 = 0; } while(0)
+
+// get/set R_ENABLE aliases
+#define R_ENABLE_TRIS                 TRISBbits.TRISB4
+#define R_ENABLE_LAT                  LATBbits.LATB4
+#define R_ENABLE_PORT                 PORTBbits.RB4
+#define R_ENABLE_WPU                  WPUBbits.WPUB4
+#define R_ENABLE_OD                   ODCONBbits.ODCB4
+#define R_ENABLE_ANS                  ANSELBbits.ANSELB4
+#define R_ENABLE_SetHigh()            do { LATBbits.LATB4 = 1; } while(0)
+#define R_ENABLE_SetLow()             do { LATBbits.LATB4 = 0; } while(0)
+#define R_ENABLE_Toggle()             do { LATBbits.LATB4 = ~LATBbits.LATB4; } while(0)
+#define R_ENABLE_GetValue()           PORTBbits.RB4
+#define R_ENABLE_SetDigitalInput()    do { TRISBbits.TRISB4 = 1; } while(0)
+#define R_ENABLE_SetDigitalOutput()   do { TRISBbits.TRISB4 = 0; } while(0)
+#define R_ENABLE_SetPullup()          do { WPUBbits.WPUB4 = 1; } while(0)
+#define R_ENABLE_ResetPullup()        do { WPUBbits.WPUB4 = 0; } while(0)
+#define R_ENABLE_SetPushPull()        do { ODCONBbits.ODCB4 = 0; } while(0)
+#define R_ENABLE_SetOpenDrain()       do { ODCONBbits.ODCB4 = 1; } while(0)
+#define R_ENABLE_SetAnalogMode()      do { ANSELBbits.ANSELB4 = 1; } while(0)
+#define R_ENABLE_SetDigitalMode()     do { ANSELBbits.ANSELB4 = 0; } while(0)
+
 // get/set L_IN aliases
 #define L_IN_TRIS                 TRISBbits.TRISB5
 #define L_IN_LAT                  LATBbits.LATB5

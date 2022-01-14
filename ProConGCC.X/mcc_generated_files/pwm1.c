@@ -1,24 +1,24 @@
 /**
-  @Generated PIC10 / PIC12 / PIC16 / PIC18 MCUs Header File
+  PWM1 Generated Driver File
 
-  @Company:
+  @Company
     Microchip Technology Inc.
 
-  @File Name:
-    mcc.h
+  @File Name
+    pwm1.c
 
-  @Summary:
-    This is the mcc.h file generated using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+  @Summary
+    This is the generated driver implementation file for the PWM1 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
 
-  @Description:
-    This header file provides implementations for driver APIs for all modules selected in the GUI.
+  @Description
+    This source file provides implementations for driver APIs for PWM1.
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.7
         Device            :  PIC18F25K42
-        Driver Version    :  2.00
+        Driver Version    :  2.01
     The generated drivers are tested against the following:
-        Compiler          :  XC8 2.31 and above or later
-        MPLAB             :  MPLAB X 5.45
+        Compiler          :  XC8 2.31 and above
+         MPLAB 	          :  MPLAB X 5.45
 */
 
 /*
@@ -44,65 +44,65 @@
     SOFTWARE.
 */
 
-#ifndef MCC_H
-#define	MCC_H
+/**
+  Section: Included Files
+*/
+
 #include <xc.h>
-#include "..\main.h"
-#include "device_config.h"
-#include "pin_manager.h"
-#include <stdint.h>
-#include <stdbool.h>
-#include <conio.h>
-#include "interrupt_manager.h"
-#include "adcc.h"
 #include "pwm1.h"
-#include "smt1.h"
-#include "memory.h"
-#include "tmr2.h"
-
-
 
 /**
- * @Param
-    none
- * @Returns
-    none
- * @Description
-    Initializes the device to the default states configured in the
- *                  MCC GUI
- * @Example
-    SYSTEM_Initialize(void);
- */
-void SYSTEM_Initialize(void);
+  Section: Macro Declarations
+*/
+
+#define PWM1_INITIALIZE_DUTY_VALUE    999
 
 /**
- * @Param
-    none
- * @Returns
-    none
- * @Description
-    Initializes the oscillator to the default states configured in the
- *                  MCC GUI
- * @Example
-    OSCILLATOR_Initialize(void);
- */
-void OSCILLATOR_Initialize(void);
+  Section: PWM Module APIs
+*/
 
-/**
- * @Param
-    none
- * @Returns
-    none
- * @Description
-    Initializes the PMD module to the default states configured in the
- *                  MCC GUI
- * @Example
-    PMD_Initialize(void);
- */
-void PMD_Initialize(void);
+void PWM1_Initialize(void)
+{
+    // Set the PWM1 to the options selected in the User Interface
+	
+	// MODE PWM; EN enabled; FMT left_aligned; 
+	CCP1CON = 0x9C;    
+	
+	// RH 249; 
+	CCPR1H = 0xF9;    
+	
+	// RL 192; 
+	CCPR1L = 0xC0;    
 
+	// Selecting Timer 2
+	CCPTMRS0bits.C1TSEL = 0x1;
+    
+}
 
-#endif	/* MCC_H */
+void PWM1_LoadDutyValue(uint16_t dutyValue)
+{
+    dutyValue &= 0x03FF;
+    
+    // Load duty cycle value
+    if(CCP1CONbits.FMT)
+    {
+        dutyValue <<= 6;
+        CCPR1H = dutyValue >> 8;
+        CCPR1L = dutyValue;
+    }
+    else
+    {
+        CCPR1H = dutyValue >> 8;
+        CCPR1L = dutyValue;
+    }
+}
+
+bool PWM1_OutputStatusGet(void)
+{
+    // Returns the output status
+    return(CCP1CONbits.OUT);
+}
 /**
  End of File
 */
+

@@ -1,7 +1,7 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [p mainexit ]
-"73 ./mcc_generated_files/mcc.h
-[; ;./mcc_generated_files/mcc.h: 73: void SYSTEM_Initialize(void);
+"76 ./mcc_generated_files/mcc.h
+[; ;./mcc_generated_files/mcc.h: 76: void SYSTEM_Initialize(void);
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
 "51 ./settings.h
 [; ;./settings.h: 51: void loadsettings(void);
@@ -101,14 +101,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 "45098
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 45098: extern volatile INTCON0bits_t INTCON0bits __attribute__((address(0x3FD2)));
 [v _INTCON0bits `VS2035 ~T0 @X0 0 e@16338 ]
-"50 ./mcc_generated_files/../main.h
-[; ;./mcc_generated_files/../main.h: 50: extern unsigned char commandreader(void);
+"50 ./mcc_generated_files/..\main.h
+[; ;./mcc_generated_files/..\main.h: 50: extern unsigned char commandreader(void);
 [v _commandreader `(uc ~T0 @X0 0 ef ]
 "47
-[; ;./mcc_generated_files/../main.h: 47: extern unsigned char bytepush(void);
+[; ;./mcc_generated_files/..\main.h: 47: extern unsigned char bytepush(void);
 [v _bytepush `(uc ~T0 @X0 0 ef ]
 "49
-[; ;./mcc_generated_files/../main.h: 49: extern unsigned char bytecleanup(void);
+[; ;./mcc_generated_files/..\main.h: 49: extern unsigned char bytecleanup(void);
 [v _bytecleanup `(uc ~T0 @X0 0 ef ]
 "47 ./joysticks.h
 [; ;./joysticks.h: 47: void scansticks(void);
@@ -116,70 +116,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "23 ./button.h
 [; ;./button.h: 23: void checkbuttons(void);
 [v _checkbuttons `(v ~T0 @X0 0 ef ]
-"6 main.c
-[p x FEXTOSC  =  OFF     ]
-"7
-[p x RSTOSC  =  HFINTOSC_64MHZ ]
-"10
-[p x CLKOUTEN  =  OFF    ]
-"11
-[p x PR1WAY  =  ON       ]
-"12
-[p x CSWEN  =  ON        ]
-"13
-[p x FCMEN  =  ON        ]
-"16
-[p x MCLRE  =  EXTMCLR   ]
-"17
-[p x PWRTS  =  PWRT_OFF  ]
-"18
-[p x MVECEN  =  OFF      ]
-"19
-[p x IVT1WAY  =  ON      ]
-"20
-[p x LPBOREN  =  OFF     ]
-"21
-[p x BOREN  =  SBORDIS   ]
-"24
-[p x BORV  =  VBOR_2P45  ]
-"25
-[p x ZCD  =  OFF         ]
-"26
-[p x PPS1WAY  =  ON      ]
-"27
-[p x STVREN  =  ON       ]
-"28
-[p x DEBUG  =  ON        ]
-"29
-[p x XINST  =  OFF       ]
-"32
-[p x WDTCPS  =  WDTCPS_31 ]
-"33
-[p x WDTE  =  OFF        ]
-"36
-[p x WDTCWS  =  WDTCWS_7 ]
-"37
-[p x WDTCCS  =  SC       ]
-"40
-[p x BBSIZE  =  BBSIZE_512 ]
-"41
-[p x BBEN  =  OFF        ]
-"42
-[p x SAFEN  =  OFF       ]
-"43
-[p x WRTAPP  =  OFF      ]
-"46
-[p x WRTB  =  OFF        ]
-"47
-[p x WRTC  =  OFF        ]
-"48
-[p x WRTD  =  OFF        ]
-"49
-[p x WRTSAF  =  OFF      ]
-"50
-[p x LVP  =  ON          ]
-"53
-[p x CP  =  OFF          ]
 "250 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 250: __asm("STATUS_CSHAD equ 03880h");
 [; <" STATUS_CSHAD equ 03880h ;# ">
@@ -2463,146 +2399,146 @@ Version 4.0 HI-TECH Software Intermediate Code
 "45
 [; ;./joysticks.h: 45: static _Bool clearRead;
 [v _clearRead `a ~T0 @X0 1 s ]
-"64 main.c
-[; ;main.c: 64: _Bool stickcalibration = 0;
+"9 main.c
+[; ;main.c: 9: _Bool stickcalibration = 0;
 [v _stickcalibration `a ~T0 @X0 1 e ]
 [i _stickcalibration
 -> -> 0 `i `a
 ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"66
-[; ;main.c: 66: void main(void)
+"11
+[; ;main.c: 11: void main(void)
 [v _main `(v ~T0 @X0 1 ef ]
-"67
-[; ;main.c: 67: {
+"12
+[; ;main.c: 12: {
 {
 [e :U _main ]
 [f ]
-"68
-[; ;main.c: 68:     __asm("MOVLW _gInPacket");
+"13
+[; ;main.c: 13:     __asm("MOVLW _gInPacket");
 [; <" MOVLW _gInPacket ;# ">
-"69
-[; ;main.c: 69:     __asm("MOVFF WREG, _gInPacketIdx");
+"14
+[; ;main.c: 14:     __asm("MOVFF WREG, _gInPacketIdx");
 [; <" MOVFF WREG, _gInPacketIdx ;# ">
-"71
-[; ;main.c: 71:     SYSTEM_Initialize();
+"16
+[; ;main.c: 16:     SYSTEM_Initialize();
 [e ( _SYSTEM_Initialize ..  ]
-"74
-[; ;main.c: 74:     loadsettings();
+"19
+[; ;main.c: 19:     loadsettings();
 [e ( _loadsettings ..  ]
-"77
-[; ;main.c: 77:     ADPCH = 0x00;
+"22
+[; ;main.c: 22:     ADPCH = 0x00;
 [e = _ADPCH -> -> 0 `i `uc ]
-"79
-[; ;main.c: 79:     ADCON0bits.ADON = 1;
+"24
+[; ;main.c: 24:     ADCON0bits.ADON = 1;
 [e = . . _ADCON0bits 1 6 -> -> 1 `i `uc ]
-"82
-[; ;main.c: 82:     if (!PORTAbits.RA6 && !PORTAbits.RA7 && !PORTAbits.RA4)
+"27
+[; ;main.c: 27:     if (!PORTAbits.RA6 && !PORTAbits.RA7 && !PORTAbits.RA4)
 [e $ ! && && ! != -> . . _PORTAbits 0 6 `i -> 0 `i ! != -> . . _PORTAbits 0 7 `i -> 0 `i ! != -> . . _PORTAbits 0 4 `i -> 0 `i 2146  ]
-"83
-[; ;main.c: 83:     {
+"28
+[; ;main.c: 28:     {
 {
-"84
-[; ;main.c: 84:         stickcalibration = 1;
+"29
+[; ;main.c: 29:         stickcalibration = 1;
 [e = _stickcalibration -> -> 1 `i `a ]
-"86
-[; ;main.c: 86:         zerosticks();
+"31
+[; ;main.c: 31:         zerosticks();
 [e ( _zerosticks ..  ]
-"87
-[; ;main.c: 87:     }
+"32
+[; ;main.c: 32:     }
 }
 [e :U 2146 ]
-"89
-[; ;main.c: 89:     while (stickcalibration)
+"34
+[; ;main.c: 34:     while (stickcalibration)
 [e $U 2147  ]
 [e :U 2148 ]
-"90
-[; ;main.c: 90:     {
+"35
+[; ;main.c: 35:     {
 {
-"91
-[; ;main.c: 91:         calibratesticks();
+"36
+[; ;main.c: 36:         calibratesticks();
 [e ( _calibratesticks ..  ]
-"94
-[; ;main.c: 94:         if (!PORTCbits.RC1)
+"39
+[; ;main.c: 39:         if (!PORTCbits.RC1)
 [e $ ! ! != -> . . _PORTCbits 0 1 `i -> 0 `i 2150  ]
-"95
-[; ;main.c: 95:         {
+"40
+[; ;main.c: 40:         {
 {
-"96
-[; ;main.c: 96:             setstickmultipliers();
+"41
+[; ;main.c: 41:             setstickmultipliers();
 [e ( _setstickmultipliers ..  ]
-"97
-[; ;main.c: 97:             savesettings();
+"42
+[; ;main.c: 42:             savesettings();
 [e ( _savesettings ..  ]
-"98
-[; ;main.c: 98:             stickcalibration = 0;
+"43
+[; ;main.c: 43:             stickcalibration = 0;
 [e = _stickcalibration -> -> 0 `i `a ]
-"99
-[; ;main.c: 99:             break;
+"44
+[; ;main.c: 44:             break;
 [e $U 2149  ]
-"100
-[; ;main.c: 100:         }
+"45
+[; ;main.c: 45:         }
 }
 [e :U 2150 ]
-"101
-[; ;main.c: 101:     }
+"46
+[; ;main.c: 46:     }
 }
 [e :U 2147 ]
-"89
-[; ;main.c: 89:     while (stickcalibration)
+"34
+[; ;main.c: 34:     while (stickcalibration)
 [e $ != -> _stickcalibration `i -> 0 `i 2148  ]
 [e :U 2149 ]
-"104
-[; ;main.c: 104:     INTCON0bits.GIEH = 1;
+"49
+[; ;main.c: 49:     INTCON0bits.GIEH = 1;
 [e = . . _INTCON0bits 1 1 -> -> 1 `i `uc ]
-"106
-[; ;main.c: 106:     while (1)
+"51
+[; ;main.c: 51:     while (1)
 [e :U 2152 ]
-"107
-[; ;main.c: 107:     {
+"52
+[; ;main.c: 52:     {
 {
-"109
-[; ;main.c: 109:         commandreader();
+"54
+[; ;main.c: 54:         commandreader();
 [e ( _commandreader ..  ]
-"111
-[; ;main.c: 111:         bytepush();
+"56
+[; ;main.c: 56:         bytepush();
 [e ( _bytepush ..  ]
-"113
-[; ;main.c: 113:         bytecleanup();
+"58
+[; ;main.c: 58:         bytecleanup();
 [e ( _bytecleanup ..  ]
-"116
-[; ;main.c: 116:         if (gInStatus & (1 << 3))
+"61
+[; ;main.c: 61:         if (gInStatus & (1 << 3))
 [e $ ! != & -> _gInStatus `i << -> 1 `i -> 3 `i -> 0 `i 2154  ]
-"117
-[; ;main.c: 117:         {
+"62
+[; ;main.c: 62:         {
 {
-"118
-[; ;main.c: 118:             scansticks();
+"63
+[; ;main.c: 63:             scansticks();
 [e ( _scansticks ..  ]
-"119
-[; ;main.c: 119:         }
+"64
+[; ;main.c: 64:         }
 }
 [e :U 2154 ]
-"121
-[; ;main.c: 121:         if (gInStatus & (1 << 2))
+"66
+[; ;main.c: 66:         if (gInStatus & (1 << 2))
 [e $ ! != & -> _gInStatus `i << -> 1 `i -> 2 `i -> 0 `i 2155  ]
-"122
-[; ;main.c: 122:         {
+"67
+[; ;main.c: 67:         {
 {
-"123
-[; ;main.c: 123:             checkbuttons();
+"68
+[; ;main.c: 68:             checkbuttons();
 [e ( _checkbuttons ..  ]
-"124
-[; ;main.c: 124:         }
+"69
+[; ;main.c: 69:         }
 }
 [e :U 2155 ]
-"125
-[; ;main.c: 125:     }
+"70
+[; ;main.c: 70:     }
 }
 [e :U 2151 ]
 [e $U 2152  ]
 [e :U 2153 ]
-"126
-[; ;main.c: 126: }
+"71
+[; ;main.c: 71: }
 [e :UE 2145 ]
 }

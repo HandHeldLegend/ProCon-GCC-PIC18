@@ -25748,17 +25748,17 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 2 3
 # 54 "mcc_generated_files/pin_manager.h" 2
-# 478 "mcc_generated_files/pin_manager.h"
+# 510 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 490 "mcc_generated_files/pin_manager.h"
+# 522 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
-# 503 "mcc_generated_files/pin_manager.h"
+# 535 "mcc_generated_files/pin_manager.h"
 void IOCBF2_ISR(void);
-# 526 "mcc_generated_files/pin_manager.h"
+# 558 "mcc_generated_files/pin_manager.h"
 void IOCBF2_SetInterruptHandler(void (* InterruptHandler)(void));
-# 550 "mcc_generated_files/pin_manager.h"
+# 582 "mcc_generated_files/pin_manager.h"
 extern void (*IOCBF2_InterruptHandler)(void);
-# 574 "mcc_generated_files/pin_manager.h"
+# 606 "mcc_generated_files/pin_manager.h"
 void IOCBF2_DefaultInterruptHandler(void);
 # 49 "mcc_generated_files/pin_manager.c" 2
 
@@ -25782,7 +25782,7 @@ void PIN_MANAGER_Initialize(void)
 
 
     TRISA = 0xFF;
-    TRISB = 0xFF;
+    TRISB = 0xE7;
     TRISC = 0xFF;
 
 
@@ -25846,6 +25846,7 @@ void PIN_MANAGER_Initialize(void)
 
     IOCBF2_SetInterruptHandler(IOCBF2_DefaultInterruptHandler);
 
+    RB3PPS = 0x09;
     SMT1SIGPPS = 0x0A;
 }
 
