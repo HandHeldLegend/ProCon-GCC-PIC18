@@ -1,17 +1,17 @@
 /**
-  TMR2 Generated Driver File
+  TMR4 Generated Driver File
 
   @Company
     Microchip Technology Inc.
 
   @File Name
-    tmr2.c
+    tmr4.c
 
   @Summary
-    This is the generated driver implementation file for the TMR2 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+    This is the generated driver implementation file for the TMR4 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
 
   @Description
-    This source file provides APIs for TMR2.
+    This source file provides APIs for TMR4.
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.7
         Device            :  PIC18F25K42
@@ -49,119 +49,119 @@
 */
 
 #include <xc.h>
-#include "tmr2.h"
+#include "tmr4.h"
 
 /**
   Section: Global Variables Definitions
 */
 
 /**
-  Section: TMR2 APIs
+  Section: TMR4 APIs
 */
 
-void TMR2_Initialize(void)
+void TMR4_Initialize(void)
 {
-    // Set TMR2 to the options selected in the User Interface
+    // Set TMR4 to the options selected in the User Interface
 
-    // T2CS FOSC/4; 
-    T2CLKCON = 0x01;
+    // T4CS FOSC/4; 
+    T4CLKCON = 0x01;
 
-    // T2PSYNC Not Synchronized; T2MODE Software control; T2CKPOL Falling Edge; T2CKSYNC Synchronized; 
-    T2HLT = 0x60;
+    // T4PSYNC Not Synchronized; T4MODE Software control; T4CKPOL Rising Edge; T4CKSYNC Not Synchronized; 
+    T4HLT = 0x00;
 
-    // T2RSEL T2CKIPPS pin; 
-    T2RST = 0x00;
+    // T4RSEL T4CKIPPS pin; 
+    T4RST = 0x00;
 
-    // PR2 249; 
-    T2PR = 0xF9;
+    // PR4 255; 
+    T4PR = 0xFF;
 
-    // TMR2 0; 
-    T2TMR = 0x00;
+    // TMR4 0; 
+    T4TMR = 0x00;
 
     // Clearing IF flag.
-    PIR4bits.TMR2IF = 0;
+    PIR7bits.TMR4IF = 0;
 
-    // T2CKPS 1:128; T2OUTPS 1:16; TMR2ON on; 
-    T2CON = 0xFF;
+    // T4CKPS 1:1; T4OUTPS 1:1; TMR4ON on; 
+    T4CON = 0x80;
 }
 
-void TMR2_ModeSet(TMR2_HLT_MODE mode)
+void TMR4_ModeSet(TMR4_HLT_MODE mode)
 {
    // Configure different types HLT mode
-    T2HLTbits.MODE = mode;
+    T4HLTbits.MODE = mode;
 }
 
-void TMR2_ExtResetSourceSet(TMR2_HLT_EXT_RESET_SOURCE reset)
+void TMR4_ExtResetSourceSet(TMR4_HLT_EXT_RESET_SOURCE reset)
 {
     //Configure different types of HLT external reset source
-    T2RSTbits.RSEL = reset;
+    T4RSTbits.RSEL = reset;
 }
 
-void TMR2_Start(void)
+void TMR4_Start(void)
 {
     // Start the Timer by writing to TMRxON bit
-    T2CONbits.TMR2ON = 1;
+    T4CONbits.TMR4ON = 1;
 }
 
-void TMR2_StartTimer(void)
+void TMR4_StartTimer(void)
 {
-    TMR2_Start();
+    TMR4_Start();
 }
 
-void TMR2_Stop(void)
+void TMR4_Stop(void)
 {
     // Stop the Timer by writing to TMRxON bit
-    T2CONbits.TMR2ON = 0;
+    T4CONbits.TMR4ON = 0;
 }
 
-void TMR2_StopTimer(void)
+void TMR4_StopTimer(void)
 {
-    TMR2_Stop();
+    TMR4_Stop();
 }
 
-uint8_t TMR2_Counter8BitGet(void)
+uint8_t TMR4_Counter8BitGet(void)
 {
     uint8_t readVal;
 
-    readVal = TMR2;
+    readVal = TMR4;
 
     return readVal;
 }
 
-uint8_t TMR2_ReadTimer(void)
+uint8_t TMR4_ReadTimer(void)
 {
-    return TMR2_Counter8BitGet();
+    return TMR4_Counter8BitGet();
 }
 
-void TMR2_Counter8BitSet(uint8_t timerVal)
+void TMR4_Counter8BitSet(uint8_t timerVal)
 {
-    // Write to the Timer2 register
-    TMR2 = timerVal;
+    // Write to the Timer4 register
+    TMR4 = timerVal;
 }
 
-void TMR2_WriteTimer(uint8_t timerVal)
+void TMR4_WriteTimer(uint8_t timerVal)
 {
-    TMR2_Counter8BitSet(timerVal);
+    TMR4_Counter8BitSet(timerVal);
 }
 
-void TMR2_Period8BitSet(uint8_t periodVal)
+void TMR4_Period8BitSet(uint8_t periodVal)
 {
-   PR2 = periodVal;
+   PR4 = periodVal;
 }
 
-void TMR2_LoadPeriodRegister(uint8_t periodVal)
+void TMR4_LoadPeriodRegister(uint8_t periodVal)
 {
-   TMR2_Period8BitSet(periodVal);
+   TMR4_Period8BitSet(periodVal);
 }
 
-bool TMR2_HasOverflowOccured(void)
+bool TMR4_HasOverflowOccured(void)
 {
     // check if  overflow has occurred by checking the TMRIF bit
-    bool status = PIR4bits.TMR2IF;
+    bool status = PIR7bits.TMR4IF;
     if(status)
     {
         // Clearing IF flag.
-        PIR4bits.TMR2IF = 0;
+        PIR7bits.TMR4IF = 0;
     }
     return status;
 }

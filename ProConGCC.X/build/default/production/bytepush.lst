@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.32 build 20210201212658 
-                                                                                                           Thu Jan 13 17:35:17 2022
+                                                                                                           Sat Jan 15 19:29:10 2022
 
 
      1                           	processor	18F25K42
@@ -55,17 +55,17 @@ Microchip MPLAB XC8 Assembler V2.32 build 20210201212658
     49                           	callstack 0
     50                           
     51                           ; Check if we have a command to push out
-    52  00057C  AC28               	btfss	_gInStatus,6,c	; Byte 6 tells us if a command has been interpreted
+    52  00057C  AC48               	btfss	_gInStatus,6,c	; Byte 6 tells us if a command has been interpreted
     53  00057E  0012               	return		; Return if there's no command to push out
     54  000580  94C3               	bcf	16323,2,c	; Turn the data pin around so we can drive
     55  000582                     newByte:
-    56  000582  0060  F0B7  FFE9   	movff	_gConOutIdx,fsr0l	; Get the address for our first byte, place into FSR0
-    57  000588  006F FFBC  F02F    	movff	indf0,_gConOutByte	; Set the outgoing byte with the first byte.
+    56  000582  0060  F0B3  FFE9   	movff	_gConOutIdx,fsr0l	; Get the address for our first byte, place into FSR0
+    57  000588  006F FFBC  F02E    	movff	indf0,_gConOutByte	; Set the outgoing byte with the first byte.
     58  00058E  6A4A               	clrf	_gConBitCounter,c	; Set bit counter to 0 (clear)
     59  000590  864A               	bsf	_gConBitCounter,3,c	; Set bit counter to 8.
     60  000592                     writeBit:
     61  000592  94CB               	bcf	16331,2,c	; Set port to LOW
-    62  000594  AE2F               	btfss	_gConOutByte,7,c	; Check the leftmost bit, skip if one.
+    62  000594  AE2E               	btfss	_gConOutByte,7,c	; Check the leftmost bit, skip if one.
     63  000596  EF08  F003         	goto	lowBitWrite	; Bit is 0, write a low bit out.
     64  00059A                     
     65                           ;
@@ -186,11 +186,11 @@ Microchip MPLAB XC8 Assembler V2.32 build 20210201212658
    180  000682  0000               	nop	
    181  000684  0000               	nop	
    182  000686                     getNextBit:
-   183  000686  362F               	rlcf	_gConOutByte,f,c	; Rotate the byte left so we can read the next bit
+   183  000686  362E               	rlcf	_gConOutByte,f,c	; Rotate the byte left so we can read the next bit
    184  000688  EFC9  F002         	goto	writeBit	; We still have bits left, so go back up to writeBit.
    185  00068C                     getNextByte:
-   186  00068C  2A2D               	incf	_gConOutIdx,f,c	; Increment our pointer value
-   187  00068E  2E2E               	decfsz	_gConByteCount,f,c	; Decrement our Byte counter, skip when no bytes left to write our stop b
+   186  00068C  2A2C               	incf	_gConOutIdx,f,c	; Increment our pointer value
+   187  00068E  2E2D               	decfsz	_gConByteCount,f,c	; Decrement our Byte counter, skip when no bytes left to write our stop b
       +                          it.
    188  000690  EFC1  F002         	goto	newByte
    189  000694  0000               	nop	
@@ -238,7 +238,7 @@ Microchip MPLAB XC8 Assembler V2.32 build 20210201212658
    231  0006E8  0000               	nop	
    232  0006EA  0000               	nop	
    233  0006EC  84CB               	bsf	16331,2,c	; Set port to HIGH
-   234  0006EE  8A28               	bsf	_gInStatus,5,c	; Set byte 5 of our status flag
+   234  0006EE  8A48               	bsf	_gInStatus,5,c	; Set byte 5 of our status flag
    235                           
    236                           ; Bit 5 says that we have sent out our response
    237  0006F0  0012               	return	
@@ -377,13 +377,13 @@ Microchip MPLAB XC8 Assembler V2.32 build 20210201212658
 
 
 Microchip Technology PIC18 Macro Assembler V2.32 build 20210201212658 
-Symbol Table                                                                                               Thu Jan 13 17:35:17 2022
+Symbol Table                                                                                               Sat Jan 15 19:29:10 2022
 
                           FSR0 003FE9                           INDF0 003FEF                           PORTB 003FCB  
-                         TRISB 003FC3                     _gConOutIdx 002D                         isa$std 000001  
-                       newByte 0582                 _gConBitCounter 004A                    _gConOutByte 002F  
+                         TRISB 003FC3                     _gConOutIdx 002C                         isa$std 000001  
+                       newByte 0582                 _gConBitCounter 004A                    _gConOutByte 002E  
                    endLowWrite 074E                     getNextByte 068C                        writeBit 0592  
-                    _gInStatus 0028                    stopBitWrite 0694                     lowBitWrite 0610  
-                _gConByteCount 002E                      getNextBit 0686                    _bytecleanup 1010  
+                    _gInStatus 0048                    stopBitWrite 0694                     lowBitWrite 0610  
+                _gConByteCount 002D                      getNextBit 0686                    _bytecleanup 1022  
                      _bytepush 057C                       isa$xinst 000000                    endHighWrite 06F2  
                   highBitWrite 059A  

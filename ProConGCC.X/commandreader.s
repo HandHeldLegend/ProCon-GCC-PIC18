@@ -66,9 +66,15 @@ _commandreader:
 	MOVLW   _gConPollPacket	; Get the pointer for the poll packet
 	MOVWF   _gConOutIdx, 0	; Move the pointer into the outgoing index.
 
+	INCF	FSR0, 1		; Increment the _gInPacket index twice to get to the byte with rumble
+	INCF	FSR0, 1		;
+	
+	BTFSC	INDF0, 0, 0		; Test if the rumble bit is set, otherwise skip
+	BSF	_gInStatus, 4, 0	; Set the rumble enable bit
+	
 	BSF	_gConByteCount, 3, 0	; Set our outgoing Byte count to 8 (bit set 3) 0000 1000
 
-	BSF	_gInStatus, 6, 0	; Mark that we have a command interpreted
+	BSF	_gInStatus, 6, 0	; Mark that we have a valid command interpreted
 	RETURN
 
 
@@ -91,7 +97,7 @@ ORIGINPARSE:
 	BSF	_gConByteCount, 3, 0    ; Set our outgoing Byte count to 8 (bit set 3) 0000 1000
 	BSF	_gConByteCount, 1, 0    ; Set the bit 1 so we have 10 (8+2) 0000 1010
 
-	BSF	_gInStatus, 6, 0	; Mark that we have a command interpreted
+	BSF	_gInStatus, 6, 0	; Mark that we have a valid command interpreted
 	RETURN
 
 
@@ -113,10 +119,10 @@ PROBEPARSE:
     
     ; Mark our status bit that we are synced
     BSF	    _gInStatus, 1, 0	; Bit 1 is sync bit
-    BSF	    _gInStatus, 6, 0	; Mark that we have a command interpreted 
+    BSF	    _gInStatus, 6, 0	; Mark that we have a valid command interpreted 
     RETURN
     
 NOCOMMAND:
     
-    BSF	    _gInStatus, 5, 0    ; Set byte 5 of our status flag meaning we need cleanup
+    BSF	    _gInStatus, 0, 0    ; Set bit 0 of our status flag meaning we need to resync
     RETURN

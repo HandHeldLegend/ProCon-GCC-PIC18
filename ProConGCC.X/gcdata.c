@@ -82,18 +82,19 @@ volatile unsigned char gInPacketIdx = 0x0;
 // Byte for various status features
 // 0 means not happened yet
 // 1 means this happened
-volatile unsigned char gInStatus = 0x0; 
+// Default is cleanup requested to initialize everything.
+volatile unsigned char gInStatus = 0x20; 
 // 7 6 5 4 3 2 1 0
 // a b c d e f g h
 //
-// a - stop bit written flag
+// a - stop bit received flag (command received)
 // b - command interpreted flag
-// c - response sent flag
-// d - byte cleanup performed flag
+// c - request cleanup flag
+// d - rumble enable flag
 // e - sticks read enable flag
 // f - buttons read enable flag
 // g - button read first loop flag
-// h - device desynced flag
+// h - desync detected flag
 
 // The low threshold to discern between a
 // LOW and a HIGH bit (0 or 1).
@@ -102,7 +103,7 @@ volatile unsigned char gInStatus = 0x0;
 // or Wii console. I suspect this is to avoid getting
 // HIGH bits mixed up with LOW bits since they share a 1us
 // low pulse.
-volatile unsigned char gLowThreshold = 0x1A; // 1.375 microseconds
+volatile unsigned char gLowThreshold = 0x32; // ~2 microseconds
 
 
 // We use a bitmask to do XOR operation, increment one, and check for 0 (overflow to 0))
@@ -110,3 +111,8 @@ volatile unsigned char gLowThreshold = 0x1A; // 1.375 microseconds
 // Set command bits for our convenience.
 volatile unsigned char gCommandOriginMask = 0xBE; // Actual command 0x41 for asking for origin/calibration
 volatile unsigned char gCommandPollMask = 0xBF; // Actual command 0x40 for asking for a button/stick update
+
+void desyncfix(void) {
+    __delay_us(450);
+    asm("BSF _gInStatus, 5, 0");
+}

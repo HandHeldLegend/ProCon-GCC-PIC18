@@ -1,4 +1,8 @@
 Version 4.0 HI-TECH Software Intermediate Code
+[v F15211 `(v ~T0 @X0 1 tf1`ul ]
+"203 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\pic18.h
+[v __delay `JF15211 ~T0 @X0 0 e ]
+[p i __delay ]
 "250 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 250: __asm("STATUS_CSHAD equ 03880h");
 [; <" STATUS_CSHAD equ 03880h ;# ">
@@ -2389,27 +2393,43 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _gInPacketIdx
 -> -> 0 `i `uc
 ]
-"85
-[; ;gcdata.c: 85: volatile unsigned char gInStatus = 0x0;
+"86
+[; ;gcdata.c: 86: volatile unsigned char gInStatus = 0x20;
 [v _gInStatus `Vuc ~T0 @X0 1 e ]
 [i _gInStatus
--> -> 0 `i `uc
+-> -> 32 `i `uc
 ]
-"105
-[; ;gcdata.c: 105: volatile unsigned char gLowThreshold = 0x1A;
+"106
+[; ;gcdata.c: 106: volatile unsigned char gLowThreshold = 0x32;
 [v _gLowThreshold `Vuc ~T0 @X0 1 e ]
 [i _gLowThreshold
--> -> 26 `i `uc
+-> -> 50 `i `uc
 ]
-"111
-[; ;gcdata.c: 111: volatile unsigned char gCommandOriginMask = 0xBE;
+"112
+[; ;gcdata.c: 112: volatile unsigned char gCommandOriginMask = 0xBE;
 [v _gCommandOriginMask `Vuc ~T0 @X0 1 e ]
 [i _gCommandOriginMask
 -> -> 190 `i `uc
 ]
-"112
-[; ;gcdata.c: 112: volatile unsigned char gCommandPollMask = 0xBF;
+"113
+[; ;gcdata.c: 113: volatile unsigned char gCommandPollMask = 0xBF;
 [v _gCommandPollMask `Vuc ~T0 @X0 1 e ]
 [i _gCommandPollMask
 -> -> 191 `i `uc
 ]
+"115
+[; ;gcdata.c: 115: void desyncfix(void) {
+[v _desyncfix `(v ~T0 @X0 1 ef ]
+{
+[e :U _desyncfix ]
+[f ]
+"116
+[; ;gcdata.c: 116:     _delay((unsigned long)((450)*(64000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 450 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
+"117
+[; ;gcdata.c: 117:     __asm("BSF _gInStatus, 5, 0");
+[; <" BSF _gInStatus, 5, 0 ;# ">
+"118
+[; ;gcdata.c: 118: }
+[e :UE 2145 ]
+}

@@ -10,8 +10,6 @@ bool stickcalibration = false;
 
 void main(void)
 {
-    asm("MOVLW _gInPacket");
-    asm("MOVFF WREG, _gInPacketIdx");
     // Initialize the device
     SYSTEM_Initialize();
     
@@ -52,6 +50,11 @@ void main(void)
     {
         // check for incoming command
         commandreader();
+        // Fix desync if needed
+        if (gInStatus & 0x01)
+        {
+            desyncfix();
+        }
         // check if we need to send a response
         bytepush();
         // check if we need to do a cleanup

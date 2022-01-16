@@ -15,60 +15,8 @@ channel_DAC1 61
 channel_FVR_Buffer1 62
 channel_FVR_Buffer2 63
 ]
-"88 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\mcc_generated_files/tmr2.c
-[e E15253 . `uc
-TMR2_ROP_STARTS_TMRON 0
-TMR2_ROP_STARTS_TMRON_ERSHIGH 1
-TMR2_ROP_STARTS_TMRON_ERSLOW 2
-TMR2_ROP_RESETS_ERSBOTHEDGE 3
-TMR2_ROP_RESETS_ERSRISINGEDGE 4
-TMR2_ROP_RESETS_ERSFALLINGEDGE 5
-TMR2_ROP_RESETS_ERSLOW 6
-TMR2_ROP_RESETS_ERSHIGH 7
-TMR2_OS_STARTS_TMRON 8
-TMR2_OS_STARTS_ERSRISINGEDGE 9
-TMR2_OS_STARTS_ERSFALLINGEDGE 10
-TMR2_OS_STARTS_ERSBOTHEDGE 11
-TMR2_OS_STARTS_ERSFIRSTRISINGEDGE 12
-TMR2_OS_STARTS_ERSFIRSTFALLINGEDGE 13
-TMR2_OS_STARTS_ERSRISINGEDGEDETECT 14
-TMR2_OS_STARTS_ERSFALLINGEDGEDETECT 15
-TMR2_OS_STARTS_TMRON_ERSHIGH 22
-TMR2_OS_STARTS_TMRON_ERSLOW 23
-TMR2_MS_STARTS_TMRON_ERSRISINGEDGEDETECT 17
-TMR2_MS_STARTS_TMRON_ERSFALLINGEDGEDETECT 18
-TMR2_MS_STARTS_TMRON_ERSBOTHEDGE 19
-]
-"94
-[e E15276 . `uc
-TMR2_T2INPPS 0
-TMR2_RESERVED 1
-TMR2_T4POSTSCALED 2
-TMR2_T6POSTSCALED 3
-TMR2_CCP1_OUT 4
-TMR2_CCP2_OUT 5
-TMR2_CCP3_OUT 6
-TMR2_CCP4_OUT 7
-TMR2_PWM5_OUT 8
-TMR2_PWM6_OUT 9
-TMR2_PWM7_OUT 10
-TMR2_PWM8_OUT 11
-TMR2_RESERVED_2 12
-TMR2_RESERVED_3 13
-TMR2_C1_OUT_SYNC 14
-TMR2_C2_OUT_SYNC 15
-TMR2_ZCD_OUTPUT 16
-TMR2_CLC1_OUT 17
-TMR2_CLC2_OUT 18
-TMR2_CLC3_OUT 19
-TMR2_CLC4_OUT 20
-TMR2_UART1_RX_EDGE 21
-TMR2_UART1_TX_EDGE 22
-TMR2_UART2_RX_EDGE 23
-TMR2_UART2_TX_EDGE 24
-]
 "81 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\joysticks.c
-[e E15484 . `uc
+[e E15489 . `uc
 CX_A 0
 CY_A 1
 SX_A 2
@@ -78,6 +26,58 @@ channel_Temp 60
 channel_DAC1 61
 channel_FVR_Buffer1 62
 channel_FVR_Buffer2 63
+]
+"88 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\mcc_generated_files/tmr4.c
+[e E15253 . `uc
+TMR4_ROP_STARTS_TMRON 0
+TMR4_ROP_STARTS_TMRON_ERSHIGH 1
+TMR4_ROP_STARTS_TMRON_ERSLOW 2
+TMR4_ROP_RESETS_ERSBOTHEDGE 3
+TMR4_ROP_RESETS_ERSRISINGEDGE 4
+TMR4_ROP_RESETS_ERSFALLINGEDGE 5
+TMR4_ROP_RESETS_ERSLOW 6
+TMR4_ROP_RESETS_ERSHIGH 7
+TMR4_OS_STARTS_TMRON 8
+TMR4_OS_STARTS_ERSRISINGEDGE 9
+TMR4_OS_STARTS_ERSFALLINGEDGE 10
+TMR4_OS_STARTS_ERSBOTHEDGE 11
+TMR4_OS_STARTS_ERSFIRSTRISINGEDGE 12
+TMR4_OS_STARTS_ERSFIRSTFALLINGEDGE 13
+TMR4_OS_STARTS_ERSRISINGEDGEDETECT 14
+TMR4_OS_STARTS_ERSFALLINGEDGEDETECT 15
+TMR4_OS_STARTS_TMRON_ERSHIGH 22
+TMR4_OS_STARTS_TMRON_ERSLOW 23
+TMR4_MS_STARTS_TMRON_ERSRISINGEDGEDETECT 17
+TMR4_MS_STARTS_TMRON_ERSFALLINGEDGEDETECT 18
+TMR4_MS_STARTS_TMRON_ERSBOTHEDGE 19
+]
+"94
+[e E15276 . `uc
+TMR4_T4INPPS 0
+TMR4_T2POSTSCALED 1
+TMR4_RESERVED 2
+TMR4_T6POSTSCALED 3
+TMR4_CCP1_OUT 4
+TMR4_CCP2_OUT 5
+TMR4_CCP3_OUT 6
+TMR4_CCP4_OUT 7
+TMR4_PWM5_OUT 8
+TMR4_PWM6_OUT 9
+TMR4_PWM7_OUT 10
+TMR4_PWM8_OUT 11
+TMR4_RESERVED_2 12
+TMR4_RESERVED_3 13
+TMR4_C1_OUT_SYNC 14
+TMR4_C2_OUT_SYNC 15
+TMR4_ZCD_OUTPUT 16
+TMR4_CLC1_OUT 17
+TMR4_CLC2_OUT 18
+TMR4_CLC3_OUT 19
+TMR4_CLC4_OUT 20
+TMR4_UART1_RX_EDGE 21
+TMR4_UART1_TX_EDGE 22
+TMR4_UART2_RX_EDGE 23
+TMR4_UART2_TX_EDGE 24
 ]
 "12 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\button.c
 [v _checkbuttons checkbuttons `(v  1 e 1 0 ]
@@ -111,6 +111,8 @@ channel_FVR_Buffer2 63
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "91 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\Umul64.c
 [v ___omul __omul `(ul  1 e 4 0 ]
+"115 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\gcdata.c
+[v _desyncfix desyncfix `(v  1 e 1 0 ]
 "55 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\joysticks.c
 [v _slinjim slinjim `(uc  1 e 1 0 ]
 "64
@@ -155,18 +157,18 @@ channel_FVR_Buffer2 63
 [v _PWM1_Initialize PWM1_Initialize `(v  1 e 1 0 ]
 "60 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\mcc_generated_files/smt1.c
 [v _SMT1_Initialize SMT1_Initialize `(v  1 e 1 0 ]
-"62 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\mcc_generated_files/tmr2.c
-[v _TMR2_Initialize TMR2_Initialize `(v  1 e 1 0 ]
+"62 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\mcc_generated_files/tmr4.c
+[v _TMR4_Initialize TMR4_Initialize `(v  1 e 1 0 ]
 "100
-[v _TMR2_Start TMR2_Start `(v  1 e 1 0 ]
+[v _TMR4_Start TMR4_Start `(v  1 e 1 0 ]
 "111
-[v _TMR2_Stop TMR2_Stop `(v  1 e 1 0 ]
+[v _TMR4_Stop TMR4_Stop `(v  1 e 1 0 ]
 "122
-[v _TMR2_Counter8BitGet TMR2_Counter8BitGet `(uc  1 e 1 0 ]
+[v _TMR4_Counter8BitGet TMR4_Counter8BitGet `(uc  1 e 1 0 ]
 "136
-[v _TMR2_Counter8BitSet TMR2_Counter8BitSet `(v  1 e 1 0 ]
+[v _TMR4_Counter8BitSet TMR4_Counter8BitSet `(v  1 e 1 0 ]
 "147
-[v _TMR2_Period8BitSet TMR2_Period8BitSet `(v  1 e 1 0 ]
+[v _TMR4_Period8BitSet TMR4_Period8BitSet `(v  1 e 1 0 ]
 "15 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\settings.c
 [v _setdefaultsettings setdefaultsettings `(v  1 e 1 0 ]
 "51
@@ -287,18 +289,16 @@ channel_FVR_Buffer2 63
 ]
 [u S465 . 1 `S447 1 . 1 0 `S456 1 . 1 0 `S462 1 . 1 0 ]
 [v _PIR1bits PIR1bits `VES465  1 e 1 @14753 ]
-[s S1434 . 1 `uc 1 TMR1IF 1 0 :1:0 
-`uc 1 TMR1GIF 1 0 :1:1 
-`uc 1 TMR2IF 1 0 :1:2 
-`uc 1 CCP1IF 1 0 :1:3 
-`uc 1 . 1 0 :1:4 
-`uc 1 NCO1IF 1 0 :1:5 
-`uc 1 CWG1IF 1 0 :1:6 
-`uc 1 CLC1IF 1 0 :1:7 
+[s S2199 . 1 `uc 1 TMR4IF 1 0 :1:0 
+`uc 1 CCP2IF 1 0 :1:1 
+`uc 1 . 1 0 :1:2 
+`uc 1 CWG2IF 1 0 :1:3 
+`uc 1 CLC2IF 1 0 :1:4 
+`uc 1 INT2IF 1 0 :1:5 
 ]
-"4386
-[u S1443 . 1 `S1434 1 . 1 0 ]
-[v _PIR4bits PIR4bits `VES1443  1 e 1 @14756 ]
+"4565
+[u S2206 . 1 `S2199 1 . 1 0 ]
+[v _PIR7bits PIR7bits `VES2206  1 e 1 @14759 ]
 "4686
 [v _PMD0 PMD0 `VEuc  1 e 1 @14784 ]
 "4763
@@ -808,109 +808,109 @@ channel_FVR_Buffer2 63
 "39058
 "39058
 [v _CCP1CONbits CCP1CONbits `VES1384  1 e 1 @16254 ]
-"42168
-[v _T2TMR T2TMR `VEuc  1 e 1 @16298 ]
-"42173
-[v _TMR2 TMR2 `VEuc  1 e 1 @16298 ]
-"42206
-[v _T2PR T2PR `VEuc  1 e 1 @16299 ]
-"42211
-[v _PR2 PR2 `VEuc  1 e 1 @16299 ]
-"42244
-[v _T2CON T2CON `VEuc  1 e 1 @16300 ]
-[s S1592 . 1 `uc 1 OUTPS 1 0 :4:0 
+"40692
+[v _T4TMR T4TMR `VEuc  1 e 1 @16286 ]
+"40697
+[v _TMR4 TMR4 `VEuc  1 e 1 @16286 ]
+"40730
+[v _T4PR T4PR `VEuc  1 e 1 @16287 ]
+"40735
+[v _PR4 PR4 `VEuc  1 e 1 @16287 ]
+"40768
+[v _T4CON T4CON `VEuc  1 e 1 @16288 ]
+[s S2353 . 1 `uc 1 OUTPS 1 0 :4:0 
 `uc 1 CKPS 1 0 :3:4 
 `uc 1 ON 1 0 :1:7 
 ]
-"42280
-[s S1596 . 1 `uc 1 T2OUTPS 1 0 :4:0 
-`uc 1 T2CKPS 1 0 :3:4 
-`uc 1 T2ON 1 0 :1:7 
+"40804
+[s S2357 . 1 `uc 1 T4OUTPS 1 0 :4:0 
+`uc 1 T4CKPS 1 0 :3:4 
+`uc 1 T4ON 1 0 :1:7 
 ]
-"42280
-[s S1600 . 1 `uc 1 T2OUTPS0 1 0 :1:0 
-`uc 1 T2OUTPS1 1 0 :1:1 
-`uc 1 T2OUTPS2 1 0 :1:2 
-`uc 1 T2OUTPS3 1 0 :1:3 
-`uc 1 T2CKPS0 1 0 :1:4 
-`uc 1 T2CKPS1 1 0 :1:5 
-`uc 1 T2CKPS2 1 0 :1:6 
+"40804
+[s S2361 . 1 `uc 1 T4OUTPS0 1 0 :1:0 
+`uc 1 T4OUTPS1 1 0 :1:1 
+`uc 1 T4OUTPS2 1 0 :1:2 
+`uc 1 T4OUTPS3 1 0 :1:3 
+`uc 1 T4CKPS0 1 0 :1:4 
+`uc 1 T4CKPS1 1 0 :1:5 
+`uc 1 T4CKPS2 1 0 :1:6 
 ]
-"42280
-[s S1608 . 1 `uc 1 OUTPS0 1 0 :1:0 
+"40804
+[s S2369 . 1 `uc 1 OUTPS0 1 0 :1:0 
 `uc 1 OUTPS1 1 0 :1:1 
 `uc 1 OUTPS2 1 0 :1:2 
 `uc 1 OUTPS3 1 0 :1:3 
 `uc 1 CKPS0 1 0 :1:4 
 `uc 1 CKPS1 1 0 :1:5 
 `uc 1 CKPS2 1 0 :1:6 
-`uc 1 TMR2ON 1 0 :1:7 
+`uc 1 TMR4ON 1 0 :1:7 
 ]
-"42280
-[u S1617 . 1 `S1592 1 . 1 0 `S1596 1 . 1 0 `S1600 1 . 1 0 `S1608 1 . 1 0 ]
-"42280
-"42280
-[v _T2CONbits T2CONbits `VES1617  1 e 1 @16300 ]
-"42390
-[v _T2HLT T2HLT `VEuc  1 e 1 @16301 ]
-[s S1478 . 1 `uc 1 MODE 1 0 :5:0 
+"40804
+[u S2378 . 1 `S2353 1 . 1 0 `S2357 1 . 1 0 `S2361 1 . 1 0 `S2369 1 . 1 0 ]
+"40804
+"40804
+[v _T4CONbits T4CONbits `VES2378  1 e 1 @16288 ]
+"40914
+[v _T4HLT T4HLT `VEuc  1 e 1 @16289 ]
+[s S2239 . 1 `uc 1 MODE 1 0 :5:0 
 `uc 1 CKSYNC 1 0 :1:5 
 `uc 1 CKPOL 1 0 :1:6 
 `uc 1 PSYNC 1 0 :1:7 
 ]
-"42423
-[s S1483 . 1 `uc 1 MODE0 1 0 :1:0 
+"40947
+[s S2244 . 1 `uc 1 MODE0 1 0 :1:0 
 `uc 1 MODE1 1 0 :1:1 
 `uc 1 MODE2 1 0 :1:2 
 `uc 1 MODE3 1 0 :1:3 
 `uc 1 MODE4 1 0 :1:4 
 ]
-"42423
-[s S1489 . 1 `uc 1 T2MODE 1 0 :5:0 
-`uc 1 T2CKSYNC 1 0 :1:5 
-`uc 1 T2CKPOL 1 0 :1:6 
-`uc 1 T2PSYNC 1 0 :1:7 
+"40947
+[s S2250 . 1 `uc 1 T4MODE 1 0 :5:0 
+`uc 1 T4CKSYNC 1 0 :1:5 
+`uc 1 T4CKPOL 1 0 :1:6 
+`uc 1 T4PSYNC 1 0 :1:7 
 ]
-"42423
-[s S1494 . 1 `uc 1 T2MODE0 1 0 :1:0 
-`uc 1 T2MODE1 1 0 :1:1 
-`uc 1 T2MODE2 1 0 :1:2 
-`uc 1 T2MODE3 1 0 :1:3 
-`uc 1 T2MODE4 1 0 :1:4 
+"40947
+[s S2255 . 1 `uc 1 T4MODE0 1 0 :1:0 
+`uc 1 T4MODE1 1 0 :1:1 
+`uc 1 T4MODE2 1 0 :1:2 
+`uc 1 T4MODE3 1 0 :1:3 
+`uc 1 T4MODE4 1 0 :1:4 
 ]
-"42423
-[u S1500 . 1 `S1478 1 . 1 0 `S1483 1 . 1 0 `S1489 1 . 1 0 `S1494 1 . 1 0 ]
-"42423
-"42423
-[v _T2HLTbits T2HLTbits `VES1500  1 e 1 @16301 ]
-"42518
-[v _T2CLKCON T2CLKCON `VEuc  1 e 1 @16302 ]
-"42676
-[v _T2RST T2RST `VEuc  1 e 1 @16303 ]
-[s S1554 . 1 `uc 1 RSEL 1 0 :5:0 
+"40947
+[u S2261 . 1 `S2239 1 . 1 0 `S2244 1 . 1 0 `S2250 1 . 1 0 `S2255 1 . 1 0 ]
+"40947
+"40947
+[v _T4HLTbits T4HLTbits `VES2261  1 e 1 @16289 ]
+"41042
+[v _T4CLKCON T4CLKCON `VEuc  1 e 1 @16290 ]
+"41200
+[v _T4RST T4RST `VEuc  1 e 1 @16291 ]
+[s S2315 . 1 `uc 1 RSEL 1 0 :5:0 
 ]
-"42703
-[s S1556 . 1 `uc 1 RSEL0 1 0 :1:0 
+"41227
+[s S2317 . 1 `uc 1 RSEL0 1 0 :1:0 
 `uc 1 RSEL1 1 0 :1:1 
 `uc 1 RSEL2 1 0 :1:2 
 `uc 1 RSEL3 1 0 :1:3 
 `uc 1 RSEL4 1 0 :1:4 
 ]
-"42703
-[s S1562 . 1 `uc 1 T2RSEL 1 0 :5:0 
+"41227
+[s S2323 . 1 `uc 1 T4RSEL 1 0 :5:0 
 ]
-"42703
-[s S1564 . 1 `uc 1 T2RSEL0 1 0 :1:0 
-`uc 1 T2RSEL1 1 0 :1:1 
-`uc 1 T2RSEL2 1 0 :1:2 
-`uc 1 T2RSEL3 1 0 :1:3 
-`uc 1 T2RSEL4 1 0 :1:4 
+"41227
+[s S2325 . 1 `uc 1 T4RSEL0 1 0 :1:0 
+`uc 1 T4RSEL1 1 0 :1:1 
+`uc 1 T4RSEL2 1 0 :1:2 
+`uc 1 T4RSEL3 1 0 :1:3 
+`uc 1 T4RSEL4 1 0 :1:4 
 ]
-"42703
-[u S1570 . 1 `S1554 1 . 1 0 `S1556 1 . 1 0 `S1562 1 . 1 0 `S1564 1 . 1 0 ]
-"42703
-"42703
-[v _T2RSTbits T2RSTbits `VES1570  1 e 1 @16303 ]
+"41227
+[u S2331 . 1 `S2315 1 . 1 0 `S2317 1 . 1 0 `S2323 1 . 1 0 `S2325 1 . 1 0 ]
+"41227
+"41227
+[v _T4RSTbits T4RSTbits `VES2331  1 e 1 @16291 ]
 "44276
 [v _LATA LATA `VEuc  1 e 1 @16314 ]
 "44388
@@ -923,7 +923,7 @@ channel_FVR_Buffer2 63
 [v _TRISB TRISB `VEuc  1 e 1 @16323 ]
 "44736
 [v _TRISC TRISC `VEuc  1 e 1 @16324 ]
-[s S1741 . 1 `uc 1 RA0 1 0 :1:0 
+[s S1472 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
@@ -933,18 +933,18 @@ channel_FVR_Buffer2 63
 `uc 1 RA7 1 0 :1:7 
 ]
 "44822
-[s S1750 . 1 `uc 1 ULPWUIN 1 0 :1:0 
+[s S1481 . 1 `uc 1 ULPWUIN 1 0 :1:0 
 `uc 1 . 1 0 :4:1 
 `uc 1 LVDIN 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 RJPU 1 0 :1:7 
 ]
 "44822
-[u S1756 . 1 `S1741 1 . 1 0 `S1750 1 . 1 0 ]
+[u S1487 . 1 `S1472 1 . 1 0 `S1481 1 . 1 0 ]
 "44822
 "44822
-[v _PORTAbits PORTAbits `VES1756  1 e 1 @16330 ]
-[s S2226 . 1 `uc 1 RB0 1 0 :1:0 
+[v _PORTAbits PORTAbits `VES1487  1 e 1 @16330 ]
+[s S1968 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
 `uc 1 RB2 1 0 :1:2 
 `uc 1 RB3 1 0 :1:3 
@@ -954,15 +954,15 @@ channel_FVR_Buffer2 63
 `uc 1 RB7 1 0 :1:7 
 ]
 "44903
-[s S2235 . 1 `uc 1 . 1 0 :3:0 
+[s S1977 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 CCP2_PA2 1 0 :1:3 
 ]
 "44903
-[u S2238 . 1 `S2226 1 . 1 0 `S2235 1 . 1 0 ]
+[u S1980 . 1 `S1968 1 . 1 0 `S1977 1 . 1 0 ]
 "44903
 "44903
-[v _PORTBbits PORTBbits `VES2238  1 e 1 @16331 ]
-[s S1783 . 1 `uc 1 RC0 1 0 :1:0 
+[v _PORTBbits PORTBbits `VES1980  1 e 1 @16331 ]
+[s S1514 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -972,19 +972,19 @@ channel_FVR_Buffer2 63
 `uc 1 RC7 1 0 :1:7 
 ]
 "44979
-[s S1792 . 1 `uc 1 . 1 0 :1:0 
+[s S1523 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 CCP2 1 0 :1:1 
 `uc 1 PA1 1 0 :1:2 
 ]
 "44979
-[s S1796 . 1 `uc 1 . 1 0 :1:0 
+[s S1527 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 PA2 1 0 :1:1 
 ]
 "44979
-[u S1799 . 1 `S1783 1 . 1 0 `S1792 1 . 1 0 `S1796 1 . 1 0 ]
+[u S1530 . 1 `S1514 1 . 1 0 `S1523 1 . 1 0 `S1527 1 . 1 0 ]
 "44979
 "44979
-[v _PORTCbits PORTCbits `VES1799  1 e 1 @16332 ]
+[v _PORTCbits PORTCbits `VES1530  1 e 1 @16332 ]
 [s S595 . 1 `uc 1 INT0EDG 1 0 :1:0 
 `uc 1 INT1EDG 1 0 :1:1 
 `uc 1 INT2EDG 1 0 :1:2 
@@ -1011,34 +1011,34 @@ channel_FVR_Buffer2 63
 "46294
 [v _TBLPTRU TBLPTRU `VEuc  1 e 1 @16376 ]
 "41 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\joysticks.c
-[v _tmphigh@joysticks$F2137 tmphigh `ui  1 s 2 tmphigh ]
+[v _tmphigh@joysticks$F1879 tmphigh `ui  1 s 2 tmphigh ]
 "42
-[v _tmplow@joysticks$F2138 tmplow `ui  1 s 2 tmplow ]
+[v _tmplow@joysticks$F1880 tmplow `ui  1 s 2 tmplow ]
 "43
-[v _tmpcenter@joysticks$F2139 tmpcenter `ui  1 s 2 tmpcenter ]
+[v _tmpcenter@joysticks$F1881 tmpcenter `ui  1 s 2 tmpcenter ]
 "44
-[v _tmphighm@joysticks$F2140 tmphighm `ui  1 s 2 tmphighm ]
+[v _tmphighm@joysticks$F1882 tmphighm `ui  1 s 2 tmphighm ]
 "45
-[v _tmplowm@joysticks$F2141 tmplowm `ui  1 s 2 tmplowm ]
+[v _tmplowm@joysticks$F1883 tmplowm `ui  1 s 2 tmplowm ]
 "47
-[v _stickIdx@joysticks$F2142 stickIdx `uc  1 s 1 stickIdx ]
+[v _stickIdx@joysticks$F1884 stickIdx `uc  1 s 1 stickIdx ]
 "48
-[v _initiatedRead@joysticks$F2143 initiatedRead `a  1 s 1 initiatedRead ]
+[v _initiatedRead@joysticks$F1885 initiatedRead `a  1 s 1 initiatedRead ]
 "49
-[v _clearRead@joysticks$F2144 clearRead `a  1 s 1 clearRead ]
+[v _clearRead@joysticks$F1886 clearRead `a  1 s 1 clearRead ]
 "9 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\main.c
 [v _stickcalibration stickcalibration `a  1 e 1 0 ]
 "54 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\mcc_generated_files/pin_manager.c
 [v _IOCBF2_InterruptHandler IOCBF2_InterruptHandler `*.37(v  1 e 2 0 ]
 "192 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\mcc_generated_files/smt1.c
 [v _testcount testcount `VEuc  1 e 1 0 ]
-[s S2050 . 45 `ui 1 buffer 2 0 `ui 1 configKey 2 2 `ui 1 sx_low 2 4 `ui 1 sx_center 2 6 `ui 1 sx_high 2 8 `ui 1 sy_low 2 10 `ui 1 sy_center 2 12 `ui 1 sy_high 2 14 `ui 1 cx_low 2 16 `ui 1 cx_center 2 18 `ui 1 cx_high 2 20 `ui 1 cy_low 2 22 `ui 1 cy_center 2 24 `ui 1 cy_high 2 26 `ui 1 sx_highMultiplier 2 28 `ui 1 sx_lowMultiplier 2 30 `ui 1 sy_highMultiplier 2 32 `ui 1 sy_lowMultiplier 2 34 `ui 1 cx_highMultiplier 2 36 `ui 1 cx_lowMultiplier 2 38 `ui 1 cy_highMultiplier 2 40 `ui 1 cy_lowMultiplier 2 42 `uc 1 trigger_mode 1 44 ]
+[s S1792 . 45 `ui 1 buffer 2 0 `ui 1 configKey 2 2 `ui 1 sx_low 2 4 `ui 1 sx_center 2 6 `ui 1 sx_high 2 8 `ui 1 sy_low 2 10 `ui 1 sy_center 2 12 `ui 1 sy_high 2 14 `ui 1 cx_low 2 16 `ui 1 cx_center 2 18 `ui 1 cx_high 2 20 `ui 1 cy_low 2 22 `ui 1 cy_center 2 24 `ui 1 cy_high 2 26 `ui 1 sx_highMultiplier 2 28 `ui 1 sx_lowMultiplier 2 30 `ui 1 sy_highMultiplier 2 32 `ui 1 sy_lowMultiplier 2 34 `ui 1 cx_highMultiplier 2 36 `ui 1 cx_lowMultiplier 2 38 `ui 1 cy_highMultiplier 2 40 `ui 1 cy_lowMultiplier 2 42 `uc 1 trigger_mode 1 44 ]
 "13 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\settings.c
-[v _SettingData SettingData `S2050  1 e 45 0 ]
+[v _SettingData SettingData `S1792  1 e 45 0 ]
 "11 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"71
+"74
 } 0
 "51 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\settings.c
 [v _zerosticks zerosticks `(v  1 e 1 0 ]
@@ -1155,6 +1155,11 @@ channel_FVR_Buffer2 63
 [v DATAEE_ReadByte@bAdd bAdd `uc  1 a 1 4 ]
 "195
 } 0
+"115 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\gcdata.c
+[v _desyncfix desyncfix `(v  1 e 1 0 ]
+{
+"118
+} 0
 "12 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\button.c
 [v _checkbuttons checkbuttons `(v  1 e 1 0 ]
 {
@@ -1170,8 +1175,8 @@ channel_FVR_Buffer2 63
 {
 "60
 } 0
-"62 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\mcc_generated_files/tmr2.c
-[v _TMR2_Initialize TMR2_Initialize `(v  1 e 1 0 ]
+"62 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\mcc_generated_files/tmr4.c
+[v _TMR4_Initialize TMR4_Initialize `(v  1 e 1 0 ]
 {
 "86
 } 0

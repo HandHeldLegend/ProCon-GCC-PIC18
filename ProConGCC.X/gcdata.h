@@ -103,6 +103,7 @@ volatile unsigned char gLowThreshold;
 volatile unsigned char gCommandOriginMask; // Actual command 0x41 for asking for origin/calibration
 volatile unsigned char gCommandPollMask; // Actual command 0x40 for asking for a button/stick update
 
+void desyncfix(void);
 
 #endif	/* GC_DATA_H*/
 

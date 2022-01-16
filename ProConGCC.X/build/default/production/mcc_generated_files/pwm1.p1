@@ -2201,14 +2201,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/pwm1.c: 69:  CCP1CON = 0x9C;
 [e = _CCP1CON -> -> 156 `i `uc ]
 "72
-[; ;mcc_generated_files/pwm1.c: 72:  CCPR1H = 0xF9;
-[e = _CCPR1H -> -> 249 `i `uc ]
+[; ;mcc_generated_files/pwm1.c: 72:  CCPR1H = 0xF0;
+[e = _CCPR1H -> -> 240 `i `uc ]
 "75
-[; ;mcc_generated_files/pwm1.c: 75:  CCPR1L = 0xC0;
-[e = _CCPR1L -> -> 192 `i `uc ]
+[; ;mcc_generated_files/pwm1.c: 75:  CCPR1L = 0x00;
+[e = _CCPR1L -> -> 0 `i `uc ]
 "78
-[; ;mcc_generated_files/pwm1.c: 78:  CCPTMRS0bits.C1TSEL = 0x1;
-[e = . . _CCPTMRS0bits 0 0 -> -> 1 `i `uc ]
+[; ;mcc_generated_files/pwm1.c: 78:  CCPTMRS0bits.C1TSEL = 0x2;
+[e = . . _CCPTMRS0bits 0 0 -> -> 2 `i `uc ]
 "80
 [; ;mcc_generated_files/pwm1.c: 80: }
 [e :UE 2143 ]

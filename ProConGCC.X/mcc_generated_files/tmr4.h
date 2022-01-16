@@ -1,17 +1,17 @@
 /**
-  TMR2 Generated Driver API Header File
+  TMR4 Generated Driver API Header File
 
   @Company
     Microchip Technology Inc.
 
   @File Name
-    tmr2.h
+    tmr4.h
 
   @Summary
-    This is the generated header file for the TMR2 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+    This is the generated header file for the TMR4 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
 
   @Description
-    This header file provides APIs for driver for TMR2.
+    This header file provides APIs for driver for TMR4.
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.7
         Device            :  PIC18F25K42
@@ -44,8 +44,8 @@
     SOFTWARE.
 */
 
-#ifndef TMR2_H
-#define TMR2_H
+#ifndef TMR4_H
+#define TMR4_H
 
 /**
   Section: Included Files
@@ -86,42 +86,42 @@ typedef enum
    /* Roll-over Pulse mode indicates that Timer starts
    immediately upon ON = 1 (Software Control)
    */
-   TMR2_ROP_STARTS_TMRON,
+   TMR4_ROP_STARTS_TMRON,
 
    /* Roll-over Pulse mode indicates that the Timer starts
        when ON = 1 and TMRx_ers = 1. Stops when TMRx_ers = 0
      */
-   TMR2_ROP_STARTS_TMRON_ERSHIGH,
+   TMR4_ROP_STARTS_TMRON_ERSHIGH,
 
    /* Roll-over Pulse mode indicates that the Timer starts
       when ON = 1 and TMRx_ers = 0. Stops when TMRx_ers = 1
      */
-   TMR2_ROP_STARTS_TMRON_ERSLOW,
+   TMR4_ROP_STARTS_TMRON_ERSLOW,
 
    /* Roll-over Pulse mode indicates that the Timer resets
    upon rising or falling edge of TMRx_ers
      */
-   TMR2_ROP_RESETS_ERSBOTHEDGE,
+   TMR4_ROP_RESETS_ERSBOTHEDGE,
 
    /* Roll-over Pulse mode indicates that the Timer resets
     upon rising edge of TMRx_ers
      */
-   TMR2_ROP_RESETS_ERSRISINGEDGE,
+   TMR4_ROP_RESETS_ERSRISINGEDGE,
 
    /* Roll-over Pulse mode indicates that the Timer resets
    upon falling edge of TMRx_ers
      */
-   TMR2_ROP_RESETS_ERSFALLINGEDGE,
+   TMR4_ROP_RESETS_ERSFALLINGEDGE,
 
    /* Roll-over Pulse mode indicates that the Timer resets
    upon TMRx_ers = 0
      */
-   TMR2_ROP_RESETS_ERSLOW,
+   TMR4_ROP_RESETS_ERSLOW,
 
    /* Roll-over Pulse mode indicates that the Timer resets
    upon TMRx_ers = 1
      */
-   TMR2_ROP_RESETS_ERSHIGH,
+   TMR4_ROP_RESETS_ERSHIGH,
 
     /*In all One-Shot mode the timer resets and the ON bit is
 	cleared when the timer value matches the PRx period
@@ -132,55 +132,55 @@ typedef enum
    /* One shot mode indicates that the Timer starts
     immediately upon ON = 1 (Software Control)
      */
-   TMR2_OS_STARTS_TMRON,
+   TMR4_OS_STARTS_TMRON,
 
    /* One shot mode indicates that the Timer starts
     when a rising edge is detected on the TMRx_ers
      */
-   TMR2_OS_STARTS_ERSRISINGEDGE ,
+   TMR4_OS_STARTS_ERSRISINGEDGE ,
 
    /* One shot mode indicates that the Timer starts
     when a falling edge is detected on the TMRx_ers
      */
-   TMR2_OS_STARTS_ERSFALLINGEDGE ,
+   TMR4_OS_STARTS_ERSFALLINGEDGE ,
 
    /* One shot mode indicates that the Timer starts
     when either a rising or falling edge is detected on TMRx_ers
      */
-   TMR2_OS_STARTS_ERSBOTHEDGE,
+   TMR4_OS_STARTS_ERSBOTHEDGE,
 
    /* One shot mode indicates that the Timer starts
     upon first TMRx_ers rising edge and resets on all
 	subsequent TMRx_ers rising edges
      */
-   TMR2_OS_STARTS_ERSFIRSTRISINGEDGE,
+   TMR4_OS_STARTS_ERSFIRSTRISINGEDGE,
 
    /* One shot mode indicates that the Timer starts
     upon first TMRx_ers falling edge and restarts on all
 	subsequent TMRx_ers falling edges
      */
-   TMR2_OS_STARTS_ERSFIRSTFALLINGEDGE,
+   TMR4_OS_STARTS_ERSFIRSTFALLINGEDGE,
 
    /* One shot mode indicates that the Timer starts
     when a rising edge is detected on the TMRx_ers,
 	resets upon TMRx_ers = 0
      */
-   TMR2_OS_STARTS_ERSRISINGEDGEDETECT,
+   TMR4_OS_STARTS_ERSRISINGEDGEDETECT,
      /* One shot mode indicates that the Timer starts
     when a falling edge is detected on the TMRx_ers,
 	resets upon TMRx_ers = 1
      */
-   TMR2_OS_STARTS_ERSFALLINGEDGEDETECT,
+   TMR4_OS_STARTS_ERSFALLINGEDGEDETECT,
    
    /* One shot mode indicates that the Timer starts
     when a TMRx_ers = 1,ON =1 and resets upon TMRx_ers =0
     */
-   TMR2_OS_STARTS_TMRON_ERSHIGH = 0x16,
+   TMR4_OS_STARTS_TMRON_ERSHIGH = 0x16,
            
    /* One shot mode indicates that the Timer starts
      when a TMRx_ers = 0,ON = 1 and resets upon TMRx_ers =1 
     */
-   TMR2_OS_STARTS_TMRON_ERSLOW = 0x17,
+   TMR4_OS_STARTS_TMRON_ERSLOW = 0x17,
         
    /*In all Mono-Stable mode the ON bit must be initially set,but
      not cleared upon the TMRx = PRx, and the timer will start upon
@@ -189,20 +189,20 @@ typedef enum
    /* Mono Stable mode indicates that the Timer starts
       when a rising edge is detected on the TMRx_ers and ON = 1
     */
-   TMR2_MS_STARTS_TMRON_ERSRISINGEDGEDETECT = 0x11,
+   TMR4_MS_STARTS_TMRON_ERSRISINGEDGEDETECT = 0x11,
            
    /* Mono Stable mode indicates that the Timer starts
       when a falling edge is detected on the TMRx_ers and ON = 1
     */
-   TMR2_MS_STARTS_TMRON_ERSFALLINGEDGEDETECT = 0x12,
+   TMR4_MS_STARTS_TMRON_ERSFALLINGEDGEDETECT = 0x12,
            
    /* Mono Stable mode indicates that the Timer starts
       when  either a rising or falling edge is detected on TMRx_ers 
       and ON = 1
     */
-   TMR2_MS_STARTS_TMRON_ERSBOTHEDGE = 0x13
+   TMR4_MS_STARTS_TMRON_ERSBOTHEDGE = 0x13
            
-} TMR2_HLT_MODE;
+} TMR4_HLT_MODE;
 
 /**
   HLT Reset Source Enumeration
@@ -219,108 +219,108 @@ typedef enum
 
 typedef enum
 {
-     /* T2INPPS is the Timer external reset source
+     /* T4INPPS is the Timer external reset source
      */
-    TMR2_T2INPPS,
+    TMR4_T4INPPS,
 
+    /* Timer2 Postscale is the Timer external reset source 
+     */
+    TMR4_T2POSTSCALED,
+    
     /* Reserved enum cannot be used 
      */
-    TMR2_RESERVED,
-    
-    /* Timer4 Postscale is the Timer external reset source 
-     */
-    TMR2_T4POSTSCALED,
+    TMR4_RESERVED,
     
     /* Timer6 Postscale is the Timer external reset source 
      */
-    TMR2_T6POSTSCALED,
+    TMR4_T6POSTSCALED,
 
     /* CCP1_OUT is the Timer external reset source 
      */
-    TMR2_CCP1_OUT,
+    TMR4_CCP1_OUT,
 
     /* CCP2_OUT is the Timer external reset source 
      */
-    TMR2_CCP2_OUT,
+    TMR4_CCP2_OUT,
     
     /* CCP3_OUT is the Timer external reset source 
      */
-    TMR2_CCP3_OUT,
+    TMR4_CCP3_OUT,
 
     /* CCP4_OUT is the Timer external reset source 
      */
-    TMR2_CCP4_OUT,
+    TMR4_CCP4_OUT,
 
     /* PWM5_out is the Timer external reset source 
      */
-    TMR2_PWM5_OUT,
+    TMR4_PWM5_OUT,
 
      /* PWM6_out is the Timer external reset source 
      */
-    TMR2_PWM6_OUT,
+    TMR4_PWM6_OUT,
     
     /* PWM7_out is the Timer external reset source 
      */
-    TMR2_PWM7_OUT,
+    TMR4_PWM7_OUT,
 
      /* PWM8_out is the Timer external reset source 
      */
-    TMR2_PWM8_OUT,
+    TMR4_PWM8_OUT,
     
     /* Reserved enum cannot be used 
      */
-    TMR2_RESERVED_2,
+    TMR4_RESERVED_2,
 
     /* Reserved enum cannot be used 
      */
-    TMR2_RESERVED_3,
+    TMR4_RESERVED_3,
 
     /* C1_OUT_SYNC is the Timer external reset source 
      */
-    TMR2_C1_OUT_SYNC,	
+    TMR4_C1_OUT_SYNC,	
 
     /* C2_OUT_SYNC is the Timer external reset source 
      */
-    TMR2_C2_OUT_SYNC,
+    TMR4_C2_OUT_SYNC,
 
     /* ZCD_Output is the Timer external reset source 
      */
-    TMR2_ZCD_OUTPUT,
+    TMR4_ZCD_OUTPUT,
 
     /* CLC1_out is the Timer external reset source 
      */
-    TMR2_CLC1_OUT,
+    TMR4_CLC1_OUT,
          
     /* CLC2_out is the Timer external reset source 
      */
-    TMR2_CLC2_OUT,
+    TMR4_CLC2_OUT,
             
     /* CLC3_out is the Timer external reset source 
      */
-    TMR2_CLC3_OUT,
+    TMR4_CLC3_OUT,
 
     /* CLC4_out is the Timer external reset source 
      */
-    TMR2_CLC4_OUT,
+    TMR4_CLC4_OUT,
 
     /* UART1_rx_edge is the Timer external reset source 
      */
-    TMR2_UART1_RX_EDGE,
+    TMR4_UART1_RX_EDGE,
 
     /* UART1_tx_edge is the Timer external reset source 
      */
-    TMR2_UART1_TX_EDGE,
+    TMR4_UART1_TX_EDGE,
 
     /* UART2_rx_edge is the Timer external reset source 
      */
-    TMR2_UART2_RX_EDGE,
+    TMR4_UART2_RX_EDGE,
 
     /* UART2_tx_edge is the Timer external reset source 
      */
-    TMR2_UART2_TX_EDGE
+    TMR4_UART2_TX_EDGE
 
 
-} TMR2_HLT_EXT_RESET_SOURCE;
+} TMR4_HLT_EXT_RESET_SOURCE;
 
 
 /**
@@ -328,16 +328,16 @@ typedef enum
 */
 
 /**
-  Section: TMR2 APIs
+  Section: TMR4 APIs
 */
 
 /**
   @Summary
-    Initializes the TMR2 module.
+    Initializes the TMR4 module.
 
   @Description
-    This function initializes the TMR2 Registers.
-    This function must be called before any other TMR2 function is called.
+    This function initializes the TMR4 Registers.
+    This function must be called before any other TMR4 function is called.
 
   @Preconditions
     None
@@ -355,27 +355,27 @@ typedef enum
     <code>
     main()
     {
-        // Initialize TMR2 module
-        TMR2_Initialize();
+        // Initialize TMR4 module
+        TMR4_Initialize();
 
         // Do something else...
     }
     </code>
 */
-void TMR2_Initialize(void);
+void TMR4_Initialize(void);
 
 /**
   @Summary
     Configures the Hardware Limit Timer mode.
 
   @Description
-    Writes the T2HLTbits.MODE bits.
+    Writes the T4HLTbits.MODE bits.
 
   @Preconditions
-    Initialize  the TMR2 before calling this function.
+    Initialize  the TMR4 before calling this function.
 
   @Param
-    mode - Value to write into T2HLTbits.MODE bits.
+    mode - Value to write into T4HLTbits.MODE bits.
 
   @Returns
     None
@@ -385,33 +385,33 @@ void TMR2_Initialize(void);
 	main()
     {
 
-	    TMR2_HLT_MODE hltmode;
-		hltmode = TMR2_ROP_STARTS_TMRON_EN;
+	    TMR4_HLT_MODE hltmode;
+		hltmode = TMR4_ROP_STARTS_TMRON_EN;
 
-		// Initialize TMR2 module
-		 TMR2.Initialize();
+		// Initialize TMR4 module
+		 TMR4.Initialize();
 
 		// Set the HLT mode
-		TMR2_ModeSet (hltmode);
+		TMR4_ModeSet (hltmode);
 
 		// Do something else...
     }
     </code>
 */
-void TMR2_ModeSet(TMR2_HLT_MODE mode);
+void TMR4_ModeSet(TMR4_HLT_MODE mode);
 
 /**
   @Summary
     Configures the HLT external reset source.
 
   @Description
-    Writes the T2RSTbits.RSEL bits.
+    Writes the T4RSTbits.RSEL bits.
 
   @Preconditions
-    Initialize  the TMR2 before calling this function.
+    Initialize  the TMR4 before calling this function.
 
   @Param
-    reset - Value to write into T2RSTbits.RSEL bits.
+    reset - Value to write into T4RSTbits.RSEL bits.
 
   @Returns
     None
@@ -421,30 +421,30 @@ void TMR2_ModeSet(TMR2_HLT_MODE mode);
 	main()
     {
 
-	    TMR2_HLT_EXT_RESET_SOURCE hltresetsrc;
+	    TMR4_HLT_EXT_RESET_SOURCE hltresetsrc;
 		hltresetsrc = T2IN;
 
-        // Initialize TMR2 module
+        // Initialize TMR4 module
 
 		// Set the HLT mode
-		TMR2_ExtResetSourceSet(hltresetsrc);
+		TMR4_ExtResetSourceSet(hltresetsrc);
 
 		// Do something else...
     }
     </code>
 */
-void TMR2_ExtResetSourceSet(TMR2_HLT_EXT_RESET_SOURCE reset);
+void TMR4_ExtResetSourceSet(TMR4_HLT_EXT_RESET_SOURCE reset);
 
 /**
   @Summary
-    This function starts the TMR2.
+    This function starts the TMR4.
 
   @Description
-    This function starts the TMR2 operation.
-    This function must be called after the initialization of TMR2.
+    This function starts the TMR4 operation.
+    This function must be called after the initialization of TMR4.
 
   @Preconditions
-    Initialize  the TMR2 before calling this function.
+    Initialize  the TMR4 before calling this function.
 
   @Param
     None
@@ -454,26 +454,26 @@ void TMR2_ExtResetSourceSet(TMR2_HLT_EXT_RESET_SOURCE reset);
 
   @Example
     <code>
-    // Initialize TMR2 module
+    // Initialize TMR4 module
 
-    // Start TMR2
-    TMR2_Start();
+    // Start TMR4
+    TMR4_Start();
 
     // Do something else...
     </code>
 */
-void TMR2_Start(void);
+void TMR4_Start(void);
 
 /**
   @Summary
-    This function starts the TMR2.
+    This function starts the TMR4.
 
   @Description
-    This function starts the TMR2 operation.
-    This function must be called after the initialization of TMR2.
+    This function starts the TMR4 operation.
+    This function must be called after the initialization of TMR4.
 
   @Preconditions
-    Initialize  the TMR2 before calling this function.
+    Initialize  the TMR4 before calling this function.
 
   @Param
     None
@@ -483,26 +483,26 @@ void TMR2_Start(void);
 
   @Example
     <code>
-    // Initialize TMR2 module
+    // Initialize TMR4 module
 
-    // Start TMR2
-    TMR2_StartTimer();
+    // Start TMR4
+    TMR4_StartTimer();
 
     // Do something else...
     </code>
 */
-void TMR2_StartTimer(void);
+void TMR4_StartTimer(void);
 
 /**
   @Summary
-    This function stops the TMR2.
+    This function stops the TMR4.
 
   @Description
-    This function stops the TMR2 operation.
-    This function must be called after the start of TMR2.
+    This function stops the TMR4 operation.
+    This function must be called after the start of TMR4.
 
   @Preconditions
-    Initialize  the TMR2 before calling this function.
+    Initialize  the TMR4 before calling this function.
 
   @Param
     None
@@ -512,29 +512,29 @@ void TMR2_StartTimer(void);
 
   @Example
     <code>
-    // Initialize TMR2 module
+    // Initialize TMR4 module
 
-    // Start TMR2
-    TMR2_Start();
+    // Start TMR4
+    TMR4_Start();
 
     // Do something else...
 
-    // Stop TMR2;
-    TMR2_Stop();
+    // Stop TMR4;
+    TMR4_Stop();
     </code>
 */
-void TMR2_Stop(void);
+void TMR4_Stop(void);
 
 /**
   @Summary
-    This function stops the TMR2.
+    This function stops the TMR4.
 
   @Description
-    This function stops the TMR2 operation.
-    This function must be called after the start of TMR2.
+    This function stops the TMR4 operation.
+    This function must be called after the start of TMR4.
 
   @Preconditions
-    Initialize  the TMR2 before calling this function.
+    Initialize  the TMR4 before calling this function.
 
   @Param
     None
@@ -544,102 +544,102 @@ void TMR2_Stop(void);
 
   @Example
     <code>
-    // Initialize TMR2 module
+    // Initialize TMR4 module
 
-    // Start TMR2
-    TMR2_StartTimer();
+    // Start TMR4
+    TMR4_StartTimer();
 
     // Do something else...
 
-    // Stop TMR2;
-    TMR2_StopTimer();
+    // Stop TMR4;
+    TMR4_StopTimer();
     </code>
 */
-void TMR2_StopTimer(void);
+void TMR4_StopTimer(void);
 
 /**
   @Summary
-    Reads the TMR2 register.
+    Reads the TMR4 register.
 
   @Description
-    This function reads the TMR2 register value and return it.
+    This function reads the TMR4 register value and return it.
 
   @Preconditions
-    Initialize  the TMR2 before calling this function.
+    Initialize  the TMR4 before calling this function.
 
   @Param
     None
 
   @Returns
-    This function returns the current value of TMR2 register.
+    This function returns the current value of TMR4 register.
 
   @Example
     <code>
-    // Initialize TMR2 module
+    // Initialize TMR4 module
 
-    // Start TMR2
-    TMR2_Start();
+    // Start TMR4
+    TMR4_Start();
 
-    // Read the current value of TMR2
-    if(0 == TMR2_Counter8BitGet())
+    // Read the current value of TMR4
+    if(0 == TMR4_Counter8BitGet())
     {
         // Do something else...
 
         // Reload the TMR value
-        TMR2_Period8BitSet();
+        TMR4_Period8BitSet();
     }
     </code>
 */
-uint8_t TMR2_Counter8BitGet(void);
+uint8_t TMR4_Counter8BitGet(void);
 
 /**
   @Summary
-    Reads the TMR2 register.
+    Reads the TMR4 register.
 
   @Description
-    This function reads the TMR2 register value and return it.
+    This function reads the TMR4 register value and return it.
 
   @Preconditions
-    Initialize  the TMR2 before calling this function.
+    Initialize  the TMR4 before calling this function.
 
   @Param
     None
 
   @Returns
-    This function returns the current value of TMR2 register.
+    This function returns the current value of TMR4 register.
 
   @Example
     <code>
-    // Initialize TMR2 module
+    // Initialize TMR4 module
 
-    // Start TMR2
-    TMR2_StartTimer();
+    // Start TMR4
+    TMR4_StartTimer();
 
-    // Read the current value of TMR2
-    if(0 == TMR2_ReadTimer())
+    // Read the current value of TMR4
+    if(0 == TMR4_ReadTimer())
     {
         // Do something else...
 
         // Reload the TMR value
-        TMR2_LoadPeriodRegister();
+        TMR4_LoadPeriodRegister();
     }
     </code>
 */
-uint8_t TMR2_ReadTimer(void);
+uint8_t TMR4_ReadTimer(void);
 
 /**
   @Summary
-    Writes the TMR2 register.
+    Writes the TMR4 register.
 
   @Description
-    This function writes the TMR2 register.
-    This function must be called after the initialization of TMR2.
+    This function writes the TMR4 register.
+    This function must be called after the initialization of TMR4.
 
   @Preconditions
-    Initialize  the TMR2 before calling this function.
+    Initialize  the TMR4 before calling this function.
 
   @Param
-    timerVal - Value to write into TMR2 register.
+    timerVal - Value to write into TMR4 register.
 
   @Returns
     None
@@ -651,34 +651,34 @@ uint8_t TMR2_ReadTimer(void);
 
     while(1)
     {
-        // Read the TMR2 register
-        if(ZERO == TMR2_Counter8BitGet())
+        // Read the TMR4 register
+        if(ZERO == TMR4_Counter8BitGet())
         {
             // Do something else...
 
-            // Write the TMR2 register
-            TMR2_Counter8BitSet(PERIOD);
+            // Write the TMR4 register
+            TMR4_Counter8BitSet(PERIOD);
         }
 
         // Do something else...
     }
     </code>
 */
-void TMR2_Counter8BitSet(uint8_t timerVal);
+void TMR4_Counter8BitSet(uint8_t timerVal);
 
 /**
   @Summary
-    Writes the TMR2 register.
+    Writes the TMR4 register.
 
   @Description
-    This function writes the TMR2 register.
-    This function must be called after the initialization of TMR2.
+    This function writes the TMR4 register.
+    This function must be called after the initialization of TMR4.
 
   @Preconditions
-    Initialize  the TMR2 before calling this function.
+    Initialize  the TMR4 before calling this function.
 
   @Param
-    timerVal - Value to write into TMR2 register.
+    timerVal - Value to write into TMR4 register.
 
   @Returns
     None
@@ -690,34 +690,34 @@ void TMR2_Counter8BitSet(uint8_t timerVal);
 
     while(1)
     {
-        // Read the TMR2 register
-        if(ZERO == TMR2_ReadTimer())
+        // Read the TMR4 register
+        if(ZERO == TMR4_ReadTimer())
         {
             // Do something else...
 
-            // Write the TMR2 register
-            TMR2_WriteTimer(PERIOD);
+            // Write the TMR4 register
+            TMR4_WriteTimer(PERIOD);
         }
 
         // Do something else...
     }
     </code>
 */
-void TMR2_WriteTimer(uint8_t timerVal);
+void TMR4_WriteTimer(uint8_t timerVal);
 
 /**
   @Summary
     Load value to Period Register.
 
   @Description
-    This function writes the value to PR2 register.
-    This function must be called after the initialization of TMR2.
+    This function writes the value to PR4 register.
+    This function must be called after the initialization of TMR4.
 
   @Preconditions
-    Initialize  the TMR2 before calling this function.
+    Initialize  the TMR4 before calling this function.
 
   @Param
-    periodVal - Value to load into TMR2 register.
+    periodVal - Value to load into TMR4 register.
 
   @Returns
     None
@@ -730,8 +730,8 @@ void TMR2_WriteTimer(uint8_t timerVal);
 
     while(1)
     {
-        // Read the TMR2 register
-        if(ZERO == TMR2_Counter8BitGet())
+        // Read the TMR4 register
+        if(ZERO == TMR4_Counter8BitGet())
         {
             // Do something else...
 
@@ -740,14 +740,14 @@ void TMR2_WriteTimer(uint8_t timerVal);
                 flag = 0;
 
                 // Load Period 1 value
-                TMR2_Period8BitSet(PERIOD1);
+                TMR4_Period8BitSet(PERIOD1);
             }
             else
             {
                  flag = 1;
 
                 // Load Period 2 value
-                TMR2_Period8BitSet(PERIOD2);
+                TMR4_Period8BitSet(PERIOD2);
             }
         }
 
@@ -755,21 +755,21 @@ void TMR2_WriteTimer(uint8_t timerVal);
     }
     </code>
 */
-void TMR2_Period8BitSet(uint8_t periodVal);
+void TMR4_Period8BitSet(uint8_t periodVal);
 
 /**
   @Summary
     Load value to Period Register.
 
   @Description
-    This function writes the value to PR2 register.
-    This function must be called after the initialization of TMR2.
+    This function writes the value to PR4 register.
+    This function must be called after the initialization of TMR4.
 
   @Preconditions
-    Initialize  the TMR2 before calling this function.
+    Initialize  the TMR4 before calling this function.
 
   @Param
-    periodVal - Value to load into TMR2 register.
+    periodVal - Value to load into TMR4 register.
 
   @Returns
     None
@@ -782,8 +782,8 @@ void TMR2_Period8BitSet(uint8_t periodVal);
 
     while(1)
     {
-        // Read the TMR2 register
-        if(ZERO == TMR2_ReadTimer())
+        // Read the TMR4 register
+        if(ZERO == TMR4_ReadTimer())
         {
             // Do something else...
 
@@ -792,14 +792,14 @@ void TMR2_Period8BitSet(uint8_t periodVal);
                 flag = 0;
 
                 // Load Period 1 value
-                TMR2_LoadPeriodRegister(PERIOD1);
+                TMR4_LoadPeriodRegister(PERIOD1);
             }
             else
             {
                  flag = 1;
 
                 // Load Period 2 value
-                TMR2_LoadPeriodRegister(PERIOD2);
+                TMR4_LoadPeriodRegister(PERIOD2);
             }
         }
 
@@ -807,7 +807,7 @@ void TMR2_Period8BitSet(uint8_t periodVal);
     }
     </code>
 */
-void TMR2_LoadPeriodRegister(uint8_t periodVal);
+void TMR4_LoadPeriodRegister(uint8_t periodVal);
 
 /**
   @Summary
@@ -818,7 +818,7 @@ void TMR2_LoadPeriodRegister(uint8_t periodVal);
     This function is usd in timer polling method.
 
   @Preconditions
-    Initialize  the TMR2 module before calling this routine.
+    Initialize  the TMR4 module before calling this routine.
 
   @Param
     None
@@ -832,20 +832,20 @@ void TMR2_LoadPeriodRegister(uint8_t periodVal);
     while(1)
     {
         // check the match flag
-        if(TMR2_HasOverflowOccured())
+        if(TMR4_HasOverflowOccured())
         {
             // Do something else...
 
-            // clear the TMR2 match interrupt flag
-            TMR2IF = 0;
+            // clear the TMR4 match interrupt flag
+            TMR4IF = 0;
 
-            // Reload the TMR2 value
-            TMR2_Reload();
+            // Reload the TMR4 value
+            TMR4_Reload();
         }
     }
     </code>
 */
-bool TMR2_HasOverflowOccured(void);
+bool TMR4_HasOverflowOccured(void);
 
  #ifdef __cplusplus  // Provide C++ Compatibility
 
@@ -853,7 +853,7 @@ bool TMR2_HasOverflowOccured(void);
 
 #endif
 
-#endif // TMR2_H
+#endif // TMR4_H
 /**
  End of File
 */

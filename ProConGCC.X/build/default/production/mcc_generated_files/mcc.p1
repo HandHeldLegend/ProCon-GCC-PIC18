@@ -17,12 +17,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "134 mcc_generated_files/adcc.h
 [; ;mcc_generated_files/adcc.h: 134: void ADCC_Initialize(void);
 [v _ADCC_Initialize `(v ~T0 @X0 0 ef ]
+"365 mcc_generated_files/tmr4.h
+[; ;mcc_generated_files/tmr4.h: 365: void TMR4_Initialize(void);
+[v _TMR4_Initialize `(v ~T0 @X0 0 ef ]
 "93 mcc_generated_files/smt1.h
 [; ;mcc_generated_files/smt1.h: 93: void SMT1_Initialize(void);
 [v _SMT1_Initialize `(v ~T0 @X0 0 ef ]
-"365 mcc_generated_files/tmr2.h
-[; ;mcc_generated_files/tmr2.h: 365: void TMR2_Initialize(void);
-[v _TMR2_Initialize `(v ~T0 @X0 0 ef ]
 "5207 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 5207: extern volatile unsigned char OSCCON1 __attribute__((address(0x39D9)));
 [v _OSCCON1 `Vuc ~T0 @X0 0 e@14809 ]
@@ -2372,11 +2372,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/mcc.c: 57:     ADCC_Initialize();
 [e ( _ADCC_Initialize ..  ]
 "58
-[; ;mcc_generated_files/mcc.c: 58:     SMT1_Initialize();
-[e ( _SMT1_Initialize ..  ]
+[; ;mcc_generated_files/mcc.c: 58:     TMR4_Initialize();
+[e ( _TMR4_Initialize ..  ]
 "59
-[; ;mcc_generated_files/mcc.c: 59:     TMR2_Initialize();
-[e ( _TMR2_Initialize ..  ]
+[; ;mcc_generated_files/mcc.c: 59:     SMT1_Initialize();
+[e ( _SMT1_Initialize ..  ]
 "60
 [; ;mcc_generated_files/mcc.c: 60: }
 [e :UE 2145 ]

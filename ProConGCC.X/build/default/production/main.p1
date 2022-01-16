@@ -104,7 +104,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "50 ./mcc_generated_files/..\main.h
 [; ;./mcc_generated_files/..\main.h: 50: extern unsigned char commandreader(void);
 [v _commandreader `(uc ~T0 @X0 0 ef ]
-"47
+"106 ./gcdata.h
+[; ;./gcdata.h: 106: void desyncfix(void);
+[v _desyncfix `(v ~T0 @X0 0 ef ]
+"47 ./mcc_generated_files/..\main.h
 [; ;./mcc_generated_files/..\main.h: 47: extern unsigned char bytepush(void);
 [v _bytepush `(uc ~T0 @X0 0 ef ]
 "49
@@ -2414,131 +2417,138 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [e :U _main ]
 [f ]
-"13
-[; ;main.c: 13:     __asm("MOVLW _gInPacket");
-[; <" MOVLW _gInPacket ;# ">
 "14
-[; ;main.c: 14:     __asm("MOVFF WREG, _gInPacketIdx");
-[; <" MOVFF WREG, _gInPacketIdx ;# ">
-"16
-[; ;main.c: 16:     SYSTEM_Initialize();
+[; ;main.c: 14:     SYSTEM_Initialize();
 [e ( _SYSTEM_Initialize ..  ]
-"19
-[; ;main.c: 19:     loadsettings();
+"17
+[; ;main.c: 17:     loadsettings();
 [e ( _loadsettings ..  ]
-"22
-[; ;main.c: 22:     ADPCH = 0x00;
+"20
+[; ;main.c: 20:     ADPCH = 0x00;
 [e = _ADPCH -> -> 0 `i `uc ]
-"24
-[; ;main.c: 24:     ADCON0bits.ADON = 1;
+"22
+[; ;main.c: 22:     ADCON0bits.ADON = 1;
 [e = . . _ADCON0bits 1 6 -> -> 1 `i `uc ]
-"27
-[; ;main.c: 27:     if (!PORTAbits.RA6 && !PORTAbits.RA7 && !PORTAbits.RA4)
+"25
+[; ;main.c: 25:     if (!PORTAbits.RA6 && !PORTAbits.RA7 && !PORTAbits.RA4)
 [e $ ! && && ! != -> . . _PORTAbits 0 6 `i -> 0 `i ! != -> . . _PORTAbits 0 7 `i -> 0 `i ! != -> . . _PORTAbits 0 4 `i -> 0 `i 2146  ]
-"28
-[; ;main.c: 28:     {
+"26
+[; ;main.c: 26:     {
 {
-"29
-[; ;main.c: 29:         stickcalibration = 1;
+"27
+[; ;main.c: 27:         stickcalibration = 1;
 [e = _stickcalibration -> -> 1 `i `a ]
-"31
-[; ;main.c: 31:         zerosticks();
+"29
+[; ;main.c: 29:         zerosticks();
 [e ( _zerosticks ..  ]
-"32
-[; ;main.c: 32:     }
+"30
+[; ;main.c: 30:     }
 }
 [e :U 2146 ]
-"34
-[; ;main.c: 34:     while (stickcalibration)
+"32
+[; ;main.c: 32:     while (stickcalibration)
 [e $U 2147  ]
 [e :U 2148 ]
-"35
-[; ;main.c: 35:     {
+"33
+[; ;main.c: 33:     {
 {
-"36
-[; ;main.c: 36:         calibratesticks();
+"34
+[; ;main.c: 34:         calibratesticks();
 [e ( _calibratesticks ..  ]
-"39
-[; ;main.c: 39:         if (!PORTCbits.RC1)
+"37
+[; ;main.c: 37:         if (!PORTCbits.RC1)
 [e $ ! ! != -> . . _PORTCbits 0 1 `i -> 0 `i 2150  ]
-"40
-[; ;main.c: 40:         {
+"38
+[; ;main.c: 38:         {
 {
-"41
-[; ;main.c: 41:             setstickmultipliers();
+"39
+[; ;main.c: 39:             setstickmultipliers();
 [e ( _setstickmultipliers ..  ]
-"42
-[; ;main.c: 42:             savesettings();
+"40
+[; ;main.c: 40:             savesettings();
 [e ( _savesettings ..  ]
-"43
-[; ;main.c: 43:             stickcalibration = 0;
+"41
+[; ;main.c: 41:             stickcalibration = 0;
 [e = _stickcalibration -> -> 0 `i `a ]
-"44
-[; ;main.c: 44:             break;
+"42
+[; ;main.c: 42:             break;
 [e $U 2149  ]
-"45
-[; ;main.c: 45:         }
+"43
+[; ;main.c: 43:         }
 }
 [e :U 2150 ]
-"46
-[; ;main.c: 46:     }
+"44
+[; ;main.c: 44:     }
 }
 [e :U 2147 ]
-"34
-[; ;main.c: 34:     while (stickcalibration)
+"32
+[; ;main.c: 32:     while (stickcalibration)
 [e $ != -> _stickcalibration `i -> 0 `i 2148  ]
 [e :U 2149 ]
-"49
-[; ;main.c: 49:     INTCON0bits.GIEH = 1;
+"47
+[; ;main.c: 47:     INTCON0bits.GIEH = 1;
 [e = . . _INTCON0bits 1 1 -> -> 1 `i `uc ]
-"51
-[; ;main.c: 51:     while (1)
+"49
+[; ;main.c: 49:     while (1)
 [e :U 2152 ]
+"50
+[; ;main.c: 50:     {
+{
 "52
-[; ;main.c: 52:     {
-{
-"54
-[; ;main.c: 54:         commandreader();
+[; ;main.c: 52:         commandreader();
 [e ( _commandreader ..  ]
-"56
-[; ;main.c: 56:         bytepush();
-[e ( _bytepush ..  ]
-"58
-[; ;main.c: 58:         bytecleanup();
-[e ( _bytecleanup ..  ]
-"61
-[; ;main.c: 61:         if (gInStatus & (1 << 3))
-[e $ ! != & -> _gInStatus `i << -> 1 `i -> 3 `i -> 0 `i 2154  ]
-"62
-[; ;main.c: 62:         {
+"54
+[; ;main.c: 54:         if (gInStatus & 0x01)
+[e $ ! != & -> _gInStatus `i -> 1 `i -> 0 `i 2154  ]
+"55
+[; ;main.c: 55:         {
 {
-"63
-[; ;main.c: 63:             scansticks();
-[e ( _scansticks ..  ]
-"64
-[; ;main.c: 64:         }
+"56
+[; ;main.c: 56:             desyncfix();
+[e ( _desyncfix ..  ]
+"57
+[; ;main.c: 57:         }
 }
 [e :U 2154 ]
-"66
-[; ;main.c: 66:         if (gInStatus & (1 << 2))
-[e $ ! != & -> _gInStatus `i << -> 1 `i -> 2 `i -> 0 `i 2155  ]
-"67
-[; ;main.c: 67:         {
+"59
+[; ;main.c: 59:         bytepush();
+[e ( _bytepush ..  ]
+"61
+[; ;main.c: 61:         bytecleanup();
+[e ( _bytecleanup ..  ]
+"64
+[; ;main.c: 64:         if (gInStatus & (1 << 3))
+[e $ ! != & -> _gInStatus `i << -> 1 `i -> 3 `i -> 0 `i 2155  ]
+"65
+[; ;main.c: 65:         {
 {
-"68
-[; ;main.c: 68:             checkbuttons();
-[e ( _checkbuttons ..  ]
-"69
-[; ;main.c: 69:         }
+"66
+[; ;main.c: 66:             scansticks();
+[e ( _scansticks ..  ]
+"67
+[; ;main.c: 67:         }
 }
 [e :U 2155 ]
+"69
+[; ;main.c: 69:         if (gInStatus & (1 << 2))
+[e $ ! != & -> _gInStatus `i << -> 1 `i -> 2 `i -> 0 `i 2156  ]
 "70
-[; ;main.c: 70:     }
+[; ;main.c: 70:         {
+{
+"71
+[; ;main.c: 71:             checkbuttons();
+[e ( _checkbuttons ..  ]
+"72
+[; ;main.c: 72:         }
+}
+[e :U 2156 ]
+"73
+[; ;main.c: 73:     }
 }
 [e :U 2151 ]
 [e $U 2152  ]
 [e :U 2153 ]
-"71
-[; ;main.c: 71: }
+"74
+[; ;main.c: 74: }
 [e :UE 2145 ]
 }

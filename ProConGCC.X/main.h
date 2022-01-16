@@ -48,7 +48,6 @@ extern unsigned char bytepush(void);
 extern unsigned char bitgrabber(void);
 extern unsigned char bytecleanup(void);
 extern unsigned char commandreader(void);
-extern unsigned char synccheck(void);
 
 
 #endif	/* MAIN_H */

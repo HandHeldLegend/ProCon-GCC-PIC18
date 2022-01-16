@@ -4,8 +4,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _ADPCH `Vuc ~T0 @X0 0 e@16113 ]
 "81 joysticks.c
 [; ;joysticks.c: 81:         ADPCH = SX_A;
-[c E15484 0 1 2 3 59 60 61 62 63 .. ]
-[n E15484 . CX_A CY_A SX_A SY_A channel_VSS channel_Temp channel_DAC1 channel_FVR_Buffer1 channel_FVR_Buffer2  ]
+[c E15489 0 1 2 3 59 60 61 62 63 .. ]
+[n E15489 . CX_A CY_A SX_A SY_A channel_VSS channel_Temp channel_DAC1 channel_FVR_Buffer1 channel_FVR_Buffer2  ]
 "30537 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f25k42.h: 30537:     struct {
 [s S1358 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -2559,7 +2559,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "81
 [; ;joysticks.c: 81:         ADPCH = SX_A;
-[e = _ADPCH -> . `E15484 2 `uc ]
+[e = _ADPCH -> . `E15489 2 `uc ]
 "82
 [; ;joysticks.c: 82:         ADCON0bits.ADGO = 1;
 [e = . . _ADCON0bits 1 0 -> -> 1 `i `uc ]
@@ -2605,7 +2605,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2154 ]
 "99
 [; ;joysticks.c: 99:                         ADPCH = SY_A;
-[e = _ADPCH -> . `E15484 3 `uc ]
+[e = _ADPCH -> . `E15489 3 `uc ]
 "100
 [; ;joysticks.c: 100:                         break;
 [e $U 2152  ]
@@ -2614,7 +2614,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2155 ]
 "102
 [; ;joysticks.c: 102:                         ADPCH = CX_A;
-[e = _ADPCH -> . `E15484 0 `uc ]
+[e = _ADPCH -> . `E15489 0 `uc ]
 "103
 [; ;joysticks.c: 103:                         break;
 [e $U 2152  ]
@@ -2623,7 +2623,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2156 ]
 "105
 [; ;joysticks.c: 105:                         ADPCH = CY_A;
-[e = _ADPCH -> . `E15484 1 `uc ]
+[e = _ADPCH -> . `E15489 1 `uc ]
 "106
 [; ;joysticks.c: 106:                         break;
 [e $U 2152  ]
@@ -2680,7 +2680,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _clearRead -> -> 1 `i `a ]
 "132
 [; ;joysticks.c: 132:                 ADPCH = channel_VSS;
-[e = _ADPCH -> . `E15484 4 `uc ]
+[e = _ADPCH -> . `E15489 4 `uc ]
 "133
 [; ;joysticks.c: 133:                 ADCON0bits.ADGO = 1;
 [e = . . _ADCON0bits 1 0 -> -> 1 `i `uc ]
@@ -2908,7 +2908,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "233
 [; ;joysticks.c: 233:         ADPCH = SX_A;
-[e = _ADPCH -> . `E15484 2 `uc ]
+[e = _ADPCH -> . `E15489 2 `uc ]
 "234
 [; ;joysticks.c: 234:         ADCON0bits.ADGO = 1;
 [e = . . _ADCON0bits 1 0 -> -> 1 `i `uc ]
@@ -2954,7 +2954,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2180 ]
 "251
 [; ;joysticks.c: 251:                         ADPCH = SY_A;
-[e = _ADPCH -> . `E15484 3 `uc ]
+[e = _ADPCH -> . `E15489 3 `uc ]
 "252
 [; ;joysticks.c: 252:                         break;
 [e $U 2178  ]
@@ -2963,7 +2963,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2181 ]
 "254
 [; ;joysticks.c: 254:                         ADPCH = CX_A;
-[e = _ADPCH -> . `E15484 0 `uc ]
+[e = _ADPCH -> . `E15489 0 `uc ]
 "255
 [; ;joysticks.c: 255:                         break;
 [e $U 2178  ]
@@ -2972,7 +2972,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2182 ]
 "257
 [; ;joysticks.c: 257:                         ADPCH = CY_A;
-[e = _ADPCH -> . `E15484 1 `uc ]
+[e = _ADPCH -> . `E15489 1 `uc ]
 "258
 [; ;joysticks.c: 258:                         break;
 [e $U 2178  ]
@@ -3023,7 +3023,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _clearRead -> -> 1 `i `a ]
 "275
 [; ;joysticks.c: 275:                 ADPCH = channel_VSS;
-[e = _ADPCH -> . `E15484 4 `uc ]
+[e = _ADPCH -> . `E15489 4 `uc ]
 "276
 [; ;joysticks.c: 276:                 ADCON0bits.ADGO = 1;
 [e = . . _ADCON0bits 1 0 -> -> 1 `i `uc ]
