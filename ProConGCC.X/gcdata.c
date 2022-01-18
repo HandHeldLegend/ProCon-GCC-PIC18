@@ -90,11 +90,12 @@ volatile unsigned char gInStatus = 0x20;
 // a - stop bit received flag (command received)
 // b - command interpreted flag
 // c - request cleanup flag
-// d - rumble enable flag
+// d - UNUSED
 // e - sticks read enable flag
 // f - buttons read enable flag
 // g - button read first loop flag
 // h - desync detected flag
+
 
 // The low threshold to discern between a
 // LOW and a HIGH bit (0 or 1).

@@ -10,7 +10,7 @@
 typedef struct {
     
     uint16_t buffer;
-    uint16_t configKey;
+    uint8_t configKey;
     
     uint16_t sx_low;
     uint16_t sx_center;
@@ -40,8 +40,8 @@ typedef struct {
     uint16_t cy_highMultiplier;
     uint16_t cy_lowMultiplier;
     
-    uint8_t trigger_mode;
-    
+    uint8_t modeData;
+    uint8_t rumbleData;
 } Settings;
 
 void setdefaultsettings(void);
@@ -51,7 +51,7 @@ void setstickmultipliers(void);
 void loadsettings(void);
 void savesettings(void);
 
-extern Settings SettingData;
+Settings SettingData;
 
 #endif	/* SETTINGS_H */
 

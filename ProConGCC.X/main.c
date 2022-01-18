@@ -61,8 +61,25 @@ void main(void)
         bytecleanup();
         
         // if the check stick bit is set, scan the sticks
+        // handle starting or stopping rumble before scanning sticks
         if (gInStatus & (1 << 3))
         {
+            
+            if(gInPacket[2] == 1)
+            {
+                PORTBbits.RB4 = 1;
+                CCPR1H = 0xF0;
+            }
+            else if (gInPacket[2] == 2)
+            {
+                PORTBbits.RB4 = 1;
+                CCPR1H = 0x60;
+            }
+            else
+            {
+                PORTBbits.RB4 = 0;
+            }
+            
             scansticks();
         }
         // if the button check bit is set, scan the buttons

@@ -37,7 +37,6 @@
 #include <stdbool.h>
 #include <math.h>
 #include <string.h>
-
 #include "gcdata.h"
 #include "mcc_generated_files/mcc.h"
 #include "settings.h"

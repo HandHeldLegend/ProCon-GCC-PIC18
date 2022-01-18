@@ -1,0 +1,172 @@
+
+
+Microchip MPLAB XC8 Assembler V2.32 build 20210201212658 
+                                                                                                           Tue Jan 18 14:08:49 2022
+
+
+     1                           	processor	18F25K42
+     2                           	pagewidth 132
+     3                           	psect	udata_acs,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+     4                           	psect	udata_bank0,global,class=BANK0,space=1,delta=1,lowdata,noexec
+     5                           	psect	udata_bank1,global,class=BANK1,space=1,delta=1,lowdata,noexec
+     6                           	psect	udata_bank2,global,class=BANK2,space=1,delta=1,lowdata,noexec
+     7                           	psect	udata_bank3,global,class=BANK3,space=1,delta=1,lowdata,noexec
+     8                           	psect	udata_bank4,global,class=BANK4,space=1,delta=1,lowdata,noexec
+     9                           	psect	udata_bank5,global,class=BANK5,space=1,delta=1,lowdata,noexec
+    10                           	psect	udata_bank6,global,class=BANK6,space=1,delta=1,lowdata,noexec
+    11                           	psect	udata_bank7,global,class=BANK7,space=1,delta=1,lowdata,noexec
+    12                           	psect	udata,global,class=RAM,space=1,delta=1,noexec
+    13                           	psect	code,global,reloc=2,class=CODE,delta=1
+    14                           	psect	data,global,reloc=2,class=CONST,delta=1,noexec
+    15                           	psect	edata,global,class=EEDATA,space=3,delta=2,noexec
+    16                           	psect	barfunc,local,reloc=2,class=CODE,delta=1
+    17  0000                     
+    18                           	psect	edata
+    19  0000                     stk_offset	set	0
+    20  0000                     auto_size	set	0
+    21                           
+    22                           ; stack_auto defines a symbol /name/_offset which equates to the
+    23                           ; stack offset of the auto object in question
+    24  000000                     
+    25                           ; stack_param defines a symbol /name/_offset which equates to the
+    26                           ; stack offset of the parameter object in question
+    27  000000                     
+    28                           ; alloc_stack adjusts the SP to allocate space for auto objects
+    29                           ; it also links in to the btemp symbol so that can be used
+    30  000000                     
+    31                           ; restore_stack adjusts the SP to remove all auto and parameter
+    32                           ; objects from the stack prior to returning from a function
+    33  000000                     
+    34                           ; Variables relating to bitgrabber incoming data
+    35                           ; Variables relating to checking commands
+    36                           ; Variables used to set up our bytepusher
+    37                           ; Variables for outgoing responses, canned and assembled
+    38                           ; External function
+    39                           
+    40                           	psect	barfunc
+    41  0013CA                     _commandreader:
+    42                           	callstack 0
+    43                           
+    44                           ; This function should run in the main loop.
+    45                           ; When it detects that a stop bit has been written,
+    46                           ; we can take action to quickly interpret the message
+    47                           ; and send out the corresponding packet.
+    48                           ; First let's check if the stop bit write flag is set
+    49  0013CA  AE46               	btfss	_gInStatus,7,c	; Byte 7 in the status is the stop bit flag
+    50  0013CC  0012               	return		; Return if there's no command to read
+    51                           
+    52                           ; WE WILL CLEAN UP LATER, JUST GET ON TO SENDING OUT THE RIGHT PACKS ASAP
+    53                           ; Since the most high priority (performance-wise) command will be polling
+    54                           ; which is where our button inputs are sent back, we should 100% check for this
+    55                           ; first and foremost. We want as little delay as possible in polling as we have about
+    56                           ; 600 MICROSECONDS to grab our button and stick updates before the next poll.
+    57                           ; Less delay between poll command and our response means... more time for button updates =)
+    58  0013CE  013F               	movlb	63	; Switch to bank 0x3F
+    59  0013D0  9FD2               	bcf	210,7,b	; Stop global interrupts
+    60  0013D2  9F1F               	bcf	31,7,b	; Stop SMT
+    61                           
+    62                           ; Check to see if we have a poll command coming in
+    63  0013D4  0E60               	movlw	_gInPacket	; Get the address for our in packet
+    64  0013D6  006F FFA3 FFE9     	movff	wreg,fsr0l	; Copy our new pointer into FSR0. Access with INDF0
+    65  0013DC  50EF               	movf	indf0,w,c
+    66  0013DE  1843               	xorwf	_gCommandPollMask,w,c	; Perform exclusive OR on the command byte against our mask
+    67                           
+    68                           ; If the mask is a match, the result will be 1111 1111. Incrementing this will produce 0.
+    69                           ; Anything that ISN'T a match will fail the check zero/skip command.
+    70  0013E0  3CE8               	incfsz	wreg,w,c	; Increment and skip if it's zero.
+    71  0013E2  EFF8  F009         	goto	ORIGINPARSE	; We did not match, so now we check if it's an origin command.
+    72                           
+    73                           ; If we made it to here, we are working with a poll command.
+    74                           ; Lets set up the outgoing byte as a pointer for the bytepush command.
+    75  0013E6  0E2F               	movlw	_gConPollPacket	; Get the pointer for the poll packet
+    76  0013E8  512C               	movf	_gConOutIdx,w,b	; Move the pointer into the outgoing index.
+    77  0013EA  862D               	bsf	_gConByteCount,3,c	; Set our outgoing Byte count to 8 (bit set 3) 0000 1000
+    78  0013EC  8C46               	bsf	_gInStatus,6,c	; Mark that we have a valid command interpreted
+    79  0013EE  0012               	return	
+    80  0013F0                     ORIGINPARSE:
+    81  0013F0  50EF               	movf	indf0,w,c	; Copy our command byte data into WREG.
+    82  0013F2  1844               	xorwf	_gCommandOriginMask,w,c	; Perform exclusive OR on the command byte against our mask
+    83                           
+    84                           ; If the mask is a match, the result will be 1111 1111. Incrementing this will produce 0.
+    85                           ; Anything that ISN'T a match will fail the check zero/skip command.
+    86  0013F4  3CE8               	incfsz	wreg,w,c	; Increment and skip if it's zero.
+    87  0013F6  EF03  F00A         	goto	PROBEPARSE	; We did not match, so now we check if it's a probe command.
+    88                           
+    89                           ; If we made it to here, we are working with a origin command.
+    90                           ; Lets set up the outgoing byte as a pointer for the bytepush command.
+    91  0013FA  0EAA               	movlw	_gConOriginResponse	; Get the pointer for the poll packet
+    92  0013FC  512C               	movf	_gConOutIdx,w,b	; Move the pointer into the outgoing index.
+    93  0013FE  862D               	bsf	_gConByteCount,3,c	; Set our outgoing Byte count to 8 (bit set 3) 0000 1000
+    94  001400  822D               	bsf	_gConByteCount,1,c	; Set the bit 1 so we have 10 (8+2) 0000 1010
+    95  001402  8C46               	bsf	_gInStatus,6,c	; Mark that we have a valid command interpreted
+    96  001404  0012               	return	
+    97  001406                     PROBEPARSE:
+    98                           
+    99                           ; First we can check if the command is 0x0 (0000 0000) meaning it's being probed.
+   100  001406  50EF               	movf	indf0,w,c
+   101  001408  66E8               	tstfsz	wreg,c	; If it's zero, skip checking any further
+   102  00140A  EF0E  F00A         	goto	NOCOMMAND	; No command match
+   103                           
+   104                           ; We need to make sure our byte counter for outgoing is set
+   105  00140E  802D               	bsf	_gConByteCount,0,c	; Set our outgoing Byte count to 1 (bit set 0) 0000 0001
+   106  001410  822D               	bsf	_gConByteCount,1,c	; Set the bit 1 so we have 3 (1+2) 0000 0011
+   107  001412  0EB4               	movlw	_gConProbeResponse	; Place the address for our first byte into WREG
+   108  001414  512C               	movf	_gConOutIdx,w,b	;
+   109                           
+   110                           ; Mark our status bit that we are synced
+   111  001416  8246               	bsf	_gInStatus,1,c	; Bit 1 is sync bit
+   112  001418  8C46               	bsf	_gInStatus,6,c	; Mark that we have a valid command interpreted
+   113  00141A  0012               	return	
+   114  00141C                     NOCOMMAND:
+   115  00141C  8046               	bsf	_gInStatus,0,c	; Set bit 0 of our status flag meaning we need to resync
+   116  00141E  0012               	return	
+   117                           tosu	equ	0x3FFF
+   118                           tosh	equ	0x3FFE
+   119                           tosl	equ	0x3FFD
+   120                           stkptr	equ	0x3FFC
+   121                           pclatu	equ	0x3FFB
+   122                           pclath	equ	0x3FFA
+   123                           pcl	equ	0x3FF9
+   124                           tblptru	equ	0x3FF8
+   125                           tblptrh	equ	0x3FF7
+   126                           tblptrl	equ	0x3FF6
+   127                           tablat	equ	0x3FF5
+   128                           prodh	equ	0x3FF4
+   129                           prodl	equ	0x3FF3
+   130                           indf0	equ	0x3FEF
+   131                           postinc0	equ	0x3FEE
+   132                           postdec0	equ	0x3FED
+   133                           preinc0	equ	0x3FEC
+   134                           plusw0	equ	0x3FEB
+   135                           fsr0h	equ	0x3FEA
+   136                           fsr0l	equ	0x3FE9
+   137                           wreg	equ	0x3FE8
+   138                           indf1	equ	0x3FE7
+   139                           postinc1	equ	0x3FE6
+   140                           postdec1	equ	0x3FE5
+   141                           preinc1	equ	0x3FE4
+   142                           plusw1	equ	0x3FE3
+   143                           fsr1h	equ	0x3FE2
+   144                           fsr1l	equ	0x3FE1
+   145                           bsr	equ	0x3FE0
+   146                           indf2	equ	0x3FDF
+   147                           postinc2	equ	0x3FDE
+   148                           postdec2	equ	0x3FDD
+   149                           preinc2	equ	0x3FDC
+   150                           plusw2	equ	0x3FDB
+   151                           fsr2h	equ	0x3FDA
+   152                           fsr2l	equ	0x3FD9
+   153                           status	equ	0x3FD8
+
+
+Microchip Technology PIC18 Macro Assembler V2.32 build 20210201212658 
+Symbol Table                                                                                               Tue Jan 18 14:08:49 2022
+
+                          FSR0 003FE9                            WREG 003FE8                           INDF0 003FEF  
+                         _main 0F5C                     _gConOutIdx 002C                         isa$std 000001  
+                    PROBEPARSE 1406               _gCommandPollMask 0043                 _gConPollPacket 002F  
+           _gCommandOriginMask 0044                _gInBitBufferIdx 002B              _gConProbeResponse 00B4  
+                    _gInPacket 0060                      _gInStatus 0046                     ORIGINPARSE 13F0  
+                     NOCOMMAND 141C                  _gConByteCount 002D                   _gInBitBuffer 0100  
+                  _bytecleanup 1574             _gConOriginResponse 00AA                   _gInPacketIdx 0028  
+                     _bytepush 0A56                       isa$xinst 000000                  _commandreader 13CA  

@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.32 build 20210201212658 
-                                                                                                           Sat Jan 15 19:29:10 2022
+                                                                                                           Tue Jan 18 14:08:41 2022
 
 
      1                           	processor	18F25K42
@@ -38,50 +38,50 @@ Microchip MPLAB XC8 Assembler V2.32 build 20210201212658
     32                           ; objects from the stack prior to returning from a function
     33  000000                     
     34                           	psect	barfunc
-    35  000FA6                     _bitgrabber:
+    35  001508                     _bitgrabber:
     36                           	callstack 0
-    37  000FA6  0060  F0A3  FFE9   	movff	_gInPacketIdx,fsr0l	; Copy the address into FSR0 for indirect addressing via INDF0
+    37  001508  0060  F0A3  FFE9   	movff	_gInPacketIdx,fsr0l	; Copy the address into FSR0 for indirect addressing via INDF0
     38                           
     39                           ; Don't set the bit since we aren't putting anything there anyways
-    40  000FAC  B649               	btfsc	_gInBitCounter,3,c
-    41  000FAE  EFE2  F007         	goto	FIRSTBIT	; We are out of bits. Set up for the next byte
-    42  000FB2  46EF               	rlncf	indf0,f,c	; Rotate the current byte to the left by 1.
+    40  00150E  B647               	btfsc	_gInBitCounter,3,c
+    41  001510  EF93  F00A         	goto	FIRSTBIT	; We are out of bits. Set up for the next byte
+    42  001514  46EF               	rlncf	indf0,f,c	; Rotate the current byte to the left by 1.
     43                           
     44                           ; This is when checking any other bit
-    45  000FB4  90EF               	bcf	indf0,0,c	; Zero the rightmost bit.
-    46  000FB6  0060  F0AB  FFE8   	movff	_gInPulseWidth,wreg
+    45  001516  90EF               	bcf	indf0,0,c	; Zero the rightmost bit.
+    46  001518  0060  F0AB  FFE8   	movff	_gInPulseWidth,wreg
     47                           
     48                           ; This compares gLowThreshold to the captured pulse width.
     49                           ; If the low threshold is more than the pulse width, the pulse was short
     50                           ; meaning we have a HIGH bit.
-    51  000FBC  6047               	cpfslt	_gLowThreshold,c	; if the pulse is more than the low threshold, Skip.
-    52  000FBE  80EF               	bsf	indf0,0,c	; Set the rightmost bit.
-    53  000FC0  EFE9  F007         	goto	BITCOMPLETE
-    54  000FC4                     FIRSTBIT:
-    55  000FC4  0060  F0AB  FFE8   	movff	_gInPulseWidth,wreg
+    51  00151E  6045               	cpfslt	_gLowThreshold,c	; if the pulse is more than the low threshold, Skip.
+    52  001520  80EF               	bsf	indf0,0,c	; Set the rightmost bit.
+    53  001522  EF9A  F00A         	goto	BITCOMPLETE
+    54  001526                     FIRSTBIT:
+    55  001526  0060  F0AB  FFE8   	movff	_gInPulseWidth,wreg
     56                           
     57                           ; This compares gLowThreshold to the captured pulse width.
     58                           ; If the low threshold is more than the pulse width, the pulse was short
     59                           ; meaning we have a HIGH bit.
-    60  000FCA  6047               	cpfslt	_gLowThreshold,c	; if the pulse is more than the low threshold, Skip.
-    61  000FCC  EFF0  F007         	goto	COMMANDCOMPLETE
-    62  000FD0  90EF               	bcf	indf0,0,c	; Zero the rightmost bit.
-    63  000FD2                     BITCOMPLETE:
+    60  00152C  6045               	cpfslt	_gLowThreshold,c	; if the pulse is more than the low threshold, Skip.
+    61  00152E  EFA1  F00A         	goto	COMMANDCOMPLETE
+    62  001532  90EF               	bcf	indf0,0,c	; Zero the rightmost bit.
+    63  001534                     BITCOMPLETE:
     64                           
     65                           ; Run this after a bit is set to prepare us for the next bit
-    66  000FD2  4E49               	dcfsnz	_gInBitCounter,f,c	; Decrement the bit counter. 8 bits total. Skip if we're not at 0
-    67  000FD4  EFED  F007         	goto	NEXTBYTE
-    68  000FD8  0012               	return		; RETURN. Not time for cleanup yet so we leave everything as-is.
-    69  000FDA                     NEXTBYTE:
-    70  000FDA  2A28               	incf	_gInPacketIdx,f,c	; Increment our address pointer to get the next byte
-    71  000FDC  8649               	bsf	_gInBitCounter,3,c	; Set the bit counter to 0x8 by flagging one byte
-    72  000FDE  0012               	return		; We're done until the next bit read. Return. No cleanup yet.
-    73  000FE0                     COMMANDCOMPLETE:
+    66  001534  4E47               	dcfsnz	_gInBitCounter,f,c	; Decrement the bit counter. 8 bits total. Skip if we're not at 0
+    67  001536  EF9E  F00A         	goto	NEXTBYTE
+    68  00153A  0012               	return		; RETURN. Not time for cleanup yet so we leave everything as-is.
+    69  00153C                     NEXTBYTE:
+    70  00153C  2A28               	incf	_gInPacketIdx,f,c	; Increment our address pointer to get the next byte
+    71  00153E  8647               	bsf	_gInBitCounter,3,c	; Set the bit counter to 0x8 by flagging one byte
+    72  001540  0012               	return		; We're done until the next bit read. Return. No cleanup yet.
+    73  001542                     COMMANDCOMPLETE:
     74                           
     75                           ; If we made it here, our command is fully built and
     76                           ; we should mark it for the interpreter
-    77  000FE0  8E48               	bsf	_gInStatus,7,c	; Set the status flag for stop bit written
-    78  000FE2  0012               	return	
+    77  001542  8E46               	bsf	_gInStatus,7,c	; Set the status flag for stop bit written
+    78  001544  0012               	return	
     79                           tosu	equ	0x3FFF
     80                           tosh	equ	0x3FFE
     81                           tosl	equ	0x3FFD
@@ -122,11 +122,11 @@ Microchip MPLAB XC8 Assembler V2.32 build 20210201212658
 
 
 Microchip Technology PIC18 Macro Assembler V2.32 build 20210201212658 
-Symbol Table                                                                                               Sat Jan 15 19:29:10 2022
+Symbol Table                                                                                               Tue Jan 18 14:08:41 2022
 
-                          FSR0 003FE9                 COMMANDCOMPLETE 0FE0                            WREG 003FE8  
-                         INDF0 003FEF                  _gLowThreshold 0047                         isa$std 000001  
-                      FIRSTBIT 0FC4                        NEXTBYTE 0FDA                     _bitgrabber 0FA6  
-                   BITCOMPLETE 0FD2                      _gInPacket 0060                  _gInBitCounter 0049  
-                    _gInStatus 0048                  _gInPulseWidth 002A                   _gInPacketIdx 0028  
+                          FSR0 003FE9                 COMMANDCOMPLETE 1542                            WREG 003FE8  
+                         INDF0 003FEF                  _gLowThreshold 0045                         isa$std 000001  
+                      FIRSTBIT 1526                        NEXTBYTE 153C                     _bitgrabber 1508  
+                   BITCOMPLETE 1534                      _gInPacket 0060                  _gInBitCounter 0047  
+                    _gInStatus 0046                  _gInPulseWidth 002A                   _gInPacketIdx 0028  
                      isa$xinst 000000  

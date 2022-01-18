@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.32 build 20210201212658 
-                                                                                                           Sat Jan 15 19:29:10 2022
+                                                                                                           Tue Jan 18 14:08:41 2022
 
 
      1                           	processor	18F25K42
@@ -38,91 +38,77 @@ Microchip MPLAB XC8 Assembler V2.32 build 20210201212658
     32                           ; objects from the stack prior to returning from a function
     33  000000                     
     34                           	psect	barfunc
-    35  001022                     _bytecleanup:
+    35  00157C                     _bytecleanup:
     36                           	callstack 0
     37                           
     38                           ; Check that we finished a packet and need cleanup
-    39  001022  AA48               	btfss	_gInStatus,5,c	; Bit 5 cleanup request flag. Skip if we sent one
-    40  001024  0012               	return		; Return if we have nothing to clean up yet.
+    39  00157C  AA46               	btfss	_gInStatus,5,c	; Bit 5 cleanup request flag. Skip if we sent one
+    40  00157E  0012               	return		; Return if we have nothing to clean up yet.
     41                           
-    42                           ; Check if we should do rumble
-    43  001026  A848               	btfss	_gInStatus,4,c	; Bit 4 is rumble enabled flag
-    44  001028  EF17  F008         	goto	MAINCLEANUP	; Rumble was not set, go to cleanup
-    45                           
-    46                           ; If we are here, turn on rumble and clear the rumble bit
-    47  00102C  88CB               	bsf	16331,4,c	; Set R_ENABLE port to HIGH
-    48  00102E                     MAINCLEANUP:
-    49                           
-    50                           ; Disable the rumble if the bit is set to 0
-    51  00102E  A848               	btfss	_gInStatus,4,c	; Bit 4 is rumble enable flag
-    52  001030  98CB               	bcf	16331,4,c	; Set R_ENABLE port to LOW
-    53                           
-    54                           ; We gotta reset some variables for our next command read
-    55  001032  0E60               	movlw	_gInPacket	; Reset the byte packet index pointer
-    56  001034  006F FFA0  F028    	movff	wreg,_gInPacketIdx
-    57  00103A  9E48               	bcf	_gInStatus,7,c	; Clear the stop bit written flag
-    58  00103C  9C48               	bcf	_gInStatus,6,c	; Clear the command interpreted flag
-    59  00103E  9A48               	bcf	_gInStatus,5,c	; Clear cleanup request flag
-    60  001040  9848               	bcf	_gInStatus,4,c	; Clear the rumble enable flag
-    61  001042  9048               	bcf	_gInStatus,0,c	; Clear any desync flag
-    62  001044  6A49               	clrf	_gInBitCounter,c	; Clear the bit counter
-    63  001046  8649               	bsf	_gInBitCounter,3,c	; Set the bit counter to 8 (bit 3)
-    64  001048  6A2E               	clrf	_gConOutByte,c	; Clear the outgoing byte container
-    65  00104A  6A2C               	clrf	_gConOutIdx,c	; Clear the outgoing byte index pointer
-    66  00104C  6A2D               	clrf	_gConByteCount,c	; Clear the outgoing byte counter
-    67  00104E  6A29               	clrf	_gInCommandByte,c	; Clear the incoming command bit
-    68  001050  6A2A               	clrf	_gInPulseWidth,c	; Clear the pulse width counter
-    69  001052  8648               	bsf	_gInStatus,3,c	; Enable stick scan bit in status
-    70  001054  84C3               	bsf	16323,2,c	; Clear the data pin from us driving so we can receive
-    71  001056  013F               	movlb	63
-    72  001058  8FD2               	bsf	210,7,b	; Start global interrupts
-    73  00105A  8F1F               	bsf	31,7,b	; Start SMT
-    74  00105C  0012               	return	
-    75  00105E                     tosu	equ	0x3FFF
-    76                           tosh	equ	0x3FFE
-    77                           tosl	equ	0x3FFD
-    78                           stkptr	equ	0x3FFC
-    79                           pclatu	equ	0x3FFB
-    80                           pclath	equ	0x3FFA
-    81                           pcl	equ	0x3FF9
-    82                           tblptru	equ	0x3FF8
-    83                           tblptrh	equ	0x3FF7
-    84                           tblptrl	equ	0x3FF6
-    85                           tablat	equ	0x3FF5
-    86                           prodh	equ	0x3FF4
-    87                           prodl	equ	0x3FF3
-    88                           indf0	equ	0x3FEF
-    89                           postinc0	equ	0x3FEE
-    90                           postdec0	equ	0x3FED
-    91                           preinc0	equ	0x3FEC
-    92                           plusw0	equ	0x3FEB
-    93                           fsr0h	equ	0x3FEA
-    94                           fsr0l	equ	0x3FE9
-    95                           wreg	equ	0x3FE8
-    96                           indf1	equ	0x3FE7
-    97                           postinc1	equ	0x3FE6
-    98                           postdec1	equ	0x3FE5
-    99                           preinc1	equ	0x3FE4
-   100                           plusw1	equ	0x3FE3
-   101                           fsr1h	equ	0x3FE2
-   102                           fsr1l	equ	0x3FE1
-   103                           bsr	equ	0x3FE0
-   104                           indf2	equ	0x3FDF
-   105                           postinc2	equ	0x3FDE
-   106                           postdec2	equ	0x3FDD
-   107                           preinc2	equ	0x3FDC
-   108                           plusw2	equ	0x3FDB
-   109                           fsr2h	equ	0x3FDA
-   110                           fsr2l	equ	0x3FD9
-   111                           status	equ	0x3FD8
+    42                           ; We gotta reset some variables for our next command read
+    43  001580  0E60               	movlw	_gInPacket	; Reset the byte packet index pointer
+    44  001582  006F FFA0  F028    	movff	wreg,_gInPacketIdx
+    45  001588  9E46               	bcf	_gInStatus,7,c	; Clear the stop bit written flag
+    46  00158A  9C46               	bcf	_gInStatus,6,c	; Clear the command interpreted flag
+    47  00158C  9A46               	bcf	_gInStatus,5,c	; Clear cleanup request flag
+    48  00158E  9046               	bcf	_gInStatus,0,c	; Clear any desync flag
+    49  001590  6A47               	clrf	_gInBitCounter,c	; Clear the bit counter
+    50  001592  8647               	bsf	_gInBitCounter,3,c	; Set the bit counter to 8 (bit 3)
+    51  001594  6A2E               	clrf	_gConOutByte,c	; Clear the outgoing byte container
+    52  001596  6A2C               	clrf	_gConOutIdx,c	; Clear the outgoing byte index pointer
+    53  001598  6A2D               	clrf	_gConByteCount,c	; Clear the outgoing byte counter
+    54  00159A  6A29               	clrf	_gInCommandByte,c	; Clear the incoming command bit
+    55  00159C  6A2A               	clrf	_gInPulseWidth,c	; Clear the pulse width counter
+    56  00159E  8646               	bsf	_gInStatus,3,c	; Enable stick scan bit in status
+    57  0015A0  84C3               	bsf	16323,2,c	; Clear the data pin from us driving so we can receive
+    58  0015A2  013F               	movlb	63
+    59  0015A4  8FD2               	bsf	210,7,b	; Start global interrupts
+    60  0015A6  8F1F               	bsf	31,7,b	; Start SMT
+    61  0015A8  0012               	return	
+    62                           tosu	equ	0x3FFF
+    63                           tosh	equ	0x3FFE
+    64                           tosl	equ	0x3FFD
+    65                           stkptr	equ	0x3FFC
+    66                           pclatu	equ	0x3FFB
+    67                           pclath	equ	0x3FFA
+    68                           pcl	equ	0x3FF9
+    69                           tblptru	equ	0x3FF8
+    70                           tblptrh	equ	0x3FF7
+    71                           tblptrl	equ	0x3FF6
+    72                           tablat	equ	0x3FF5
+    73                           prodh	equ	0x3FF4
+    74                           prodl	equ	0x3FF3
+    75                           indf0	equ	0x3FEF
+    76                           postinc0	equ	0x3FEE
+    77                           postdec0	equ	0x3FED
+    78                           preinc0	equ	0x3FEC
+    79                           plusw0	equ	0x3FEB
+    80                           fsr0h	equ	0x3FEA
+    81                           fsr0l	equ	0x3FE9
+    82                           wreg	equ	0x3FE8
+    83                           indf1	equ	0x3FE7
+    84                           postinc1	equ	0x3FE6
+    85                           postdec1	equ	0x3FE5
+    86                           preinc1	equ	0x3FE4
+    87                           plusw1	equ	0x3FE3
+    88                           fsr1h	equ	0x3FE2
+    89                           fsr1l	equ	0x3FE1
+    90                           bsr	equ	0x3FE0
+    91                           indf2	equ	0x3FDF
+    92                           postinc2	equ	0x3FDE
+    93                           postdec2	equ	0x3FDD
+    94                           preinc2	equ	0x3FDC
+    95                           plusw2	equ	0x3FDB
+    96                           fsr2h	equ	0x3FDA
+    97                           fsr2l	equ	0x3FD9
+    98                           status	equ	0x3FD8
 
 
 Microchip Technology PIC18 Macro Assembler V2.32 build 20210201212658 
-Symbol Table                                                                                               Sat Jan 15 19:29:10 2022
+Symbol Table                                                                                               Tue Jan 18 14:08:41 2022
 
-                          WREG 003FE8                           PORTB 003FCB                           TRISB 003FC3  
-                   _gConOutIdx 002C                         isa$std 000001                 _gInCommandByte 0029  
-                  _gConOutByte 002E                     MAINCLEANUP 102E                      _gInPacket 0060  
-                _gInBitCounter 0049                      _gInStatus 0048                  _gConByteCount 002D  
-                _gInPulseWidth 002A                    _bytecleanup 1022                   _gInPacketIdx 0028  
-                     isa$xinst 000000                   RUMBLEDISABLE 105E  
+                          WREG 003FE8                           TRISB 003FC3                     _gConOutIdx 002C  
+                       isa$std 000001                 _gInCommandByte 0029                    _gConOutByte 002E  
+                    _gInPacket 0060                  _gInBitCounter 0047                      _gInStatus 0046  
+                _gConByteCount 002D                  _gInPulseWidth 002A                    _bytecleanup 157C  
+                 _gInPacketIdx 0028                       isa$xinst 000000  

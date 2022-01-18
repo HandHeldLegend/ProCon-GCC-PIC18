@@ -10,12 +10,12 @@
 #include "main.h"
 
 // Main Settings
-Settings SettingData;
+Settings SettingData __at(0x07D3);
 
 void setdefaultsettings(void)
 {
     SettingData.buffer = 0x0000;
-    SettingData.configKey = 0x4EF4;
+    SettingData.configKey = 0x4E;
   
     SettingData.sx_low = 140U;
     SettingData.sx_center = 254U;
@@ -45,7 +45,13 @@ void setdefaultsettings(void)
     SettingData.cy_highMultiplier = 195U;
     SettingData.cy_lowMultiplier = 201U;
 
-    SettingData.trigger_mode = 0x0;
+    SettingData.modeData = 0U;
+    // 0 - Dual mode: ZL/ZR act as Analog AND Digital press for L/R
+    // 1 - Rightmost analog mode: ZL acts as L, L acts as Z, ZR is full press, R is half analog press
+    // 2 - Leftmost analog mode: ZL is digital L, L is analog L, ZR is R digital/analog, R is Z
+    // 3 - Full trigger mode: ZL - L digital, L - L analog, ZR - R digital, ZR - R analog
+    
+    SettingData.rumbleData = 1U;
 }
 
 void zerosticks(void)
@@ -92,7 +98,7 @@ void loadsettings(void)
         loading[i] = DATAEE_ReadByte(i);
 
         // Check if our configKey does not match the character "NM" :)
-        if (i == 3U && SettingData.configKey != 0x4EF4)
+        if (i == 2U && SettingData.configKey != 0x4E)
         {
             // We did not match, let's write the default values to EEPROM
             setdefaultsettings();
