@@ -21,6 +21,35 @@ void main(void)
     // Turn on the ADC module
     ADCON0bits.ADON = 1;
     
+    // Set Default Trigger Mode
+    if (!L_IN_PORT && !R_IN_PORT)
+    {
+        SettingData.modeData = 0;
+        savesettings();
+    }
+    else if (!L_IN_PORT && !ZL_IN_PORT)
+    {
+        SettingData.modeData = 2;
+        savesettings();
+    }
+    else if (!R_IN_PORT && !ZR_IN_PORT)
+    {
+        SettingData.modeData = 1;
+        savesettings();
+    }
+    else if (!ZR_IN_PORT && !ZL_IN_PORT)
+    {
+        SettingData.modeData = 3;
+        savesettings();
+    }
+    
+    // Enable/Disable rumble mode
+    if (!START_IN_PORT)
+    {
+        SettingData.rumbleData = !SettingData.rumbleData;
+        savesettings();
+    }
+    
     // Do stick calibration if Y/X/A are all held on boot.
     if (!Y_IN_PORT && !X_IN_PORT && !A_IN_PORT)
     {
@@ -65,12 +94,12 @@ void main(void)
         if (gInStatus & (1 << 3))
         {
             
-            if(gInPacket[2] == 1)
+            if(gInPacket[2] == 1 && SettingData.rumbleData)
             {
                 PORTBbits.RB4 = 1;
                 CCPR1H = 0xF0;
             }
-            else if (gInPacket[2] == 2)
+            else if (gInPacket[2] == 2 && SettingData.rumbleData)
             {
                 PORTBbits.RB4 = 1;
                 CCPR1H = 0x60;

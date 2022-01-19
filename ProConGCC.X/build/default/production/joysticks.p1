@@ -2785,8 +2785,8 @@ Version 4.0 HI-TECH Software Intermediate Code
  2137 ]
 [e :U 2137 ]
 "189
-[; ;joysticks.c: 189:                 if (adc_read > tmpcenter+4)
-[e $ ! > -> _adc_read `ui + -> _tmpcenter `ui -> -> 4 `i `ui 2143  ]
+[; ;joysticks.c: 189:                 if (adc_read > tmpcenter+6)
+[e $ ! > -> _adc_read `ui + -> _tmpcenter `ui -> -> 6 `i `ui 2143  ]
 "190
 [; ;joysticks.c: 190:                 {
 {
@@ -2821,9 +2821,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e $U 2146  ]
 "200
-[; ;joysticks.c: 200:                 else if (adc_read < tmpcenter-4)
+[; ;joysticks.c: 200:                 else if (adc_read < tmpcenter-6)
 [e :U 2143 ]
-[e $ ! < -> _adc_read `ui - -> _tmpcenter `ui -> -> 4 `i `ui 2147  ]
+[e $ ! < -> _adc_read `ui - -> _tmpcenter `ui -> -> 6 `i `ui 2147  ]
 "201
 [; ;joysticks.c: 201:                 {
 {

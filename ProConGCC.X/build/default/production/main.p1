@@ -40,7 +40,32 @@ Version 4.0 HI-TECH Software Intermediate Code
 "30333
 [; ;C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f25k42.h: 30333: extern volatile ADCON0bits_t ADCON0bits __attribute__((address(0x3EF8)));
 [v _ADCON0bits `VS1346 ~T0 @X0 0 e@16120 ]
-"44514
+"44576
+[; ;C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f25k42.h: 44576:     struct {
+[s S2007 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S2007 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
+"44575
+[; ;C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f25k42.h: 44575: typedef union {
+[u S2006 `S2007 1 ]
+[n S2006 . . ]
+"44587
+[; ;C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f25k42.h: 44587: extern volatile PORTBbits_t PORTBbits __attribute__((address(0x3FCB)));
+[v _PORTBbits `VS2006 ~T0 @X0 0 e@16331 ]
+"44638
+[; ;C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f25k42.h: 44638:     struct {
+[s S2009 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S2009 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
+"44637
+[; ;C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f25k42.h: 44637: typedef union {
+[u S2008 `S2009 1 ]
+[n S2008 . . ]
+"44649
+[; ;C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f25k42.h: 44649: extern volatile PORTCbits_t PORTCbits __attribute__((address(0x3FCC)));
+[v _PORTCbits `VS2008 ~T0 @X0 0 e@16332 ]
+"52 ./settings.h
+[; ;./settings.h: 52: void savesettings(void);
+[v _savesettings `(v ~T0 @X0 0 ef ]
+"44514 C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f25k42.h
 [; ;C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f25k42.h: 44514:     struct {
 [s S2005 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S2005 . RA0 RA1 RA2 RA3 RA4 RA5 RA6 RA7 ]
@@ -57,23 +82,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "49 ./joysticks.h
 [; ;./joysticks.h: 49: void calibratesticks(void);
 [v _calibratesticks `(v ~T0 @X0 0 ef ]
-"44638 C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f25k42.h
-[; ;C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f25k42.h: 44638:     struct {
-[s S2009 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2009 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
-"44637
-[; ;C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f25k42.h: 44637: typedef union {
-[u S2008 `S2009 1 ]
-[n S2008 . . ]
-"44649
-[; ;C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f25k42.h: 44649: extern volatile PORTCbits_t PORTCbits __attribute__((address(0x3FCC)));
-[v _PORTCbits `VS2008 ~T0 @X0 0 e@16332 ]
 "49 ./settings.h
 [; ;./settings.h: 49: void setstickmultipliers(void);
 [v _setstickmultipliers `(v ~T0 @X0 0 ef ]
-"52
-[; ;./settings.h: 52: void savesettings(void);
-[v _savesettings `(v ~T0 @X0 0 ef ]
 "44721 C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f25k42.h
 [; ;C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f25k42.h: 44721:     struct {
 [s S2013 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -101,18 +112,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "48
 [; ;./mcc_generated_files/..\main.h: 48: extern unsigned char bytecleanup(void);
 [v _bytecleanup `(uc ~T0 @X0 0 ef ]
-"44576 C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f25k42.h
-[; ;C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f25k42.h: 44576:     struct {
-[s S2007 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2007 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
-"44575
-[; ;C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f25k42.h: 44575: typedef union {
-[u S2006 `S2007 1 ]
-[n S2006 . . ]
-"44587
-[; ;C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f25k42.h: 44587: extern volatile PORTBbits_t PORTBbits __attribute__((address(0x3FCB)));
-[v _PORTBbits `VS2006 ~T0 @X0 0 e@16331 ]
-"38720
+"38720 C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f25k42.h
 [; ;C:/Users/Mitch/.mchp_packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f25k42.h: 38720: extern volatile unsigned char CCPR1H __attribute__((address(0x3F7D)));
 [v _CCPR1H `Vuc ~T0 @X0 0 e@16253 ]
 "47 ./joysticks.h
@@ -2435,172 +2435,258 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 22:     ADCON0bits.ADON = 1;
 [e = . . _ADCON0bits 1 6 -> -> 1 `i `uc ]
 "25
-[; ;main.c: 25:     if (!PORTAbits.RA6 && !PORTAbits.RA7 && !PORTAbits.RA4)
-[e $ ! && && ! != -> . . _PORTAbits 0 6 `i -> 0 `i ! != -> . . _PORTAbits 0 7 `i -> 0 `i ! != -> . . _PORTAbits 0 4 `i -> 0 `i 2124  ]
+[; ;main.c: 25:     if (!PORTBbits.RB5 && !PORTCbits.RC0)
+[e $ ! && ! != -> . . _PORTBbits 0 5 `i -> 0 `i ! != -> . . _PORTCbits 0 0 `i -> 0 `i 2124  ]
 "26
 [; ;main.c: 26:     {
 {
 "27
-[; ;main.c: 27:         stickcalibration = 1;
-[e = _stickcalibration -> -> 1 `i `a ]
-"29
-[; ;main.c: 29:         zerosticks();
-[e ( _zerosticks ..  ]
-"30
-[; ;main.c: 30:     }
-}
-[e :U 2124 ]
-"32
-[; ;main.c: 32:     while (stickcalibration)
-[e $U 2125  ]
-[e :U 2126 ]
-"33
-[; ;main.c: 33:     {
-{
-"34
-[; ;main.c: 34:         calibratesticks();
-[e ( _calibratesticks ..  ]
-"37
-[; ;main.c: 37:         if (!PORTCbits.RC1)
-[e $ ! ! != -> . . _PORTCbits 0 1 `i -> 0 `i 2128  ]
-"38
-[; ;main.c: 38:         {
-{
-"39
-[; ;main.c: 39:             setstickmultipliers();
-[e ( _setstickmultipliers ..  ]
-"40
-[; ;main.c: 40:             savesettings();
+[; ;main.c: 27:         SettingData.modeData = 0;
+[e = . _SettingData 22 -> -> 0 `i `uc ]
+"28
+[; ;main.c: 28:         savesettings();
 [e ( _savesettings ..  ]
-"41
-[; ;main.c: 41:             stickcalibration = 0;
-[e = _stickcalibration -> -> 0 `i `a ]
-"42
-[; ;main.c: 42:             break;
-[e $U 2127  ]
-"43
-[; ;main.c: 43:         }
+"29
+[; ;main.c: 29:     }
 }
+[e $U 2125  ]
+"30
+[; ;main.c: 30:     else if (!PORTBbits.RB5 && !PORTCbits.RC5)
+[e :U 2124 ]
+[e $ ! && ! != -> . . _PORTBbits 0 5 `i -> 0 `i ! != -> . . _PORTCbits 0 5 `i -> 0 `i 2126  ]
+"31
+[; ;main.c: 31:     {
+{
+"32
+[; ;main.c: 32:         SettingData.modeData = 2;
+[e = . _SettingData 22 -> -> 2 `i `uc ]
+"33
+[; ;main.c: 33:         savesettings();
+[e ( _savesettings ..  ]
+"34
+[; ;main.c: 34:     }
+}
+[e $U 2127  ]
+"35
+[; ;main.c: 35:     else if (!PORTCbits.RC0 && !PORTCbits.RC2)
+[e :U 2126 ]
+[e $ ! && ! != -> . . _PORTCbits 0 0 `i -> 0 `i ! != -> . . _PORTCbits 0 2 `i -> 0 `i 2128  ]
+"36
+[; ;main.c: 36:     {
+{
+"37
+[; ;main.c: 37:         SettingData.modeData = 1;
+[e = . _SettingData 22 -> -> 1 `i `uc ]
+"38
+[; ;main.c: 38:         savesettings();
+[e ( _savesettings ..  ]
+"39
+[; ;main.c: 39:     }
+}
+[e $U 2129  ]
+"40
+[; ;main.c: 40:     else if (!PORTCbits.RC2 && !PORTCbits.RC5)
 [e :U 2128 ]
+[e $ ! && ! != -> . . _PORTCbits 0 2 `i -> 0 `i ! != -> . . _PORTCbits 0 5 `i -> 0 `i 2130  ]
+"41
+[; ;main.c: 41:     {
+{
+"42
+[; ;main.c: 42:         SettingData.modeData = 3;
+[e = . _SettingData 22 -> -> 3 `i `uc ]
+"43
+[; ;main.c: 43:         savesettings();
+[e ( _savesettings ..  ]
 "44
 [; ;main.c: 44:     }
 }
-[e :U 2125 ]
-"32
-[; ;main.c: 32:     while (stickcalibration)
-[e $ != -> _stickcalibration `i -> 0 `i 2126  ]
-[e :U 2127 ]
-"47
-[; ;main.c: 47:     INTCON0bits.GIEH = 1;
-[e = . . _INTCON0bits 1 1 -> -> 1 `i `uc ]
-"49
-[; ;main.c: 49:     while (1)
 [e :U 2130 ]
-"50
-[; ;main.c: 50:     {
+[e :U 2129 ]
+[e :U 2127 ]
+[e :U 2125 ]
+"47
+[; ;main.c: 47:     if (!PORTCbits.RC1)
+[e $ ! ! != -> . . _PORTCbits 0 1 `i -> 0 `i 2131  ]
+"48
+[; ;main.c: 48:     {
 {
-"52
-[; ;main.c: 52:         commandreader();
-[e ( _commandreader ..  ]
+"49
+[; ;main.c: 49:         SettingData.rumbleData = !SettingData.rumbleData;
+[e = . _SettingData 23 -> -> ! != -> . _SettingData 23 `i -> 0 `i `i `uc ]
+"50
+[; ;main.c: 50:         savesettings();
+[e ( _savesettings ..  ]
+"51
+[; ;main.c: 51:     }
+}
+[e :U 2131 ]
 "54
-[; ;main.c: 54:         if (gInStatus & 0x01)
-[e $ ! != & -> _gInStatus `i -> 1 `i -> 0 `i 2132  ]
+[; ;main.c: 54:     if (!PORTAbits.RA6 && !PORTAbits.RA7 && !PORTAbits.RA4)
+[e $ ! && && ! != -> . . _PORTAbits 0 6 `i -> 0 `i ! != -> . . _PORTAbits 0 7 `i -> 0 `i ! != -> . . _PORTAbits 0 4 `i -> 0 `i 2132  ]
 "55
-[; ;main.c: 55:         {
+[; ;main.c: 55:     {
 {
 "56
-[; ;main.c: 56:             desyncfix();
-[e ( _desyncfix ..  ]
-"57
-[; ;main.c: 57:         }
+[; ;main.c: 56:         stickcalibration = 1;
+[e = _stickcalibration -> -> 1 `i `a ]
+"58
+[; ;main.c: 58:         zerosticks();
+[e ( _zerosticks ..  ]
+"59
+[; ;main.c: 59:     }
 }
 [e :U 2132 ]
-"59
-[; ;main.c: 59:         bytepush();
-[e ( _bytepush ..  ]
 "61
-[; ;main.c: 61:         bytecleanup();
-[e ( _bytecleanup ..  ]
-"65
-[; ;main.c: 65:         if (gInStatus & (1 << 3))
-[e $ ! != & -> _gInStatus `i << -> 1 `i -> 3 `i -> 0 `i 2133  ]
+[; ;main.c: 61:     while (stickcalibration)
+[e $U 2133  ]
+[e :U 2134 ]
+"62
+[; ;main.c: 62:     {
+{
+"63
+[; ;main.c: 63:         calibratesticks();
+[e ( _calibratesticks ..  ]
 "66
-[; ;main.c: 66:         {
+[; ;main.c: 66:         if (!PORTCbits.RC1)
+[e $ ! ! != -> . . _PORTCbits 0 1 `i -> 0 `i 2136  ]
+"67
+[; ;main.c: 67:         {
 {
 "68
-[; ;main.c: 68:             if(gInPacket[2] == 1)
-[e $ ! == -> *U + &U _gInPacket * -> -> -> 2 `i `ui `ux -> -> # *U &U _gInPacket `ui `ux `i -> 1 `i 2134  ]
+[; ;main.c: 68:             setstickmultipliers();
+[e ( _setstickmultipliers ..  ]
 "69
-[; ;main.c: 69:             {
-{
+[; ;main.c: 69:             savesettings();
+[e ( _savesettings ..  ]
 "70
-[; ;main.c: 70:                 PORTBbits.RB4 = 1;
-[e = . . _PORTBbits 0 4 -> -> 1 `i `uc ]
+[; ;main.c: 70:             stickcalibration = 0;
+[e = _stickcalibration -> -> 0 `i `a ]
 "71
-[; ;main.c: 71:                 CCPR1H = 0xF0;
-[e = _CCPR1H -> -> 240 `i `uc ]
-"72
-[; ;main.c: 72:             }
-}
+[; ;main.c: 71:             break;
 [e $U 2135  ]
-"73
-[; ;main.c: 73:             else if (gInPacket[2] == 2)
-[e :U 2134 ]
-[e $ ! == -> *U + &U _gInPacket * -> -> -> 2 `i `ui `ux -> -> # *U &U _gInPacket `ui `ux `i -> 2 `i 2136  ]
-"74
-[; ;main.c: 74:             {
-{
-"75
-[; ;main.c: 75:                 PORTBbits.RB4 = 1;
-[e = . . _PORTBbits 0 4 -> -> 1 `i `uc ]
-"76
-[; ;main.c: 76:                 CCPR1H = 0x60;
-[e = _CCPR1H -> -> 96 `i `uc ]
-"77
-[; ;main.c: 77:             }
+"72
+[; ;main.c: 72:         }
 }
-[e $U 2137  ]
-"78
-[; ;main.c: 78:             else
 [e :U 2136 ]
-"79
-[; ;main.c: 79:             {
-{
-"80
-[; ;main.c: 80:                 PORTBbits.RB4 = 0;
-[e = . . _PORTBbits 0 4 -> -> 0 `i `uc ]
-"81
-[; ;main.c: 81:             }
-}
-[e :U 2137 ]
-[e :U 2135 ]
-"83
-[; ;main.c: 83:             scansticks();
-[e ( _scansticks ..  ]
-"84
-[; ;main.c: 84:         }
+"73
+[; ;main.c: 73:     }
 }
 [e :U 2133 ]
-"86
-[; ;main.c: 86:         if (gInStatus & (1 << 2))
-[e $ ! != & -> _gInStatus `i << -> 1 `i -> 2 `i -> 0 `i 2138  ]
-"87
-[; ;main.c: 87:         {
-{
-"88
-[; ;main.c: 88:             checkbuttons();
-[e ( _checkbuttons ..  ]
-"89
-[; ;main.c: 89:         }
-}
+"61
+[; ;main.c: 61:     while (stickcalibration)
+[e $ != -> _stickcalibration `i -> 0 `i 2134  ]
+[e :U 2135 ]
+"76
+[; ;main.c: 76:     INTCON0bits.GIEH = 1;
+[e = . . _INTCON0bits 1 1 -> -> 1 `i `uc ]
+"78
+[; ;main.c: 78:     while (1)
 [e :U 2138 ]
-"90
-[; ;main.c: 90:     }
+"79
+[; ;main.c: 79:     {
+{
+"81
+[; ;main.c: 81:         commandreader();
+[e ( _commandreader ..  ]
+"83
+[; ;main.c: 83:         if (gInStatus & 0x01)
+[e $ ! != & -> _gInStatus `i -> 1 `i -> 0 `i 2140  ]
+"84
+[; ;main.c: 84:         {
+{
+"85
+[; ;main.c: 85:             desyncfix();
+[e ( _desyncfix ..  ]
+"86
+[; ;main.c: 86:         }
 }
-[e :U 2129 ]
-[e $U 2130  ]
-[e :U 2131 ]
-"91
-[; ;main.c: 91: }
+[e :U 2140 ]
+"88
+[; ;main.c: 88:         bytepush();
+[e ( _bytepush ..  ]
+"90
+[; ;main.c: 90:         bytecleanup();
+[e ( _bytecleanup ..  ]
+"94
+[; ;main.c: 94:         if (gInStatus & (1 << 3))
+[e $ ! != & -> _gInStatus `i << -> 1 `i -> 3 `i -> 0 `i 2141  ]
+"95
+[; ;main.c: 95:         {
+{
+"97
+[; ;main.c: 97:             if(gInPacket[2] == 1 && SettingData.rumbleData)
+[e $ ! && == -> *U + &U _gInPacket * -> -> -> 2 `i `ui `ux -> -> # *U &U _gInPacket `ui `ux `i -> 1 `i != -> . _SettingData 23 `i -> 0 `i 2142  ]
+"98
+[; ;main.c: 98:             {
+{
+"99
+[; ;main.c: 99:                 PORTBbits.RB4 = 1;
+[e = . . _PORTBbits 0 4 -> -> 1 `i `uc ]
+"100
+[; ;main.c: 100:                 CCPR1H = 0xF0;
+[e = _CCPR1H -> -> 240 `i `uc ]
+"101
+[; ;main.c: 101:             }
+}
+[e $U 2143  ]
+"102
+[; ;main.c: 102:             else if (gInPacket[2] == 2 && SettingData.rumbleData)
+[e :U 2142 ]
+[e $ ! && == -> *U + &U _gInPacket * -> -> -> 2 `i `ui `ux -> -> # *U &U _gInPacket `ui `ux `i -> 2 `i != -> . _SettingData 23 `i -> 0 `i 2144  ]
+"103
+[; ;main.c: 103:             {
+{
+"104
+[; ;main.c: 104:                 PORTBbits.RB4 = 1;
+[e = . . _PORTBbits 0 4 -> -> 1 `i `uc ]
+"105
+[; ;main.c: 105:                 CCPR1H = 0x60;
+[e = _CCPR1H -> -> 96 `i `uc ]
+"106
+[; ;main.c: 106:             }
+}
+[e $U 2145  ]
+"107
+[; ;main.c: 107:             else
+[e :U 2144 ]
+"108
+[; ;main.c: 108:             {
+{
+"109
+[; ;main.c: 109:                 PORTBbits.RB4 = 0;
+[e = . . _PORTBbits 0 4 -> -> 0 `i `uc ]
+"110
+[; ;main.c: 110:             }
+}
+[e :U 2145 ]
+[e :U 2143 ]
+"112
+[; ;main.c: 112:             scansticks();
+[e ( _scansticks ..  ]
+"113
+[; ;main.c: 113:         }
+}
+[e :U 2141 ]
+"115
+[; ;main.c: 115:         if (gInStatus & (1 << 2))
+[e $ ! != & -> _gInStatus `i << -> 1 `i -> 2 `i -> 0 `i 2146  ]
+"116
+[; ;main.c: 116:         {
+{
+"117
+[; ;main.c: 117:             checkbuttons();
+[e ( _checkbuttons ..  ]
+"118
+[; ;main.c: 118:         }
+}
+[e :U 2146 ]
+"119
+[; ;main.c: 119:     }
+}
+[e :U 2137 ]
+[e $U 2138  ]
+[e :U 2139 ]
+"120
+[; ;main.c: 120: }
 [e :UE 2123 ]
 }

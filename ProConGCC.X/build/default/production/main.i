@@ -26900,6 +26900,35 @@ void main(void)
     ADCON0bits.ADON = 1;
 
 
+    if (!PORTBbits.RB5 && !PORTCbits.RC0)
+    {
+        SettingData.modeData = 0;
+        savesettings();
+    }
+    else if (!PORTBbits.RB5 && !PORTCbits.RC5)
+    {
+        SettingData.modeData = 2;
+        savesettings();
+    }
+    else if (!PORTCbits.RC0 && !PORTCbits.RC2)
+    {
+        SettingData.modeData = 1;
+        savesettings();
+    }
+    else if (!PORTCbits.RC2 && !PORTCbits.RC5)
+    {
+        SettingData.modeData = 3;
+        savesettings();
+    }
+
+
+    if (!PORTCbits.RC1)
+    {
+        SettingData.rumbleData = !SettingData.rumbleData;
+        savesettings();
+    }
+
+
     if (!PORTAbits.RA6 && !PORTAbits.RA7 && !PORTAbits.RA4)
     {
         stickcalibration = 1;
@@ -26943,12 +26972,12 @@ void main(void)
         if (gInStatus & (1 << 3))
         {
 
-            if(gInPacket[2] == 1)
+            if(gInPacket[2] == 1 && SettingData.rumbleData)
             {
                 PORTBbits.RB4 = 1;
                 CCPR1H = 0xF0;
             }
-            else if (gInPacket[2] == 2)
+            else if (gInPacket[2] == 2 && SettingData.rumbleData)
             {
                 PORTBbits.RB4 = 1;
                 CCPR1H = 0x60;

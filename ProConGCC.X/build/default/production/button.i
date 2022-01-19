@@ -26941,6 +26941,8 @@ void checkbuttons(void)
 
 
         gConPollPacket[1] |= !PORTCbits.RC2 << 5;
+        gConPollPacket[7] |= (!PORTCbits.RC2) ? 0x80 : 0x00;
+
         gConPollPacket[7] |= (!PORTCbits.RC0) ? 0x80 : 0x00;
 
 
@@ -26950,6 +26952,8 @@ void checkbuttons(void)
     {
 
         gConPollPacket[1] |= !PORTCbits.RC5 << 6;
+        gConPollPacket[6] |= (!PORTCbits.RC5) ? 0x80 : 0x00;
+
         gConPollPacket[6] |= (!PORTBbits.RB5) ? 0x80 : 0x00;
 
 
@@ -26963,10 +26967,14 @@ void checkbuttons(void)
     {
 
         gConPollPacket[1] |= !PORTCbits.RC5 << 6;
+        gConPollPacket[6] |= (!PORTCbits.RC5) ? 0x80 : 0x00;
+
         gConPollPacket[6] |= (!PORTBbits.RB5) ? 0x80 : 0x00;
 
 
         gConPollPacket[1] |= !PORTCbits.RC2 << 5;
+        gConPollPacket[7] |= (!PORTCbits.RC2) ? 0x80 : 0x00;
+
         gConPollPacket[7] |= (!PORTCbits.RC0) ? 0x80 : 0x00;
     }
 

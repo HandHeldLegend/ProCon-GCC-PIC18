@@ -27064,7 +27064,7 @@ void scansticks(void) {
 
 
 
-                if (adc_read > tmpcenter+4)
+                if (adc_read > tmpcenter+6)
                 {
                     if (adc_read >= tmphigh)
                     {
@@ -27075,7 +27075,7 @@ void scansticks(void) {
                         gConPollPacket[stickIdx+2] = 128U + slinjim(adc_read - tmpcenter, tmphighm);
                     }
                 }
-                else if (adc_read < tmpcenter-4)
+                else if (adc_read < tmpcenter-6)
                 {
                     if (adc_read <= tmplow)
                     {

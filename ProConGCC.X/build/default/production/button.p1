@@ -2418,80 +2418,92 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;button.c: 65:         gConPollPacket[1] |= !PORTCbits.RC2 << 5;
 [e =| *U + &U _gConPollPacket * -> -> -> 1 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> << -> ! != -> . . _PORTCbits 0 2 `i -> 0 `i `i -> 5 `i `uc ]
 "66
-[; ;button.c: 66:         gConPollPacket[7] |= (!PORTCbits.RC0) ? 0x80 : 0x00;
+[; ;button.c: 66:         gConPollPacket[7] |= (!PORTCbits.RC2) ? 0x80 : 0x00;
+[e =| *U + &U _gConPollPacket * -> -> -> 7 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> ? ! != -> . . _PORTCbits 0 2 `i -> 0 `i : -> 128 `i -> 0 `i `uc ]
+"68
+[; ;button.c: 68:         gConPollPacket[7] |= (!PORTCbits.RC0) ? 0x80 : 0x00;
 [e =| *U + &U _gConPollPacket * -> -> -> 7 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> ? ! != -> . . _PORTCbits 0 0 `i -> 0 `i : -> 128 `i -> 0 `i `uc ]
-"69
-[; ;button.c: 69:         gConPollPacket[1] |= !PORTBbits.RB5 << 4;
+"71
+[; ;button.c: 71:         gConPollPacket[1] |= !PORTBbits.RB5 << 4;
 [e =| *U + &U _gConPollPacket * -> -> -> 1 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> << -> ! != -> . . _PORTBbits 0 5 `i -> 0 `i `i -> 4 `i `uc ]
-"70
-[; ;button.c: 70:     }
+"72
+[; ;button.c: 72:     }
 }
 [e $U 2128  ]
-"71
-[; ;button.c: 71:     else if (SettingData.modeData == 2)
+"73
+[; ;button.c: 73:     else if (SettingData.modeData == 2)
 [e :U 2127 ]
 [e $ ! == -> . _SettingData 22 `i -> 2 `i 2129  ]
-"72
-[; ;button.c: 72:     {
-{
 "74
-[; ;button.c: 74:         gConPollPacket[1] |= !PORTCbits.RC5 << 6;
+[; ;button.c: 74:     {
+{
+"76
+[; ;button.c: 76:         gConPollPacket[1] |= !PORTCbits.RC5 << 6;
 [e =| *U + &U _gConPollPacket * -> -> -> 1 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> << -> ! != -> . . _PORTCbits 0 5 `i -> 0 `i `i -> 6 `i `uc ]
-"75
-[; ;button.c: 75:         gConPollPacket[6] |= (!PORTBbits.RB5) ? 0x80 : 0x00;
-[e =| *U + &U _gConPollPacket * -> -> -> 6 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> ? ! != -> . . _PORTBbits 0 5 `i -> 0 `i : -> 128 `i -> 0 `i `uc ]
-"78
-[; ;button.c: 78:         gConPollPacket[1] |= !PORTCbits.RC2 << 5;
-[e =| *U + &U _gConPollPacket * -> -> -> 1 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> << -> ! != -> . . _PORTCbits 0 2 `i -> 0 `i `i -> 5 `i `uc ]
+"77
+[; ;button.c: 77:         gConPollPacket[6] |= (!PORTCbits.RC5) ? 0x80 : 0x00;
+[e =| *U + &U _gConPollPacket * -> -> -> 6 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> ? ! != -> . . _PORTCbits 0 5 `i -> 0 `i : -> 128 `i -> 0 `i `uc ]
 "79
-[; ;button.c: 79:         gConPollPacket[7] |= (!PORTCbits.RC2) ? 0x80 : 0x00;
-[e =| *U + &U _gConPollPacket * -> -> -> 7 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> ? ! != -> . . _PORTCbits 0 2 `i -> 0 `i : -> 128 `i -> 0 `i `uc ]
+[; ;button.c: 79:         gConPollPacket[6] |= (!PORTBbits.RB5) ? 0x80 : 0x00;
+[e =| *U + &U _gConPollPacket * -> -> -> 6 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> ? ! != -> . . _PORTBbits 0 5 `i -> 0 `i : -> 128 `i -> 0 `i `uc ]
 "82
-[; ;button.c: 82:         gConPollPacket[1] |= !PORTCbits.RC0 << 4;
-[e =| *U + &U _gConPollPacket * -> -> -> 1 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> << -> ! != -> . . _PORTCbits 0 0 `i -> 0 `i `i -> 4 `i `uc ]
+[; ;button.c: 82:         gConPollPacket[1] |= !PORTCbits.RC2 << 5;
+[e =| *U + &U _gConPollPacket * -> -> -> 1 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> << -> ! != -> . . _PORTCbits 0 2 `i -> 0 `i `i -> 5 `i `uc ]
 "83
-[; ;button.c: 83:     }
+[; ;button.c: 83:         gConPollPacket[7] |= (!PORTCbits.RC2) ? 0x80 : 0x00;
+[e =| *U + &U _gConPollPacket * -> -> -> 7 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> ? ! != -> . . _PORTCbits 0 2 `i -> 0 `i : -> 128 `i -> 0 `i `uc ]
+"86
+[; ;button.c: 86:         gConPollPacket[1] |= !PORTCbits.RC0 << 4;
+[e =| *U + &U _gConPollPacket * -> -> -> 1 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> << -> ! != -> . . _PORTCbits 0 0 `i -> 0 `i `i -> 4 `i `uc ]
+"87
+[; ;button.c: 87:     }
 }
 [e $U 2130  ]
-"84
-[; ;button.c: 84:     else if (SettingData.modeData == 3)
+"88
+[; ;button.c: 88:     else if (SettingData.modeData == 3)
 [e :U 2129 ]
 [e $ ! == -> . _SettingData 22 `i -> 3 `i 2131  ]
-"85
-[; ;button.c: 85:     {
+"89
+[; ;button.c: 89:     {
 {
-"87
-[; ;button.c: 87:         gConPollPacket[1] |= !PORTCbits.RC5 << 6;
-[e =| *U + &U _gConPollPacket * -> -> -> 1 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> << -> ! != -> . . _PORTCbits 0 5 `i -> 0 `i `i -> 6 `i `uc ]
-"88
-[; ;button.c: 88:         gConPollPacket[6] |= (!PORTBbits.RB5) ? 0x80 : 0x00;
-[e =| *U + &U _gConPollPacket * -> -> -> 6 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> ? ! != -> . . _PORTBbits 0 5 `i -> 0 `i : -> 128 `i -> 0 `i `uc ]
 "91
-[; ;button.c: 91:         gConPollPacket[1] |= !PORTCbits.RC2 << 5;
-[e =| *U + &U _gConPollPacket * -> -> -> 1 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> << -> ! != -> . . _PORTCbits 0 2 `i -> 0 `i `i -> 5 `i `uc ]
+[; ;button.c: 91:         gConPollPacket[1] |= !PORTCbits.RC5 << 6;
+[e =| *U + &U _gConPollPacket * -> -> -> 1 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> << -> ! != -> . . _PORTCbits 0 5 `i -> 0 `i `i -> 6 `i `uc ]
 "92
-[; ;button.c: 92:         gConPollPacket[7] |= (!PORTCbits.RC0) ? 0x80 : 0x00;
+[; ;button.c: 92:         gConPollPacket[6] |= (!PORTCbits.RC5) ? 0x80 : 0x00;
+[e =| *U + &U _gConPollPacket * -> -> -> 6 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> ? ! != -> . . _PORTCbits 0 5 `i -> 0 `i : -> 128 `i -> 0 `i `uc ]
+"94
+[; ;button.c: 94:         gConPollPacket[6] |= (!PORTBbits.RB5) ? 0x80 : 0x00;
+[e =| *U + &U _gConPollPacket * -> -> -> 6 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> ? ! != -> . . _PORTBbits 0 5 `i -> 0 `i : -> 128 `i -> 0 `i `uc ]
+"97
+[; ;button.c: 97:         gConPollPacket[1] |= !PORTCbits.RC2 << 5;
+[e =| *U + &U _gConPollPacket * -> -> -> 1 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> << -> ! != -> . . _PORTCbits 0 2 `i -> 0 `i `i -> 5 `i `uc ]
+"98
+[; ;button.c: 98:         gConPollPacket[7] |= (!PORTCbits.RC2) ? 0x80 : 0x00;
+[e =| *U + &U _gConPollPacket * -> -> -> 7 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> ? ! != -> . . _PORTCbits 0 2 `i -> 0 `i : -> 128 `i -> 0 `i `uc ]
+"100
+[; ;button.c: 100:         gConPollPacket[7] |= (!PORTCbits.RC0) ? 0x80 : 0x00;
 [e =| *U + &U _gConPollPacket * -> -> -> 7 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> ? ! != -> . . _PORTCbits 0 0 `i -> 0 `i : -> 128 `i -> 0 `i `uc ]
-"93
-[; ;button.c: 93:     }
+"101
+[; ;button.c: 101:     }
 }
 [e :U 2131 ]
 [e :U 2130 ]
 [e :U 2128 ]
 [e :U 2126 ]
-"95
-[; ;button.c: 95:     gConPollPacket[1] |= !PORTCbits.RC6 << 3;
+"103
+[; ;button.c: 103:     gConPollPacket[1] |= !PORTCbits.RC6 << 3;
 [e =| *U + &U _gConPollPacket * -> -> -> 1 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> << -> ! != -> . . _PORTCbits 0 6 `i -> 0 `i `i -> 3 `i `uc ]
-"96
-[; ;button.c: 96:     gConPollPacket[1] |= !PORTCbits.RC7 << 2;
+"104
+[; ;button.c: 104:     gConPollPacket[1] |= !PORTCbits.RC7 << 2;
 [e =| *U + &U _gConPollPacket * -> -> -> 1 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> << -> ! != -> . . _PORTCbits 0 7 `i -> 0 `i `i -> 2 `i `uc ]
-"97
-[; ;button.c: 97:     gConPollPacket[1] |= !PORTBbits.RB0 << 1;
+"105
+[; ;button.c: 105:     gConPollPacket[1] |= !PORTBbits.RB0 << 1;
 [e =| *U + &U _gConPollPacket * -> -> -> 1 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> << -> ! != -> . . _PORTBbits 0 0 `i -> 0 `i `i -> 1 `i `uc ]
-"98
-[; ;button.c: 98:     gConPollPacket[1] |= !PORTBbits.RB1;
+"106
+[; ;button.c: 106:     gConPollPacket[1] |= !PORTBbits.RB1;
 [e =| *U + &U _gConPollPacket * -> -> -> 1 `i `ui `ux -> -> # *U &U _gConPollPacket `ui `ux -> -> ! != -> . . _PORTBbits 0 1 `i -> 0 `i `i `uc ]
-"100
-[; ;button.c: 100: }
+"108
+[; ;button.c: 108: }
 [e :UE 2123 ]
 }

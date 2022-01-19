@@ -889,7 +889,7 @@ channel_FVR_Buffer2 63
 [v _TRISB TRISB `VEuc  1 e 1 @16323 ]
 "44446
 [v _TRISC TRISC `VEuc  1 e 1 @16324 ]
-[s S1762 . 1 `uc 1 RA0 1 0 :1:0 
+[s S1808 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
@@ -899,11 +899,11 @@ channel_FVR_Buffer2 63
 `uc 1 RA7 1 0 :1:7 
 ]
 "44525
-[u S1771 . 1 `S1762 1 . 1 0 ]
+[u S1817 . 1 `S1808 1 . 1 0 ]
 "44525
 "44525
-[v _PORTAbits PORTAbits `VES1771  1 e 1 @16330 ]
-[s S1851 . 1 `uc 1 RB0 1 0 :1:0 
+[v _PORTAbits PORTAbits `VES1817  1 e 1 @16330 ]
+[s S1762 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
 `uc 1 RB2 1 0 :1:2 
 `uc 1 RB3 1 0 :1:3 
@@ -913,11 +913,11 @@ channel_FVR_Buffer2 63
 `uc 1 RB7 1 0 :1:7 
 ]
 "44587
-[u S1860 . 1 `S1851 1 . 1 0 ]
+[u S1771 . 1 `S1762 1 . 1 0 ]
 "44587
 "44587
-[v _PORTBbits PORTBbits `VES1860  1 e 1 @16331 ]
-[s S1791 . 1 `uc 1 RC0 1 0 :1:0 
+[v _PORTBbits PORTBbits `VES1771  1 e 1 @16331 ]
+[s S1783 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -927,10 +927,10 @@ channel_FVR_Buffer2 63
 `uc 1 RC7 1 0 :1:7 
 ]
 "44649
-[u S1800 . 1 `S1791 1 . 1 0 ]
+[u S1792 . 1 `S1783 1 . 1 0 ]
 "44649
 "44649
-[v _PORTCbits PORTCbits `VES1800  1 e 1 @16332 ]
+[v _PORTCbits PORTCbits `VES1792  1 e 1 @16332 ]
 [s S656 . 1 `uc 1 INT0EDG 1 0 :1:0 
 `uc 1 INT1EDG 1 0 :1:1 
 `uc 1 INT2EDG 1 0 :1:2 
@@ -984,7 +984,7 @@ channel_FVR_Buffer2 63
 "11 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"91
+"120
 } 0
 "57 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\settings.c
 [v _zerosticks zerosticks `(v  1 e 1 0 ]
@@ -1000,9 +1000,9 @@ channel_FVR_Buffer2 63
 [v _getmultiplier getmultiplier `(us  1 e 2 0 ]
 {
 "68
-[v getmultiplier@ratio ratio `us  1 a 2 2 ]
+[v getmultiplier@ratio ratio `us  1 a 2 17 ]
 "67
-[v getmultiplier@distance distance `us  1 a 2 0 ]
+[v getmultiplier@distance distance `us  1 a 2 15 ]
 "64
 [v getmultiplier@high high `us  1 p 2 11 ]
 [v getmultiplier@low low `us  1 p 2 13 ]
@@ -1012,9 +1012,9 @@ channel_FVR_Buffer2 63
 [v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
 {
 "10
-[v ___lwdiv@quotient quotient `ui  1 a 2 9 ]
+[v ___lwdiv@quotient quotient `ui  1 a 2 8 ]
 "11
-[v ___lwdiv@counter counter `uc  1 a 1 8 ]
+[v ___lwdiv@counter counter `uc  1 a 1 10 ]
 "7
 [v ___lwdiv@dividend dividend `ui  1 p 2 4 ]
 [v ___lwdiv@divisor divisor `ui  1 p 2 6 ]
@@ -1111,7 +1111,7 @@ channel_FVR_Buffer2 63
 "12 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\button.c
 [v _checkbuttons checkbuttons `(v  1 e 1 0 ]
 {
-"100
+"108
 } 0
 "227 C:\Users\Mitch\GitRepos\ProCon-GCC\ProConGCC.X\joysticks.c
 [v _calibratesticks calibratesticks `(v  1 e 1 0 ]

@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.32 build 20210201212658 
-                                                                                                           Tue Jan 18 14:08:41 2022
+                                                                                                           Tue Jan 18 20:24:52 2022
 
 
      1                           	processor	18F25K42
@@ -38,33 +38,33 @@ Microchip MPLAB XC8 Assembler V2.32 build 20210201212658
     32                           ; objects from the stack prior to returning from a function
     33  000000                     
     34                           	psect	barfunc
-    35  00157C                     _bytecleanup:
+    35  001722                     _bytecleanup:
     36                           	callstack 0
     37                           
     38                           ; Check that we finished a packet and need cleanup
-    39  00157C  AA46               	btfss	_gInStatus,5,c	; Bit 5 cleanup request flag. Skip if we sent one
-    40  00157E  0012               	return		; Return if we have nothing to clean up yet.
+    39  001722  AA53               	btfss	_gInStatus,5,c	; Bit 5 cleanup request flag. Skip if we sent one
+    40  001724  0012               	return		; Return if we have nothing to clean up yet.
     41                           
     42                           ; We gotta reset some variables for our next command read
-    43  001580  0E60               	movlw	_gInPacket	; Reset the byte packet index pointer
-    44  001582  006F FFA0  F028    	movff	wreg,_gInPacketIdx
-    45  001588  9E46               	bcf	_gInStatus,7,c	; Clear the stop bit written flag
-    46  00158A  9C46               	bcf	_gInStatus,6,c	; Clear the command interpreted flag
-    47  00158C  9A46               	bcf	_gInStatus,5,c	; Clear cleanup request flag
-    48  00158E  9046               	bcf	_gInStatus,0,c	; Clear any desync flag
-    49  001590  6A47               	clrf	_gInBitCounter,c	; Clear the bit counter
-    50  001592  8647               	bsf	_gInBitCounter,3,c	; Set the bit counter to 8 (bit 3)
-    51  001594  6A2E               	clrf	_gConOutByte,c	; Clear the outgoing byte container
-    52  001596  6A2C               	clrf	_gConOutIdx,c	; Clear the outgoing byte index pointer
-    53  001598  6A2D               	clrf	_gConByteCount,c	; Clear the outgoing byte counter
-    54  00159A  6A29               	clrf	_gInCommandByte,c	; Clear the incoming command bit
-    55  00159C  6A2A               	clrf	_gInPulseWidth,c	; Clear the pulse width counter
-    56  00159E  8646               	bsf	_gInStatus,3,c	; Enable stick scan bit in status
-    57  0015A0  84C3               	bsf	16323,2,c	; Clear the data pin from us driving so we can receive
-    58  0015A2  013F               	movlb	63
-    59  0015A4  8FD2               	bsf	210,7,b	; Start global interrupts
-    60  0015A6  8F1F               	bsf	31,7,b	; Start SMT
-    61  0015A8  0012               	return	
+    43  001726  0E60               	movlw	_gInPacket	; Reset the byte packet index pointer
+    44  001728  006F FFA0  F028    	movff	wreg,_gInPacketIdx
+    45  00172E  9E53               	bcf	_gInStatus,7,c	; Clear the stop bit written flag
+    46  001730  9C53               	bcf	_gInStatus,6,c	; Clear the command interpreted flag
+    47  001732  9A53               	bcf	_gInStatus,5,c	; Clear cleanup request flag
+    48  001734  9053               	bcf	_gInStatus,0,c	; Clear any desync flag
+    49  001736  6A54               	clrf	_gInBitCounter,c	; Clear the bit counter
+    50  001738  8654               	bsf	_gInBitCounter,3,c	; Set the bit counter to 8 (bit 3)
+    51  00173A  6A2E               	clrf	_gConOutByte,c	; Clear the outgoing byte container
+    52  00173C  6A2C               	clrf	_gConOutIdx,c	; Clear the outgoing byte index pointer
+    53  00173E  6A2D               	clrf	_gConByteCount,c	; Clear the outgoing byte counter
+    54  001740  6A29               	clrf	_gInCommandByte,c	; Clear the incoming command bit
+    55  001742  6A2A               	clrf	_gInPulseWidth,c	; Clear the pulse width counter
+    56  001744  8653               	bsf	_gInStatus,3,c	; Enable stick scan bit in status
+    57  001746  84C3               	bsf	16323,2,c	; Clear the data pin from us driving so we can receive
+    58  001748  013F               	movlb	63
+    59  00174A  8FD2               	bsf	210,7,b	; Start global interrupts
+    60  00174C  8F1F               	bsf	31,7,b	; Start SMT
+    61  00174E  0012               	return	
     62                           tosu	equ	0x3FFF
     63                           tosh	equ	0x3FFE
     64                           tosl	equ	0x3FFD
@@ -105,10 +105,10 @@ Microchip MPLAB XC8 Assembler V2.32 build 20210201212658
 
 
 Microchip Technology PIC18 Macro Assembler V2.32 build 20210201212658 
-Symbol Table                                                                                               Tue Jan 18 14:08:41 2022
+Symbol Table                                                                                               Tue Jan 18 20:24:52 2022
 
                           WREG 003FE8                           TRISB 003FC3                     _gConOutIdx 002C  
                        isa$std 000001                 _gInCommandByte 0029                    _gConOutByte 002E  
-                    _gInPacket 0060                  _gInBitCounter 0047                      _gInStatus 0046  
-                _gConByteCount 002D                  _gInPulseWidth 002A                    _bytecleanup 157C  
+                    _gInPacket 0060                  _gInBitCounter 0054                      _gInStatus 0053  
+                _gConByteCount 002D                  _gInPulseWidth 002A                    _bytecleanup 1722  
                  _gInPacketIdx 0028                       isa$xinst 000000  
