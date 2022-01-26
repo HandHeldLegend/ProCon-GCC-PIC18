@@ -42,6 +42,8 @@ typedef struct {
     
     uint8_t modeData;
     uint8_t rumbleData;
+    
+    uint8_t deadZone;
 } Settings;
 
 void setdefaultsettings(void);

@@ -100,9 +100,30 @@ void checkbuttons(void)
         gConPollPacket[TRIGGER_PORT_R]  |= (!R_IN_PORT) ? 0x80 : 0x00;
     }
     
+    else if (SettingData.modeData == 4)
+    {
+        // ZL/ZR act as digital press and half analog press
+        gConPollPacket[BUTTON_PORT_B]   |= !ZL_IN_PORT << 6;
+        gConPollPacket[TRIGGER_PORT_L]  |= (!ZL_IN_PORT) ? 0x80 : 0x00;
+
+        gConPollPacket[BUTTON_PORT_B]   |= !ZR_IN_PORT << 5;
+        gConPollPacket[TRIGGER_PORT_R]  |= (!ZR_IN_PORT) ? 0x80 : 0x00;
+
+        // Don't shift for the first check for the Z button (L/R mapped to Z button)
+        gConPollPacket[BUTTON_PORT_B]   |= !DL_IN_PORT << 4;
+        // L mapped to Left Dpad
+        gConPollPacket[BUTTON_PORT_B]   |= !L_IN_PORT;
+        gConPollPacket[BUTTON_PORT_B]   |= !R_IN_PORT << 4;
+    }
+    
     gConPollPacket[BUTTON_PORT_B] |= !DU_IN_PORT << 3;
     gConPollPacket[BUTTON_PORT_B] |= !DD_IN_PORT << 2;
+    
     gConPollPacket[BUTTON_PORT_B] |= !DR_IN_PORT << 1;
-    gConPollPacket[BUTTON_PORT_B] |= !DL_IN_PORT;
+    
+    if (SettingData.modeData != 4)
+    {
+        gConPollPacket[BUTTON_PORT_B] |= !DL_IN_PORT;
+    }
 
 }

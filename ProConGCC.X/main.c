@@ -43,10 +43,48 @@ void main(void)
         savesettings();
     }
     
+    // CUSTOMER MODE REQUEST
+    else if (!B_IN_PORT)
+    {
+        SettingData.modeData = 4;
+        savesettings();
+    }
+    
     // Enable/Disable rumble mode
     if (!START_IN_PORT)
     {
         SettingData.rumbleData = !SettingData.rumbleData;
+        savesettings();
+    }
+    
+    // Increase deadzone
+    if (!DU_IN_PORT)
+    {
+        SettingData.deadZone += 4;
+        if (SettingData.deadZone >= 28)
+        {
+            SettingData.deadZone = 28;
+        }
+        setstickmultipliers();
+        savesettings();
+    }
+    
+    // Increase deadzone
+    if (!DD_IN_PORT)
+    {
+        SettingData.deadZone -= 4;
+        if (SettingData.deadZone <= 0 || SettingData.deadZone > 28)
+        {
+            SettingData.deadZone = 0;
+        }
+        setstickmultipliers();
+        savesettings();
+    }
+    
+    // Set defaults
+    if (!A_IN_PORT && !B_IN_PORT && !DL_IN_PORT)
+    {
+        setdefaultsettings();
         savesettings();
     }
     

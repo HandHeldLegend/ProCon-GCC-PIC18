@@ -54,7 +54,8 @@ static bool clearRead = false;
 // 
 unsigned char slinjim(uint16_t dividend, uint16_t multiplier)
 {
-    uint16_t conversion = (dividend * multiplier+1) >> 8;
+    // We must subtract the deadzone amount to get the proper output range.
+    uint16_t conversion = ((dividend - SettingData.deadZone) * multiplier+1) >> 8;
     return (unsigned char) conversion;
 }
 
@@ -63,8 +64,10 @@ unsigned char slinjim(uint16_t dividend, uint16_t multiplier)
 // the numerator over a denominator of value 256.
 uint16_t getmultiplier(uint16_t high, uint16_t low)
 {
-    
-    uint16_t distance = high-low;
+    // We want the range to only be equal to the range deadzone.
+    // This will ensure we have the full range of motion between
+    // the deadzone beginning and the stick maximum.
+    uint16_t distance = high - (low+SettingData.deadZone);
     uint16_t ratio = ((10000U / distance) * 256U)/100U;
     
     return ratio;
@@ -186,7 +189,7 @@ void scansticks(void) {
                 // then we perform our stick value conversion and store
                 // the value in our outgoing byte.
 
-                if (adc_read > tmpcenter+6)
+                if (adc_read > tmpcenter + SettingData.deadZone)
                 {
                     if (adc_read >= tmphigh)
                     {
@@ -197,7 +200,7 @@ void scansticks(void) {
                         gConPollPacket[stickIdx+2] = 128U + slinjim(adc_read - tmpcenter, tmphighm);
                     }
                 }
-                else if (adc_read < tmpcenter-6)
+                else if (adc_read < tmpcenter - SettingData.deadZone)
                 {
                     if (adc_read <= tmplow)
                     {
@@ -205,7 +208,7 @@ void scansticks(void) {
                     }
                     else
                     {
-                        gConPollPacket[stickIdx+2] = 127U - slinjim(tmpcenter - adc_read, tmplowm);
+                        gConPollPacket[stickIdx+2] = 128U - slinjim(tmpcenter - adc_read, tmplowm);
                     }
                 }
                 else

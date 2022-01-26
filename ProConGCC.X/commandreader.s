@@ -36,7 +36,7 @@ _commandreader:
     ; and send out the corresponding packet.
     
     ; First let's check if the stop bit write flag is set
-    BTFSS   _gInStatus, 7, 0	; Byte 7 in the status is the stop bit flag
+    BTFSS   _gInStatus, 6, 0	; Byte 7 in the status is the stop bit flag
     RETURN			; Return if there's no command to read
 
     ; WE WILL CLEAN UP LATER, JUST GET ON TO SENDING OUT THE RIGHT PACKS ASAP

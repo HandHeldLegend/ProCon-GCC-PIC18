@@ -60,7 +60,7 @@ void  INTERRUPT_Initialize (void)
     IPR1bits.SMT1PWAIP = 1;
 
     // SMTPRAI - high priority
-    IPR1bits.SMT1PRAIP = 0;
+    IPR1bits.SMT1PRAIP = 1;
 
 
 }

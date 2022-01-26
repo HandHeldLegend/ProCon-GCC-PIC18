@@ -10,7 +10,7 @@
 #include "main.h"
 
 // Main Settings
-Settings SettingData __at(0x07D3);
+Settings SettingData __at(0x07D2);
 
 void setdefaultsettings(void)
 {
@@ -44,6 +44,8 @@ void setdefaultsettings(void)
 
     SettingData.cy_highMultiplier = 195U;
     SettingData.cy_lowMultiplier = 201U;
+    
+    setstickmultipliers();
 
     SettingData.modeData = 0U;
     // 0 - Dual mode: ZL/ZR act as Analog AND Digital press for L/R
@@ -51,7 +53,8 @@ void setdefaultsettings(void)
     // 2 - Leftmost analog mode: ZL is digital L, L is analog L, ZR is R digital/analog, R is Z
     // 3 - Full trigger mode: ZL - L digital, L - L analog, ZR - R digital, ZR - R analog
     
-    SettingData.rumbleData = 1U;
+    SettingData.rumbleData = 0;
+    SettingData.deadZone = 16U;
 }
 
 void zerosticks(void)

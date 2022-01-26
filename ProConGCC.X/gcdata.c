@@ -90,7 +90,7 @@ volatile unsigned char gInStatus = 0x20;
 // a - stop bit received flag (command received)
 // b - command interpreted flag
 // c - request cleanup flag
-// d - UNUSED
+// d - sync bit received (tells us the frequency of incoming bits)
 // e - sticks read enable flag
 // f - buttons read enable flag
 // g - button read first loop flag
@@ -104,7 +104,10 @@ volatile unsigned char gInStatus = 0x20;
 // or Wii console. I suspect this is to avoid getting
 // HIGH bits mixed up with LOW bits since they share a 1us
 // low pulse.
-volatile unsigned char gLowThreshold = 0x32; // ~2 microseconds
+
+// The low threshold is updated at the beginning of every
+// incoming packet to handle differences in incoming transmission speed.
+volatile unsigned char gLowThreshold = 0x2D; 
 
 
 // We use a bitmask to do XOR operation, increment one, and check for 0 (overflow to 0))
