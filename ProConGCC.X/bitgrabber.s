@@ -52,7 +52,7 @@ _bitgrabber:
 	; so this allows us to address it quickly and at the start of every incoming
 	; packet.
 	
-	MOVLW	0x08			; Copy the number 8 into WREG
+	MOVLW	0x08			; Copy the number 8 into WREG (0.5us)
 	SUBWF	_gInPulseWidth, 0, 0	; Subtract 8 from Pulse width
 	MOVWF	_gLowThreshold, 0	; Move result to threshold
 	
@@ -63,7 +63,8 @@ _bitgrabber:
 	
     STOPCHECK:
 	
-	MOVFF   _gInPulseWidth, WREG	; Copy pulse width to WREG
+	MOVLW	0x04			; Copy number 4 into WREG (0.25us)
+	SUBWF	_gInPulseWidth, 0, 0	; -0.25us from the pulse length, store in WREG
 	    
 	; This compares gLowThreshold to the captured pulse width.
 	; If the low threshold is more than the pulse width, the pulse was short
