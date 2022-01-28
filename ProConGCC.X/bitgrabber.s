@@ -21,7 +21,7 @@ _bitgrabber:
     GOTO    SYNCBIT
     
 	BTFSC   _gInBitCounter, 3, 0	; Check if the bit counter is 8 (start of new byte). Skip if 8 bit is not on.
-	GOTO    STOPCHECK		; We are checking a beginning bit. LOW or STOP
+	GOTO    ZEROCHECK		; We are checking a beginning bit. Check if zero
 	    
 	    RLNCF   INDF0, 1, 0			; Rotate the current byte to the left by 1.
 	    ; Here we check one of the body bits making up the byte. going to be HIGH or LOW
@@ -56,15 +56,24 @@ _bitgrabber:
 	SUBWF	_gInPulseWidth, 0, 0	; Subtract 8 from Pulse width
 	MOVWF	_gLowThreshold, 0	; Move result to threshold
 	
-	BSF	_gInStatus, 4, 0		; Set the sync bit in the status
-	BCF	INDF0, 0, 0			; Zero the rightmost bit since it will always be zero.
-	DECF	_gInBitCounter, 1, 0		; Decrement the bit counter
+	BSF	_gInStatus, 4, 0	; Set the sync bit in the status
+	BCF	INDF0, 0, 0		; Zero the rightmost bit since it will always be zero.
+	DECF	_gInBitCounter, 1, 0	; Decrement the bit counter
+	RETURN
+	
+    ZEROCHECK:
+	
+	TSTFSZ	_gInPacket, 0		; Test if the first command is 0x00
+	GOTO	STOPCHECK		; Not a zero command, go to stopcheck
+	
+	; Confirmed 0x00 command, return with setting our status bit.
+	BSF	_gInStatus, 7, 0	; Set the status flag for stop bit written
+	
 	RETURN
 	
     STOPCHECK:
-	
-	MOVLW	0x04			; Copy number 4 into WREG (0.25us)
-	SUBWF	_gInPulseWidth, 0, 0	; -0.25us from the pulse length, store in WREG
+
+	MOVFF	_gInPulseWidth, WREG		; Copy pulse width to WREG
 	    
 	; This compares gLowThreshold to the captured pulse width.
 	; If the low threshold is more than the pulse width, the pulse was short
