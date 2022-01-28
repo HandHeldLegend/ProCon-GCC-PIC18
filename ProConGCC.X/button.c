@@ -20,7 +20,7 @@ void checkbuttons(void)
         // Zero the outgoing button status bytes
         // Since we are reading a fresh state.
         gConPollPacket[BUTTON_PORT_A] = 0x0;
-        gConPollPacket[BUTTON_PORT_B] = 0x0;
+        gConPollPacket[BUTTON_PORT_B] = 0x80; // leftmost bit always 1
         gConPollPacket[TRIGGER_PORT_L] = 0x0;
         gConPollPacket[TRIGGER_PORT_R] = 0x0;
         asm("BSF    _gInStatus, 1, 0"); // Set the status flag that we read the first button phase
@@ -40,7 +40,6 @@ void checkbuttons(void)
     // END PORT A output bits, maximum result would be 00011111 for all port a buttons pressed
     
     // Port B Output Form: 1, L : 1 , R : 1, Z : 1, D-Up : 1, D-Dn : 1, D-Rt : 1, D-Lt : 1 Credit to simple :)
-    gConPollPacket[BUTTON_PORT_B] = 1 << 7; // Leftmost bit is always 1
     
     if (SettingData.modeData == 0)
     {

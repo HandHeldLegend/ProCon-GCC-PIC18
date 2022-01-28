@@ -69,7 +69,7 @@ void main(void)
         savesettings();
     }
     
-    // Increase deadzone
+    // Decrease deadzone
     if (!DD_IN_PORT)
     {
         SettingData.deadZone -= 4;
