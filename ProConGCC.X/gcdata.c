@@ -109,12 +109,9 @@ volatile unsigned char gInStatus = 0x20;
 // incoming packet to handle differences in incoming transmission speed.
 volatile unsigned char gLowThreshold = 0x2D; 
 
-
-// We use a bitmask to do XOR operation, increment one, and check for 0 (overflow to 0))
-// A ZERO result confirms our command!
-// Set command bits for our convenience.
-volatile unsigned char gCommandOriginMask = 0xBE; // Actual command 0x41 for asking for origin/calibration
-volatile unsigned char gCommandPollMask = 0xBF; // Actual command 0x40 for asking for a button/stick update
+// Set command bits for our reference.
+volatile unsigned char gCommandOriginMask = 0x41; // Actual command 0x41 for asking for origin/calibration
+volatile unsigned char gCommandPollMask = 0x40; // Actual command 0x40 for asking for a button/stick update
 
 void desyncfix(void) {
     __delay_us(450);

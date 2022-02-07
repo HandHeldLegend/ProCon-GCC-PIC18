@@ -51,26 +51,17 @@ _commandreader:
     BCF	    0x1F, 7, 1	    ; Stop SMT
     
     ; Check to see if we have a poll command coming in
-    MOVLW   _gInPacket	; Get the address for our in packet
-    MOVFF   WREG, FSR0	; Copy our new pointer into FSR0. Access with INDF0
-    MOVF    INDF0, 0, 0
+    MOVFF   _gInPacket, WREG	    ; Get the first byte of the IN packet
     XORWF   _gCommandPollMask, 0, 0 ; Perform exclusive OR on the command byte against our mask
 
-    ; If the mask is a match, the result will be 1111 1111. Incrementing this will produce 0.
     ; Anything that ISN'T a match will fail the check zero/skip command.
-    INCFSZ  WREG, 0, 0			; Increment and skip if it's zero.
-    GOTO    ORIGINPARSE		; We did not match, so now we check if it's an origin command.
+    TSTFSZ  WREG, 0		    ; skip if it's zero meaning a match.
+    GOTO    ORIGINPARSE		    ; We did not match, so now we check if it's an origin command.
 
 	; If we made it to here, we are working with a poll command.
 	; Lets set up the outgoing byte as a pointer for the bytepush command.
-	MOVLW   _gConPollPacket	; Get the pointer for the poll packet
-	MOVWF   _gConOutIdx, 0	; Move the pointer into the outgoing index.
-
-	INCF	FSR0, 1		; Increment the _gInPacket index twice to get to the byte with rumble
-	INCF	FSR0, 1		;
-	
-	BTFSC	INDF0, 0, 0		; Test if the rumble bit is set, otherwise skip
-	BSF	_gInStatus, 4, 0	; Set the rumble enable bit
+	MOVLW   _gConPollPacket		; Get the pointer for the poll packet
+	MOVWF   _gConOutIdx, 0		; Move the pointer into the outgoing index.
 	
 	BSF	_gConByteCount, 3, 0	; Set our outgoing Byte count to 8 (bit set 3) 0000 1000
 
@@ -81,18 +72,17 @@ _commandreader:
 ; Here we check if we got a origin command to send over our calibration info.
 ORIGINPARSE:
 
-    MOVF    INDF0, 0, 0			; Copy our command byte data into WREG.
+    MOVFF   _gInPacket, WREG		; Get the first byte of the IN packet
     XORWF   _gCommandOriginMask, 0, 0   ; Perform exclusive OR on the command byte against our mask
 
-    ; If the mask is a match, the result will be 1111 1111. Incrementing this will produce 0.
     ; Anything that ISN'T a match will fail the check zero/skip command.
-    INCFSZ  WREG, 0			; Increment and skip if it's zero.
-    GOTO    PROBEPARSE		; We did not match, so now we check if it's a probe command.
+    TSTFSZ  WREG, 0			; skip if it's zero meaning a match.
+    GOTO    PROBEPARSE			; We did not match, so now we check if it's a probe command.
 
 	; If we made it to here, we are working with a origin command.
 	; Lets set up the outgoing byte as a pointer for the bytepush command.
-	MOVLW   _gConOriginResponse	    ; Get the pointer for the poll packet
-	MOVWF   _gConOutIdx, 0	    ; Move the pointer into the outgoing index.
+	MOVLW   _gConOriginResponse	; Get the pointer for the poll packet
+	MOVWF   _gConOutIdx, 0		; Move the pointer into the outgoing index.
 
 	BSF	_gConByteCount, 3, 0    ; Set our outgoing Byte count to 8 (bit set 3) 0000 1000
 	BSF	_gConByteCount, 1, 0    ; Set the bit 1 so we have 10 (8+2) 0000 1010
@@ -105,9 +95,9 @@ ORIGINPARSE:
 PROBEPARSE:
 
     ; First we can check if the command is 0x0 (0000 0000) meaning it's being probed.
-    MOVF    INDF0, 0, 0
-    TSTFSZ  WREG, 0	; If it's zero, skip checking any further
-    GOTO    NOCOMMAND	; No command match
+    MOVFF   _gInPacket, WREG	; Get the first byte of the IN packet
+    TSTFSZ  WREG, 0		; If it's zero, skip checking any further
+    GOTO    NOCOMMAND		; No command match
 
     ; We need to make sure our byte counter for outgoing is set
 
