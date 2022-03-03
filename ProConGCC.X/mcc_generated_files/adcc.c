@@ -80,8 +80,8 @@ void ADCC_Initialize(void)
     ADRPT = 0x00;
     // ADPCH ANA0; 
     ADPCH = 0x00;
-    // ADACQ 16; 
-    ADACQL = 0x10;
+    // ADACQ 24; 
+    ADACQL = 0x18;
     // ADACQ 0; 
     ADACQH = 0x00;
     // ADCAP Additional uC disabled; 
@@ -90,8 +90,8 @@ void ADCC_Initialize(void)
     ADPREL = 0x00;
     // ADPRE 0; 
     ADPREH = 0x00;
-    // ADDSEN disabled; ADGPOL digital_low; ADIPEN disabled; ADPPOL Vss; 
-    ADCON1 = 0x00;
+    // ADDSEN enabled; ADGPOL digital_low; ADIPEN disabled; ADPPOL Vss; 
+    ADCON1 = 0x01;
     // ADCRS 0; ADMD Basic_mode; ADACLR disabled; ADPSIS RES; 
     ADCON2 = 0x00;
     // ADCALC First derivative of Single measurement; ADTMD disabled; ADSOI ADGO not cleared; 

@@ -5,44 +5,16 @@
 
 #include <xc.h> // include processor files - each processor file is guarded. 
 
-uint16_t sx_low;
-uint16_t sx_center;
-uint16_t sx_high;
-
-uint16_t sy_low;
-uint16_t sy_center;
-uint16_t sy_high;
-
-uint16_t cx_low;
-uint16_t cx_center;
-uint16_t cx_high;
-
-uint16_t cy_low;
-uint16_t cy_center;
-uint16_t cy_high;
-
-uint16_t sx_highMultiplier;
-uint16_t sx_lowMultiplier;
-
-uint16_t sy_highMultiplier;
-uint16_t sy_lowMultiplier;
-
-uint16_t cx_highMultiplier;
-uint16_t cx_lowMultiplier;
-
-uint16_t cy_highMultiplier;
-uint16_t cy_lowMultiplier;
-
 uint16_t adc_read;
 
-static uint16_t tmphigh;
-static uint16_t tmplow;
-static uint16_t tmpcenter;
-static uint16_t tmphighm;
-static uint16_t tmplowm;
-static uint8_t stickIdx;
-static bool initiatedRead;
-static bool clearRead;
+uint16_t tmphigh;
+uint16_t tmplow;
+uint16_t tmpcenter;
+uint16_t tmphighm;
+uint16_t tmplowm;
+uint8_t stickIdx;
+bool initiatedRead;
+bool clearRead;
 
 void scansticks(void);
 

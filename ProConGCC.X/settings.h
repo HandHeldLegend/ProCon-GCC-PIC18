@@ -12,21 +12,21 @@ typedef struct {
     uint16_t buffer;
     uint8_t configKey;
     
-    uint16_t sx_low;
-    uint16_t sx_center;
-    uint16_t sx_high;
+    uint16_t sxlow;
+    uint16_t sxcenter;
+    uint16_t sxhigh;
 
-    uint16_t sy_low;
-    uint16_t sy_center;
-    uint16_t sy_high;
+    uint16_t sylow;
+    uint16_t sycenter;
+    uint16_t syhigh;
 
-    uint16_t cx_low;
-    uint16_t cx_center;
-    uint16_t cx_high;
+    uint16_t cxlow;
+    uint16_t cxcenter;
+    uint16_t cxhigh;
 
-    uint16_t cy_low;
-    uint16_t cy_center;
-    uint16_t cy_high;
+    uint16_t cylow;
+    uint16_t cycenter;
+    uint16_t cyhigh;
 
     uint16_t sx_highMultiplier;
     uint16_t sx_lowMultiplier;
@@ -47,6 +47,7 @@ typedef struct {
 } Settings;
 
 void setdefaultsettings(void);
+void setdefaultsticks(void);
 void zerosticks(void);
 void setstickmultipliers(void);
 

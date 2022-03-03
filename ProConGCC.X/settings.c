@@ -17,21 +17,21 @@ void setdefaultsettings(void)
     SettingData.buffer = 0x0000;
     SettingData.configKey = 0x4E;
   
-    SettingData.sx_low = 140U;
-    SettingData.sx_center = 254U;
-    SettingData.sx_high = 385U;
+    SettingData.sxlow = 140U;
+    SettingData.sxcenter = 254U;
+    SettingData.sxhigh = 385U;
 
-    SettingData.sy_low = 140U;
-    SettingData.sy_center = 252U;
-    SettingData.sy_high = 398U;
+    SettingData.sylow = 140U;
+    SettingData.sycenter = 252U;
+    SettingData.syhigh = 398U;
 
-    SettingData.cx_low = 108U;
-    SettingData.cx_center = 252U;
-    SettingData.cx_high = 355U;
+    SettingData.cxlow = 108U;
+    SettingData.cxcenter = 252U;
+    SettingData.cxhigh = 355U;
 
-    SettingData.cy_low = 127U;
-    SettingData.cy_center = 254U;
-    SettingData.cy_high = 385U;
+    SettingData.cylow = 127U;
+    SettingData.cycenter = 254U;
+    SettingData.cyhigh = 385U;
 
     SettingData.sx_highMultiplier = 200U;
     SettingData.sx_lowMultiplier = 232U;
@@ -59,32 +59,75 @@ void setdefaultsettings(void)
 
 void zerosticks(void)
 {
-    SettingData.sx_low = 250U;
-    SettingData.sx_high = 250U;
+    uint16_t aread;
+    
+    ADPCH = channel_VSS;
+    ADCON0bits.ADGO = 1;
+    while (ADCON0bits.ADGO)
+    {}
+    ADPCH = SX_A;           // Set the ADC to the channel for Stick X (see adcc.h)
+    ADCON0bits.ADGO = 1;    // Set the ADC conversion to GO. (runs on hardware nonblocking)
+    while (ADCON0bits.ADGO)
+    {}
+    aread = ((adc_result_t)((ADRESH << 8) + ADRESL)) >> 3;
+    SettingData.sxhigh = aread;
+    SettingData.sxlow = aread;
+    SettingData.sxcenter = aread;
 
-    SettingData.sy_low = 250U;
-    SettingData.sy_high = 250U;
+    ADPCH = channel_VSS;
+    ADCON0bits.ADGO = 1;
+    while (ADCON0bits.ADGO)
+    {}
+    ADPCH = SY_A;           // Set the ADC to the channel for Stick X (see adcc.h)
+    ADCON0bits.ADGO = 1;    // Set the ADC conversion to GO. (runs on hardware nonblocking)
+    while (ADCON0bits.ADGO)
+    {}
+    aread = ((adc_result_t)((ADRESH << 8) + ADRESL)) >> 3;
+    SettingData.syhigh = aread;
+    SettingData.sylow = aread;
+    SettingData.sycenter = aread;
 
-    SettingData.cx_low = 250U;
-    SettingData.cx_high = 250U;
+    ADPCH = channel_VSS;
+    ADCON0bits.ADGO = 1;
+    while (ADCON0bits.ADGO)
+    {}
+    ADPCH = CX_A;           // Set the ADC to the channel for Stick X (see adcc.h)
+    ADCON0bits.ADGO = 1;    // Set the ADC conversion to GO. (runs on hardware nonblocking)
+    while (ADCON0bits.ADGO)
+    {}
+    aread = ((adc_result_t)((ADRESH << 8) + ADRESL)) >> 3;
+    SettingData.cxhigh = aread;
+    SettingData.cxlow = aread;
+    SettingData.cxcenter = aread;
 
-    SettingData.cy_low = 250U;
-    SettingData.cy_high = 250U;
+    ADPCH = channel_VSS;
+    ADCON0bits.ADGO = 1;
+    while (ADCON0bits.ADGO)
+    {}
+    ADPCH = CY_A;           // Set the ADC to the channel for Stick X (see adcc.h)
+    ADCON0bits.ADGO = 1;    // Set the ADC conversion to GO. (runs on hardware nonblocking)
+    while (ADCON0bits.ADGO)
+    {}
+    aread = ((adc_result_t)((ADRESH << 8) + ADRESL)) >> 3;
+    SettingData.cyhigh = aread;
+    SettingData.cylow = aread;
+    SettingData.cycenter = aread;
+
 }
 
 void setstickmultipliers(void)
 {
-    SettingData.sx_highMultiplier = getmultiplier(SettingData.sx_high, SettingData.sx_center);
-    SettingData.sx_lowMultiplier = getmultiplier(SettingData.sx_center, SettingData.sx_low);
+    SettingData.sx_highMultiplier = getmultiplier(SettingData.sxhigh, SettingData.sxcenter+SettingData.deadZone);
+    SettingData.sx_lowMultiplier = getmultiplier(SettingData.sxcenter-SettingData.deadZone, SettingData.sxlow);
     
-    SettingData.cx_highMultiplier = getmultiplier(SettingData.cx_high, SettingData.cx_center);
-    SettingData.cx_lowMultiplier = getmultiplier(SettingData.cx_center, SettingData.cx_low);
+    SettingData.cx_highMultiplier = getmultiplier(SettingData.cxhigh, SettingData.cxcenter+SettingData.deadZone);
+    SettingData.cx_lowMultiplier = getmultiplier(SettingData.cxcenter-SettingData.deadZone, SettingData.cxlow);
     
-    SettingData.sy_highMultiplier = getmultiplier(SettingData.sy_high, SettingData.sy_center);
-    SettingData.sy_lowMultiplier = getmultiplier(SettingData.sy_center, SettingData.sy_low);
+    SettingData.sy_highMultiplier = getmultiplier(SettingData.syhigh, SettingData.sycenter+SettingData.deadZone);
+    SettingData.sy_lowMultiplier = getmultiplier(SettingData.sycenter-SettingData.deadZone, SettingData.sylow);
     
-    SettingData.cy_highMultiplier = getmultiplier(SettingData.cy_high, SettingData.cy_center);
-    SettingData.cy_lowMultiplier = getmultiplier(SettingData.cy_center, SettingData.cy_low);
+    SettingData.cy_highMultiplier = getmultiplier(SettingData.cyhigh, SettingData.cycenter+SettingData.deadZone);
+    SettingData.cy_lowMultiplier = getmultiplier(SettingData.cycenter-SettingData.deadZone, SettingData.cylow);
 }
 
 void loadsettings(void) 

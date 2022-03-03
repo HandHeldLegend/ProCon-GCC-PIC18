@@ -8,45 +8,19 @@
 #include <xc.h>
 #include "main.h"
 
-uint16_t sx_low = 131;
-uint16_t sx_center = 254;
-uint16_t sx_high = 385;
+uint16_t adc_read __at(0x07C0);
 
-uint16_t sy_low = 140;
-uint16_t sy_center = 252;
-uint16_t sy_high = 398;
+uint16_t tmphigh __at(0x07BE);
+uint16_t tmplow __at(0x07BC);
+uint16_t tmpcenter __at(0x07BA);
+uint16_t tmphighm __at(0x07B8);
+uint16_t tmplowm __at(0x07B6);
 
-uint16_t cx_low = 108;
-uint16_t cx_center = 252;
-uint16_t cx_high = 355;
+uint16_t conversion __at(0x07B4);
 
-uint16_t cy_low = 127;
-uint16_t cy_center = 254;
-uint16_t cy_high = 385;
-
-uint16_t sx_highMultiplier = 200;
-uint16_t sx_lowMultiplier = 232;
-
-uint16_t sy_highMultiplier = 175;
-uint16_t sy_lowMultiplier = 228;
-
-uint16_t cx_highMultiplier = 257;
-uint16_t cx_lowMultiplier = 177;
-
-uint16_t cy_highMultiplier = 195;
-uint16_t cy_lowMultiplier = 201;
-
-uint16_t adc_read;
-
-static uint16_t tmphigh;
-static uint16_t tmplow;
-static uint16_t tmpcenter;
-static uint16_t tmphighm;
-static uint16_t tmplowm;
-
-static uint8_t stickIdx = 0;
-static bool initiatedRead = false;
-static bool clearRead = false;
+uint8_t stickIdx = 0 ;
+bool initiatedRead = false;
+bool clearRead = false;
 
 // This function multiplies the input by the multiplier, then
 // it divides by 265. Amazing solution by slinjim :)
@@ -55,7 +29,7 @@ static bool clearRead = false;
 unsigned char slinjim(uint16_t dividend, uint16_t multiplier)
 {
     // We must subtract the deadzone amount to get the proper output range.
-    uint16_t conversion = ((dividend - SettingData.deadZone) * multiplier+1) >> 8;
+    conversion = dividend * (multiplier+1) >> 8;
     return (unsigned char) conversion;
 }
 
@@ -67,7 +41,7 @@ uint16_t getmultiplier(uint16_t high, uint16_t low)
     // We want the range to only be equal to the range deadzone.
     // This will ensure we have the full range of motion between
     // the deadzone beginning and the stick maximum.
-    uint16_t distance = high - (low+SettingData.deadZone);
+    uint16_t distance = high - low;
     uint16_t ratio = ((10000U / distance) * 256U)/100U;
     
     return ratio;
@@ -81,6 +55,11 @@ void scansticks(void) {
     // we can initiate the first read
     if (!initiatedRead)
     {
+        ADPCH = channel_VSS;
+        ADCON0bits.ADGO = 1;
+        while (ADCON0bits.ADGO)
+        {}
+        
         ADPCH = SX_A;           // Set the ADC to the channel for Stick X (see adcc.h)
         ADCON0bits.ADGO = 1;    // Set the ADC conversion to GO. (runs on hardware nonblocking)
         stickIdx = 0;           // Set the stick index to 0
@@ -130,14 +109,16 @@ void scansticks(void) {
             else    // We are reading a non-blank answer
             {
                 clearRead = true;
-                // Set ADC read channel to ground read to clear the
-                // charge capacitor for the next read.
-                ADPCH = channel_VSS;
-                ADCON0bits.ADGO = 1;
+                
             
                 // Get the ADC reading and bitshift 3 times to scale it.
                 // Todo: just set the register to do this scaling automatically :)
                 adc_read = ((adc_result_t)((ADRESH << 8) + ADRESL)) >> 3;
+                
+                // Set ADC read channel to ground read to clear the
+                // charge capacitor for the next read.
+                ADPCH = channel_VSS;
+                ADCON0bits.ADGO = 1;
 
                 // Perform a different operation depending
                 // on which stick we should be reading
@@ -145,9 +126,9 @@ void scansticks(void) {
                 {
                     case 0: // Stick X
 
-                        tmphigh     = SettingData.sx_high;
-                        tmplow      = SettingData.sx_low;
-                        tmpcenter   = SettingData.sx_center;
+                        tmphigh     = SettingData.sxhigh;
+                        tmplow      = SettingData.sxlow;
+                        tmpcenter   = SettingData.sxcenter;
                         tmphighm    = SettingData.sx_highMultiplier;
                         tmplowm     = SettingData.sx_lowMultiplier;
 
@@ -155,9 +136,9 @@ void scansticks(void) {
 
                     case 1: // Stick Y
 
-                        tmphigh     = SettingData.sy_high;
-                        tmplow      = SettingData.sy_low;
-                        tmpcenter   = SettingData.sy_center;
+                        tmphigh     = SettingData.syhigh;
+                        tmplow      = SettingData.sylow;
+                        tmpcenter   = SettingData.sycenter;
                         tmphighm    = SettingData.sy_highMultiplier;
                         tmplowm     = SettingData.sy_lowMultiplier;
 
@@ -165,9 +146,9 @@ void scansticks(void) {
 
                     case 2: // C-Stick X
 
-                        tmphigh     = SettingData.cx_high;
-                        tmplow      = SettingData.cx_low;
-                        tmpcenter   = SettingData.cx_center;
+                        tmphigh     = SettingData.cxhigh;
+                        tmplow      = SettingData.cxlow;
+                        tmpcenter   = SettingData.cxcenter;
                         tmphighm    = SettingData.cx_highMultiplier;
                         tmplowm     = SettingData.cx_lowMultiplier;
 
@@ -175,9 +156,9 @@ void scansticks(void) {
 
                     case 3: // C-Stick Y
 
-                        tmphigh     = SettingData.cy_high;
-                        tmplow      = SettingData.cy_low;
-                        tmpcenter   = SettingData.cy_center;
+                        tmphigh     = SettingData.cyhigh;
+                        tmplow      = SettingData.cylow;
+                        tmpcenter   = SettingData.cycenter;
                         tmphighm    = SettingData.cy_highMultiplier;
                         tmplowm     = SettingData.cy_lowMultiplier;
 
@@ -191,24 +172,27 @@ void scansticks(void) {
 
                 if (adc_read > tmpcenter + SettingData.deadZone)
                 {
+                    tmpcenter += SettingData.deadZone;
+                    tmpcenter--;
                     if (adc_read >= tmphigh)
                     {
                         gConPollPacket[stickIdx+2] = 228U;
                     }
                     else
                     {
-                        gConPollPacket[stickIdx+2] = 128U + slinjim(adc_read - tmpcenter, tmphighm);
+                        gConPollPacket[stickIdx+2] = 129U + slinjim(adc_read - tmpcenter, tmphighm);
                     }
                 }
                 else if (adc_read < tmpcenter - SettingData.deadZone)
                 {
+                    tmpcenter -= SettingData.deadZone;
                     if (adc_read <= tmplow)
                     {
                         gConPollPacket[stickIdx+2] = 28U;
                     }
                     else
                     {
-                        gConPollPacket[stickIdx+2] = 128U - slinjim(tmpcenter - adc_read, tmplowm);
+                        gConPollPacket[stickIdx+2] = 127U - slinjim(tmpcenter - adc_read, tmplowm);
                     }
                 }
                 else
@@ -233,6 +217,11 @@ void calibratesticks(void) {
     // we can initiate the first read
     if (!initiatedRead)
     {
+        ADPCH = channel_VSS;
+        ADCON0bits.ADGO = 1;
+        while (ADCON0bits.ADGO)
+        {}
+        
         ADPCH = SX_A;           // Set the ADC to the channel for Stick X (see adcc.h)
         ADCON0bits.ADGO = 1;    // Set the ADC conversion to GO. (runs on hardware nonblocking)
         stickIdx = 0;           // Set the stick index to 0
@@ -273,14 +262,15 @@ void calibratesticks(void) {
             else    // We are reading a non-blank answer
             {
                 clearRead = true;
-                // Set ADC read channel to ground read to clear the
-                // charge capacitor for the next read.
-                ADPCH = channel_VSS;
-                ADCON0bits.ADGO = 1;
             
                 // Get the ADC reading and bitshift 3 times to scale it.
                 // Todo: just set the register to do this scaling automatically :)
                 adc_read = ((adc_result_t)((ADRESH << 8) + ADRESL)) >> 3;
+                
+                // Set ADC read channel to ground read to clear the
+                // charge capacitor for the next read.
+                ADPCH = channel_VSS;
+                ADCON0bits.ADGO = 1;
 
                 // Perform a different operation depending
                 // on which stick we should be reading
@@ -288,65 +278,64 @@ void calibratesticks(void) {
                 {
                     case 0: // Stick X
 
-                        if (adc_read > SettingData.sx_high)
+                        if (adc_read > SettingData.sxhigh)
                         {
-                            SettingData.sx_high = adc_read;
+                            SettingData.sxhigh = adc_read;
                         }
                         
-                        if (adc_read < SettingData.sx_low)
+                        if (adc_read < SettingData.sxlow)
                         {
-                            SettingData.sx_low = adc_read;
+                            SettingData.sxlow = adc_read;
                         }
                         
-                        SettingData.sx_center = adc_read;
+                        SettingData.sxcenter = adc_read;
 
                         break;
 
                     case 1: // Stick Y
 
-                        if (adc_read > SettingData.sy_high)
+                        if (adc_read > SettingData.syhigh)
                         {
-                            SettingData.sy_high = adc_read;
+                            SettingData.syhigh = adc_read;
                         }
                         
-                        if (adc_read < SettingData.sy_low)
+                        if (adc_read < SettingData.sylow)
                         {
-                            SettingData.sy_low = adc_read;
+                            SettingData.sylow = adc_read;
                         }
                         
-                        SettingData.sy_center = adc_read;
+                        SettingData.sycenter = adc_read;
 
                         break;
 
                     case 2: // C-Stick X
 
-                        if (adc_read > SettingData.cx_high)
+                        if (adc_read > SettingData.cxhigh)
                         {
-                            SettingData.cx_high = adc_read;
+                            SettingData.cxhigh = adc_read;
                         }
                         
-                        if (adc_read < SettingData.cx_low)
+                        if (adc_read < SettingData.cxlow)
                         {
-                            SettingData.cx_low = adc_read;
+                            SettingData.cxlow = adc_read;
                         }
                         
-                        SettingData.cx_center = adc_read;
+                        SettingData.cxcenter = adc_read;
 
                         break;
 
                     case 3: // C-Stick Y
 
-                        if (adc_read > SettingData.cy_high)
+                        if (adc_read > SettingData.cyhigh)
                         {
-                            SettingData.cy_high = adc_read;
+                            SettingData.cyhigh = adc_read;
+                        }
+                        if (adc_read < SettingData.cylow)
+                        {
+                            SettingData.cylow = adc_read;
                         }
                         
-                        if (adc_read < SettingData.cy_low)
-                        {
-                            SettingData.cy_low = adc_read;
-                        }
-                        
-                        SettingData.cy_center = adc_read;
+                        SettingData.cycenter = adc_read;
 
                         break;
 

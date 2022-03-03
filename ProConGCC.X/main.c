@@ -13,13 +13,13 @@ void main(void)
     // Initialize the device
     SYSTEM_Initialize();
     
-    // Load default config
-    loadsettings();
-    
     // Set ADC Read channel to RA0
     ADPCH = 0x00;
     // Turn on the ADC module
     ADCON0bits.ADON = 1;
+    
+    // Load default config
+    loadsettings();
     
     // Set Default Trigger Mode
     if (!L_IN_PORT && !R_IN_PORT)
@@ -67,6 +67,7 @@ void main(void)
         }
         setstickmultipliers();
         savesettings();
+        loadsettings();
     }
     
     // Decrease deadzone
@@ -79,6 +80,7 @@ void main(void)
         }
         setstickmultipliers();
         savesettings();
+        loadsettings();
     }
     
     // Set defaults
@@ -89,6 +91,7 @@ void main(void)
     }
     
     // Do stick calibration if Y/X/A are all held on boot.
+    // 
     if (!Y_IN_PORT && !X_IN_PORT && !A_IN_PORT)
     {
         stickcalibration = true;
@@ -97,16 +100,19 @@ void main(void)
     }
     
     while (stickcalibration)
-    {
-        calibratesticks();
-        
+    {   
         // Pressing start saves settings
         if (!START_IN_PORT)
         {
             setstickmultipliers();
             savesettings();
+            loadsettings();
             stickcalibration = false;
             break;
+        }
+        else
+        {
+            calibratesticks();
         }
     }
     
