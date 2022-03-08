@@ -186,6 +186,7 @@ void scansticks(void) {
                 else if (adc_read < tmpcenter - SettingData.deadZone)
                 {
                     tmpcenter -= SettingData.deadZone;
+                    tmpcenter--;
                     if (adc_read <= tmplow)
                     {
                         gConPollPacket[stickIdx+2] = 28U;

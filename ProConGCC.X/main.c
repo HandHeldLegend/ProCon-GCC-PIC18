@@ -91,10 +91,11 @@ void main(void)
     }
     
     // Do stick calibration if Y/X/A are all held on boot.
-    // 
-    if (!Y_IN_PORT && !X_IN_PORT && !A_IN_PORT)
+    //  && !X_IN_PORT && !A_IN_PORT
+    if (!Y_IN_PORT)
     {
         stickcalibration = true;
+        __delay_ms(1200);
         // Zero out our config options to the default center values
         zerosticks();
     }
@@ -113,6 +114,7 @@ void main(void)
         else
         {
             calibratesticks();
+            __delay_ms(1);
         }
     }
     
