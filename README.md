@@ -14,8 +14,8 @@ This is a firmware designed for PIC18(L)F24/25K42 microcontrollers which emulate
 
 I had originally set out to utilize a GC+2.0 board from Aurelio and 4layertech for a custom Pro Controller build. The build worked well enough utilizing a custom PCB but there were a few items I wanted to resolve (namely support for a much faster polling rate and stick range) and changes I wanted to make to support configuring the controller without any external tools. I don't often boot up my Wii and wanted to be able to adjust my controller on the fly.
 
-The schematic for the hardware is identical to the GC+ and this firmware should be fully compatible with that hardware, just flash it using a Pickit3.
-Original hardware design schematic can be found here: https://github.com/Aurelio92/GCPlus-2.0
+The schematic and pin layout is incompatible with the original GC+2.0 board as of board revision 1b of my PCB design.
+Schematics and boardview are TBA upon finalizing the hardware.
 
 This project 100% would not exist without the work of Aurelio, it inspired me to push this project as far as I could go and meet my project goals. There was a ton that was learned from his codebase; I do take a slightly different approach with much of my firmware, namely using pure assembly to handle the reading of incoming packets as well as pushing out responses.
 
