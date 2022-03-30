@@ -157,6 +157,9 @@ void main(void)
             
             scansticks();
         }
+        
+        //scansticks();
+        
         // if the button check bit is set, scan the buttons
         if (gInStatus & (1 << 2))
         {

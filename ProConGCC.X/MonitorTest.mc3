@@ -1,4 +1,4 @@
-<config configName="default" projectName="MonitorTest" configVersion="1.1" device="PIC18F25K42" deviceLibraryClass="com.microchip.mcc.mcu8.Mcu8PeripheralLibrary" coreVersion="5.3.3">
+<config configName="default" projectName="MonitorTest" configVersion="1.1" device="PIC18F24K42" deviceLibraryClass="com.microchip.mcc.mcu8.Mcu8PeripheralLibrary" coreVersion="5.3.3">
    <usedPackages class="java.util.ArrayList"/>
    <usedClasses class="java.util.TreeMap">
       <entry>
@@ -4571,44 +4571,44 @@
          <value>DMA2 enabled</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="ADACTPPS%aux2"/>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="ADACTPPS%aux1"/>
          <value>%DESELECT%</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="CCP1PPS%aux1"/>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="CCP1PPS%aux0"/>
          <value>18</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RA0"/>
-         <value>SX_A</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RA1"/>
-         <value>SY_A</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RA2"/>
          <value>CX_A</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RA3"/>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RA1"/>
          <value>CY_A</value>
       </entry>
       <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RA2"/>
+         <value>SX_A</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RA3"/>
+         <value>SY_A</value>
+      </entry>
+      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RA4"/>
-         <value>A_IN</value>
+         <value>SELECT_IN</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RA5"/>
-         <value>B_IN</value>
+         <value>A_IN</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RA6"/>
-         <value>Y_IN</value>
+         <value>X_IN</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RA7"/>
-         <value>X_IN</value>
+         <value>B_IN</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RB0"/>
@@ -4632,7 +4632,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RB5"/>
-         <value>L_IN</value>
+         <value>ZL_IN</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RB6"/>
@@ -4644,27 +4644,27 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RC0"/>
-         <value>R_IN</value>
+         <value>Y_IN</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RC1"/>
-         <value>START_IN</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RC2"/>
          <value>ZR_IN</value>
       </entry>
       <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RC2"/>
+         <value>IO_RC2</value>
+      </entry>
+      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RC3"/>
-         <value>IO_RC3</value>
+         <value>START_IN</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RC4"/>
-         <value>IO_RC4</value>
+         <value>R_IN</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RC5"/>
-         <value>ZL_IN</value>
+         <value>L_IN</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="Custom Name RC6"/>
@@ -4783,7 +4783,7 @@
          <value>disabled</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="T4INPPS%aux0"/>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="T4INPPS%aux2"/>
          <value>%DESELECT%</value>
       </entry>
       <entry>
@@ -4960,11 +4960,11 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="customNameUserSet RC3"/>
-         <value>disabled</value>
+         <value>enabled</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="customNameUserSet RC4"/>
-         <value>disabled</value>
+         <value>enabled</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="customNameUserSet RC5"/>
@@ -7556,7 +7556,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="Pin Module" registerAlias="LATC"/>
-         <value>255</value>
+         <value>251</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="Pin Module" registerAlias="MD1CARHPPS"/>
@@ -7580,7 +7580,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="Pin Module" registerAlias="ODCONC"/>
-         <value>24</value>
+         <value>0</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="Pin Module" registerAlias="PRLOCK"/>
@@ -8476,7 +8476,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="Pin Module" registerAlias="LATC" settingAlias="LATC2"/>
-         <value>set</value>
+         <value>clear</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="Pin Module" registerAlias="LATC" settingAlias="LATC3"/>
@@ -8588,11 +8588,11 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="Pin Module" registerAlias="ODCONC" settingAlias="ODCC3"/>
-         <value>enabled</value>
+         <value>disabled</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="Pin Module" registerAlias="ODCONC" settingAlias="ODCC4"/>
-         <value>enabled</value>
+         <value>disabled</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="Pin Module" registerAlias="ODCONC" settingAlias="ODCC5"/>
@@ -10143,10 +10143,6 @@
          <value>7</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="System Module" registerAlias="CONFIG4L" settingAlias="BBSIZE" alias="BBSIZE_8192"/>
-         <value>3</value>
-      </entry>
-      <entry>
          <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="System Module" registerAlias="CONFIG4L" settingAlias="SAFEN" alias="OFF"/>
          <value>16</value>
       </entry>
@@ -11038,79 +11034,79 @@
    <generatedFileHashHistoryMap class="java.util.HashMap">
       <entry>
          <file>mcc_generated_files\mcc.h</file>
-         <hash>22c4ed185725bccddc4d92cab8a7cdf171530098d16d6006d77e68e990e6e273</hash>
+         <hash>92b720d19b5387e516c550b3eae371afc768e0fdac8949818663dbb3b4b494b3</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\device_config.h</file>
-         <hash>d4507884f547b1d1d661ae121c5f425f1a8cc418916e61aa97f8bea0b8a9d1ce</hash>
+         <hash>f06c2c2f650659445252b5c16d724727aee6f08036e00477303efef8e8141c9d</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\interrupt_manager.h</file>
-         <hash>4f4d6d34d21b9d9f97a796816f56e570bd611f0ebffcb14abff24351541f1321</hash>
+         <hash>3b522717a698a20ac207e8ffa338c07451c9d2efc9b7d3d5aebcdee799f31a19</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\tmr4.h</file>
-         <hash>d6a931d54c3fe462f757181a812a03164c8c85c397e7c68609a9a23d0a2a66c6</hash>
+         <hash>14be2d53ec6135471d66da9d05c36462133c2472ca0eade75e3b704c55cc3958</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\memory.c</file>
-         <hash>745230553fa487f58e06eb441dadb909e841237f7be1a9755068168760c0d994</hash>
+         <hash>30d0704faa57feb5fa74c609c7f6505527db6b4bbd6a410e70c768274bd918b6</hash>
       </entry>
       <entry>
          <file>main.c</file>
-         <hash>95aceed481c0316ee7bf00e5fc9a84c11d03f228ff82fddec803a6c82fab929a</hash>
+         <hash>862fb237bb37b74377056eb990047c465284058a347e2aec0cbb57f9dd6510a5</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\device_config.c</file>
-         <hash>a335af422cfed7d1d00d59e2d29ae27ebdbbf9f1816561607329ba6218cdeddc</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\pin_manager.h</file>
-         <hash>0af3b085ccc07457027ba2ec6f255b751e0f8d3113b3ba02863aeba3ecb5c6fb</hash>
+         <hash>278cd770ab011550f0c116eb1fbb2b90bac434354108b9ef344b65ad8f49831f</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\adcc.h</file>
-         <hash>bc19d699a641f1f1b069d76d00a89ac6fea7ef6b08b8712f4156acec962c3ef6</hash>
+         <hash>d4b4bbd22fcb5679c20b6035e19f71767289800ca03b7a9006c4a65a5bd8de86</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\pin_manager.h</file>
+         <hash>667ffc9b7bc6bf8e1528dfe848f7403f97731613f27c1a567ccc9887b6960bb1</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\tmr4.c</file>
-         <hash>29a02d253085eb37a7bda5dd12419e04dec54058751478d8b54fa4d7b60dc2b7</hash>
+         <hash>18049cd9fd4e79ab56797e82121a5d6dab7850bffc5036e47a9b501be62a0116</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\pin_manager.c</file>
-         <hash>c8599dd408c64b1f98b41a85e3acdb5a652050a263a7716aa73c733159e6e091</hash>
+         <hash>37f1570506dbb962a5329388704b7e0eae97e05fcd14d565c6f8bd1e0b4ce9d0</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\smt1.h</file>
-         <hash>e9f81a8090bcf39e48279e2e352986f310a427782570c22799a00c43b3cea95d</hash>
+         <hash>ae7bd8de851c92559ea4b24fddb31503b410bbae2110157b28735094fd7dbd75</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\pwm1.c</file>
-         <hash>0f50df0de6d9397cc5a889a3cd4f3d4cfd246c7dc158f7676112a6cdead9a64a</hash>
+         <hash>e284a2093a9347501671cff223d5715d7a37184a70c9c9414ac4fe21ece7bb9c</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\adcc.c</file>
-         <hash>bf380db68f6ba7ec16eccd6c8369be3d770409629034f02184c171644f905690</hash>
+         <hash>ed883ccca213e6c28473f63b6aaf9c428402506167d5c69c3ab57674b7f6693d</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\pwm1.h</file>
-         <hash>2d181a51c0078510649faed876296d2b31ac4b6caf5bf617e881e10dac1be5a9</hash>
+         <hash>70c598eb40c68ae366de334b3f09065e93afe8baeeb6d3962dfc5d9294cc078c</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\smt1.c</file>
-         <hash>b7b1a51a10dd421f21ed61a145e1e8249815c53df03f02610cb24b596f73b41e</hash>
+         <hash>a4327c2435b4c7c0f4a56c0e4658672ea7f227a5b298062f6143628200c8c02f</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\mcc.c</file>
-         <hash>e6ae698c8eda7cd72c211951a3573d9b8ffb5d566dba1becb79a25b98e8b3684</hash>
+         <hash>13421fa7505552a2072262d022fda5971f96fd87d32b38859d0c2024a7a7a749</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\interrupt_manager.c</file>
-         <hash>785bbeaf9142bf35e1aa2db558bcf42a2f5c927f72f221a0c78bc98c030d9e63</hash>
+         <hash>5df99eb0c63cf6db170412fb33b44d3c3721624947b57c0780ce35d4dc506065</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\memory.h</file>
-         <hash>dab3ae4cdfd19ad1dddf8da1f7b6a12f4511ca5e82d5eecb75141495de35759d</hash>
+         <hash>e1d6bd817f638898ebec4a52f197e1d49e5773de4e753c4346b0b836fa56282b</hash>
       </entry>
    </generatedFileHashHistoryMap>
 </config>

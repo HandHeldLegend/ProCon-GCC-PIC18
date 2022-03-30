@@ -8,15 +8,16 @@
 #include <xc.h>
 #include "main.h"
 
-uint16_t adc_read __at(0x07C0);
+// Store all these parameters below Setting data in memory
+uint16_t adc_read __at(0x3BF);
 
-uint16_t tmphigh __at(0x07BE);
-uint16_t tmplow __at(0x07BC);
-uint16_t tmpcenter __at(0x07BA);
-uint16_t tmphighm __at(0x07B8);
-uint16_t tmplowm __at(0x07B6);
+uint16_t tmphigh __at(0x3C1);
+uint16_t tmplow __at(0x3C3);
+uint16_t tmpcenter __at(0x3C5);
+uint16_t tmphighm __at(0x3C7);
+uint16_t tmplowm __at(0x3C9);
 
-uint16_t conversion __at(0x07B4);
+uint16_t conversion __at(0x03CB);
 
 uint8_t stickIdx = 0 ;
 bool initiatedRead = false;

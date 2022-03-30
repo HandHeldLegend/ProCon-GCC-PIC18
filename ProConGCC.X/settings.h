@@ -7,6 +7,7 @@
 #include <xc.h> // include processor files - each processor file is guarded.
 #include "main.h"
 
+// Save 50 bytes for loading settings
 typedef struct {
     
     uint16_t buffer;

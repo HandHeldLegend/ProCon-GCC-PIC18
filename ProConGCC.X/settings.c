@@ -9,8 +9,8 @@
 #include <xc.h>
 #include "main.h"
 
-// Main Settings
-Settings SettingData __at(0x07D2);
+// Main Settings (save 50 bytes for settings)
+Settings SettingData __at(0x03CD);
 
 void setdefaultsettings(void)
 {
