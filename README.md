@@ -7,6 +7,7 @@ This is a firmware designed for PIC18(L)F24/25K42 microcontrollers which emulate
 - Stick calibration to real GCC range (-100 to +100)
 - 4 different trigger modes to handle analog and digital presses in a variety of manners
 - 1 bonus input mode specifically designed for Smash Ultimate
+- Toggle between Xbox or Nintendo button layouts.
 - Rumble disable/enable
 - Support for extremely fast polling rates (Works in Smashscope oscilloscope mode in my testing) Target was functionality at 1ms polling intervals
 
@@ -27,12 +28,13 @@ This project 100% would not exist without the work of Aurelio, it inspired me to
 - Hold ZR/R : Rightmost trigger mode
 - Hold L/R : Default trigger mode
 - Hold ZL/ZR : Full trigger mode
-- Hold A/Y/X : Stick calibration mode
-- Hold A/B/D-Pad Left : Reset to defaults
-- Hold Start : Enable/disable rumble
+- Hold - (minus) : Stick calibration mode
+- Hold + and - : Reset to defaults
+- Hold + (plus) : Enable/disable rumble
 - Hold D-Up : Increase stick deadzone
 - Hold D-Down : Decrease stick deadzone
 - Hold B : Enable Smash Ultimate mode
+- Hold Y : Enable/Disable Xbox button layout
 
 **Trigger mode explanations:**
 - Leftmost trigger mode: ZL is full L trigger press, L is light trigger press.
@@ -45,4 +47,4 @@ This project 100% would not exist without the work of Aurelio, it inspired me to
 - ZL/ZR are mapped as shield presses. It performs both the digital/analog press simultaneously
 
 **Stick calibration mode:**
-In stick calibration mode, both sticks can be swirled around 5-6 times. Press start to save the configuration. Controller will connect immediately after saving the settings.
+In stick calibration mode, both sticks can be swirled around 5-6 times. Press + (plus) to save the configuration. Controller will connect immediately after saving the settings.
