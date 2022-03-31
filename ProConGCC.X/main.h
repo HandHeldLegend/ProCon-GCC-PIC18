@@ -43,6 +43,8 @@
 #include "joysticks.h"
 #include "button.h"
 
+bool xboxmode;
+
 extern unsigned char bytepush(void);
 extern unsigned char bitgrabber(void);
 extern unsigned char bytecleanup(void);

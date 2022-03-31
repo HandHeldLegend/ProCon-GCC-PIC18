@@ -32,10 +32,23 @@ void checkbuttons(void)
     // Port A output form: 0, 0 ,0 , Start : 1, Y : 1, X : 1, B : 1, A : 1 Credit to simple
     // Shift left one bit to get ready for setting the next bit
     gConPollPacket[BUTTON_PORT_A] |= !START_IN_PORT << 4;
-    gConPollPacket[BUTTON_PORT_A] |= !Y_IN_PORT << 3;
-    gConPollPacket[BUTTON_PORT_A] |= !X_IN_PORT << 2;
-    gConPollPacket[BUTTON_PORT_A] |= !B_IN_PORT << 1;
-    gConPollPacket[BUTTON_PORT_A] |= !A_IN_PORT;
+    
+    if (!xboxmode)
+    {
+        gConPollPacket[BUTTON_PORT_A] |= !Y_IN_PORT << 3;
+        gConPollPacket[BUTTON_PORT_A] |= !X_IN_PORT << 2;
+        gConPollPacket[BUTTON_PORT_A] |= !B_IN_PORT << 1;
+        gConPollPacket[BUTTON_PORT_A] |= !A_IN_PORT;
+    }
+    // Xbox layout mode
+    else
+    {
+        gConPollPacket[BUTTON_PORT_A] |= !X_IN_PORT << 3;
+        gConPollPacket[BUTTON_PORT_A] |= !Y_IN_PORT << 2;
+        gConPollPacket[BUTTON_PORT_A] |= !A_IN_PORT << 1;
+        gConPollPacket[BUTTON_PORT_A] |= !B_IN_PORT;
+    }
+    
     
     // END PORT A output bits, maximum result would be 00011111 for all port a buttons pressed
     

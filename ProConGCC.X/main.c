@@ -7,6 +7,7 @@
 
 // Bool to tell if we are calibrating the sticks
 bool stickcalibration = false;
+bool xboxmode = false;
 
 void main(void)
 {
@@ -21,40 +22,44 @@ void main(void)
     // Load default config
     loadsettings();
     
+    // Load whether xbox mode is enabled
+    xboxmode |= SettingData.modeData >> 7;
+    
     // Set Default Trigger Mode
     if (!L_IN_PORT && !R_IN_PORT)
     {
-        SettingData.modeData = 0;
+        SettingData.modeData = 0 + (xboxmode << 7);
         savesettings();
     }
     else if (!L_IN_PORT && !ZL_IN_PORT)
     {
-        SettingData.modeData = 2;
+        SettingData.modeData = 2 + (xboxmode << 7);
         savesettings();
     }
     else if (!R_IN_PORT && !ZR_IN_PORT)
     {
-        SettingData.modeData = 1;
+        SettingData.modeData = 1 + (xboxmode << 7);
         savesettings();
     }
     else if (!ZR_IN_PORT && !ZL_IN_PORT)
     {
-        SettingData.modeData = 3;
+        SettingData.modeData = 3 + (xboxmode << 7);
         savesettings();
     }
     
     // CUSTOMER MODE REQUEST
     else if (!B_IN_PORT)
     {
-        SettingData.modeData = 4;
+        SettingData.modeData = 4 + (xboxmode << 7);
         savesettings();
     }
-    
-    // Enable/Disable rumble mode
-    if (!START_IN_PORT)
+    // Set or unset Xbox button layout
+    else if (!Y_IN_PORT)
     {
-        SettingData.rumbleData = !SettingData.rumbleData;
-        savesettings();
+        xboxmode = !xboxmode;
+        SettingData.modeData &= ~(1 << 7);
+        SettingData.modeData |= xboxmode << 7;
+        savesettings(); 
     }
     
     // Increase deadzone
@@ -84,15 +89,19 @@ void main(void)
     }
     
     // Set defaults
-    if (!A_IN_PORT && !B_IN_PORT && !DL_IN_PORT)
+    if (!SELECT_IN_PORT && !START_IN_PORT)
     {
         setdefaultsettings();
         savesettings();
     }
-    
-    // Do stick calibration if Y/X/A are all held on boot.
-    //  && !X_IN_PORT && !A_IN_PORT
-    if (!Y_IN_PORT)
+    // Enable/Disable rumble mode
+    else if (!START_IN_PORT)
+    {
+        SettingData.rumbleData = !SettingData.rumbleData;
+        savesettings();
+    }
+    // Do stick calibration if Minus or Capture is held on boot.
+    else if (!SELECT_IN_PORT)
     {
         stickcalibration = true;
         __delay_ms(1200);
@@ -120,6 +129,11 @@ void main(void)
     
     // Enable interrupts
     INTCON0bits.GIEH = 1;
+    
+    // Clear out the MSB of mode data
+    // as we already extracted whether
+    // xbox mode is on/off
+    SettingData.modeData &= ~(1 << 7);
     
     while (1)
     {
@@ -157,8 +171,6 @@ void main(void)
             
             scansticks();
         }
-        
-        //scansticks();
         
         // if the button check bit is set, scan the buttons
         if (gInStatus & (1 << 2))

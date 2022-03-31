@@ -52,6 +52,7 @@ void setdefaultsettings(void)
     // 1 - Rightmost analog mode: ZL acts as L, L acts as Z, ZR is full press, R is half analog press
     // 2 - Leftmost analog mode: ZL is digital L, L is analog L, ZR is R digital/analog, R is Z
     // 3 - Full trigger mode: ZL - L digital, L - L analog, ZR - R digital, ZR - R analog
+    // If MSB is set to 1, Xbox button layout is enabled, otherwise default Procon layout
     
     SettingData.rumbleData = 0;
     SettingData.deadZone = 16U;
