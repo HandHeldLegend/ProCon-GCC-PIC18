@@ -17,33 +17,33 @@ void setdefaultsettings(void)
     SettingData.buffer = 0x0000;
     SettingData.configKey = 0x4E;
   
-    SettingData.sxlow = 140U;
+    SettingData.sxlow = 94U;
     SettingData.sxcenter = 254U;
-    SettingData.sxhigh = 385U;
+    SettingData.sxhigh = 382U;
 
-    SettingData.sylow = 140U;
-    SettingData.sycenter = 252U;
-    SettingData.syhigh = 398U;
+    SettingData.sylow = 124U;
+    SettingData.sycenter = 255U;
+    SettingData.syhigh = 415U;
 
     SettingData.cxlow = 108U;
-    SettingData.cxcenter = 252U;
-    SettingData.cxhigh = 355U;
+    SettingData.cxcenter = 236U;
+    SettingData.cxhigh = 385U;
 
-    SettingData.cylow = 127U;
-    SettingData.cycenter = 254U;
-    SettingData.cyhigh = 385U;
+    SettingData.cylow = 95U;
+    SettingData.cycenter = 236U;
+    SettingData.cyhigh = 380U;
 
-    SettingData.sx_highMultiplier = 200U;
-    SettingData.sx_lowMultiplier = 232U;
+    SettingData.sx_highMultiplier = 227U;
+    SettingData.sx_lowMultiplier = 176U;
 
-    SettingData.sy_highMultiplier = 175U;
-    SettingData.sy_lowMultiplier = 228U;
+    SettingData.sy_highMultiplier = 163U;
+    SettingData.sy_lowMultiplier = 227U;
 
-    SettingData.cx_highMultiplier = 257U;
-    SettingData.cx_lowMultiplier = 177U;
+    SettingData.cx_highMultiplier = 192U;
+    SettingData.cx_lowMultiplier = 227U;
 
-    SettingData.cy_highMultiplier = 195U;
-    SettingData.cy_lowMultiplier = 201U;
+    SettingData.cy_highMultiplier = 194U;
+    SettingData.cy_lowMultiplier = 204U;
     
     setstickmultipliers();
 
