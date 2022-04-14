@@ -14,7 +14,7 @@
     This header file provides implementations for pin APIs for all pins selected in the GUI.
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.7
-        Device            :  PIC18F24K42
+        Device            :  PIC18LF26K83
         Driver Version    :  2.11
     The generated drivers are tested against the following:
         Compiler          :  XC8 2.31 and above
@@ -84,14 +84,6 @@ void PIN_MANAGER_Initialize(void)
     WPUB = 0x23;
     WPUA = 0xF0;
     WPUC = 0xFB;
-
-    /**
-    RxyI2C registers
-    */
-    RB1I2C = 0x00;
-    RB2I2C = 0x00;
-    RC3I2C = 0x00;
-    RC4I2C = 0x00;
 
     /**
     ODx registers

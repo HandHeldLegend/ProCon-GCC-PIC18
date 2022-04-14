@@ -14,7 +14,7 @@
     This source file provides APIs for TMR4.
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.7
-        Device            :  PIC18F24K42
+        Device            :  PIC18LF26K83
         Driver Version    :  2.11
     The generated drivers are tested against the following:
         Compiler          :  XC8 2.31 and above 
@@ -79,7 +79,7 @@ void TMR4_Initialize(void)
     T4TMR = 0x00;
 
     // Clearing IF flag.
-    PIR7bits.TMR4IF = 0;
+    PIR8bits.TMR4IF = 0;
 
     // T4CKPS 1:1; T4OUTPS 1:1; TMR4ON on; 
     T4CON = 0x80;
@@ -157,11 +157,11 @@ void TMR4_LoadPeriodRegister(uint8_t periodVal)
 bool TMR4_HasOverflowOccured(void)
 {
     // check if  overflow has occurred by checking the TMRIF bit
-    bool status = PIR7bits.TMR4IF;
+    bool status = PIR8bits.TMR4IF;
     if(status)
     {
         // Clearing IF flag.
-        PIR7bits.TMR4IF = 0;
+        PIR8bits.TMR4IF = 0;
     }
     return status;
 }
