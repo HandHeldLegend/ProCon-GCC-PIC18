@@ -9,41 +9,41 @@
 #include <xc.h>
 #include "main.h"
 
-// Main Settings
-Settings SettingData __at(0x07D2);
+// Main Settings (save 50 bytes for settings)
+Settings SettingData __at(0x03CD);
 
 void setdefaultsettings(void)
 {
     SettingData.buffer = 0x0000;
     SettingData.configKey = 0x4E;
   
-    SettingData.sxlow = 140U;
+    SettingData.sxlow = 94U;
     SettingData.sxcenter = 254U;
-    SettingData.sxhigh = 385U;
+    SettingData.sxhigh = 382U;
 
-    SettingData.sylow = 140U;
-    SettingData.sycenter = 252U;
-    SettingData.syhigh = 398U;
+    SettingData.sylow = 124U;
+    SettingData.sycenter = 255U;
+    SettingData.syhigh = 415U;
 
     SettingData.cxlow = 108U;
-    SettingData.cxcenter = 252U;
-    SettingData.cxhigh = 355U;
+    SettingData.cxcenter = 236U;
+    SettingData.cxhigh = 385U;
 
-    SettingData.cylow = 127U;
-    SettingData.cycenter = 254U;
-    SettingData.cyhigh = 385U;
+    SettingData.cylow = 95U;
+    SettingData.cycenter = 236U;
+    SettingData.cyhigh = 380U;
 
-    SettingData.sx_highMultiplier = 200U;
-    SettingData.sx_lowMultiplier = 232U;
+    SettingData.sx_highMultiplier = 227U;
+    SettingData.sx_lowMultiplier = 176U;
 
-    SettingData.sy_highMultiplier = 175U;
-    SettingData.sy_lowMultiplier = 228U;
+    SettingData.sy_highMultiplier = 163U;
+    SettingData.sy_lowMultiplier = 227U;
 
-    SettingData.cx_highMultiplier = 257U;
-    SettingData.cx_lowMultiplier = 177U;
+    SettingData.cx_highMultiplier = 192U;
+    SettingData.cx_lowMultiplier = 227U;
 
-    SettingData.cy_highMultiplier = 195U;
-    SettingData.cy_lowMultiplier = 201U;
+    SettingData.cy_highMultiplier = 194U;
+    SettingData.cy_lowMultiplier = 204U;
     
     setstickmultipliers();
 
@@ -52,6 +52,7 @@ void setdefaultsettings(void)
     // 1 - Rightmost analog mode: ZL acts as L, L acts as Z, ZR is full press, R is half analog press
     // 2 - Leftmost analog mode: ZL is digital L, L is analog L, ZR is R digital/analog, R is Z
     // 3 - Full trigger mode: ZL - L digital, L - L analog, ZR - R digital, ZR - R analog
+    // If MSB is set to 1, Xbox button layout is enabled, otherwise default Procon layout
     
     SettingData.rumbleData = 0;
     SettingData.deadZone = 16U;

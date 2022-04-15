@@ -14,7 +14,7 @@
     This file provides implementations of driver APIs for MEMORY.
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.7
-        Device            :  PIC18F25K42
+        Device            :  PIC18LF26K83
         Driver Version    :  2.1.3
     The generated drivers are tested against the following:
         Compiler          :  XC8 2.31 and above
@@ -162,10 +162,11 @@ void FLASH_EraseBlock(uint32_t baseAddr)
   Section: Data EEPROM Module APIs
 */
 
-void DATAEE_WriteByte(uint8_t bAdd, uint8_t bData)
+void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData)
 {
     uint8_t GIEBitValue = INTCON0bits.GIE;
 
+    NVMADRH = (uint8_t)((bAdd >> 8) & 0x03);
     NVMADRL = (uint8_t)(bAdd & 0xFF);
     NVMDAT = bData;
     NVMCON1bits.NVMREG = 0;
@@ -183,8 +184,9 @@ void DATAEE_WriteByte(uint8_t bAdd, uint8_t bData)
     INTCON0bits.GIE = GIEBitValue;   // Restore interrupt enable
 }
 
-uint8_t DATAEE_ReadByte(uint8_t bAdd)
+uint8_t DATAEE_ReadByte(uint16_t bAdd)
 {
+    NVMADRH = (uint8_t)((bAdd >> 8) & 0x03);
     NVMADRL = (uint8_t)(bAdd & 0xFF);
     NVMCON1bits.NVMREG = 0;
     NVMCON1bits.RD = 1;

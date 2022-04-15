@@ -32,10 +32,23 @@ void checkbuttons(void)
     // Port A output form: 0, 0 ,0 , Start : 1, Y : 1, X : 1, B : 1, A : 1 Credit to simple
     // Shift left one bit to get ready for setting the next bit
     gConPollPacket[BUTTON_PORT_A] |= !START_IN_PORT << 4;
-    gConPollPacket[BUTTON_PORT_A] |= !Y_IN_PORT << 3;
-    gConPollPacket[BUTTON_PORT_A] |= !X_IN_PORT << 2;
-    gConPollPacket[BUTTON_PORT_A] |= !B_IN_PORT << 1;
-    gConPollPacket[BUTTON_PORT_A] |= !A_IN_PORT;
+    
+    if (!xboxmode)
+    {
+        gConPollPacket[BUTTON_PORT_A] |= !Y_IN_PORT << 3;
+        gConPollPacket[BUTTON_PORT_A] |= !X_IN_PORT << 2;
+        gConPollPacket[BUTTON_PORT_A] |= !B_IN_PORT << 1;
+        gConPollPacket[BUTTON_PORT_A] |= !A_IN_PORT;
+    }
+    // Xbox layout mode
+    else
+    {
+        gConPollPacket[BUTTON_PORT_A] |= !X_IN_PORT << 3;
+        gConPollPacket[BUTTON_PORT_A] |= !Y_IN_PORT << 2;
+        gConPollPacket[BUTTON_PORT_A] |= !A_IN_PORT << 1;
+        gConPollPacket[BUTTON_PORT_A] |= !B_IN_PORT;
+    }
+    
     
     // END PORT A output bits, maximum result would be 00011111 for all port a buttons pressed
     
@@ -44,75 +57,75 @@ void checkbuttons(void)
     if (SettingData.modeData == 0)
     {
         // ZL/ZR act as digital press and half analog press
-        gConPollPacket[BUTTON_PORT_B]   |= !ZL_IN_PORT << 6;
-        gConPollPacket[TRIGGER_PORT_L]  |= (!ZL_IN_PORT) ? 0x80 : 0x00;
+        gConPollPacket[BUTTON_PORT_B]   |= !L_IN_PORT << 6;
+        gConPollPacket[TRIGGER_PORT_L]  |= (!L_IN_PORT) ? 0x80 : 0x00;
 
-        gConPollPacket[BUTTON_PORT_B]   |= !ZR_IN_PORT << 5;
-        gConPollPacket[TRIGGER_PORT_R]  |= (!ZR_IN_PORT) ? 0x80 : 0x00;
+        gConPollPacket[BUTTON_PORT_B]   |= !R_IN_PORT << 5;
+        gConPollPacket[TRIGGER_PORT_R]  |= (!R_IN_PORT) ? 0x80 : 0x00;
 
         // Don't shift for the first check for the Z button (L/R mapped to Z button)
-        gConPollPacket[BUTTON_PORT_B]   |= !L_IN_PORT << 4;
-        gConPollPacket[BUTTON_PORT_B]   |= !R_IN_PORT << 4;
+        gConPollPacket[BUTTON_PORT_B]   |= !ZL_IN_PORT << 4;
+        gConPollPacket[BUTTON_PORT_B]   |= !ZR_IN_PORT << 4;
     }
     else if (SettingData.modeData == 1)
     {
         //ZL acts as digital and half analog press
-        gConPollPacket[BUTTON_PORT_B]   |= !ZL_IN_PORT << 6;
-        gConPollPacket[TRIGGER_PORT_L]  |= (!ZL_IN_PORT) ? 0x80 : 0x00;
+        gConPollPacket[BUTTON_PORT_B]   |= !L_IN_PORT << 6;
+        gConPollPacket[TRIGGER_PORT_L]  |= (!L_IN_PORT) ? 0x80 : 0x00;
 
         // ZR is digital press+analog, R is half analog press
-        gConPollPacket[BUTTON_PORT_B]   |= !ZR_IN_PORT << 5;
-        gConPollPacket[TRIGGER_PORT_R]  |= (!ZR_IN_PORT) ? 0x80 : 0x00;
-        
+        gConPollPacket[BUTTON_PORT_B]   |= !R_IN_PORT << 5;
         gConPollPacket[TRIGGER_PORT_R]  |= (!R_IN_PORT) ? 0x80 : 0x00;
+        
+        gConPollPacket[TRIGGER_PORT_R]  |= (!ZR_IN_PORT) ? 0x80 : 0x00;
 
         // L mapped to Z
-        gConPollPacket[BUTTON_PORT_B]   |= !L_IN_PORT << 4;
+        gConPollPacket[BUTTON_PORT_B]   |= !ZL_IN_PORT << 4;
     }
     else if (SettingData.modeData == 2)
     {
         //ZL acts as digital+analog, L acts as analog half press
-        gConPollPacket[BUTTON_PORT_B]   |= !ZL_IN_PORT << 6;
-        gConPollPacket[TRIGGER_PORT_L]  |= (!ZL_IN_PORT) ? 0x80 : 0x00;
-        
+        gConPollPacket[BUTTON_PORT_B]   |= !L_IN_PORT << 6;
         gConPollPacket[TRIGGER_PORT_L]  |= (!L_IN_PORT) ? 0x80 : 0x00;
+        
+        gConPollPacket[TRIGGER_PORT_L]  |= (!ZL_IN_PORT) ? 0x80 : 0x00;
 
         // ZR is digital press and half analog press
-        gConPollPacket[BUTTON_PORT_B]   |= !ZR_IN_PORT << 5;
-        gConPollPacket[TRIGGER_PORT_R]  |= (!ZR_IN_PORT) ? 0x80 : 0x00;
+        gConPollPacket[BUTTON_PORT_B]   |= !R_IN_PORT << 5;
+        gConPollPacket[TRIGGER_PORT_R]  |= (!R_IN_PORT) ? 0x80 : 0x00;
 
         // R mapped to Z
-        gConPollPacket[BUTTON_PORT_B]   |= !R_IN_PORT << 4;
+        gConPollPacket[BUTTON_PORT_B]   |= !ZR_IN_PORT << 4;
     }
     else if (SettingData.modeData == 3)
     {
         //ZL acts as digital+analog, L acts as analog half press
-        gConPollPacket[BUTTON_PORT_B]   |= !ZL_IN_PORT << 6;
-        gConPollPacket[TRIGGER_PORT_L]  |= (!ZL_IN_PORT) ? 0x80 : 0x00;
-        
+        gConPollPacket[BUTTON_PORT_B]   |= !L_IN_PORT << 6;
         gConPollPacket[TRIGGER_PORT_L]  |= (!L_IN_PORT) ? 0x80 : 0x00;
+        
+        gConPollPacket[TRIGGER_PORT_L]  |= (!ZL_IN_PORT) ? 0x80 : 0x00;
 
         // ZR acts as digital+analog, R acts as analog half press
-        gConPollPacket[BUTTON_PORT_B]   |= !ZR_IN_PORT << 5;
-        gConPollPacket[TRIGGER_PORT_R]  |= (!ZR_IN_PORT) ? 0x80 : 0x00;
-        
+        gConPollPacket[BUTTON_PORT_B]   |= !R_IN_PORT << 5;
         gConPollPacket[TRIGGER_PORT_R]  |= (!R_IN_PORT) ? 0x80 : 0x00;
+        
+        gConPollPacket[TRIGGER_PORT_R]  |= (!ZR_IN_PORT) ? 0x80 : 0x00;
     }
     
     else if (SettingData.modeData == 4)
     {
         // ZL/ZR act as digital press and half analog press
-        gConPollPacket[BUTTON_PORT_B]   |= !ZL_IN_PORT << 6;
-        gConPollPacket[TRIGGER_PORT_L]  |= (!ZL_IN_PORT) ? 0x80 : 0x00;
+        gConPollPacket[BUTTON_PORT_B]   |= !L_IN_PORT << 6;
+        gConPollPacket[TRIGGER_PORT_L]  |= (!L_IN_PORT) ? 0x80 : 0x00;
 
-        gConPollPacket[BUTTON_PORT_B]   |= !ZR_IN_PORT << 5;
-        gConPollPacket[TRIGGER_PORT_R]  |= (!ZR_IN_PORT) ? 0x80 : 0x00;
+        gConPollPacket[BUTTON_PORT_B]   |= !R_IN_PORT << 5;
+        gConPollPacket[TRIGGER_PORT_R]  |= (!R_IN_PORT) ? 0x80 : 0x00;
 
         // Don't shift for the first check for the Z button (L/R mapped to Z button)
         gConPollPacket[BUTTON_PORT_B]   |= !DL_IN_PORT << 4;
         // L mapped to Left Dpad
-        gConPollPacket[BUTTON_PORT_B]   |= !L_IN_PORT;
-        gConPollPacket[BUTTON_PORT_B]   |= !R_IN_PORT << 4;
+        gConPollPacket[BUTTON_PORT_B]   |= !ZL_IN_PORT;
+        gConPollPacket[BUTTON_PORT_B]   |= !ZR_IN_PORT << 4;
     }
     
     gConPollPacket[BUTTON_PORT_B] |= !DU_IN_PORT << 3;

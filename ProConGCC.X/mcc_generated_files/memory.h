@@ -14,7 +14,7 @@
     This header file provides APIs for driver for MEMORY.
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.7
-        Device            :  PIC18F25K42
+        Device            :  PIC18LF26K83
         Driver Version    :  2.1.3
     The generated drivers are tested against the following:
         Compiler          :  XC8 2.31 and above
@@ -64,9 +64,9 @@
   Section: Macro Declarations
 */
 
-#define WRITE_FLASH_BLOCKSIZE    64
-#define ERASE_FLASH_BLOCKSIZE    64
-#define END_FLASH                0x008000
+#define WRITE_FLASH_BLOCKSIZE    128
+#define ERASE_FLASH_BLOCKSIZE    128
+#define END_FLASH                0x010000
 
 /**
   Section: Flash Module APIs
@@ -240,13 +240,13 @@ void FLASH_EraseBlock(uint32_t baseAddr);
 
   @Example
     <code>
-    uint8_t dataeeAddr = 0x10;
+    uint16_t dataeeAddr = 0x10;
     uint8_t dataeeData = 0x55;
 
     DATAEE_WriteByte(dataeeAddr, dataeeData);
     </code>
 */
-void DATAEE_WriteByte(uint8_t bAdd, uint8_t bData);
+void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 
 /**
   @Summary
@@ -266,13 +266,13 @@ void DATAEE_WriteByte(uint8_t bAdd, uint8_t bData);
 
   @Example
     <code>
-    uint8_t dataeeAddr = 0x10;
+    uint16_t dataeeAddr = 0x10;
     uint8_t readData;
 
     readData = DATAEE_ReadByte(dataeeAddr);
     </code>
 */
-uint8_t DATAEE_ReadByte(uint8_t bAdd);
+uint8_t DATAEE_ReadByte(uint16_t bAdd);
 
 void MEMORY_Tasks(void);
 
