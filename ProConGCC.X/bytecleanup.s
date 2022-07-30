@@ -18,30 +18,36 @@ GLOBAL _gInPulseWidth
 GLOBAL _bytecleanup ; extern of bar function goes in the C source file
 _bytecleanup:
     
+    BANKSEL(_gInStatus)
     ; Check that we finished a packet and need cleanup
-    BTFSS	_gInStatus, 5, 0	; Bit 5 cleanup request flag. Skip if we sent one
+    BTFSS	BANKMASK(_gInStatus), 5, 1	; Bit 5 cleanup request flag. Skip if we sent one
     RETURN			; Return if we have nothing to clean up yet.
     
+    BANKSEL(_gInPacket)
     ; We gotta reset some variables for our next command read
     MOVLW	_gInPacket	    ; Reset the byte packet index pointer
     MOVFF	WREG, _gInPacketIdx
 
-    CLRF	_gInBitCounter, 0   ; Clear the bit counter
-    BSF		_gInBitCounter, 3, 0; Set the bit counter to 8 (bit 3)
+    CLRF	BANKMASK(_gInBitCounter), 1   ; Clear the bit counter
+    BSF		BANKMASK(_gInBitCounter), 3, 1; Set the bit counter to 8 (bit 3)
 
-    CLRF	_gInStatus, 0	    ; Clear the communication status byte
-    CLRF	_gConOutByte, 0	    ; Clear the outgoing byte container
-    CLRF	_gConOutIdx, 0	    ; Clear the outgoing byte index pointer
-    CLRF	_gConByteCount, 0   ; Clear the outgoing byte counter
-    CLRF	_gInCommandByte, 0  ; Clear the incoming command bit
-    CLRF	_gInPulseWidth, 0   ; Clear the pulse width counter
+    CLRF	BANKMASK(_gInStatus), 1	    ; Clear the communication status byte
+    CLRF	BANKMASK(_gConOutByte), 1	    ; Clear the outgoing byte container
+    CLRF	BANKMASK(_gConOutIdx), 1	    ; Clear the outgoing byte index pointer
+    CLRF	BANKMASK(_gConByteCount), 1   ; Clear the outgoing byte counter
+    CLRF	BANKMASK(_gInCommandByte), 1  ; Clear the incoming command bit
+    CLRF	BANKMASK(_gInPulseWidth), 1   ; Clear the pulse width counter
 
-    BSF		_gInStatus, 3, 0    ; Enable stick scan bit in status
+    BSF		BANKMASK(_gInStatus), 3, 1    ; Enable stick scan bit in status
 
-    BSF		TRISB, 2	; Clear the data pin from us driving so we can receive
-
+    BSF		TRISB, 2, 0	; Clear the data pin from us driving so we can receive
+    
+    //MOVLB	0x39
+    //BCF		0xA1, 7, 1	    ; Clear Pulse width interrupt
+    
     MOVLB	0x3F
+    //CLRF	0x18, 1		    ; Clear the pulse width capture
     BSF		0xD2, 7, 1	    ; Start global interrupts
     BSF		0x1F, 7, 1	    ; Start SMT
 
-    RETURN
+    RETURN	

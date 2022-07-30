@@ -47,18 +47,19 @@
 #ifndef MCC_H
 #define	MCC_H
 #include <xc.h>
-#include "..\main.h"
 #include "device_config.h"
 #include "pin_manager.h"
 #include <stdint.h>
 #include <stdbool.h>
 #include <conio.h>
 #include "interrupt_manager.h"
-#include "pwm1.h"
 #include "adcc.h"
+#include "pwm1.h"
+#include "tmr6.h"
 #include "tmr4.h"
 #include "smt1.h"
 #include "memory.h"
+#include "../main.h"
 
 
 

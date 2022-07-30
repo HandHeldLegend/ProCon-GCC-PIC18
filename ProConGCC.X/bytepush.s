@@ -29,32 +29,30 @@ GLOBAL _bytecleanup
     
 _bytepush:
     
+    BANKSEL(_gInStatus)
     ; Check if we have a command to push out
-    BTFSS   _gInStatus, 6, 0	; Byte 6 tells us if a command has been interpreted
+    BTFSS   BANKMASK(_gInStatus), 6, 1	; Byte 6 tells us if a command has been interpreted
     RETURN			; Return if there's no command to push out
     
     BCF	    TRISB, 2		    ; Turn the data pin around so we can drive
     
     ; Start writing a byte
     newByte:
-	MOVFF   _gConOutIdx, FSR0	; Get the address for our first byte, place into FSR0
-	MOVFF   INDF0, _gConOutByte	; Set the outgoing byte with the first byte.
-	CLRF	_gConBitCounter, 0	; Set bit counter to 0 (clear)
-	BSF	_gConBitCounter, 3, 0	; Set bit counter to 8.
+	MOVFF   BANKMASK(_gConOutIdx), FSR0	; Get the address for our first byte, place into FSR0
+	MOVFF   INDF0, BANKMASK(_gConOutByte)	; Set the outgoing byte with the first byte.
+	CLRF	BANKMASK(_gConBitCounter), 1	; Set bit counter to 0 (clear)
+	BSF	BANKMASK(_gConBitCounter), 3, 1	; Set bit counter to 8.
 	
     ; Start writing our bit
     writeBit:
 	BCF	PORTB, 2	; Set port to LOW
-        BTFSS	_gConOutByte, 7, 0  ; Check the leftmost bit, skip if one.
+        BTFSS	BANKMASK(_gConOutByte), 7, 1  ; Check the leftmost bit, skip if one.
 	GOTO	lowBitWrite	    ; Bit is 0, write a low bit out.
     
     ; Write a high bit
     highBitWrite:		;
-        DCFSNZ	 _gConBitCounter, 1, 0	; Decrement the BIT counter. Skip next when NOT 0 to go to next bit
+        DCFSNZ	 BANKMASK(_gConBitCounter), 1, 1	; Decrement the BIT counter. Skip next when NOT 0 to go to next bit
 	GOTO	endHighWrite
-	NOP
-	NOP
-	NOP
 	NOP	
 	NOP
 	NOP
@@ -67,6 +65,8 @@ _bytepush:
 	NOP
 	NOP
         BSF	PORTB, 2	; Set port to HIGH
+	NOP
+	NOP
         NOP
 	NOP			
 	NOP
@@ -109,11 +109,8 @@ _bytepush:
 	GOTO	getNextBit
 	
     lowBitWrite:		
-	DCFSNZ	 _gConBitCounter, 1, 0	; Decrement the BIT counter. Skip next when NOT 0 to go to next bit
+	DCFSNZ	 BANKMASK(_gConBitCounter), 1, 1	; Decrement the BIT counter. Skip next when NOT 0 to go to next bit
 	GOTO	endLowWrite
-	NOP
-	NOP
-	NOP
 	NOP
 	NOP
 	NOP			
@@ -157,6 +154,7 @@ _bytepush:
 	NOP
 	NOP
 	BSF	PORTB, 2	; Set port to HIGH
+	NOP
 	NOP			
 	NOP
 	NOP
@@ -170,12 +168,12 @@ _bytepush:
     
     ; Load up our next bit
     getNextBit:			
-        RLCF	 _gConOutByte, 1, 0	; Rotate the byte left so we can read the next bit
+        RLCF	 BANKMASK(_gConOutByte), 1, 1	; Rotate the byte left so we can read the next bit
 	GOTO	writeBit		; We still have bits left, so go back up to writeBit.
         
     getNextByte:
-        INCF	_gConOutIdx, 1, 0	; Increment our pointer value
-        DECFSZ	_gConByteCount, 1, 0	; Decrement our Byte counter, skip when no bytes left to write our stop bit.
+        INCF	BANKMASK(_gConOutIdx), 1, 1	; Increment our pointer value
+        DECFSZ	BANKMASK(_gConByteCount), 1, 1	; Decrement our Byte counter, skip when no bytes left to write our stop bit.
         GOTO	newByte			
 	
     stopBitWrite:
@@ -225,7 +223,10 @@ _bytepush:
 	NOP
         BSF	PORTB, 2    ; Set port to HIGH
     
-	BSF	_gInStatus, 5, 0    ; Set byte 5 of our status flag
+	BANKSEL(SMT1CON1)
+	BSF	SMT1CON1, 7, 1
+	BANKSEL(_gInStatus)
+	BSF	BANKMASK(_gInStatus), 5, 1    ; Set byte 5 of our status flag
 	; Bit 5 says that we have sent out our response
 	RETURN
     
@@ -241,9 +242,9 @@ _bytepush:
 	NOP
 	NOP
 	NOP
-	NOP
-	NOP
         BSF	PORTB, 2	; Set port to HIGH
+	NOP
+	NOP
 	NOP			
 	NOP
 	NOP
@@ -277,9 +278,6 @@ _bytepush:
 	GOTO	getNextByte
     
     endLowWrite:
-	NOP
-	NOP
-	NOP
 	NOP
 	NOP			
 	NOP

@@ -4,8 +4,6 @@
 GLOBAL _gInStatus
 GLOBAL _gInPacket
 GLOBAL _gInPacketIdx
-GLOBAL _gInBitBuffer
-GLOBAL _gInBitBufferIdx
 
 ; Variables relating to checking commands
 GLOBAL _gCommandPollMask
@@ -19,6 +17,8 @@ GLOBAL _gConByteCount
 GLOBAL _gConPollPacket	    ; The packet we use to store our button and stick data
 GLOBAL _gConOriginResponse  ; Used to respond to origin command
 GLOBAL _gConProbeResponse   ; Used to respond to probe command
+    
+GLOBAL	_gSamplesLeft  ; How many samples have been taken so far 
     
 ; External function
 GLOBAL _bytepush
@@ -35,8 +35,9 @@ _commandreader:
     ; we can take action to quickly interpret the message
     ; and send out the corresponding packet.
     
+    BANKSEL(_gInStatus)
     ; First let's check if the stop bit write flag is set
-    BTFSS   _gInStatus, 7, 0	; Byte 7 in the status is the stop bit flag
+    BTFSS   _gInStatus, 7, 1	; Byte 7 in the status is the stop bit flag
     RETURN			; Return if there's no command to read
 
     ; WE WILL CLEAN UP LATER, JUST GET ON TO SENDING OUT THE RIGHT PACKS ASAP
@@ -50,9 +51,10 @@ _commandreader:
     BCF	    0xD2, 7, 1	    ; Stop global interrupts
     BCF	    0x1F, 7, 1	    ; Stop SMT
     
+    BANKSEL(_gInStatus)
     ; Check to see if we have a poll command coming in
-    MOVFF   _gInPacket, WREG	    ; Get the first byte of the IN packet
-    XORWF   _gCommandPollMask, 0, 0 ; Perform exclusive OR on the command byte against our mask
+    MOVFF   BANKMASK(_gInPacket), WREG	    ; Get the first byte of the IN packet
+    XORWF   BANKMASK(_gCommandPollMask), 0, 1 ; Perform exclusive OR on the command byte against our mask
 
     ; Anything that ISN'T a match will fail the check zero/skip command.
     TSTFSZ  WREG, 0		    ; skip if it's zero meaning a match.
@@ -60,20 +62,20 @@ _commandreader:
 
 	; If we made it to here, we are working with a poll command.
 	; Lets set up the outgoing byte as a pointer for the bytepush command.
-	MOVLW   _gConPollPacket		; Get the pointer for the poll packet
-	MOVWF   _gConOutIdx, 0		; Move the pointer into the outgoing index.
+	MOVLW   BANKMASK(_gConPollPacket)		; Get the pointer for the poll packet
+	MOVWF   BANKMASK(_gConOutIdx), 1		; Move the pointer into the outgoing index.
 	
-	BSF	_gConByteCount, 3, 0	; Set our outgoing Byte count to 8 (bit set 3) 0000 1000
+	BSF	BANKMASK(_gConByteCount), 3, 1	; Set our outgoing Byte count to 8 (bit set 3) 0000 1000
 
-	BSF	_gInStatus, 6, 0	; Mark that we have a valid command interpreted
+	BSF	BANKMASK(_gInStatus), 6, 1	; Mark that we have a valid command interpreted
 	RETURN
 
 
 ; Here we check if we got a origin command to send over our calibration info.
 ORIGINPARSE:
 
-    MOVFF   _gInPacket, WREG		; Get the first byte of the IN packet
-    XORWF   _gCommandOriginMask, 0, 0   ; Perform exclusive OR on the command byte against our mask
+    MOVFF   BANKMASK(_gInPacket), WREG		; Get the first byte of the IN packet
+    XORWF   BANKMASK(_gCommandOriginMask), 0, 1   ; Perform exclusive OR on the command byte against our mask
 
     ; Anything that ISN'T a match will fail the check zero/skip command.
     TSTFSZ  WREG, 0			; skip if it's zero meaning a match.
@@ -81,13 +83,13 @@ ORIGINPARSE:
 
 	; If we made it to here, we are working with a origin command.
 	; Lets set up the outgoing byte as a pointer for the bytepush command.
-	MOVLW   _gConOriginResponse	; Get the pointer for the poll packet
-	MOVWF   _gConOutIdx, 0		; Move the pointer into the outgoing index.
+	MOVLW   BANKMASK(_gConOriginResponse)	; Get the pointer for the poll packet
+	MOVWF   BANKMASK(_gConOutIdx), 1		; Move the pointer into the outgoing index.
 
-	BSF	_gConByteCount, 3, 0    ; Set our outgoing Byte count to 8 (bit set 3) 0000 1000
-	BSF	_gConByteCount, 1, 0    ; Set the bit 1 so we have 10 (8+2) 0000 1010
+	BSF	BANKMASK(_gConByteCount), 3, 1    ; Set our outgoing Byte count to 8 (bit set 3) 0000 1000
+	BSF	BANKMASK(_gConByteCount), 1, 1    ; Set the bit 1 so we have 10 (8+2) 0000 1010
 
-	BSF	_gInStatus, 6, 0	; Mark that we have a valid command interpreted
+	BSF	BANKMASK(_gInStatus), 6, 1	; Mark that we have a valid command interpreted
 	RETURN
 
 
@@ -95,24 +97,26 @@ ORIGINPARSE:
 PROBEPARSE:
 
     ; First we can check if the command is 0x0 (0000 0000) meaning it's being probed.
-    MOVFF   _gInPacket, WREG	; Get the first byte of the IN packet
+    MOVFF   BANKMASK(_gInPacket), WREG	; Get the first byte of the IN packet
     TSTFSZ  WREG, 0		; If it's zero, skip checking any further
     GOTO    NOCOMMAND		; No command match
 
     ; We need to make sure our byte counter for outgoing is set
 
-    BSF	    _gConByteCount, 0, 0	; Set our outgoing Byte count to 1 (bit set 0) 0000 0001
-    BSF	    _gConByteCount, 1, 0	; Set the bit 1 so we have 3 (1+2)  0000 0011
+    BSF	    BANKMASK(_gConByteCount), 0, 1	; Set our outgoing Byte count to 1 (bit set 0) 0000 0001
+    BSF	    BANKMASK(_gConByteCount), 1, 1	; Set the bit 1 so we have 3 (1+2)  0000 0011
 
-    MOVLW   _gConProbeResponse	; Place the address for our first byte into WREG
-    MOVWF   _gConOutIdx, 0	;
+    MOVLW   BANKMASK(_gConProbeResponse)	; Place the address for our first byte into WREG
+    MOVWF   BANKMASK(_gConOutIdx), 1	;
     
     ; Mark our status bit that we are synced
-    BSF	    _gInStatus, 1, 0	; Bit 1 is sync bit
-    BSF	    _gInStatus, 6, 0	; Mark that we have a valid command interpreted 
+    BSF	    BANKMASK(_gInStatus), 1, 1	; Bit 1 is sync bit
+    BSF	    BANKMASK(_gInStatus), 6, 1	; Mark that we have a valid command interpreted 
     RETURN
     
 NOCOMMAND:
     
-    BSF	    _gInStatus, 0, 0    ; Set bit 0 of our status flag meaning we need to resync
+    BSF	    BANKMASK(_gSamplesLeft), 7, 1   ; reset our sample counter
+    CLRF    BANKMASK(_gInStatus), 1	    ; Clear the communication status byte
+    BSF	    BANKMASK(_gInStatus), 0, 1    ; Set bit 0 of our status flag meaning we need to resync
     RETURN

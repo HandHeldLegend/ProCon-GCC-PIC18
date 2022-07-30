@@ -58,30 +58,14 @@ void  INTERRUPT_Initialize (void)
 
     // SMTPWAI - high priority
     IPR1bits.SMT1PWAIP = 1;
-
-    // SMTPRAI - high priority
-    IPR1bits.SMT1PRAIP = 1;
-
-
 }
-
-uint8_t testpulse = 0x0;
 
 void __interrupt() INTERRUPT_InterruptManagerHigh (void)
 {
-   // interrupt handler
-    if(PIE1bits.SMT1PWAIE == 1 && PIR1bits.SMT1PWAIF == 1)
-    {
-        PIR1bits.SMT1PWAIF = 0;
-        gInPulseWidth = SMT1CPWL;
-        if (gInStatus & (1 << 2))
-        {
-            asm("BCF _gInStatus, 2, 0"); // Clear button read flag
-            asm("BCF _gInStatus, 1, 0"); // Clear the button first phase flag
-        }
-        
-        bitgrabber();  
-    }
+
+    asm("MOVFF SMT1CPWL, _gInPulseWidth");
+    bitgrabber();
+
 }
 
 /**

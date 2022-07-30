@@ -6,23 +6,31 @@
 #include "main.h"
 
 // Bool to tell if we are calibrating the sticks
-bool stickcalibration = false;
-bool xboxmode = false;
+volatile uint8_t stickcalibration    __at(MEM_CALIBRATE_EN);
+volatile uint8_t xboxmode            __at(MEM_XBOXMODE);
 
 void main(void)
 {
     // Initialize the device
     SYSTEM_Initialize();
+    joysticksetup();
+    gcdatainit();
     
     // Set ADC Read channel to RA0
     ADPCH = 0x00;
     // Turn on the ADC module
     ADCON0bits.ADON = 1;
+    T6CONbits.TMR6ON = 1;
     
     // Load default config
     loadsettings();
     
+    stickcalibration = STICK_CALIBRATE_NOPE;
+    //stickcalibration = STICK_CALIBRATE_SNAP;
+    
     // Load whether xbox mode is enabled
+    // Don't forget to clear it first because dumb
+    xboxmode = FALSE;
     xboxmode |= SettingData.modeData >> 7;
     
     // Set Default Trigger Mode
@@ -101,15 +109,21 @@ void main(void)
         savesettings();
     }
     // Do stick calibration if Minus or Capture is held on boot.
-    else if (!SELECT_IN_PORT)
+    else if (!SELECT_IN_PORT && X_IN_PORT)
     {
-        stickcalibration = true;
+        stickcalibration = STICK_CALIBRATE_AXIS;
         __delay_ms(1200);
         // Zero out our config options to the default center values
         zerosticks();
     }
+    else if (!X_IN_PORT && SELECT_IN_PORT)
+    {
+        // Enable snapback calibration mode
+        // See joysticks.c for more details
+        stickcalibration = STICK_CALIBRATE_SNAP;
+    }
     
-    while (stickcalibration)
+    while (stickcalibration == STICK_CALIBRATE_AXIS)
     {   
         // Pressing start saves settings
         if (!START_IN_PORT)
@@ -117,7 +131,7 @@ void main(void)
             setstickmultipliers();
             savesettings();
             loadsettings();
-            stickcalibration = false;
+            stickcalibration = STICK_CALIBRATE_NOPE;
             break;
         }
         else
@@ -127,26 +141,27 @@ void main(void)
         }
     }
     
-    // Enable interrupts
-    INTCON0bits.GIEH = 1;
-    
     // Clear out the MSB of mode data
     // as we already extracted whether
     // xbox mode is on/off
     SettingData.modeData &= ~(1 << 7);
     
+    // Enable interrupts
+    INTCON0bits.GIEH = 1;
+    
+    // Main loop for running the controller function
     while (1)
     {
         // check for incoming command
         commandreader();
-        // Fix desync if needed
-        if (gInStatus & 0x01)
-        {
-            desyncfix();
-        }
+        
         // check if we need to send a response
+        // and send a bitbang'd response if we do
         bytepush();
+        
         // check if we need to do a cleanup
+        // this will reset all necessary
+        // parameters as well
         bytecleanup();
         
         // if the check stick bit is set, scan the sticks
@@ -154,22 +169,27 @@ void main(void)
         if (gInStatus & (1 << 3))
         {
             
+            // check if rumble should be enables
             if(gInPacket[2] == 1 && SettingData.rumbleData)
             {
                 PORTBbits.RB4 = 1;
                 CCPR1H = 0xF0;
             }
+            // if rumble byte = 0x02 then we should brake the rumble
             else if (gInPacket[2] == 2 && SettingData.rumbleData)
             {
                 PORTBbits.RB4 = 1;
                 CCPR1H = 0x60;
             }
+            // otherwise turn rumble OFF
             else
             {
                 PORTBbits.RB4 = 0;
             }
             
+            // scan the sticks
             scansticks();
+            
         }
         
         // if the button check bit is set, scan the buttons

@@ -35,6 +35,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include <math.h>
 #include <string.h>
 #include "gcdata.h"
@@ -42,10 +43,20 @@
 #include "settings.h"
 #include "joysticks.h"
 #include "button.h"
+#include "memorymap.h"
 
-bool xboxmode;
+#define TRUE     0x01
+#define FALSE    0x00
+
+#define STICK_CALIBRATE_NOPE    0x00
+#define STICK_CALIBRATE_AXIS    0x01
+#define STICK_CALIBRATE_SNAP    0x02
+
+volatile uint8_t xboxmode;
+volatile uint8_t stickcalibration;
 
 extern unsigned char bytepush(void);
+extern unsigned char syncsetter(void);
 extern unsigned char bitgrabber(void);
 extern unsigned char bytecleanup(void);
 extern unsigned char commandreader(void);

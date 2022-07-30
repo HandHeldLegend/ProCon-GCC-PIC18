@@ -10,12 +10,14 @@
 #include "main.h"
 
 // Main Settings (save 50 bytes for settings)
-Settings SettingData __at(0x03CD);
+Settings SettingData __at(MEM_SETTINGS);
+
+#define MAGIC_KEY    0x4F
 
 void setdefaultsettings(void)
 {
     SettingData.buffer = 0x0000;
-    SettingData.configKey = 0x4E;
+    SettingData.configKey = MAGIC_KEY;
   
     SettingData.sxlow = 94U;
     SettingData.sxcenter = 254U;
@@ -145,7 +147,7 @@ void loadsettings(void)
         loading[i] = DATAEE_ReadByte(i);
 
         // Check if our configKey does not match the character "NM" :)
-        if (i == 2U && SettingData.configKey != 0x4E)
+        if (i == 2U && SettingData.configKey != MAGIC_KEY)
         {
             // We did not match, let's write the default values to EEPROM
             setdefaultsettings();
