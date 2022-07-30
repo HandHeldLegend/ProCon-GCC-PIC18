@@ -12,7 +12,7 @@
 // Main Settings (save 50 bytes for settings)
 Settings SettingData __at(MEM_SETTINGS);
 
-#define MAGIC_KEY    0x4F
+#define MAGIC_KEY    0x4A
 
 void setdefaultsettings(void)
 {
@@ -47,6 +47,9 @@ void setdefaultsettings(void)
     SettingData.cy_highMultiplier = 194U;
     SettingData.cy_lowMultiplier = 204U;
     
+    SettingData.x_snapback_strength = 0x0;
+    SettingData.y_snapback_strength = 0x0;
+    
     setstickmultipliers();
 
     SettingData.modeData = 0U;
@@ -58,6 +61,107 @@ void setdefaultsettings(void)
     
     SettingData.rumbleData = 0;
     SettingData.deadZone = 16U;
+}
+
+#define SETTING_NOT_LIVE    0x0
+#define SETTING_SELECT_HELD 0x1
+#define SETTING_ZR_HELD     0x2
+#define SETTING_ZL_HELD     0x3
+#define SETTING_R_HELD      0x4
+#define SETTING_L_HELD      0x5
+#define SETTING_DDOWN_HELD  0x6
+#define SETTING_DUP_HELD    0x7
+#define SETTING_SAVE_ALL    0x8
+
+uint8_t setting_marker = 0x0;
+void livesettings(void)
+{
+    if (!SELECT_IN_PORT && !setting_marker)
+    {
+        if(!ZR_IN_PORT)
+        {
+            setting_marker = SETTING_ZR_HELD;
+        }
+        else if (!ZL_IN_PORT)
+        {
+            setting_marker = SETTING_ZL_HELD;
+        }
+        else if (!L_IN_PORT)
+        {
+            setting_marker = SETTING_L_HELD;
+        }
+        else if (!R_IN_PORT)
+        {
+            setting_marker = SETTING_R_HELD;
+        }
+        else if (!DU_IN_PORT)
+        {
+            setting_marker = SETTING_DUP_HELD;
+        }
+        else if (!DD_IN_PORT)
+        {
+            setting_marker = SETTING_DDOWN_HELD;
+        }
+    }
+    else if (setting_marker > 0)
+    {
+        if(ZR_IN_PORT && setting_marker == SETTING_ZR_HELD)
+        {
+            SettingData.x_snapback_strength += 1;
+            if (SettingData.x_snapback_strength > 14) SettingData.x_snapback_strength = 14;
+            setting_marker = SETTING_SAVE_ALL;
+        }
+        else if (ZL_IN_PORT && setting_marker == SETTING_ZL_HELD)
+        {
+            
+            if (SettingData.x_snapback_strength == 0) SettingData.x_snapback_strength = 0;
+            else SettingData.x_snapback_strength -= 1;
+            setting_marker = SETTING_SAVE_ALL;
+        }
+        else if (R_IN_PORT && setting_marker == SETTING_L_HELD)
+        {
+            SettingData.y_snapback_strength += 1;
+            if (SettingData.y_snapback_strength > 14) SettingData.y_snapback_strength = 14;
+            setting_marker = SETTING_SAVE_ALL;
+        }
+        else if (L_IN_PORT && setting_marker == SETTING_R_HELD)
+        {
+            if (SettingData.y_snapback_strength == 0) SettingData.y_snapback_strength = 0;
+            else SettingData.y_snapback_strength -= 1;
+            setting_marker = SETTING_SAVE_ALL;
+        }
+        else if (DU_IN_PORT && setting_marker == SETTING_DUP_HELD)
+        {
+            SettingData.deadZone += 4;
+            if (SettingData.deadZone >= 28)
+            {
+                SettingData.deadZone = 28;
+            }
+            setting_marker = SETTING_SAVE_ALL;
+        }
+        else if (DD_IN_PORT && setting_marker == SETTING_DDOWN_HELD)
+        {
+            SettingData.deadZone -= 4;
+            if (SettingData.deadZone <= 0 || SettingData.deadZone > 28)
+            {
+                SettingData.deadZone = 0;
+            }
+            setting_marker = SETTING_SAVE_ALL;
+        }
+        // This means we need to save a change
+        else if (setting_marker == SETTING_SAVE_ALL)
+        {
+            SMT1CON1bits.SMT1GO = 0x0;
+            setstickmultipliers();
+            savesettings();
+            __delay_us(450);
+            loadsettings();
+            __delay_us(450);
+            setting_marker = 0x0;
+            gInStatus = 0x01;
+            SMT1CON1bits.SMT1GO = 0x1;
+        }
+    }
 }
 
 void zerosticks(void)

@@ -70,32 +70,6 @@ void main(void)
         savesettings(); 
     }
     
-    // Increase deadzone
-    if (!DU_IN_PORT)
-    {
-        SettingData.deadZone += 4;
-        if (SettingData.deadZone >= 28)
-        {
-            SettingData.deadZone = 28;
-        }
-        setstickmultipliers();
-        savesettings();
-        loadsettings();
-    }
-    
-    // Decrease deadzone
-    if (!DD_IN_PORT)
-    {
-        SettingData.deadZone -= 4;
-        if (SettingData.deadZone <= 0 || SettingData.deadZone > 28)
-        {
-            SettingData.deadZone = 0;
-        }
-        setstickmultipliers();
-        savesettings();
-        loadsettings();
-    }
-    
     // Set defaults
     if (!SELECT_IN_PORT && !START_IN_PORT)
     {
@@ -109,18 +83,12 @@ void main(void)
         savesettings();
     }
     // Do stick calibration if Minus or Capture is held on boot.
-    else if (!SELECT_IN_PORT && X_IN_PORT)
+    else if (!SELECT_IN_PORT)
     {
         stickcalibration = STICK_CALIBRATE_AXIS;
         __delay_ms(1200);
         // Zero out our config options to the default center values
         zerosticks();
-    }
-    else if (!X_IN_PORT && SELECT_IN_PORT)
-    {
-        // Enable snapback calibration mode
-        // See joysticks.c for more details
-        stickcalibration = STICK_CALIBRATE_SNAP;
     }
     
     while (stickcalibration == STICK_CALIBRATE_AXIS)
@@ -187,8 +155,11 @@ void main(void)
                 PORTBbits.RB4 = 0;
             }
             
+            SMT1CON1bits.SMT1GO = 0x1;
             // scan the sticks
             scansticks();
+            // check for setting changes
+            livesettings();
             
         }
         

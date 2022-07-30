@@ -116,6 +116,7 @@ PROBEPARSE:
     
 NOCOMMAND:
     
+    CLRF    BANKMASK(_gSamplesLeft), 1	    ; Clear the sample counter for resync
     BSF	    BANKMASK(_gSamplesLeft), 7, 1   ; reset our sample counter
     CLRF    BANKMASK(_gInStatus), 1	    ; Clear the communication status byte
     BSF	    BANKMASK(_gInStatus), 0, 1    ; Set bit 0 of our status flag meaning we need to resync

@@ -24,14 +24,14 @@ volatile uint16_t tmplowm    __at(MEM_TMPLOWM);
 volatile uint16_t conversion __at(MEM_ADC_CONV);
 
 uint16_t x_samples_total = 0x00;
+uint16_t y_samples_total = 0x00;
 uint8_t x_samples[22];
-uint8_t x_old_ptr = 0;
-uint8_t x_new_ptr = 22;
-uint8_t x_sample_setup = FALSE;
+uint8_t y_samples[22];
+uint8_t sb_old_ptr = 0;
+uint8_t sb_new_ptr = 22;
+uint8_t snapback_sample_setup = FALSE;
 uint8_t x_sample_avg = 0;
-uint8_t x_filter_setting = 1;
-
-uint8_t x_direction = 0x1;
+uint8_t y_sample_avg = 0;
 
 void joysticksetup(void)
 {
@@ -63,7 +63,7 @@ void sampleratecheck(void)
         if (samplerate <= 13) average_count = 22;
         else if (PIR9bits.TMR6IF) average_count = 1;
         else average_count = 288/samplerate;
-        x_sample_setup = FALSE;
+        snapback_sample_setup = FALSE;
     }
     PIR9bits.TMR6IF = 0;
 }
@@ -224,69 +224,56 @@ void applysnapback(void)
 {
     // Check for sample rate change
     sampleratecheck();
-    
-    if (!SELECT_IN_PORT && !R_IN_PORT)
-    {
-        changeprime = 0x1;
-    }
-    else if (changeprime == 0x1 && R_IN_PORT)
-    {
-        fader_val += 1;
-        if (fader_val > 14) fader_val = 14;
-        printf("New val : %d", fader_val);
-        changeprime = 0x0;
-    }
-    else if (!SELECT_IN_PORT && !L_IN_PORT)
-    {
-        changeprime = 0x2;
-    }
-    else if (changeprime == 0x2 && L_IN_PORT)
-    {
-        if (fader_val == 0) fader_val = 0;
-        else fader_val -= 1;
-        printf("New val : %d", fader_val);
-        changeprime = 0x0;
-    }
 
     // Set up our samples if the rate changes
-    if (!x_sample_setup)
+    if (!snapback_sample_setup)
     {
         x_samples_total = average_count * gConPollPacket[STICK_SX_PACKET];
-        x_old_ptr = 0;
-        x_new_ptr = average_count-1;
-        x_sample_setup = TRUE;
+        y_samples_total = average_count * gConPollPacket[STICK_SY_PACKET];
+        sb_old_ptr = 0;
+        sb_new_ptr = average_count-1;
+        snapback_sample_setup = TRUE;
         x_sample_avg = gConPollPacket[STICK_SX_PACKET];
-        
+        y_sample_avg = gConPollPacket[STICK_SY_PACKET];
+                
         for (uint8_t i = 0; i < average_count; i++)
         {
             x_samples[i] = gConPollPacket[STICK_SX_PACKET];
+            y_samples[i] = gConPollPacket[STICK_SY_PACKET];
         }
-        printf("Sample rate has been set");
     }
     // Our sample rate has been set up, apply averages accordingly
     else
     {
         // Remove the value of the old sample
-        x_samples_total -= x_samples[x_old_ptr];
+        x_samples_total -= x_samples[sb_old_ptr];
+        y_samples_total -= y_samples[sb_old_ptr];
         
         // increase the new sample ptr value
-        x_new_ptr += 1;
-        if (x_new_ptr > average_count-1) x_new_ptr = 0;
+        sb_new_ptr += 1;
+        if (sb_new_ptr > average_count-1) sb_new_ptr = 0;
         
         // First add the value of the new sample
         x_samples_total += gConPollPacket[STICK_SX_PACKET];
-        x_samples[x_new_ptr] = gConPollPacket[STICK_SX_PACKET];
+        x_samples[sb_new_ptr] = gConPollPacket[STICK_SX_PACKET];
+        y_samples_total += gConPollPacket[STICK_SY_PACKET];
+        y_samples[sb_new_ptr] = gConPollPacket[STICK_SY_PACKET];
         
         // increase the old sample ptr value
-        x_old_ptr +=1;
-        if (x_old_ptr > average_count-1) x_old_ptr = 0;
+        sb_old_ptr +=1;
+        if (sb_old_ptr > average_count-1) sb_old_ptr = 0;
         
         // Get the average and primary filter value
         x_sample_avg = fastdivide(x_samples_total, average_count);
+        y_sample_avg = fastdivide(y_samples_total, average_count);
         
         if ( gConPollPacket[STICK_SX_PACKET] > 128 || gConPollPacket[STICK_SX_PACKET] < 126)
         {
-            gConPollPacket[STICK_SX_PACKET] = fastfilter(gConPollPacket[STICK_SX_PACKET], x_sample_avg, fader_val);
+            gConPollPacket[STICK_SX_PACKET] = fastfilter(gConPollPacket[STICK_SX_PACKET], x_sample_avg, SettingData.x_snapback_strength);
+        }
+        if ( gConPollPacket[STICK_SY_PACKET] > 128 || gConPollPacket[STICK_SY_PACKET] < 126)
+        {
+            gConPollPacket[STICK_SY_PACKET] = fastfilter(gConPollPacket[STICK_SY_PACKET], y_sample_avg, SettingData.y_snapback_strength);
         }
     }
     
@@ -378,8 +365,6 @@ void scansticks(void) {
                     case 3:
                         // Check if we're calibrating snapback
                         applysnapback();
-                        
-                        SMT1CON1bits.SMT1GO = 0x1;
                         asm("BCF _gInStatus, 3, 0"); // Clear the stick read enable flag
                         asm("BSF _gInStatus, 2, 0"); // Set the button read enable flag
                         initiatedRead = FALSE;       // Reset the bool to initialize a read
