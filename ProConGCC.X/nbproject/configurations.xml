@@ -48,14 +48,11 @@
       </logicalFolder>
       <itemPath>main.c</itemPath>
       <itemPath>gcdata.c</itemPath>
-      <itemPath>bytepush.s</itemPath>
-      <itemPath>bytecleanup.s</itemPath>
-      <itemPath>bitgrabber.s</itemPath>
-      <itemPath>commandreader.s</itemPath>
       <itemPath>joysticks.c</itemPath>
       <itemPath>button.c</itemPath>
       <itemPath>settings.c</itemPath>
-      <itemPath>syncsetter.s</itemPath>
+      <itemPath>joybus.s</itemPath>
+      <itemPath>sync.s</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -74,7 +71,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC8</languageToolchain>
-        <languageToolchainVersion>2.35</languageToolchainVersion>
+        <languageToolchainVersion>2.40</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
@@ -197,6 +194,7 @@
         <property key="debugoptions.debug-startup" value="Use system settings"/>
         <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>

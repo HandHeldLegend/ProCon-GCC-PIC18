@@ -58,16 +58,24 @@ void  INTERRUPT_Initialize (void)
 
     // SMTPWAI - high priority
     IPR1bits.SMT1PWAIP = 1;
+
+
+    // SMTI - low priority
+    IPR1bits.SMT1IP = 0;    
+
 }
 
 void __interrupt() INTERRUPT_InterruptManagerHigh (void)
 {
 
-    asm("MOVFF SMT1CPWL, _gInPulseWidth");
-    bitgrabber();
-
+void __interrupt(low_priority) INTERRUPT_InterruptManagerLow (void)
+{
+    // interrupt handler
+    if(PIE1bits.SMT1IE == 1 && PIR1bits.SMT1IF == 1)
+    {
+        SMT1_Overflow_ISR();
+    }
 }
-
 /**
  End of File
 */

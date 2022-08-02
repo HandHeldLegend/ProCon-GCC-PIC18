@@ -228,18 +228,18 @@ void applysnapback(void)
     // Set up our samples if the rate changes
     if (!snapback_sample_setup)
     {
-        x_samples_total = average_count * gConPollPacket[STICK_SX_PACKET];
-        y_samples_total = average_count * gConPollPacket[STICK_SY_PACKET];
+        x_samples_total = average_count * gPollPacket[STICK_SX_PACKET];
+        y_samples_total = average_count * gPollPacket[STICK_SY_PACKET];
         sb_old_ptr = 0;
         sb_new_ptr = average_count-1;
         snapback_sample_setup = TRUE;
-        x_sample_avg = gConPollPacket[STICK_SX_PACKET];
-        y_sample_avg = gConPollPacket[STICK_SY_PACKET];
+        x_sample_avg = gPollPacket[STICK_SX_PACKET];
+        y_sample_avg = gPollPacket[STICK_SY_PACKET];
                 
         for (uint8_t i = 0; i < average_count; i++)
         {
-            x_samples[i] = gConPollPacket[STICK_SX_PACKET];
-            y_samples[i] = gConPollPacket[STICK_SY_PACKET];
+            x_samples[i] = gPollPacket[STICK_SX_PACKET];
+            y_samples[i] = gPollPacket[STICK_SY_PACKET];
         }
     }
     // Our sample rate has been set up, apply averages accordingly
@@ -254,10 +254,10 @@ void applysnapback(void)
         if (sb_new_ptr > average_count-1) sb_new_ptr = 0;
         
         // First add the value of the new sample
-        x_samples_total += gConPollPacket[STICK_SX_PACKET];
-        x_samples[sb_new_ptr] = gConPollPacket[STICK_SX_PACKET];
-        y_samples_total += gConPollPacket[STICK_SY_PACKET];
-        y_samples[sb_new_ptr] = gConPollPacket[STICK_SY_PACKET];
+        x_samples_total += gPollPacket[STICK_SX_PACKET];
+        x_samples[sb_new_ptr] = gPollPacket[STICK_SX_PACKET];
+        y_samples_total += gPollPacket[STICK_SY_PACKET];
+        y_samples[sb_new_ptr] = gPollPacket[STICK_SY_PACKET];
         
         // increase the old sample ptr value
         sb_old_ptr +=1;
@@ -267,13 +267,13 @@ void applysnapback(void)
         x_sample_avg = fastdivide(x_samples_total, average_count);
         y_sample_avg = fastdivide(y_samples_total, average_count);
         
-        if ( gConPollPacket[STICK_SX_PACKET] > 128 || gConPollPacket[STICK_SX_PACKET] < 126)
+        if ( gPollPacket[STICK_SX_PACKET] > 128 || gPollPacket[STICK_SX_PACKET] < 126)
         {
-            gConPollPacket[STICK_SX_PACKET] = fastfilter(gConPollPacket[STICK_SX_PACKET], x_sample_avg, SettingData.x_snapback_strength);
+            gPollPacket[STICK_SX_PACKET] = fastfilter(gPollPacket[STICK_SX_PACKET], x_sample_avg, SettingData.x_snapback_strength);
         }
-        if ( gConPollPacket[STICK_SY_PACKET] > 128 || gConPollPacket[STICK_SY_PACKET] < 126)
+        if ( gPollPacket[STICK_SY_PACKET] > 128 || gPollPacket[STICK_SY_PACKET] < 126)
         {
-            gConPollPacket[STICK_SY_PACKET] = fastfilter(gConPollPacket[STICK_SY_PACKET], y_sample_avg, SettingData.y_snapback_strength);
+            gPollPacket[STICK_SY_PACKET] = fastfilter(gPollPacket[STICK_SY_PACKET], y_sample_avg, SettingData.y_snapback_strength);
         }
     }
     
@@ -455,11 +455,11 @@ void scansticks(void) {
                     tmpcenter--;
                     if (adc_read >= tmphigh)
                     {
-                        gConPollPacket[stickIdx+2] = 228U;
+                        gPollPacket[stickIdx+2] = 228U;
                     }
                     else
                     {
-                        gConPollPacket[stickIdx+2] = 129U + slinjim(adc_read - tmpcenter, tmphighm);
+                        gPollPacket[stickIdx+2] = 129U + slinjim(adc_read - tmpcenter, tmphighm);
                     }
                 }
                 else if (adc_read < tmpcenter - SettingData.deadZone)
@@ -468,16 +468,16 @@ void scansticks(void) {
                     tmpcenter--;
                     if (adc_read <= tmplow)
                     {
-                        gConPollPacket[stickIdx+2] = 28U;
+                        gPollPacket[stickIdx+2] = 28U;
                     }
                     else
                     {
-                        gConPollPacket[stickIdx+2] = 127U - slinjim(tmpcenter - adc_read, tmplowm);
+                        gPollPacket[stickIdx+2] = 127U - slinjim(tmpcenter - adc_read, tmplowm);
                     }
                 }
                 else
                 {
-                    gConPollPacket[stickIdx+2] = STICK_CENTER_GCC;
+                    gPollPacket[stickIdx+2] = STICK_CENTER_GCC;
                 }
 
             }

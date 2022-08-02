@@ -120,31 +120,20 @@ void main(void)
     // Main loop for running the controller function
     while (1)
     {
-        // check for incoming command
-        commandreader();
-        
-        // check if we need to send a response
-        // and send a bitbang'd response if we do
-        bytepush();
-        
-        // check if we need to do a cleanup
-        // this will reset all necessary
-        // parameters as well
-        bytecleanup();
         
         // if the check stick bit is set, scan the sticks
         // handle starting or stopping rumble before scanning sticks
-        if (gInStatus & (1 << 3))
+        if (0)
         {
             
             // check if rumble should be enables
-            if(gInPacket[2] == 1 && SettingData.rumbleData)
+            if(0 && SettingData.rumbleData)
             {
                 PORTBbits.RB4 = 1;
                 CCPR1H = 0xF0;
             }
             // if rumble byte = 0x02 then we should brake the rumble
-            else if (gInPacket[2] == 2 && SettingData.rumbleData)
+            else if (0 == 2 && SettingData.rumbleData)
             {
                 PORTBbits.RB4 = 1;
                 CCPR1H = 0x60;
@@ -164,7 +153,7 @@ void main(void)
         }
         
         // if the button check bit is set, scan the buttons
-        if (gInStatus & (1 << 2))
+        if (0)
         {
             checkbuttons();
         }

@@ -46,43 +46,44 @@
 // sending button and stick value updates
 // to the Gamecube/Wii/USB Adapter
 // each byte is explained below with bits for each item.
-volatile unsigned char gConPollPacket[8];
+volatile unsigned char gPollPacket[8];
 //byte 0 :: 0, 0, 0, START, Y, X, B, A
-
 //byte 1 :: 1, L-Digital, R-Digital, Z D-up, D-down, D-right, Dleft
-
 //byte 2 :: Analog stick x
-
 //byte 3 :: Analog stick y
-
 //byte 4 :: C stick x
-
 //byte 5 :: C stick y
-
 //byte 6 :: L trigger ANALOG
-
 //byte 7 :: R trigger ANALOG
 
-// This is the canned response we 
-volatile unsigned char gConProbeResponse[3];
+// This is the canned response we use for probe
+volatile unsigned char gProbeResponse[3];
 
-volatile unsigned char gConOriginResponse[10];
+// This is the canned response we use for origin
+volatile unsigned char gOriginResponse[10];
 
-volatile unsigned char gConOutByte;
-volatile unsigned char gConOutIdx;
+// Used as a placeholder to store the byte
+// we are pushing
+volatile unsigned char gOutByte;
 
-// Use this byte to count down how many bits left
-volatile unsigned char gConBitCounter;
-// Use this byte to count down how many bytes left
-volatile unsigned char gConByteCount;
-
+// Count down how many bytes left we have
+volatile unsigned char gOutBytesLeft;
 
 // Use this as a way to count down how many
-// bits until we have a full byte.
+// bits until we have a full byte sending data.
+volatile unsigned char gOutBitCounter;
+
+// Store incoming data
+volatile unsigned char gInByte;
+// store incoming rumble data
+volatile unsigned char gInRumble;
+// Use this byte to count down how many bits left
+// coming IN.
 volatile unsigned char gInBitCounter;
- 
-// Byte array for storing incoming bytes.
-volatile unsigned char gInPacket[6];
+// Use this byte to count down how many bytes left
+// coming IN
+volatile unsigned char gInBytesLeft;
+
 
 // This holds the pointer to the current byte that is coming in
 // Using permanently is unreliable, so we should store it in
@@ -114,41 +115,22 @@ volatile unsigned char gInStatus;
 // 7 6 5 4 3 2 1 0
 // a b c d e f g h
 //
-// a - stop bit received flag (command received)
-#define STATUS_STOP_RECEIVED    (1 << 7)
-// b - command interpreted flag
-#define STATUS_CMD_INTERP       (1 << 6)
-// c - request cleanup flag
-#define STATUS_REQUEST_CLEANUP  (1 << 5)
+// a - Command Finished Receiving
+// b - Got Poll Flag 2nd byte
+// c - Got Poll Flag 3rd byte
+// d - 
+// e - 
+// f - 
+// g - 
+// h - system needs sync
 
-// d - sync bit received (tells us the frequency of incoming bits)
-#define STATUS_SYNC_BIT_GOT     (1 << 4)
+// Use an an FSR0 pointer because
+volatile unsigned char gFSR0ptr;
 
-// e - sticks read enable flag
-#define STATUS_READ_STICKS      (1 << 3)
-// f - buttons read enable flag
-#define STATUS_READ_BUTTON      (1 << 2)
-// g - button read first loop flag
-#define STATUS_FIRST_LOOP_OK    (1 << 1)
-// h - desync detected flag
-#define STATUS_DESYNCED         (1)
-
-// This is the first byte that comes in.
-// It tells the controller which command to respond to.
-volatile unsigned char gInCommandByte;
-
-// Set command bits for our reference.
-volatile unsigned char gCommandOriginMask; // Actual command 0x41 for asking for origin/calibration
-volatile unsigned char gCommandPollMask; // Actual command 0x40 for asking for a button/stick updates
-
-// Used to keep track of polls so we can ensure
-// we've sampled enough data to ensure
-// that we have a valid pulse length to 
-// differentiate between high/low pulses
-volatile unsigned char gSamplesLeft;
-
-// Keep track of highest value sample taken.
-volatile unsigned char gHighestSample;
+// Use this to sync up our joybus line
+volatile unsigned char gSyncCycles = 64;
+// Keep track of the largest pulse found
+volatile unsigned char gLargestPulse = 0;
 
 void gcdatainit(void);
 

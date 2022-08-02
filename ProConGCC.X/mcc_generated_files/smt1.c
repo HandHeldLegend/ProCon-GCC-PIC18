@@ -77,15 +77,18 @@ void SMT1_Initialize(void)
     // SMT1SSEL SMT1SIGPPS; 
     SMT1SIG = 0x00;
 
-    // SMT1PR 255; 
-    SMT1PRU = 0xFF;
+    // SMT1PR 0; 
+    SMT1PRU = 0x00;
 
-    // SMT1PR 255; 
-    SMT1PRH = 0xFF;
+    // SMT1PR 0; 
+    SMT1PRH = 0x00;
 
-    // SMT1PR 255; 
-    SMT1PRL = 0xFF;
+    // SMT1PR 200; 
+    SMT1PRL = 0xC8;
 
+    // Enabling SMT1 overflow interrupt.
+    PIE1bits.SMT1IE = 1;
+    
     // Enabling SMT1 pulse width acquisition interrupt.
     PIE1bits.SMT1PWAIE = 1;
 
@@ -189,10 +192,11 @@ void SMT1_PR_ACQ_ISR(void)
     
 }
 
-
-void SMT1_PW_ACQ_ISR(void)
+void SMT1_Overflow_ISR(void)
 {
     
+    // Disabling SMT1 overflow interrupt flag bit.
+    PIR1bits.SMT1IF = 0;
 }
 /**
  End of File

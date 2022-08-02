@@ -55,12 +55,7 @@
 volatile uint8_t xboxmode;
 volatile uint8_t stickcalibration;
 
-extern unsigned char bytepush(void);
-extern unsigned char syncsetter(void);
-extern unsigned char bitgrabber(void);
-extern unsigned char bytecleanup(void);
-extern unsigned char commandreader(void);
-
+extern unsigned char joybus(void);
 
 #endif	/* MAIN_H */
 
