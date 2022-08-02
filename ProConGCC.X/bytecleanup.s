@@ -34,7 +34,8 @@ _bytecleanup:
     CLRF	BANKMASK(_gInStatus), 1	    ; Clear the communication status byte
     CLRF	BANKMASK(_gConOutByte), 1	    ; Clear the outgoing byte container
     CLRF	BANKMASK(_gConOutIdx), 1	    ; Clear the outgoing byte index pointer
-    CLRF	BANKMASK(_gConByteCount), 1   ; Clear the outgoing byte counter
+    MOVLW	0x5				; Put 5 in the wreg
+    MOVWF	BANKMASK(_gConByteCount), 1	; Set byte count to 5 so we can count down
     CLRF	BANKMASK(_gInCommandByte), 1  ; Clear the incoming command bit
     CLRF	BANKMASK(_gInPulseWidth), 1   ; Clear the pulse width counter
 

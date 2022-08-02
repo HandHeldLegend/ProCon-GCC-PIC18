@@ -82,7 +82,7 @@ volatile unsigned char gConByteCount;
 volatile unsigned char gInBitCounter;
  
 // Byte array for storing incoming bytes.
-volatile unsigned char gInPacket[4];
+volatile unsigned char gInPacket[6];
 
 // This holds the pointer to the current byte that is coming in
 // Using permanently is unreliable, so we should store it in

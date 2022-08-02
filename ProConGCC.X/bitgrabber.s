@@ -6,6 +6,7 @@ psect   barfunc,local,class=CODE,reloc=2 ; PIC18
 GLOBAL	_gInBitCounter	; Counts the bits down from 8
 GLOBAL	_gInPacket	; This is an array for the 3 possible incoming bytes. Reserved 4th slot for overflow protecc.
 GLOBAL	_gInPacketIdx	; A storage space for a pointer to the current byte in the gInPacket array
+GLOBAL	_gConByteCount	; Keep track of byte count
 
 GLOBAL	_gInStatus	; A single byte which stores some important status data
 GLOBAL	_gLowThreshold	; The threshold which determines a low from high pulse
@@ -26,6 +27,11 @@ _bitgrabber:
     BCF	    PIR1, 7, 1
     
     BANKSEL(_gInPacketIdx)
+    
+    MOVLW   0x5		 ; Move 5 into WREG
+    CPFSLT  _gInPacketIdx
+    
+    
     
     MOVFF   BANKMASK(_gInPacketIdx), FSR0	; Copy the address into FSR0 for indirect addressing via INDF0
     
@@ -51,6 +57,9 @@ _bitgrabber:
 
 	; Set up the next byte
 	INCF	BANKMASK(_gInPacketIdx), 1, 1	; Increment our address pointer to get the next byte
+	DCFSNZ	BANKMASK(_gConByteCount, 1, 1	; Decrement byte counter. Skip if NOT zero
+	GOTO	COMMANDCOMPLETE			; If we do this, we have 5 bytes which is an overflow!
+	
 	BSF	BANKMASK(_gInBitCounter), 3, 1	; Set the bit counter to 0x8 by flagging one byte
 	
 	RETURN				; We're done until the next bit read. Return. No cleanup yet.

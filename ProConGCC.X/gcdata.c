@@ -49,6 +49,7 @@ volatile unsigned char gConOutIdx;
 // Use this byte to count down how many bits left
 volatile unsigned char gConBitCounter;
 // Use this byte to count down how many bytes left
+// AND use it to count how many bytes we've received
 volatile unsigned char gConByteCount;
 
 
@@ -57,7 +58,7 @@ volatile unsigned char gConByteCount;
 volatile unsigned char gInBitCounter;
  
 // Byte array for storing incoming bytes.
-volatile unsigned char gInPacket[4] = {0,0,0,0};
+volatile unsigned char gInPacket[6] = {0,0,0,0,0,0};
 
 // This holds the pointer to the current byte that is coming in
 // Using permanently is unreliable, so we should store it in

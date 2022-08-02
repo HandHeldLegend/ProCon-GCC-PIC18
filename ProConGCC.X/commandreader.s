@@ -40,6 +40,8 @@ _commandreader:
     BTFSS   _gInStatus, 7, 1	; Byte 7 in the status is the stop bit flag
     RETURN			; Return if there's no command to read
 
+    ; Clear our byte counter
+    CLRF    BANKMASK(_gConByteCount), 1 
     ; WE WILL CLEAN UP LATER, JUST GET ON TO SENDING OUT THE RIGHT PACKS ASAP
     ; Since the most high priority (performance-wise) command will be polling
     ; which is where our button inputs are sent back, we should 100% check for this
