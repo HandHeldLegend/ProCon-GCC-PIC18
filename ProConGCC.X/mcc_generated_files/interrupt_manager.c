@@ -67,10 +67,12 @@ void  INTERRUPT_Initialize (void)
 
 void __interrupt() INTERRUPT_InterruptManagerHigh (void)
 {
+    joybus();
+}
 
 void __interrupt(low_priority) INTERRUPT_InterruptManagerLow (void)
 {
-    // interrupt handler
+    // interrupt handler for SMT overflow
     if(PIE1bits.SMT1IE == 1 && PIR1bits.SMT1IF == 1)
     {
         SMT1_Overflow_ISR();

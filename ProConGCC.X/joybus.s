@@ -69,6 +69,12 @@ _joybus:
     RLNCF   BANKMASK(_gInByte), 1, 1	
     BCF	    BANKMASK(_gInByte), 0, 1	
     
+    ; Check if we are on our first bit
+    ; skip if we ain't and we can keep measuring
+    ; per normal.
+    BTFSC   BANKMASK(_gInStatus), 1, 1
+    GOTO    FIRSTBIT
+    
     ; This compares gLowThreshold to the captured pulse width.
     ; If the low threshold is more than the pulse width, the pulse was short
     ; meaning we have a HIGH bit.
@@ -99,7 +105,28 @@ _joybus:
 	    
 	    ; Return
 	    RETURN				
+
+    ; This is for our first bit and we can keep
+    ; track of the pulse width nonsense
+    FIRSTBIT:
+	; At this point, WREG is
+	; still loaded with the actual
+	; pulse width. Subtract 8 from WREG.
 	
+	; First copy the pulse width to gLowThreshold
+	MOVWF	BANKMASK(_gLowThreshold), 1
+	; Move literal 8 to WREG
+	MOVLW	0x8
+	; Subtract 8 from the pulse and store it
+	; as the new 'low' threshold.
+	SUBWF	BANKMASK(_gLowThreshold), 1, 1
+	
+	; Clear the status flag indicating
+	; that we have our first sync bit.
+	BCF	BANKMASK(_gInStatus), 1, 1
+	
+	RETURN
+	    
     POLLSECOND:
 	; Check if we're getting a poll 3rd (final) byte.
 	; Skip if we aren't.

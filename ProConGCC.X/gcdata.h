@@ -121,16 +121,11 @@ volatile unsigned char gInStatus;
 // d - 
 // e - 
 // f - 
-// g - 
+// g - first bit width measured
 // h - system needs sync
 
 // Use an an FSR0 pointer because
 volatile unsigned char gFSR0ptr;
-
-// Use this to sync up our joybus line
-volatile unsigned char gSyncCycles = 64;
-// Keep track of the largest pulse found
-volatile unsigned char gLargestPulse = 0;
 
 void gcdatainit(void);
 

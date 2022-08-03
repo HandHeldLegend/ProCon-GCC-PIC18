@@ -36,9 +36,6 @@ volatile unsigned char gInStatus;
 
 volatile unsigned char gFSR0ptr = 0x0;
 
-volatile unsigned char gSyncCycles = 64;
-volatile unsigned char gLargestPulse = 0;
-
 void gcdatainit(void)
 {   
     gLowThreshold = 50; 
