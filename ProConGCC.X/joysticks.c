@@ -365,8 +365,7 @@ void scansticks(void) {
                     case 3:
                         // Check if we're calibrating snapback
                         applysnapback();
-                        asm("BCF _gInStatus, 3, 0"); // Clear the stick read enable flag
-                        asm("BSF _gInStatus, 2, 0"); // Set the button read enable flag
+                        gPollStatus = POLL_STATUS_BUTTONS_FIRST;
                         initiatedRead = FALSE;       // Reset the bool to initialize a read
                         clearRead = FALSE;
                         

@@ -121,7 +121,7 @@ void main(void)
     
     while (1)
     {
-        if ( (gInBitCounter == 9) && (gInStatus == 0x3))
+        if ( (gInBitCounter == 9) && (gInStatus == 0x3) )
         {
             // Origin command
             INTCON0bits.GIEH = 0;
@@ -131,11 +131,13 @@ void main(void)
             gInStatus = 0;
             SMT1STATbits.CPWUP = 0x1;
             asm("NOP");
+            gPollStatus = POLL_STATUS_NULL;
             INTCON0bits.GIEH = 1;
             SMT1CON1bits.SMT1GO = 1;
         }
         else if ( (gInBitCounter == 9) && (gInStatus == 0x0) )
         {
+            // Handle 0x00 probe response
             INTCON0bits.GIEH = 0;
             SMT1CON1bits.SMT1GO = 0;
             // Probe command
@@ -144,6 +146,7 @@ void main(void)
             gInStatus = 0;
             SMT1STATbits.CPWUP = 0x1;
             asm("NOP");
+            gPollStatus = POLL_STATUS_NULL;
             INTCON0bits.GIEH = 1;
             SMT1CON1bits.SMT1GO = 1;  
         }
@@ -157,6 +160,7 @@ void main(void)
             gInStatus = 0;
             SMT1STATbits.CPWUP = 0x1;
             asm("NOP");
+            gPollStatus = POLL_STATUS_STICKS;
             INTCON0bits.GIEH = 1;
             SMT1CON1bits.SMT1GO = 1;
         }
@@ -164,40 +168,36 @@ void main(void)
         
         // if the check stick bit is set, scan the sticks
         // handle starting or stopping rumble before scanning sticks
-        if (0)
+        if (gPollStatus != POLL_STATUS_NULL)
         {
             
             // check if rumble should be enables
-            if(0 && SettingData.rumbleData)
+            if(gRumbleStatus == RUMBLE_STATUS_EN && SettingData.rumbleData)
             {
                 PORTBbits.RB4 = 1;
                 CCPR1H = 0xF0;
             }
-            // if rumble byte = 0x02 then we should brake the rumble
-            else if (0 == 2 && SettingData.rumbleData)
-            {
-                PORTBbits.RB4 = 1;
-                CCPR1H = 0x60;
-            }
-            // otherwise turn rumble OFF
             else
             {
                 PORTBbits.RB4 = 0;
             }
             
-            SMT1CON1bits.SMT1GO = 0x1;
-            // scan the sticks
-            scansticks();
+            if ( gPollStatus == POLL_STATUS_STICKS ) 
+            {
+                scansticks();
+            }
+                
+            
+            if ( gPollStatus == POLL_STATUS_BUTTONS_FIRST || gPollStatus == POLL_STATUS_BUTTONS_LOOP)    
+            {
+                checkbuttons();
+            }
+            
             // check for setting changes
             livesettings();
             
         }
         
-        // if the button check bit is set, scan the buttons
-        if (0)
-        {
-            checkbuttons();
-        }
     }
 }
 /**

@@ -51,7 +51,6 @@
       <itemPath>joysticks.c</itemPath>
       <itemPath>button.c</itemPath>
       <itemPath>settings.c</itemPath>
-      <itemPath>joybus.s</itemPath>
       <itemPath>sendpoll.s</itemPath>
       <itemPath>sendprobe.s</itemPath>
       <itemPath>sendorigin.s</itemPath>

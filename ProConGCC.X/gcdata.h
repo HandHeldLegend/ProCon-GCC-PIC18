@@ -41,6 +41,14 @@
 #define STICK_CX_PACKET 4
 #define STICK_CY_PACKET 5
 
+#define POLL_STATUS_NULL            0x0
+#define POLL_STATUS_STICKS          0x1
+#define POLL_STATUS_BUTTONS_FIRST   0x2
+#define POLL_STATUS_BUTTONS_LOOP    0x3
+
+#define RUMBLE_STATUS_OFF           0x0
+#define RUMBLE_STATUS_EN            0x1
+#define RUMBLE_STATUS_BRAKE         0x2
 
 // This is the packet we use when we are
 // sending button and stick value updates
@@ -73,8 +81,6 @@ volatile unsigned char gOutBytesLeft;
 // bits until we have a full byte sending data.
 volatile unsigned char gOutBitCounter;
 
-// Store incoming data
-volatile unsigned char gInBytes[4];
 // store incoming rumble data
 volatile unsigned char gInRumble;
 // Use this byte to count down how many bits left
@@ -107,27 +113,17 @@ volatile unsigned char gInPulseWidth;
 // incoming packet to handle differences in incoming transmission speed.
 volatile unsigned char gLowThreshold; 
 
-// Byte for various status features
-// 0 means not happened yet
-// 1 means this happened
-// Default is cleanup requested to initialize everything.
+// Byte for keeping track of
+// which command is received.
 volatile unsigned char gInStatus; 
-// 7 6 5 4 3 2 1 0
-// a b c d e f g h
-//
-// a - We're polling
-// b - 
-// c - 
-// d - 
-// e - 
-// f - 
-// g - first bit width measured
-// h - system needs sync
+
+// Keep track of rumble being on.
 volatile unsigned char gRumbleStatus;
 
+// Keep track of current polling cycle.
+volatile unsigned char gPollStatus;
 
-// Use an an FSR0 pointer because
-volatile unsigned char gFSR0ptr;
+volatile unsigned char gSynced;
 
 void gcdatainit(void);
 

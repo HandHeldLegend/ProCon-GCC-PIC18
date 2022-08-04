@@ -151,6 +151,7 @@ void livesettings(void)
         // This means we need to save a change
         else if (setting_marker == SETTING_SAVE_ALL)
         {
+            INTCON0bits.GIEH = 0;
             SMT1CON1bits.SMT1GO = 0x0;
             setstickmultipliers();
             savesettings();
@@ -158,8 +159,25 @@ void livesettings(void)
             loadsettings();
             __delay_us(450);
             setting_marker = 0x0;
-            gInStatus = 0x01;
-            SMT1CON1bits.SMT1GO = 0x1;
+            
+            PIR1bits.SMT1PWAIF = 0;
+            SMT1STATbits.CPRUP = 0x1;
+            SMT1STATbits.CPWUP = 0x1;
+            asm("NOP");
+            PIE1bits.SMT1PWAIE = 1;
+            
+            T6CONbits.TMR6ON = 0;
+
+            gInBitCounter = 0;
+            gInStatus = 0;
+            gPollStatus = POLL_STATUS_NULL;
+            gRumbleStatus = RUMBLE_STATUS_OFF;
+            gSynced = 0;
+            
+            TMR6_Initialize();
+            INTCON0bits.GIEH = 1;
+            SMT1CON1bits.SMT1GO = 1;
+            T6CONbits.TMR6ON = 1;
         }
     }
 }

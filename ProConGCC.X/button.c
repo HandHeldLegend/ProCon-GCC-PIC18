@@ -15,7 +15,7 @@ void checkbuttons(void)
     //INTCON0bits.GIEH = 0;
     // END DEBUG
     
-    if (!(gInStatus & (1 << 1))) // Check if first button has not been read
+    if ( gPollStatus == POLL_STATUS_BUTTONS_FIRST ) // Check if first button has not been read
     {
         // Zero the outgoing button status bytes
         // Since we are reading a fresh state.
@@ -23,7 +23,7 @@ void checkbuttons(void)
         gPollPacket[BUTTON_PORT_B] = 0x80; // leftmost bit always 1
         gPollPacket[TRIGGER_PORT_L] = 0x0;
         gPollPacket[TRIGGER_PORT_R] = 0x0;
-        asm("BSF    _gInStatus, 1, 0"); // Set the status flag that we read the first button phase
+        gPollStatus = POLL_STATUS_BUTTONS_LOOP;
     }
     
     // We or/equals the outgoing port bits against the 

@@ -65,7 +65,6 @@ void  INTERRUPT_Initialize (void)
 
 
 }
-uint8_t synced = 0x0;
 
 void __interrupt() INTERRUPT_InterruptManagerHigh (void)
 {
@@ -76,7 +75,7 @@ void __interrupt() INTERRUPT_InterruptManagerHigh (void)
         PIR1bits.SMT1PWAIF = 0;
         TMR6 = 0;
         
-        if (synced)
+        if (gSynced)
         {
             asm("BANKSEL(_gPulseWidth)");
             asm("NOP");
@@ -107,18 +106,14 @@ void __interrupt() INTERRUPT_InterruptManagerHigh (void)
                     PIE9bits.TMR6IE = 1;
                     gInBitCounter = 0;
                     gInStatus = 0;
-                    synced = 0;
+                    gPollStatus = POLL_STATUS_NULL;
+                    gRumbleStatus = RUMBLE_STATUS_OFF;
+                    gSynced = 0;
                     
                     break;
                 default:
                     break;
             }
-            
-            /*
-            asm("BANKSEL(INTCON0)");
-            asm("BTFSC _gInStatus, 7, 0");
-            asm("BCF	INTCON0, 7, 1");
-            */
             
             asm("BANKSEL(_gInBitCounter)");
             asm("INCF _gInBitCounter, 1, 1");
@@ -129,7 +124,7 @@ void __interrupt() INTERRUPT_InterruptManagerHigh (void)
     if(PIE9bits.TMR6IE == 1 && PIR9bits.TMR6IF == 1)
     {
         PIR9bits.TMR6IF = 0;
-        if (!synced)
+        if (!gSynced)
         {
             SMT1CON1bits.SMT1GO = 0;
             asm("NOP");
@@ -137,7 +132,7 @@ void __interrupt() INTERRUPT_InterruptManagerHigh (void)
             SMT1STATbits.CPRUP = 0x1;
             SMT1STATbits.CPWUP = 0x1;
             asm("NOP");
-            synced = 0x1;
+            gSynced = 0x1;
             PIE9bits.TMR6IE = 0;
             SMT1CON1bits.SMT1GO = 1;
         }
