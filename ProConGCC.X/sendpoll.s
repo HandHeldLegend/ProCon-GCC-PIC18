@@ -71,6 +71,7 @@ _sendpoll:
 	    NOP
 	    NOP
 	    NOP
+	    NOP
 	    BSF	    PORTB, 2	; Set port to HIGH
 	    NOP
 	    NOP
@@ -121,6 +122,8 @@ _sendpoll:
 	    GOTO    endLowWrite
 	    NOP
 	    NOP
+	    NOP
+	    NOP
 	    NOP			
 	    NOP			
 	    NOP
@@ -163,6 +166,9 @@ _sendpoll:
 	    NOP
 	    BSF	    PORTB, 2	; Set port to HIGH
 	    NOP
+	    NOP
+	    NOP
+	    NOP
 	    NOP			
 	    NOP
 	    NOP
@@ -185,12 +191,6 @@ _sendpoll:
 	    GOTO    newByte			
 
 	stopBitWrite:
-	    NOP
-	    NOP
-	    NOP
-	    NOP
-	    NOP
-	    NOP
 	    NOP
 	    NOP
 	    NOP
@@ -329,7 +329,9 @@ _sendpoll:
 	    NOP
 	    NOP
 	    NOP
-	    BSF	    PORTB, 2	; Set port to HIGH	
+	    BSF	    PORTB, 2	; Set port to HIGH
+	    NOP
+	    NOP
 	    NOP
 	    NOP
 	    GOTO    getNextByte

@@ -12,7 +12,7 @@
 // Main Settings (save 50 bytes for settings)
 Settings SettingData __at(MEM_SETTINGS);
 
-#define MAGIC_KEY    0x4A
+#define MAGIC_KEY    0x4B
 
 void setdefaultsettings(void)
 {

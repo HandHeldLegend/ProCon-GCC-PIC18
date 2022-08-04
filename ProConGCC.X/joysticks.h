@@ -11,21 +11,8 @@
 #include <stdlib.h>
 
 #define STICK_CENTER_GCC                127 // Default center value for gamecube
-#define STICK_SNAPBACK_ACTIVATE         85
-#define STICK_SNAPBACK_ACTIVATE_POS     STICK_CENTER_GCC + STICK_SNAPBACK_ACTIVATE
-#define STICK_SNAPBACK_ACTIVATE_NEG     STICK_CENTER_GCC - STICK_SNAPBACK_ACTIVATE
 
-#define STICK_SNAPBACK_OFF              40
-#define STICK_SNAPBACK_OFF_POS          STICK_CENTER_GCC + STICK_SNAPBACK_OFF
-#define STICK_SNAPBACK_OFF_NEG          STICK_CENTER_GCC - STICK_SNAPBACK_OFF
-
-#define STICK_SNAPBACK_SPEEDTHRESH      5
-
-// How many ticks to nullify negative values
-#define STICK_SNAP_TICKS                10
-
-#define TIMER_REG                       TMR6
-#define TIMER_OF                        PIR9bits.TMR6IF
+#define AVERAGE_COUNT   16
 
 // Non-allocated memory items just for this class
 volatile uint8_t stickIdx        __at(MEM_STICKIDX);

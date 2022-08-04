@@ -25,8 +25,8 @@ volatile uint16_t conversion __at(MEM_ADC_CONV);
 
 uint16_t x_samples_total = 0x00;
 uint16_t y_samples_total = 0x00;
-uint8_t x_samples[22];
-uint8_t y_samples[22];
+uint8_t x_samples[AVERAGE_COUNT];
+uint8_t y_samples[AVERAGE_COUNT];
 uint8_t sb_old_ptr = 0;
 uint8_t sb_new_ptr = 22;
 uint8_t snapback_sample_setup = FALSE;
@@ -47,26 +47,9 @@ void joysticksetup(void)
     tmplowm = 0x00;
 }
 
-int     samplerate = 0;
-uint8_t average_count = 0;
+uint8_t average_count = AVERAGE_COUNT;
 // Controls how much snapback reduction filter is applied
 uint8_t fader_val = 0;
-
-void sampleratecheck(void)
-{
-    int t = (int) TMR6;
-    TMR6 = 0;
-    
-    if (abs(t-samplerate) >= 5)
-    {
-        samplerate = t;
-        if (samplerate <= 13) average_count = 22;
-        else if (PIR9bits.TMR6IF) average_count = 1;
-        else average_count = 288/samplerate;
-        snapback_sample_setup = FALSE;
-    }
-    PIR9bits.TMR6IF = 0;
-}
 
 uint8_t fastfilter(uint8_t original, uint8_t filtered, uint8_t fader)
 {
@@ -222,8 +205,6 @@ uint8_t fastdivide(uint16_t input, uint8_t divisor)
 uint8_t changeprime = 0x0;
 void applysnapback(void)
 {
-    // Check for sample rate change
-    sampleratecheck();
 
     // Set up our samples if the rate changes
     if (!snapback_sample_setup)
