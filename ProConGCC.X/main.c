@@ -164,6 +164,27 @@ void main(void)
             INTCON0bits.GIEH = 1;
             SMT1CON1bits.SMT1GO = 1;
         }
+        else if ( gInBitCounter >= 9 && gInStatus != 0x1 )
+        {
+            PIR1bits.SMT1PWAIF = 0;
+            SMT1STATbits.CPRUP = 0x1;
+            SMT1STATbits.CPWUP = 0x1;
+            asm("NOP");
+            PIE1bits.SMT1PWAIE = 1;
+            
+            T6CONbits.TMR6ON = 0;
+
+            gInBitCounter = 0;
+            gInStatus = 0;
+            gPollStatus = POLL_STATUS_NULL;
+            gRumbleStatus = RUMBLE_STATUS_OFF;
+            gSynced = 0;
+            
+            TMR6_Initialize();
+            INTCON0bits.GIEH = 1;
+            SMT1CON1bits.SMT1GO = 1;
+            T6CONbits.TMR6ON = 1;
+        }
         
         
         // if the check stick bit is set, scan the sticks
