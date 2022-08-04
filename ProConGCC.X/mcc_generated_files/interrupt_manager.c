@@ -78,18 +78,20 @@ void __interrupt() INTERRUPT_InterruptManagerHigh (void)
         if (gSynced)
         {
             asm("BANKSEL(_gPulseWidth)");
-            asm("NOP");
             switch(gInBitCounter)
             {
+                case 0:
                 case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                    asm("RLNCF _gInStatus, 1, 1");
                     asm("MOVF   _gPulseWidth, 0, 1");
                     asm("CPFSLT  _gLowThreshold, 1");
                     asm("BSF _gInStatus, 0, 1");
-                    break;
-                case 7:
-                    asm("MOVF   _gPulseWidth, 0, 1");
-                    asm("CPFSLT  _gLowThreshold, 1");
-                    asm("BSF _gInStatus, 1, 1");
                     break;
                 case 23:
                     asm("MOVF   _gPulseWidth, 0, 1");
@@ -118,7 +120,6 @@ void __interrupt() INTERRUPT_InterruptManagerHigh (void)
                     INTCON0bits.GIEH = 1;
                     SMT1CON1bits.SMT1GO = 1;
                     T6CONbits.TMR6ON = 1;
-                    
                     break;
                 default:
                     break;

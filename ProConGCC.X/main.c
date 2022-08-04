@@ -121,7 +121,21 @@ void main(void)
     
     while (1)
     {
-        if ( (gInBitCounter == 9) && (gInStatus == 0x3) )
+        if ( (gInBitCounter == 9) && (gInStatus == 0x41) )
+        {
+            // Origin command
+            INTCON0bits.GIEH = 0;
+            SMT1CON1bits.SMT1GO = 0;
+            sendorigin();
+            gInBitCounter = 0;
+            gInStatus = 0;
+            SMT1STATbits.CPWUP = 0x1;
+            asm("NOP");
+            gPollStatus = POLL_STATUS_NULL;
+            INTCON0bits.GIEH = 1;
+            SMT1CON1bits.SMT1GO = 1;
+        }
+        else if ( gInBitCounter == 25 )
         {
             // Origin command
             INTCON0bits.GIEH = 0;
@@ -150,7 +164,22 @@ void main(void)
             INTCON0bits.GIEH = 1;
             SMT1CON1bits.SMT1GO = 1;  
         }
-        else if ( gInBitCounter == 25 && gInStatus == 0x1 )
+        else if ( (gInBitCounter == 9) && (gInStatus == 0xFF) )
+        {
+            // Handle 0xFF probe response
+            INTCON0bits.GIEH = 0;
+            SMT1CON1bits.SMT1GO = 0;
+            // Probe command
+            sendprobe();
+            gInBitCounter = 0;
+            gInStatus = 0;
+            SMT1STATbits.CPWUP = 0x1;
+            asm("NOP");
+            gPollStatus = POLL_STATUS_NULL;
+            INTCON0bits.GIEH = 1;
+            SMT1CON1bits.SMT1GO = 1;  
+        }
+        else if ( gInBitCounter == 25 && gInStatus == 0x40 )
         {
             // Poll command
             INTCON0bits.GIEH = 0;
@@ -164,7 +193,7 @@ void main(void)
             INTCON0bits.GIEH = 1;
             SMT1CON1bits.SMT1GO = 1;
         }
-        else if ( gInBitCounter >= 9 && gInStatus != 0x1 )
+        else if ( (gInBitCounter > 9) && !(gInStatus & 0x40) )
         {
             PIR1bits.SMT1PWAIF = 0;
             SMT1STATbits.CPRUP = 0x1;
