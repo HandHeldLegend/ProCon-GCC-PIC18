@@ -25,19 +25,21 @@ volatile unsigned char gOutByte;
 volatile unsigned char gOutBytesLeft = 0;
 volatile unsigned char gOutBitCounter = 8;
 
-volatile unsigned char gInByte = 0x0;
+volatile unsigned char gInBytes[4];
 volatile unsigned char gInRumble = 0x0;
-volatile unsigned char gInBitCounter = 8;
+volatile unsigned char gInBitCounter = 0;
 volatile unsigned char gInBytesLeft = 1;
 
 volatile unsigned char gPulseWidth;
-volatile unsigned char gLowThreshold = 50; 
-volatile unsigned char gInStatus; 
+volatile unsigned char gLowThreshold = 100; 
+volatile unsigned char gInStatus = 0x0;
+volatile unsigned char gRumbleStatus = 0x0;
 
 volatile unsigned char gFSR0ptr = 0x0;
 
 void gcdatainit(void)
 {   
-    gLowThreshold = 50; 
+    gFSR0ptr = &gInBytes;
+    gLowThreshold = 95; 
 }
 

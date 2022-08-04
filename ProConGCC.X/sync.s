@@ -15,6 +15,8 @@
 psect   barfunc,local,class=CODE,reloc=2
 
 global _gInStatus
+global _gInBytes
+global _gFSR0ptr
  
 global _sync ; extern of bar function goes in the C source file
 _sync:
@@ -25,30 +27,47 @@ _sync:
     ; between packets. This is when we should start
     ; the communication process. 
     
-    BANKSEL(PIE1)
+    BANKSEL(PIR1)
     ; Check if overflow interrupt is enabled.
     ; for SMT
-    BTFSC   PIE1, 5, 1
+    BTFSS   PIE1, 5, 1
     ; Skip if not enabled.
     RETURN
     
-    ; Clear the interrupt enable
-    BCF	    PIE1, 5, 1
-    
     BANKSEL(PIR1)
     ; Check if overflow flag was set
-    BTFSC   PIR1, 5, 1
+    BTFSS   PIR1, 5, 1
     ; Skip if interrupt flag not set.
     RETURN
     
+    ; Clear the interrupt flag for width acquire
+    BCF	    PIR1, 7, 1
+    
+    BANKSEL(PIE1)
+    ; Clear the interrupt enable
+    BCF	    PIE1, 5, 1
+    BANKSEL(PIR1)
     ; Clear the interrupt flag
+    
     BCF	    PIR1, 5, 1
     
     BANKSEL(_gInStatus)
-    ; Clear the status flag indicating
+    ; Set the status flag indicating
     ; that we have synced up. We can 
     ; safely assume the next pulse will
     ; be the beginning of a new packet.
-    BCF	    BANKMASK(_gInStatus), 0, 1
+    BSF	    BANKMASK(_gInStatus), 0, 1
+    MOVLW   BANKMASK(_gInBytes)
+    MOVWF   BANKMASK(_gFSR0ptr), 1
+    
+    BANKSEL(PIE1)
+    
+    ; Enable pulse width interrupt
+    BSF	    PIE1, 7, 1
+    BCF	    PIR1, 7, 1
+    
+    
+    
+    RETURN
 
     

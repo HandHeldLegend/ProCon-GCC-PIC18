@@ -557,22 +557,6 @@ uint32_t SMT1_GetTimerValue(void);
 */
 void SMT1_PW_ACQ_ISR(void);
 
-/**
-  @Summary
-    Implements Counter Overflow Interrupt ISR.
-
-  @Description
-    This routine is used to implement the Counter Overflow Interrupt ISR for 
-    the interrupt-driven implementations.
-
-  @Returns
-    None
-
-  @Param
-    None
-*/
-void SMT1_Overflow_ISR(void);
-
 #ifdef __cplusplus  // Provide C++ Compatibility
 
     }

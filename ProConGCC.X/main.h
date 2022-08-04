@@ -55,7 +55,9 @@
 volatile uint8_t xboxmode;
 volatile uint8_t stickcalibration;
 
-extern unsigned char joybus(void);
+extern unsigned char sendpoll(void);
+extern unsigned char sendprobe(void);
+extern unsigned char sendorigin(void);
 
 #endif	/* MAIN_H */
 

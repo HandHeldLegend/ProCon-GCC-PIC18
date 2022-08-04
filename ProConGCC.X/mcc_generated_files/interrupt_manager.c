@@ -48,6 +48,7 @@
 
 #include "interrupt_manager.h"
 #include "mcc.h"
+#include "../gcdata.h"
 
 void  INTERRUPT_Initialize (void)
 {
@@ -56,28 +57,94 @@ void  INTERRUPT_Initialize (void)
 
     // Assign peripheral interrupt priority vectors
 
+    // TMRI - high priority
+    IPR9bits.TMR6IP = 1;
+
     // SMTPWAI - high priority
     IPR1bits.SMT1PWAIP = 1;
 
 
-    // SMTI - low priority
-    IPR1bits.SMT1IP = 0;    
-
 }
+uint8_t synced = 0x0;
 
 void __interrupt() INTERRUPT_InterruptManagerHigh (void)
 {
-    joybus();
-}
-
-void __interrupt(low_priority) INTERRUPT_InterruptManagerLow (void)
-{
-    // interrupt handler for SMT overflow
-    if(PIE1bits.SMT1IE == 1 && PIR1bits.SMT1IF == 1)
+    asm("MOVFF   SMT1CPWL, _gPulseWidth");
+   // interrupt handler
+    if(PIE1bits.SMT1PWAIE == 1 && PIR1bits.SMT1PWAIF == 1)
     {
-        SMT1_Overflow_ISR();
+        PIR1bits.SMT1PWAIF = 0;
+        TMR6 = 0;
+        
+        if (synced)
+        {
+            asm("BANKSEL(_gPulseWidth)");
+            asm("NOP");
+            switch(gInBitCounter)
+            {
+                case 1:
+                    asm("MOVF   _gPulseWidth, 0, 1");
+                    asm("CPFSLT  _gLowThreshold, 1");
+                    asm("BSF _gInStatus, 0, 1");
+                    break;
+                case 7:
+                    asm("MOVF   _gPulseWidth, 0, 1");
+                    asm("CPFSLT  _gLowThreshold, 1");
+                    asm("BSF _gInStatus, 1, 1");
+                    break;
+                case 23:
+                    asm("MOVF   _gPulseWidth, 0, 1");
+                    asm("CPFSLT  _gLowThreshold, 1");
+                    asm("BSF _gRumbleStatus, 0, 1");
+                    break;
+                case 26:
+                    // overflow handle
+                    asm("NOP");
+                    SMT1CON1bits.SMT1GO = 0;
+                    TMR6 = 0;
+                    PIE1bits.SMT1PWAIE = 0;
+                    PIR9bits.TMR6IF = 0;
+                    PIE9bits.TMR6IE = 1;
+                    gInBitCounter = 0;
+                    gInStatus = 0;
+                    synced = 0;
+                    
+                    break;
+                default:
+                    break;
+            }
+            
+            /*
+            asm("BANKSEL(INTCON0)");
+            asm("BTFSC _gInStatus, 7, 0");
+            asm("BCF	INTCON0, 7, 1");
+            */
+            
+            asm("BANKSEL(_gInBitCounter)");
+            asm("INCF _gInBitCounter, 1, 1");
+            asm("NOP");
+        }
+
+    }
+    if(PIE9bits.TMR6IE == 1 && PIR9bits.TMR6IF == 1)
+    {
+        PIR9bits.TMR6IF = 0;
+        if (!synced)
+        {
+            SMT1CON1bits.SMT1GO = 0;
+            asm("NOP");
+            PIR1bits.SMT1PWAIF = 0;
+            SMT1STATbits.CPRUP = 0x1;
+            SMT1STATbits.CPWUP = 0x1;
+            asm("NOP");
+            synced = 0x1;
+            PIE9bits.TMR6IE = 0;
+            SMT1CON1bits.SMT1GO = 1;
+        }
+        
     }
 }
+
 /**
  End of File
 */

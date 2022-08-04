@@ -20,7 +20,6 @@ void main(void)
     ADPCH = 0x00;
     // Turn on the ADC module
     ADCON0bits.ADON = 1;
-    T6CONbits.TMR6ON = 1;
     
     // Load default config
     loadsettings();
@@ -109,17 +108,59 @@ void main(void)
         }
     }
     
+    __delay_ms(500);
+    
     // Clear out the MSB of mode data
     // as we already extracted whether
     // xbox mode is on/off
     SettingData.modeData &= ~(1 << 7);
     
-    // Enable interrupts
     INTCON0bits.GIEH = 1;
     
-    // Main loop for running the controller function
+    T6CONbits.TMR6ON = 1;
+    
     while (1)
     {
+        if ( (gInBitCounter == 9) && (gInStatus == 0x3))
+        {
+            // Origin command
+            INTCON0bits.GIEH = 0;
+            SMT1CON1bits.SMT1GO = 0;
+            sendorigin();
+            gInBitCounter = 0;
+            gInStatus = 0;
+            SMT1STATbits.CPWUP = 0x1;
+            asm("NOP");
+            INTCON0bits.GIEH = 1;
+            SMT1CON1bits.SMT1GO = 1;
+        }
+        else if ( (gInBitCounter == 9) && (gInStatus == 0x0) )
+        {
+            INTCON0bits.GIEH = 0;
+            SMT1CON1bits.SMT1GO = 0;
+            // Probe command
+            sendprobe();
+            gInBitCounter = 0;
+            gInStatus = 0;
+            SMT1STATbits.CPWUP = 0x1;
+            asm("NOP");
+            INTCON0bits.GIEH = 1;
+            SMT1CON1bits.SMT1GO = 1;  
+        }
+        else if ( gInBitCounter == 25 && gInStatus == 0x1 )
+        {
+            // Poll command
+            INTCON0bits.GIEH = 0;
+            SMT1CON1bits.SMT1GO = 0;
+            sendpoll();
+            gInBitCounter = 0;
+            gInStatus = 0;
+            SMT1STATbits.CPWUP = 0x1;
+            asm("NOP");
+            INTCON0bits.GIEH = 1;
+            SMT1CON1bits.SMT1GO = 1;
+        }
+        
         
         // if the check stick bit is set, scan the sticks
         // handle starting or stopping rumble before scanning sticks

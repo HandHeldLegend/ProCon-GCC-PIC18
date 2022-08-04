@@ -59,8 +59,8 @@
 
 void SMT1_Initialize(void)
 {
-    // WPOL low/falling edge enabled; SMT1STP rolls over to 24'h000000; SMT1SPOL low/falling edge enabled; SMT1EN enabled; SMT1PS 1:1 Prescaler; SMT1CPOL falling edge; 
-    SMT1CON0 = 0x9C;
+    // WPOL low/falling edge enabled; SMT1STP rolls over to 24'h000000; SMT1SPOL low/falling edge enabled; SMT1EN enabled; SMT1PS 1:2 Prescaler; SMT1CPOL rising edge; 
+    SMT1CON0 = 0x99;
 
     // SMT1REPEAT Repeat Data Acquisition; SMT1MODE High and Low time; SMT1GO enabled; 
     SMT1CON1 = 0xC3;
@@ -68,33 +68,30 @@ void SMT1_Initialize(void)
     // SMT1CPWUP SMT1CPW1 update complete; SMT1CPRUP SMT1PR1 update complete; SMT1RST SMT1TMR1 update complete; 
     SMT1STAT = 0x00;
 
-    // SMT1CSEL FOSC/4; 
-    SMT1CLK = 0x00;
+    // SMT1CSEL FOSC; 
+    SMT1CLK = 0x01;
 
-    // SMT1WSEL CLC1OUT; 
-    SMT1WIN = 0x0;
+    // SMT1WSEL CCP2_out; 
+    SMT1WIN = 0x0A;
 
     // SMT1SSEL SMT1SIGPPS; 
     SMT1SIG = 0x00;
 
-    // SMT1PR 0; 
-    SMT1PRU = 0x00;
+    // SMT1PR 255; 
+    SMT1PRU = 0xFF;
 
-    // SMT1PR 0; 
-    SMT1PRH = 0x00;
+    // SMT1PR 255; 
+    SMT1PRH = 0xFF;
 
-    // SMT1PR 200; 
-    SMT1PRL = 0xC8;
-
-    // Enabling SMT1 overflow interrupt.
-    PIE1bits.SMT1IE = 1;
+    // SMT1PR 255; 
+    SMT1PRL = 0xFF;
     
+    SMT1STATbits.CPRUP = 0x1;
+    SMT1STATbits.CPWUP = 0x1;
+
     // Enabling SMT1 pulse width acquisition interrupt.
     PIE1bits.SMT1PWAIE = 1;
-
-    // Enabling SMT1 period acquisition interrupt.
-    PIE1bits.SMT1PRAIE = 0;
-
+    
     // Start the SMT module by writing to SMTxGO bit
     SMT1CON1bits.SMT1GO = 1;
     
@@ -185,18 +182,11 @@ uint32_t SMT1_GetTimerValue()
     return (SMT1TMR);
 }
 
-void SMT1_PR_ACQ_ISR(void)
+void SMT1_PW_ACQ_ISR(void)
 {
     
-    PIR1bits.SMT1PRAIF = 0;
-    
-}
-
-void SMT1_Overflow_ISR(void)
-{
-    
-    // Disabling SMT1 overflow interrupt flag bit.
-    PIR1bits.SMT1IF = 0;
+    // Disabling SMT1 pulse width acquisition interrupt flag bit.
+    PIR1bits.SMT1PWAIF = 0;
 }
 /**
  End of File

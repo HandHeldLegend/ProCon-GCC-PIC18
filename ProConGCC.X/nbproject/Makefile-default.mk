@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=mcc_generated_files/mcc.c mcc_generated_files/pin_manager.c mcc_generated_files/smt1.c mcc_generated_files/interrupt_manager.c mcc_generated_files/adcc.c mcc_generated_files/memory.c mcc_generated_files/pwm1.c mcc_generated_files/device_config.c mcc_generated_files/tmr4.c mcc_generated_files/tmr6.c main.c gcdata.c joysticks.c button.c settings.c joybus.s sync.s
+SOURCEFILES_QUOTED_IF_SPACED=mcc_generated_files/mcc.c mcc_generated_files/pin_manager.c mcc_generated_files/smt1.c mcc_generated_files/interrupt_manager.c mcc_generated_files/adcc.c mcc_generated_files/memory.c mcc_generated_files/pwm1.c mcc_generated_files/device_config.c mcc_generated_files/tmr4.c mcc_generated_files/tmr6.c main.c gcdata.c joysticks.c button.c settings.c joybus.s sendpoll.s sendprobe.s sendorigin.s
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/mcc_generated_files/mcc.p1 ${OBJECTDIR}/mcc_generated_files/pin_manager.p1 ${OBJECTDIR}/mcc_generated_files/smt1.p1 ${OBJECTDIR}/mcc_generated_files/interrupt_manager.p1 ${OBJECTDIR}/mcc_generated_files/adcc.p1 ${OBJECTDIR}/mcc_generated_files/memory.p1 ${OBJECTDIR}/mcc_generated_files/pwm1.p1 ${OBJECTDIR}/mcc_generated_files/device_config.p1 ${OBJECTDIR}/mcc_generated_files/tmr4.p1 ${OBJECTDIR}/mcc_generated_files/tmr6.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/gcdata.p1 ${OBJECTDIR}/joysticks.p1 ${OBJECTDIR}/button.p1 ${OBJECTDIR}/settings.p1 ${OBJECTDIR}/joybus.o ${OBJECTDIR}/sync.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/mcc_generated_files/mcc.p1.d ${OBJECTDIR}/mcc_generated_files/pin_manager.p1.d ${OBJECTDIR}/mcc_generated_files/smt1.p1.d ${OBJECTDIR}/mcc_generated_files/interrupt_manager.p1.d ${OBJECTDIR}/mcc_generated_files/adcc.p1.d ${OBJECTDIR}/mcc_generated_files/memory.p1.d ${OBJECTDIR}/mcc_generated_files/pwm1.p1.d ${OBJECTDIR}/mcc_generated_files/device_config.p1.d ${OBJECTDIR}/mcc_generated_files/tmr4.p1.d ${OBJECTDIR}/mcc_generated_files/tmr6.p1.d ${OBJECTDIR}/main.p1.d ${OBJECTDIR}/gcdata.p1.d ${OBJECTDIR}/joysticks.p1.d ${OBJECTDIR}/button.p1.d ${OBJECTDIR}/settings.p1.d ${OBJECTDIR}/joybus.o.d ${OBJECTDIR}/sync.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/mcc_generated_files/mcc.p1 ${OBJECTDIR}/mcc_generated_files/pin_manager.p1 ${OBJECTDIR}/mcc_generated_files/smt1.p1 ${OBJECTDIR}/mcc_generated_files/interrupt_manager.p1 ${OBJECTDIR}/mcc_generated_files/adcc.p1 ${OBJECTDIR}/mcc_generated_files/memory.p1 ${OBJECTDIR}/mcc_generated_files/pwm1.p1 ${OBJECTDIR}/mcc_generated_files/device_config.p1 ${OBJECTDIR}/mcc_generated_files/tmr4.p1 ${OBJECTDIR}/mcc_generated_files/tmr6.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/gcdata.p1 ${OBJECTDIR}/joysticks.p1 ${OBJECTDIR}/button.p1 ${OBJECTDIR}/settings.p1 ${OBJECTDIR}/joybus.o ${OBJECTDIR}/sendpoll.o ${OBJECTDIR}/sendprobe.o ${OBJECTDIR}/sendorigin.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/mcc_generated_files/mcc.p1.d ${OBJECTDIR}/mcc_generated_files/pin_manager.p1.d ${OBJECTDIR}/mcc_generated_files/smt1.p1.d ${OBJECTDIR}/mcc_generated_files/interrupt_manager.p1.d ${OBJECTDIR}/mcc_generated_files/adcc.p1.d ${OBJECTDIR}/mcc_generated_files/memory.p1.d ${OBJECTDIR}/mcc_generated_files/pwm1.p1.d ${OBJECTDIR}/mcc_generated_files/device_config.p1.d ${OBJECTDIR}/mcc_generated_files/tmr4.p1.d ${OBJECTDIR}/mcc_generated_files/tmr6.p1.d ${OBJECTDIR}/main.p1.d ${OBJECTDIR}/gcdata.p1.d ${OBJECTDIR}/joysticks.p1.d ${OBJECTDIR}/button.p1.d ${OBJECTDIR}/settings.p1.d ${OBJECTDIR}/joybus.o.d ${OBJECTDIR}/sendpoll.o.d ${OBJECTDIR}/sendprobe.o.d ${OBJECTDIR}/sendorigin.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/mcc_generated_files/mcc.p1 ${OBJECTDIR}/mcc_generated_files/pin_manager.p1 ${OBJECTDIR}/mcc_generated_files/smt1.p1 ${OBJECTDIR}/mcc_generated_files/interrupt_manager.p1 ${OBJECTDIR}/mcc_generated_files/adcc.p1 ${OBJECTDIR}/mcc_generated_files/memory.p1 ${OBJECTDIR}/mcc_generated_files/pwm1.p1 ${OBJECTDIR}/mcc_generated_files/device_config.p1 ${OBJECTDIR}/mcc_generated_files/tmr4.p1 ${OBJECTDIR}/mcc_generated_files/tmr6.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/gcdata.p1 ${OBJECTDIR}/joysticks.p1 ${OBJECTDIR}/button.p1 ${OBJECTDIR}/settings.p1 ${OBJECTDIR}/joybus.o ${OBJECTDIR}/sync.o
+OBJECTFILES=${OBJECTDIR}/mcc_generated_files/mcc.p1 ${OBJECTDIR}/mcc_generated_files/pin_manager.p1 ${OBJECTDIR}/mcc_generated_files/smt1.p1 ${OBJECTDIR}/mcc_generated_files/interrupt_manager.p1 ${OBJECTDIR}/mcc_generated_files/adcc.p1 ${OBJECTDIR}/mcc_generated_files/memory.p1 ${OBJECTDIR}/mcc_generated_files/pwm1.p1 ${OBJECTDIR}/mcc_generated_files/device_config.p1 ${OBJECTDIR}/mcc_generated_files/tmr4.p1 ${OBJECTDIR}/mcc_generated_files/tmr6.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/gcdata.p1 ${OBJECTDIR}/joysticks.p1 ${OBJECTDIR}/button.p1 ${OBJECTDIR}/settings.p1 ${OBJECTDIR}/joybus.o ${OBJECTDIR}/sendpoll.o ${OBJECTDIR}/sendprobe.o ${OBJECTDIR}/sendorigin.o
 
 # Source Files
-SOURCEFILES=mcc_generated_files/mcc.c mcc_generated_files/pin_manager.c mcc_generated_files/smt1.c mcc_generated_files/interrupt_manager.c mcc_generated_files/adcc.c mcc_generated_files/memory.c mcc_generated_files/pwm1.c mcc_generated_files/device_config.c mcc_generated_files/tmr4.c mcc_generated_files/tmr6.c main.c gcdata.c joysticks.c button.c settings.c joybus.s sync.s
+SOURCEFILES=mcc_generated_files/mcc.c mcc_generated_files/pin_manager.c mcc_generated_files/smt1.c mcc_generated_files/interrupt_manager.c mcc_generated_files/adcc.c mcc_generated_files/memory.c mcc_generated_files/pwm1.c mcc_generated_files/device_config.c mcc_generated_files/tmr4.c mcc_generated_files/tmr6.c main.c gcdata.c joysticks.c button.c settings.c joybus.s sendpoll.s sendprobe.s sendorigin.s
 
 
 
@@ -348,13 +348,29 @@ ${OBJECTDIR}/joybus.o: joybus.s  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/joybus.d ${OBJECTDIR}/joybus.o.d 
 	@${FIXDEPS} ${OBJECTDIR}/joybus.o.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/sync.o: sync.s  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/sendpoll.o: sendpoll.s  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/sync.o.d 
-	@${RM} ${OBJECTDIR}/sync.o 
-	${MP_CC} -c $(MP_EXTRA_AS_PRE) -mcpu=$(MP_PROCESSOR_OPTION)  -D__DEBUG=1  -mdebugger=pickit3   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O2 -maddrqual=require -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto   -o ${OBJECTDIR}/sync.o  sync.s 
-	@-${MV} ${OBJECTDIR}/sync.d ${OBJECTDIR}/sync.o.d 
-	@${FIXDEPS} ${OBJECTDIR}/sync.o.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	@${RM} ${OBJECTDIR}/sendpoll.o.d 
+	@${RM} ${OBJECTDIR}/sendpoll.o 
+	${MP_CC} -c $(MP_EXTRA_AS_PRE) -mcpu=$(MP_PROCESSOR_OPTION)  -D__DEBUG=1  -mdebugger=pickit3   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O2 -maddrqual=require -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto   -o ${OBJECTDIR}/sendpoll.o  sendpoll.s 
+	@-${MV} ${OBJECTDIR}/sendpoll.d ${OBJECTDIR}/sendpoll.o.d 
+	@${FIXDEPS} ${OBJECTDIR}/sendpoll.o.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/sendprobe.o: sendprobe.s  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/sendprobe.o.d 
+	@${RM} ${OBJECTDIR}/sendprobe.o 
+	${MP_CC} -c $(MP_EXTRA_AS_PRE) -mcpu=$(MP_PROCESSOR_OPTION)  -D__DEBUG=1  -mdebugger=pickit3   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O2 -maddrqual=require -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto   -o ${OBJECTDIR}/sendprobe.o  sendprobe.s 
+	@-${MV} ${OBJECTDIR}/sendprobe.d ${OBJECTDIR}/sendprobe.o.d 
+	@${FIXDEPS} ${OBJECTDIR}/sendprobe.o.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/sendorigin.o: sendorigin.s  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/sendorigin.o.d 
+	@${RM} ${OBJECTDIR}/sendorigin.o 
+	${MP_CC} -c $(MP_EXTRA_AS_PRE) -mcpu=$(MP_PROCESSOR_OPTION)  -D__DEBUG=1  -mdebugger=pickit3   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O2 -maddrqual=require -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto   -o ${OBJECTDIR}/sendorigin.o  sendorigin.s 
+	@-${MV} ${OBJECTDIR}/sendorigin.d ${OBJECTDIR}/sendorigin.o.d 
+	@${FIXDEPS} ${OBJECTDIR}/sendorigin.o.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 else
 ${OBJECTDIR}/joybus.o: joybus.s  nbproject/Makefile-${CND_CONF}.mk 
@@ -365,13 +381,29 @@ ${OBJECTDIR}/joybus.o: joybus.s  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/joybus.d ${OBJECTDIR}/joybus.o.d 
 	@${FIXDEPS} ${OBJECTDIR}/joybus.o.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/sync.o: sync.s  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/sendpoll.o: sendpoll.s  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/sync.o.d 
-	@${RM} ${OBJECTDIR}/sync.o 
-	${MP_CC} -c $(MP_EXTRA_AS_PRE) -mcpu=$(MP_PROCESSOR_OPTION)   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O2 -maddrqual=require -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto   -o ${OBJECTDIR}/sync.o  sync.s 
-	@-${MV} ${OBJECTDIR}/sync.d ${OBJECTDIR}/sync.o.d 
-	@${FIXDEPS} ${OBJECTDIR}/sync.o.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	@${RM} ${OBJECTDIR}/sendpoll.o.d 
+	@${RM} ${OBJECTDIR}/sendpoll.o 
+	${MP_CC} -c $(MP_EXTRA_AS_PRE) -mcpu=$(MP_PROCESSOR_OPTION)   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O2 -maddrqual=require -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto   -o ${OBJECTDIR}/sendpoll.o  sendpoll.s 
+	@-${MV} ${OBJECTDIR}/sendpoll.d ${OBJECTDIR}/sendpoll.o.d 
+	@${FIXDEPS} ${OBJECTDIR}/sendpoll.o.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/sendprobe.o: sendprobe.s  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/sendprobe.o.d 
+	@${RM} ${OBJECTDIR}/sendprobe.o 
+	${MP_CC} -c $(MP_EXTRA_AS_PRE) -mcpu=$(MP_PROCESSOR_OPTION)   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O2 -maddrqual=require -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto   -o ${OBJECTDIR}/sendprobe.o  sendprobe.s 
+	@-${MV} ${OBJECTDIR}/sendprobe.d ${OBJECTDIR}/sendprobe.o.d 
+	@${FIXDEPS} ${OBJECTDIR}/sendprobe.o.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/sendorigin.o: sendorigin.s  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/sendorigin.o.d 
+	@${RM} ${OBJECTDIR}/sendorigin.o 
+	${MP_CC} -c $(MP_EXTRA_AS_PRE) -mcpu=$(MP_PROCESSOR_OPTION)   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O2 -maddrqual=require -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto   -o ${OBJECTDIR}/sendorigin.o  sendorigin.s 
+	@-${MV} ${OBJECTDIR}/sendorigin.d ${OBJECTDIR}/sendorigin.o.d 
+	@${FIXDEPS} ${OBJECTDIR}/sendorigin.o.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 

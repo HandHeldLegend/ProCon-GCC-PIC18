@@ -74,7 +74,7 @@ volatile unsigned char gOutBytesLeft;
 volatile unsigned char gOutBitCounter;
 
 // Store incoming data
-volatile unsigned char gInByte;
+volatile unsigned char gInBytes[4];
 // store incoming rumble data
 volatile unsigned char gInRumble;
 // Use this byte to count down how many bits left
@@ -115,14 +115,16 @@ volatile unsigned char gInStatus;
 // 7 6 5 4 3 2 1 0
 // a b c d e f g h
 //
-// a - Command Finished Receiving
-// b - Got Poll Flag 2nd byte
-// c - Got Poll Flag 3rd byte
+// a - We're polling
+// b - 
+// c - 
 // d - 
 // e - 
 // f - 
 // g - first bit width measured
 // h - system needs sync
+volatile unsigned char gRumbleStatus;
+
 
 // Use an an FSR0 pointer because
 volatile unsigned char gFSR0ptr;
