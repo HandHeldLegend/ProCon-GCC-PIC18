@@ -349,13 +349,6 @@ void scansticks(void) {
                         gPollStatus = POLL_STATUS_BUTTONS_FIRST;
                         initiatedRead = FALSE;       // Reset the bool to initialize a read
                         clearRead = FALSE;
-                        
-                        //DEBUG
-                        // This will pull the line low once the last read is completed.
-                        //asm("BCF	    TRISB, 2");
-                        //asm("BCF	PORTB, 2");
-                        //asm("NOP");
-                        //END DEBUG
 
                         return;
                         

@@ -123,28 +123,19 @@ void main(void)
     {   
         // if the check stick bit is set, scan the sticks
         // handle starting or stopping rumble before scanning sticks
-        while (gPollStatus != POLL_STATUS_NULL)
+        while (gPollStatus > POLL_STATUS_NULL)
         {
             
-            if ( gPollStatus == POLL_STATUS_STICKS ) 
+            while( gPollStatus == POLL_STATUS_STICKS ) 
             {
-                // check if rumble should be enables
-                if(gRumbleStatus == RUMBLE_STATUS_EN && SettingData.rumbleData)
-                {
-                    PORTBbits.RB4 = 1;
-                    CCPR1H = 0xF0;
-                }
-                else
-                {
-                    PORTBbits.RB4 = 0;
-                }
                 scansticks();
-                // check for setting changes
-                livesettings();
             }
                 
-            checkbuttons();
-            
+            while (gInBitCounter < 9 && gPollStatus > POLL_STATUS_STICKS)
+            {
+                checkbuttons();
+            }
+                
             if ( gInBitCounter == 25 && gInStatus == 0x40 )
             {
                 // Poll command
@@ -157,7 +148,6 @@ void main(void)
                 gPollStatus = POLL_STATUS_STICKS;
                 INTCON0bits.GIEH = 1;
                 SMT1CON1bits.SMT1GO = 1;
-                break;
             }
             else if ( (gInBitCounter > 9) && !(gInStatus & 0x40) )
             {
@@ -180,6 +170,17 @@ void main(void)
                 SMT1CON1bits.SMT1GO = 1;
                 T6CONbits.TMR6ON = 1;
                 break;
+            }
+            
+            if(gRumbleStatus == RUMBLE_STATUS_EN && SettingData.rumbleData)
+            {
+                PORTBbits.RB4 = 1;
+                CCPR1H = 0xF0;
+                gRumbleStatus == RUMBLE_STATUS_OFF;
+            }
+            else
+            {
+                PORTBbits.RB4 = 0;
             }
             
         }

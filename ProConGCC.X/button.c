@@ -19,6 +19,8 @@ void checkbuttons(void)
     {
         // Zero the outgoing button status bytes
         // Since we are reading a fresh state.
+        // check for setting changes
+        livesettings();
         gPollPacket[BUTTON_PORT_A] = 0x0;
         gPollPacket[BUTTON_PORT_B] = 0x80; // leftmost bit always 1
         gPollPacket[TRIGGER_PORT_L] = 0x0;

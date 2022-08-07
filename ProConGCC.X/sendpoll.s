@@ -234,7 +234,7 @@ _sendpoll:
 	    BANKSEL(INTCON0)
 	    ; Reenable interrupts
 	    BSF	    INTCON0, 7, 1
-	    BSF	TRISB, 2	; Turn the data pin around so we can listen
+	    BSF	    TRISB, 2	; Turn the data pin around so we can listen
 	    RETURN
 
 	endHighWrite:	
