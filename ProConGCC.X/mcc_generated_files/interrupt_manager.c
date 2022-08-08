@@ -94,6 +94,7 @@ void __interrupt() INTERRUPT_InterruptManagerHigh (void)
                     asm("BSF _gInStatus, 0, 1");
                     break;
                 case 23:
+                    asm("BCF _gRumbleStatus, 0, 1");
                     asm("MOVF   _gPulseWidth, 0, 1");
                     asm("CPFSLT  _gLowThreshold, 1");
                     asm("BSF _gRumbleStatus, 0, 1");
