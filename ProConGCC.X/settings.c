@@ -118,13 +118,13 @@ void livesettings(void)
             else SettingData.x_snapback_strength -= 1;
             setting_marker = SETTING_SAVE_ALL;
         }
-        else if (R_IN_PORT && setting_marker == SETTING_L_HELD)
+        else if (R_IN_PORT && setting_marker == SETTING_R_HELD)
         {
             SettingData.y_snapback_strength += 1;
             if (SettingData.y_snapback_strength > 14) SettingData.y_snapback_strength = 14;
             setting_marker = SETTING_SAVE_ALL;
         }
-        else if (L_IN_PORT && setting_marker == SETTING_R_HELD)
+        else if (L_IN_PORT && setting_marker == SETTING_L_HELD)
         {
             if (SettingData.y_snapback_strength == 0) SettingData.y_snapback_strength = 0;
             else SettingData.y_snapback_strength -= 1;
