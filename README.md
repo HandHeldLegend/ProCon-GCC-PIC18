@@ -1,6 +1,6 @@
 **What is this?**
 
-This is a firmware designed for PIC18LF26K83 microcontrollers which emulates the function of a GameCube controller as faithfully as possible. Other PIC18 microcontrollers are compatible, though you will likely need to utilize the migration tool in MPLAB code configurator.
+This is version 2 firmware designed for PIC18LF26K83 microcontrollers which emulates the function of a GameCube controller as faithfully as possible. Other PIC18 microcontrollers are compatible, though you will likely need to utilize the migration tool in MPLAB code configurator.
 
 **Features:**
 
@@ -10,7 +10,7 @@ This is a firmware designed for PIC18LF26K83 microcontrollers which emulates the
 - 1 bonus input mode specifically designed for Smash Ultimate
 - Toggle between Xbox or Nintendo button layouts.
 - Rumble disable/enable
-- Support for extremely fast polling rates (Works in Smashscope oscilloscope mode in my testing) Target was functionality at 1ms polling intervals
+- Software adjustable snapback and deadzone
 
 **Background**
 
@@ -19,7 +19,7 @@ I had originally set out to utilize a GC+2.0 board from Aurelio and 4layertech f
 The schematic and pin layout is incompatible with the original GC+2.0 board as of board revision 1b of my PCB design.
 Schematics and boardview are TBA.
 
-This project 100% would not exist without the work of Aurelio, it inspired me to push this project as far as I could go and meet my project goals. There was a ton that was learned from his codebase; I do take a slightly different approach with much of my firmware, namely using pure assembly to handle the reading of incoming packets as well as pushing out responses.
+This project 100% would not exist without the work of Aurelio, it inspired me to push this project as far as I could go and meet my project goals. There was a ton that was learned from his codebase; I do take a slightly different approach with much of my firmware.
 
 **GUI-less configuration:**
 
@@ -32,10 +32,27 @@ This project 100% would not exist without the work of Aurelio, it inspired me to
 - Hold - (minus) : Stick calibration mode
 - Hold + and - : Reset to defaults
 - Hold + (plus) : Enable/disable rumble
-- Hold D-Up : Increase stick deadzone
-- Hold D-Down : Decrease stick deadzone
 - Hold B : Enable Smash Ultimate mode
 - Hold Y : Enable/Disable Xbox button layout
+
+**Software Snapback**
+
+Built in to firmware version 2.0 is an adjustable snapback reduction algorithm.
+This is configurable for the left stick only on both the X and Y axis.
+
+There are 16 levels of adjustment, the default being completely turned off.
+
+To adjust the X axis, hold Minus and press L or R trigger. R increases the reduction intensity, L decreases.
+In other words, if you're experiencing snapback, you need to hold Minus and press R. Adjust one value at a time
+and test to ensure you're getting the expected results.
+
+To adjust the Y axis, hold Minus and press ZL or ZR. Same details apply as the X axis.
+
+**Software Deadzone**
+
+You can adjust the stick deadzone on the fly by holding Minus and pressing Dpad Up or Dpad Down. This will increase
+or decrease the deadzone respectively. The default value is 4, with 16 values of adjustment. I recommend reducing this 
+setting as much as you can without the stick becoming jittery.
 
 **Trigger mode explanations:**
 
