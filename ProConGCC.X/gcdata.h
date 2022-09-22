@@ -33,59 +33,69 @@
 
 #include <xc.h> // include processor files - each processor file is guarded.
 #include "main.h"
+#include "memorymap.h"
 
+#define STICK_SX_PACKET 2
+#define STICK_SY_PACKET 3
+
+#define STICK_CX_PACKET 4
+#define STICK_CY_PACKET 5
+
+#define POLL_STATUS_NULL            0x0
+#define POLL_STATUS_STICKS          0x1
+#define POLL_STATUS_BUTTONS_FIRST   0x2
+#define POLL_STATUS_BUTTONS_LOOP    0x3
+
+#define RUMBLE_STATUS_OFF           0x0
+#define RUMBLE_STATUS_EN            0x1
+#define RUMBLE_STATUS_BRAKE         0x2
 
 // This is the packet we use when we are
 // sending button and stick value updates
 // to the Gamecube/Wii/USB Adapter
 // each byte is explained below with bits for each item.
-volatile unsigned char gConPollPacket[8];
+volatile unsigned char gPollPacket[8];
+//byte 0 :: 0, 0, 0, START, Y, X, B, A
+//byte 1 :: 1, L-Digital, R-Digital, Z D-up, D-down, D-right, Dleft
+//byte 2 :: Analog stick x
+//byte 3 :: Analog stick y
+//byte 4 :: C stick x
+//byte 5 :: C stick y
+//byte 6 :: L trigger ANALOG
+//byte 7 :: R trigger ANALOG
 
-// This is the canned response we 
-volatile unsigned char gConProbeResponse[3];
+// This is the canned response we use for probe
+volatile unsigned char gProbeResponse[3];
 
-volatile unsigned char gConOriginResponse[10];
+// This is the canned response we use for origin
+volatile unsigned char gOriginResponse[10];
 
-volatile unsigned char gConOutByte;
+// Used as a placeholder to store the byte
+// we are pushing
+volatile unsigned char gOutByte;
 
-// Use this byte to count down how many bits left
-volatile unsigned char gConBitCounter;
-// Use this byte to count down how many bytes left
-volatile unsigned char gConByteCount;
-volatile unsigned char gConOutIdx;
-
-// --------------------
-// --------------------
-
-// This section is for variables for incoming bits/bytes
-volatile unsigned char gInBitBuffer[60];
-volatile unsigned char gInBitBufferIdx = 0x0;
+// Count down how many bytes left we have
+volatile unsigned char gOutBytesLeft;
 
 // Use this as a way to count down how many
-// bits until we have a full byte.
+// bits until we have a full byte sending data.
+volatile unsigned char gOutBitCounter;
+
+// store incoming rumble data
+volatile unsigned char gInRumble;
+// Use this byte to count down how many bits left
+// coming IN.
 volatile unsigned char gInBitCounter;
+// Use this byte to count down how many bytes left
+// coming IN
+volatile unsigned char gInBytesLeft;
 
-// A way to store the incoming pulse width
-// reliably. Otherwise it can get overwritten.
-volatile unsigned char gInPulseWidth;
- 
-// Byte array for storing incoming bytes.
-volatile unsigned char gInPacket[4];
-
-// This is the first byte that comes in.
-// It tells the controller which command to respond to.
-volatile unsigned char gInCommandByte;
 
 // This holds the pointer to the current byte that is coming in
 // Using permanently is unreliable, so we should store it in
 // between interrupts.
 volatile unsigned char gInPacketIdx;
 
-
-// Byte for various status features
-// 0 means not happened yet
-// 1 means this happened
-volatile unsigned char gInStatus;
 
 // The low threshold to discern between a
 // LOW and a HIGH bit (0 or 1).
@@ -94,14 +104,28 @@ volatile unsigned char gInStatus;
 // or Wii console. I suspect this is to avoid getting
 // HIGH bits mixed up with LOW bits since they share a 1us
 // low pulse.
-volatile unsigned char gLowThreshold;
 
+// A way to store the incoming pulse width
+// reliably. Otherwise it can get overwritten.
+volatile unsigned char gInPulseWidth;
 
-// We use a bitmask to do XOR operation, increment one, and check for 0 (overflow to 0))
-// A ZERO result confirms our command!
-// Set command bits for our convenience.
-volatile unsigned char gCommandOriginMask; // Actual command 0x41 for asking for origin/calibration
-volatile unsigned char gCommandPollMask; // Actual command 0x40 for asking for a button/stick update
+// The low threshold is updated at the beginning of every
+// incoming packet to handle differences in incoming transmission speed.
+volatile unsigned char gLowThreshold; 
+
+// Byte for keeping track of
+// which command is received.
+volatile unsigned char gInStatus; 
+
+// Keep track of rumble being on.
+volatile unsigned char gRumbleStatus;
+
+// Keep track of current polling cycle.
+volatile unsigned char gPollStatus;
+
+volatile unsigned char gSynced;
+
+void gcdatainit(void);
 
 void desyncfix(void);
 

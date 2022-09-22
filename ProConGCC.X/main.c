@@ -6,13 +6,15 @@
 #include "main.h"
 
 // Bool to tell if we are calibrating the sticks
-bool stickcalibration = false;
-bool xboxmode = false;
+volatile uint8_t stickcalibration    __at(MEM_CALIBRATE_EN);
+volatile uint8_t xboxmode            __at(MEM_XBOXMODE);
 
 void main(void)
 {
     // Initialize the device
     SYSTEM_Initialize();
+    joysticksetup();
+    gcdatainit();
     
     // Set ADC Read channel to RA0
     ADPCH = 0x00;
@@ -22,7 +24,12 @@ void main(void)
     // Load default config
     loadsettings();
     
+    stickcalibration = STICK_CALIBRATE_NOPE;
+    //stickcalibration = STICK_CALIBRATE_SNAP;
+    
     // Load whether xbox mode is enabled
+    // Don't forget to clear it first because dumb
+    xboxmode = FALSE;
     xboxmode |= SettingData.modeData >> 7;
     
     // Set Default Trigger Mode
@@ -62,32 +69,6 @@ void main(void)
         savesettings(); 
     }
     
-    // Increase deadzone
-    if (!DU_IN_PORT)
-    {
-        SettingData.deadZone += 4;
-        if (SettingData.deadZone >= 28)
-        {
-            SettingData.deadZone = 28;
-        }
-        setstickmultipliers();
-        savesettings();
-        loadsettings();
-    }
-    
-    // Decrease deadzone
-    if (!DD_IN_PORT)
-    {
-        SettingData.deadZone -= 4;
-        if (SettingData.deadZone <= 0 || SettingData.deadZone > 28)
-        {
-            SettingData.deadZone = 0;
-        }
-        setstickmultipliers();
-        savesettings();
-        loadsettings();
-    }
-    
     // Set defaults
     if (!SELECT_IN_PORT && !START_IN_PORT)
     {
@@ -103,13 +84,13 @@ void main(void)
     // Do stick calibration if Minus or Capture is held on boot.
     else if (!SELECT_IN_PORT)
     {
-        stickcalibration = true;
+        stickcalibration = STICK_CALIBRATE_AXIS;
         __delay_ms(1200);
         // Zero out our config options to the default center values
         zerosticks();
     }
     
-    while (stickcalibration)
+    while (stickcalibration == STICK_CALIBRATE_AXIS)
     {   
         // Pressing start saves settings
         if (!START_IN_PORT)
@@ -117,7 +98,7 @@ void main(void)
             setstickmultipliers();
             savesettings();
             loadsettings();
-            stickcalibration = false;
+            stickcalibration = STICK_CALIBRATE_NOPE;
             break;
         }
         else
@@ -127,56 +108,163 @@ void main(void)
         }
     }
     
-    // Enable interrupts
-    INTCON0bits.GIEH = 1;
+    __delay_ms(1);
     
     // Clear out the MSB of mode data
     // as we already extracted whether
     // xbox mode is on/off
     SettingData.modeData &= ~(1 << 7);
     
+    INTCON0bits.GIEH = 1;
+    
+    T6CONbits.TMR6ON = 1;
+    
     while (1)
-    {
-        // check for incoming command
-        commandreader();
-        // Fix desync if needed
-        if (gInStatus & 0x01)
-        {
-            desyncfix();
-        }
-        // check if we need to send a response
-        bytepush();
-        // check if we need to do a cleanup
-        bytecleanup();
-        
+    {   
         // if the check stick bit is set, scan the sticks
         // handle starting or stopping rumble before scanning sticks
-        if (gInStatus & (1 << 3))
+        while (gPollStatus > POLL_STATUS_NULL)
         {
             
-            if(gInPacket[2] == 1 && SettingData.rumbleData)
+            while( gPollStatus == POLL_STATUS_STICKS ) 
+            {
+                scansticks();
+            }
+                
+            while (gInBitCounter < 9 && gPollStatus > POLL_STATUS_STICKS)
+            {
+                checkbuttons();
+            }
+                
+            if ( gInBitCounter == 25 && gInStatus == 0x40 )
+            {
+                // Poll command
+                INTCON0bits.GIEH = 0;
+                SMT1CON1bits.SMT1GO = 0;
+                sendpoll();
+                gInBitCounter = 0;
+                gInStatus = 0;
+                SMT1STATbits.CPWUP = 0x1;
+                gPollStatus = POLL_STATUS_STICKS;
+                INTCON0bits.GIEH = 1;
+                SMT1CON1bits.SMT1GO = 1;
+            }
+            else if ( (gInBitCounter >= 9) && !(gInStatus & 0x40) )
+            {
+                gPollStatus = POLL_STATUS_NULL;
+                gRumbleStatus = RUMBLE_STATUS_OFF;
+                break;
+            }
+            
+            if(gRumbleStatus == RUMBLE_STATUS_EN && SettingData.rumbleData)
             {
                 PORTBbits.RB4 = 1;
                 CCPR1H = 0xF0;
-            }
-            else if (gInPacket[2] == 2 && SettingData.rumbleData)
-            {
-                PORTBbits.RB4 = 1;
-                CCPR1H = 0x60;
             }
             else
             {
                 PORTBbits.RB4 = 0;
             }
             
-            scansticks();
         }
         
-        // if the button check bit is set, scan the buttons
-        if (gInStatus & (1 << 2))
+        while (gPollStatus == POLL_STATUS_NULL)
         {
-            checkbuttons();
+            if ( (gInBitCounter == 9) && (gInStatus == 0x41) )
+            {
+                // Origin command
+                INTCON0bits.GIEH = 0;
+                SMT1CON1bits.SMT1GO = 0;
+                sendorigin();
+                gInBitCounter = 0;
+                gInStatus = 0;
+                SMT1STATbits.CPWUP = 0x1;
+                asm("NOP");
+                gPollStatus = POLL_STATUS_NULL;
+                INTCON0bits.GIEH = 1;
+                SMT1CON1bits.SMT1GO = 1;
+            }
+            else if ( gInBitCounter == 25 )
+            {
+                // Origin command
+                INTCON0bits.GIEH = 0;
+                SMT1CON1bits.SMT1GO = 0;
+                sendorigin();
+                gInBitCounter = 0;
+                gInStatus = 0;
+                SMT1STATbits.CPWUP = 0x1;
+                asm("NOP");
+                gPollStatus = POLL_STATUS_NULL;
+                INTCON0bits.GIEH = 1;
+                SMT1CON1bits.SMT1GO = 1;
+            }
+            else if ( (gInBitCounter == 9) && (gInStatus == 0x0) )
+            {
+                // Handle 0x00 probe response
+                INTCON0bits.GIEH = 0;
+                SMT1CON1bits.SMT1GO = 0;
+                // Probe command
+                sendprobe();
+                gInBitCounter = 0;
+                gInStatus = 0;
+                SMT1STATbits.CPWUP = 0x1;
+                asm("NOP");
+                gPollStatus = POLL_STATUS_NULL;
+                INTCON0bits.GIEH = 1;
+                SMT1CON1bits.SMT1GO = 1;  
+            }
+            else if ( (gInBitCounter == 9) && (gInStatus == 0xFF) )
+            {
+                // Handle 0xFF probe response
+                INTCON0bits.GIEH = 0;
+                SMT1CON1bits.SMT1GO = 0;
+                // Probe command
+                sendprobe();
+                gInBitCounter = 0;
+                gInStatus = 0;
+                SMT1STATbits.CPWUP = 0x1;
+                asm("NOP");
+                gPollStatus = POLL_STATUS_NULL;
+                INTCON0bits.GIEH = 1;
+                SMT1CON1bits.SMT1GO = 1;  
+            }
+            else if ( gInBitCounter == 25 && gInStatus == 0x40 )
+            {
+                // Poll command
+                INTCON0bits.GIEH = 0;
+                SMT1CON1bits.SMT1GO = 0;
+                sendpoll();
+                gInBitCounter = 0;
+                gInStatus = 0;
+                gPollStatus = POLL_STATUS_STICKS;
+                INTCON0bits.GIEH = 1;
+                SMT1CON1bits.SMT1GO = 1;
+                break;
+            }
+            else if ( (gInBitCounter > 9) && !(gInStatus & 0x40) )
+            {
+                PIR1bits.SMT1PWAIF = 0;
+                SMT1STATbits.CPRUP = 0x1;
+                SMT1STATbits.CPWUP = 0x1;
+                asm("NOP");
+                PIE1bits.SMT1PWAIE = 1;
+
+                T6CONbits.TMR6ON = 0;
+
+                gInBitCounter = 0;
+                gInStatus = 0;
+                gPollStatus = POLL_STATUS_NULL;
+                gRumbleStatus = RUMBLE_STATUS_OFF;
+                gSynced = 0;
+
+                TMR6_Initialize();
+                INTCON0bits.GIEH = 1;
+                SMT1CON1bits.SMT1GO = 1;
+                T6CONbits.TMR6ON = 1;
+            }
+
         }
+        
     }
 }
 /**

@@ -6,6 +6,7 @@
 
 #include <xc.h> // include processor files - each processor file is guarded.
 #include "main.h"
+#include "gcdata.h"
 
 // Save 50 bytes for loading settings
 typedef struct {
@@ -44,11 +45,14 @@ typedef struct {
     uint8_t modeData;
     uint8_t rumbleData;
     
+    uint8_t x_snapback_strength;
+    uint8_t y_snapback_strength;
+    
     uint8_t deadZone;
 } Settings;
 
 void setdefaultsettings(void);
-void setdefaultsticks(void);
+void livesettings(void);
 void zerosticks(void);
 void setstickmultipliers(void);
 
